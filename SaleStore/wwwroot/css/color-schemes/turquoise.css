@@ -1,0 +1,233 @@
+/*---
+| COLOR SCHEME
+---*/
+a {
+  color: #1abc9c;
+}
+a:hover,
+a:focus {
+  color: #148f77;
+}
+.list-border li {
+  border-left: 5px solid #1abc9c;
+}
+.list-chevron li:before {
+  color: #1abc9c;
+}
+.table-hover tbody tr:hover > th,
+.table-hover tbody tr:hover > td {
+  background-color: #1abc9c;
+}
+.price-list li.important {
+  color: #1abc9c;
+}
+.flash {
+  background-color: #1abc9c;
+}
+.btn-primary {
+  background-color: #1abc9c;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #17a689;
+}
+.box.border-top {
+  border-top: 5px solid #1abc9c;
+}
+.box.border-right {
+  border-right: 5px solid #1abc9c;
+}
+.box.border-bottom {
+  border-bottom: 5px solid #1abc9c;
+}
+.box.border-left {
+  border-left: 5px solid #1abc9c;
+}
+.panel.border-top {
+  border-top: 5px solid #1abc9c;
+}
+.panel.border-right {
+  border-right: 5px solid #1abc9c;
+}
+.panel.border-bottom {
+  border-bottom: 5px solid #1abc9c;
+}
+.panel.border-left {
+  border-left: 5px solid #1abc9c;
+}
+.panel-navigation a:hover {
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+}
+.panel-navigation a:hover .toggle {
+  color: #1abc9c;
+}
+.header .top a:hover {
+  color: #1abc9c;
+}
+.search #autocomplete-results ul {
+  border-left: 5px solid #1abc9c;
+}
+.search #autocomplete-results ul li.active a {
+  background-color: #1abc9c;
+}
+.mini-cart a > span {
+  background-color: #1abc9c;
+}
+.main-menu > li:hover > a,
+.main-menu > li > a:hover {
+  color: #1abc9c;
+}
+.main-menu ul {
+  border-top: 5px solid #1abc9c;
+}
+.main-menu ul a:hover {
+  background-color: #1abc9c;
+}
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+  color: #1abc9c;
+}
+.tweet_list .tweet a:hover {
+  color: #1abc9c;
+}
+.footer .links a:hover,
+.footer .links a:focus {
+  color: #1abc9c;
+}
+.footer .twitter .tweet_list li .text .tweet_time a:hover,
+.footer .twitter .tweet_list li .text .tweet_time a:focus {
+  color: #1abc9c;
+}
+.category .sidebar .children .title a:hover {
+  color: #1abc9c;
+}
+.category .sidebar .category-list a:hover,
+.category .sidebar .category-list a:focus {
+  background-color: #1abc9c;
+}
+.category .sidebar .category-list a:hover .count,
+.category .sidebar .category-list a:focus .count {
+  color: #1abc9c;
+}
+.category .sidebar .price-filter .ui-slider .ui-slider-range {
+  background-color: #1abc9c;
+  border-top: 1px solid #148f77;
+  border-bottom: 1px solid #148f77;
+}
+.category .sidebar .price-filter #slider-label strong {
+  color: #1abc9c;
+}
+.product-list a:hover .title .rating {
+  color: #1abc9c;
+}
+.product-list a .image .badge-sale {
+  background-color: #1abc9c;
+}
+.product-list a .image .badge-sale:after {
+  border-color: #0e6252 transparent transparent transparent;
+}
+.product-list a .title .prices .price {
+  color: #1abc9c;
+}
+.product-list-small .image a:hover {
+  border-color: #1abc9c;
+}
+.product-list-small .desc h6 a:hover {
+  color: #1abc9c;
+}
+.product-list-small .desc .rating a:hover {
+  color: #1abc9c;
+}
+.product-list-small li:hover .desc .rating {
+  color: #1abc9c;
+}
+.ratings-small li:hover .desc .rating {
+  color: #1abc9c;
+}
+.flexslider .flex-progress span {
+  background-color: #1abc9c;
+}
+.caption h3 {
+  background-color: #1abc9c;
+}
+.jcarousel-controls .carousel-control-prev:hover,
+.jcarousel-controls .carousel-control-next:hover,
+.jcarousel-controls .carousel-control-prev:focus,
+.jcarousel-controls .carousel-control-next:focus {
+  background-color: #1abc9c;
+}
+.product-info .product-content #product .details .prices .price {
+  color: #1abc9c;
+}
+.product-info .product-content #product .details .meta .categories a:hover {
+  color: #1abc9c;
+}
+.product-info .product-images .thumbs .thumbs-list li a:hover {
+  border-color: #1abc9c;
+}
+.product-info .product-images .thumbs .thumbs-list li a.active {
+  border-color: #1abc9c;
+}
+.product-reviews h5 .script {
+  color: #1abc9c;
+}
+.nav-tabs {
+  border-bottom: 5px solid #1abc9c;
+}
+.nav-tabs li a:hover {
+  color: #1abc9c;
+}
+.nav-tabs li.active > div,
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:active,
+.nav-tabs li.active a:focus {
+  background-color: #1abc9c;
+}
+.nav-tabs.nav-stacked > li > a:hover,
+.nav-tabs.nav-stacked > li > a:active,
+.nav-tabs.nav-stacked > li > a:focus {
+  border-bottom: 1px solid #1abc9c;
+  background-color: #1abc9c;
+}
+.nav-tabs.nav-stacked li.active a {
+  color: #1abc9c;
+}
+.cart-items .col_product .image a:hover,
+.cart-items .col_product .image a:focus {
+  border-color: #1abc9c;
+}
+.cart-items .col_product h5 a:hover,
+.cart-items .col_product h5 a:focus {
+  color: #1abc9c;
+}
+.cart-items .col_product .options li:before,
+.cart-items .col_product .extras li:before {
+  color: #1abc9c;
+}
+.options-panel .options-panel-toggle a {
+  background-color: #1abc9c;
+}
+.label-sale {
+  background-color: #1abc9c;
+}
+.widget {
+  border-top: 5px solid #1abc9c;
+}
+.widget.Categories a:hover,
+.widget.Menu a:hover,
+.widget.Categories a:focus,
+.widget.Menu a:focus {
+  background-color: #1abc9c;
+}
+.widget.Categories a:hover .count,
+.widget.Menu a:hover .count,
+.widget.Categories a:focus .count,
+.widget.Menu a:focus .count {
+  color: #1abc9c;
+}
+.adverts a:hover {
+  border-color: #1abc9c;
+}
