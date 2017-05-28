@@ -21,7 +21,7 @@ namespace SaleStore.Models
         public int CampaignCount { get; set; }
         public string Avatar { get; set; }    
         
-        public string CompanyId { get; set; }
+        public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
     }
