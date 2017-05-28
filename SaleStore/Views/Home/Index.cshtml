@@ -34,8 +34,12 @@
                     <div class="col-sm-7">
                         <div class="product-slide-inner ">
                             <h1 class="product-title">
-                                Lorem ipsum dolor sit amet</h2>
-                                
+                                Lorem ipsum dolor sit amet</h1>
+                                @foreach (var item in Model.Products)
+                                {
+                                    <h3 class="product-code">Product Code :@item.Name)</h3>
+
+                                }
                                
 
                                 <div class="product-price">
@@ -66,7 +70,7 @@
                     <div class="col-sm-7 ">
                         <div class="product-slide-inner ">
                             <h1 class="product-title">
-                                Lorem ipsum dolor sit amet</h2>
+                                Lorem ipsum dolor sit amet</h1>
 
                                 <h3 class="product-code">Product Code : DEN1098</h3>
 
@@ -98,7 +102,7 @@
                     <div class="col-sm-7 ">
                         <div class="product-slide-inner">
                             <h1 class="product-title">
-                                Lorem ipsum dolor sit amet</h2>
+                                Lorem ipsum dolor sit amet</h1>
 
                                 <h3 class="product-code">Product Code : DEN1098</h3>
 
@@ -130,7 +134,7 @@
                     <div class="col-sm-7 ">
                         <div class="product-slide-inner  ">
                             <h1 class="product-title">
-                                Lorem ipsum dolor sit amet</h2>
+                                Lorem ipsum dolor sit amet</h1>
 
                                 <h3 class="product-code">Product Code : DEN1098</h3>
 
@@ -1345,7 +1349,7 @@
         <!--/right column end-->
     </div>
     <!-- /.row  -->
-</div>
+
 <!-- /main container -->
 
 <div class="gap"></div>
