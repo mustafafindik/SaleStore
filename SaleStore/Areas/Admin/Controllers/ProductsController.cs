@@ -9,17 +9,20 @@ using SaleStore.Data;
 using SaleStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment env;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(IHostingEnvironment _env,ApplicationDbContext context)
         {
-            _context = context;    
+            _context = context;
+            this.env = _env;
         }
 
         // GET: Admin/Products
@@ -86,10 +89,10 @@ namespace SaleStore.Areas.Admin.Controllers
                     || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
                         string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
-                        string FilePath = UploadPath + category + "\\";
+                        string FilePath = env.WebRootPath +"\\uploads\\" + category + "\\";
                         string dosyaismi = Path.GetFileName(uploadFile.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
-                        product.ProductImage = "uploads/" + category + "/";
+                        product.ProductImage = "uploads//" + category + "//";
                         try
                         {
                             if (!Directory.Exists(FilePath))
