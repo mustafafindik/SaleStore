@@ -9,15 +9,18 @@ namespace SaleStore.Models
     public class Campaign:BaseEntity
     {
         public string Name { get; set; }
-        public string CatchWord { get; set; }
+        public string Slogan { get; set; }
 
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
-        public string Resim { get; set; }
+        public DateTime CampaignStartDate { get; set; }
+        public DateTime CampaignEndDate { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public string Image { get; set; }
+
+        
 
     }
 }

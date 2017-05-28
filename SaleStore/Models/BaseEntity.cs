@@ -10,13 +10,17 @@ namespace SaleStore.Models
     {
         [Display(Name = "ID")]
 
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }
 
         [StringLength(200)]
         [Display(Name = "Oluşturan")]
         public string CreatedBy { get; set; }
+
+        [StringLength(200)]
+        [Display(Name = "Güncelleyen")]
+        public string UpdatedBy { get; set; }
 
         [Display(Name = "Güncellenme Tarihi")]
         public DateTime UpdateDate { get; set; }
