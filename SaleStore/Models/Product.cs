@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaleStore.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -25,6 +26,6 @@ namespace SaleStore.Models
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
-
+        public HomePageViewModels HomePageModels { get; set; }
     }
 }

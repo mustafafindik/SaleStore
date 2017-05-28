@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SaleStore.Models.ViewModels.HomePageViewModels
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -30,11 +31,15 @@
                         <div class="product-slide-inner ">
                             <h1 class="product-title">
                                 Lorem ipsum dolor sit amet</h2>
+                                @foreach (var item in Model.Products)
+                                {
+                                    <h3 class="product-code">Product Code :@item.Name)</h3>
 
-                                <h3 class="product-code">Product Code : DEN1098</h3>
+                                }
+                               
 
                                 <div class="product-price">
-                                    <span class="price-sales"> $70</span> <span class="price-standard">$95</span>
+                                    <span class="price-sales">70</span> <span class="price-standard">$95</span>
                                 </div>
                                 <div class="details-description">
                                     <p>
