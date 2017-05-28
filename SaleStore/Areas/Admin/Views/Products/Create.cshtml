@@ -60,63 +60,52 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-                <div class="input-group input-large">
-                    @*<div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
-                        <i class="fa fa-file fileinput-exists"></i>&nbsp;
-                        <span class="fileinput-filename"></span>
-                    </div>*@
-                    <span class="input-group-addon btn default btn-file">
-                        @*<span class="fileinput-new">Dosya Seç</span>*@
-                        @*<span class="fileinput-exists">Deðiþtir</span>*@
-                        <input type="file" id="FileName" name="uploadFile">
-                    </span>
-                    @*<a href="javascript:" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput">Kaldýr</a>*@
-                </div>
-                @*@Html.ValidationMessage("FileName", new { @class = "text-danger" })*@
-                @Html.ValidationMessage("FileExist", new { @class = "text-danger" })
-                <span class="text-danger" asp-validation-for="FileName"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyId" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="CreateDate" class="form-control" />
-                    <span asp-validation-for="CreateDate" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="CreatedBy" class="form-control" />
-                    <span asp-validation-for="CreatedBy" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="UpdatedBy" class="form-control" />
-                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="UpdateDate" class="form-control" />
-                    <span asp-validation-for="UpdateDate" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+            <label asp-for="ProductImage" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
+                @Html.ValidationMessage("ProductImage", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            <label asp-for="CompanyId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdatedBy" class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdateDate" class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 </form>
 
 <div>

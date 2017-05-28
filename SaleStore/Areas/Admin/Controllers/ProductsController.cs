@@ -13,7 +13,7 @@ using System.IO;
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductsController : Controller
+    public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -86,7 +86,7 @@ namespace SaleStore.Areas.Admin.Controllers
                     || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
                         string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
-                        string FilePath = ViewBag.UploadPath + category + "\\";
+                        string FilePath = UploadPath + category + "\\";
                         string dosyaismi = Path.GetFileName(uploadFile.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
                         product.ProductImage = "uploads/" + category + "/";
