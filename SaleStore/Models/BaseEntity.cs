@@ -9,7 +9,6 @@ namespace SaleStore.Models
     public class BaseEntity
     {
         [Display(Name = "ID")]
-
         public int Id { get; set; }
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }

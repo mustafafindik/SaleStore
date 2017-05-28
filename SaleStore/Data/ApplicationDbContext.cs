@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SaleStore.Models;
+using SaleStore.Models.ViewModels;
 
 namespace SaleStore.Data
 {
@@ -26,5 +27,6 @@ namespace SaleStore.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+      
     }
 }

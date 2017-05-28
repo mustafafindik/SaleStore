@@ -26,6 +26,6 @@ namespace SaleStore.Models
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
-        public HomePageViewModels HomePageModels { get; set; }
+        
     }
 }

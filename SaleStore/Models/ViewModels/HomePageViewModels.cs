@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace SaleStore.Models.ViewModels
 {
-    public class HomePageViewModels
+    public class HomePageViewModels 
     {
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<Campaign> Campaigns { get; set; }
+        
+        public List<Category> Categories { get; set; }
+        public List<Product> Products { get; set; }
+        public List<Campaign> Campaigns { get; set; }
     }
 }
