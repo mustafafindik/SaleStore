@@ -11,7 +11,12 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-SaleStore-1f99917f-df1c-4690-ac31-b9c1a97543b6</UserSecretsId>
   </PropertyGroup>
+
   <ItemGroup>
+    <Content Include="wwwroot\category.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="jQuery" Version="3.1.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.1" />
@@ -27,6 +32,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="PagedList.Core.Mvc" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
@@ -34,6 +40,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\NewFolder\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

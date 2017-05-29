@@ -7,29 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SaleStore.Data;
 using SaleStore.Models;
-using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using SaleStore.Models.ViewModels;
 
-namespace SaleStore.Areas.Admin.Controllers
+namespace SaleStore.Controllers
 {
-    [Area("Admin")]
-    public class ProductsController : Controller
+    public class MyProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
 
-        public ProductsController(IHostingEnvironment _env,ApplicationDbContext context)
+        public MyProductsController(IHostingEnvironment _env, ApplicationDbContext context)
         {
             _context = context;
             this.env = _env;
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Products.Include(p => p.Category).Include(p => p.Company);
-            return View(await applicationDbContext.ToListAsync());
+            HomePageViewModels model = new HomePageViewModels();
+            model.Categories = _context.Categories.ToList();
+            model.Campaigns = _context.Campaigns.ToList();
+            model.Products = _context.Products.ToList();
+            return View(model);
         }
 
         // GET: Admin/Products/Details/5
@@ -52,13 +55,13 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(product);
         }
 
-        
+
 
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View();
         }
 
@@ -82,17 +85,17 @@ namespace SaleStore.Areas.Admin.Controllers
                     product.CreatedBy = User.Identity.Name ?? "username";
                     product.CreateDate = DateTime.Now;
                     product.UpdatedBy = User.Identity.Name ?? "username";
-                    product.UpdateDate = DateTime.Now;      
+                    product.UpdateDate = DateTime.Now;
 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"
                     || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
                         string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
-                        string FilePath = env.WebRootPath +"\\uploads\\" + category + "\\";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
                         string dosyaismi = Path.GetFileName(uploadFile.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
-                        product.ProductImage = "uploads/" + category +"/"+dosyaismi;
+                        product.ProductImage = "uploads/" + category + "/"+dosyaismi;
                         try
                         {
                             if (!Directory.Exists(FilePath))
@@ -118,8 +121,8 @@ namespace SaleStore.Areas.Admin.Controllers
                 }
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", product.CompanyId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
 
@@ -136,8 +139,8 @@ namespace SaleStore.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", product.CompanyId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
 
@@ -173,8 +176,8 @@ namespace SaleStore.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", product.CompanyId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
 
