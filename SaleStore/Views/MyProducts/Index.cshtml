@@ -1,4 +1,4 @@
-@model SaleStore.Models.ViewModels.HomePageViewModels
+﻿@model SaleStore.Models.ViewModels.HomePageViewModels
 
 <!-- /.Fixed navbar  -->
 <div class="container main-container headerOffset">
@@ -9,7 +9,7 @@
         <div class="breadcrumbDiv col-lg-12">
             <ul class="breadcrumb">
                 <li><a href="index.html">Ana Sayfa</a></li>
-                <li class="active">�r�nlerim</li>
+                <li class="active">Ürünlerim</li>
             </ul>
         </div>
     </div>
@@ -428,6 +428,7 @@
         <!--/.subCategoryList-->
         <!--/.productFilter-->
         <div class="col-lg-9 col-md-9 col-sm-12">
+            <p><a class="btn btn-block btn-primary" asp-action="Create">Ürün Ekle</a></p>
         <div class="row  categoryProduct xsResponse clearfix">
             @foreach(var item in Model.Products) {
             <!--/.item-->
@@ -435,8 +436,8 @@
                 <div class="product">               
                     <div class="image">
                         <div class="quickview">
-                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html"
-                               data-target="#productSetailsModalAjax">�ncele</a>
+                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="~/ajax/product.html"
+                               data-target="#productSetailsModalAjax">İncele</a>
                         </div>
                         <a href="product-details.html">
                             <img src="@item.ProductImage" alt="img"
@@ -458,12 +459,27 @@
                     </div>
                     <div class="price"><span>@item.SalePrice</span></div>
                     <div class="action-control">
-                        <a class="btn btn-primary">
+                        <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">
                             <span class="add2cart">
-                                <i class="glyphicon glyphicon-eye-open"></i>�r�n� �ncele
+                                <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
                             </span>
                         </a>
                     </div>
+                    <div class="action-control">
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">
+                            <span class="add2cart">
+                                <i class="glyphicon glyphicon-edit">&nbsp;</i>Ürünü Düzenle
+                            </span>
+                        </a>
+                    </div>
+                    <div class="action-control">
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                            <span class="add2cart">
+                                <i class="glyphicon glyphicon-alert">&nbsp;</i>Ürünü Sil
+                            </span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
             <!--/.item--> }

@@ -37,14 +37,14 @@ namespace SaleStore.Models
         [DisplayName("İndirim Bitiş Tarihi"),
              DataType(DataType.DateTime)]
         public DateTime SaleEndDate { get; set; }
-
+        [DisplayName("Ürün Kategorisi")]
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
         [DisplayName("Ürün Resmi")]
         public string ProductImage { get; set; }
-
+        [DisplayName("Firma Adı")]
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
