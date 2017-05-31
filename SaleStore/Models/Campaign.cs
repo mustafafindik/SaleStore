@@ -20,6 +20,9 @@ namespace SaleStore.Models
          MaxLength(200, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Slogan { get; set; }
 
+        [DisplayName("Kampanya Açıklaması")]
+        public string Description { get; set; }
+
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
