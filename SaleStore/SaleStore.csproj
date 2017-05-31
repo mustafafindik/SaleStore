@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Content Include="wwwroot\category.html" />
+    <Content Include="wwwroot\uploads\5-2017-CampaignImages\githubhata.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="jQuery" Version="3.1.1" />
@@ -41,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\NewFolder\" />
-    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

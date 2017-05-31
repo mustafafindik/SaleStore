@@ -1,21 +1,25 @@
 ﻿@model SaleStore.Models.Campaign
 
 @{
-    ViewData["Title"] = "Kampanya Oluştur";
+    ViewData["Title"] = "Kampanya Düzenle";
 }
 
-<h2>Kampanya Oluştur</h2>
+<h2>Kampanya Düzenle</h2>
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Image" class="col-md-2 control-label"></label>
             <div class="col-md-10">
+                <img src="/@Model.Image" alt="img" class="img-responsive" style="height:200px; max-width:300px; ">
                 <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
                 @Html.ValidationMessage("Image", new { @class = "text-danger" })
+
+                <span>@Model.Image</span>
             </div>
+
         </div>
 
         <div class="form-group">
@@ -33,9 +37,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+            <label asp-for="CategoryId" class="control-label col-md-2"></label>
             <div class="col-md-10">
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -52,45 +57,41 @@
                 <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
             </div>
         </div>
-        <!--<div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-        </div>-->
+        
+        <input type="hidden" asp-for="Id" />
         <div class="form-group">
             <label asp-for="CreateDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="CreateDate" class="form-control" />
+                <input asp-for="CreateDate" class="form-control" readonly />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="CreatedBy" class="form-control" />
+                <input asp-for="CreatedBy" class="form-control" readonly />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="UpdatedBy" class="form-control" />
+                <input asp-for="UpdatedBy" class="form-control" readonly />
                 <span asp-validation-for="UpdatedBy" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="UpdateDate" class="form-control" />
+                <input asp-for="UpdateDate" class="form-control" value="@DateTime.Now" readonly />
                 <span asp-validation-for="UpdateDate" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Kaydet" class="btn btn-default" />
             </div>
+
         </div>
     </div>
 </form>
