@@ -8,8 +8,8 @@
     <div class="row">
         <div class="breadcrumbDiv col-lg-12">
             <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">MEN COLLECTION</li>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li class="active">Ürünlerim</li>
             </ul>
         </div>
     </div>
@@ -25,16 +25,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapseCategory"
-                               class="collapseWill active ">
-                                <span class="pull-left"> <i class="fa fa-caret-right"></i></span> Category
+                            <a data-toggle="collapse" href="#collapseCategory" class="collapseWill active ">
+                                <span class="pull-left"> <i class="fa fa-caret-right"></i></span> Kategoriler
                             </a>
                         </h4>
                     </div>
                     <div id="collapseCategory" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked tree">
-                                <li class="active dropdown-tree open-tree">
+                                @*<li class="active dropdown-tree open-tree">
                                     <a class="dropdown-tree-a">
                                         <span class="badge pull-right">42</span> WOMEN COLLECTION
                                     </a>
@@ -55,13 +54,10 @@
                                         <li><a href="sub-category.html">Winter Collection</a></li>
                                         <li><a href="sub-category.html">Men Accessories</a></li>
                                     </ul>
-                                </li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> MEN COLLECTION </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Baby & Kids </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Home & Kitchen </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Baby & Kids </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> More Stores </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Offers Zone </a></li>
+                                </li*@
+                                @foreach(var item in Model.Categories) { 
+                                <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                                }
                             </ul>
                         </div>
                     </div>
