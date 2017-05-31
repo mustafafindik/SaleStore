@@ -19,7 +19,7 @@ namespace SaleStore.Areas.Admin.Controllers
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
 
-        public ProductsController(IHostingEnvironment _env,ApplicationDbContext context)
+        public ProductsController(IHostingEnvironment _env, ApplicationDbContext context)
         {
             _context = context;
             this.env = _env;
@@ -52,13 +52,13 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(product);
         }
 
-        
+
 
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View();
         }
 
@@ -70,6 +70,11 @@ namespace SaleStore.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Product product, IFormFile uploadFile)
         {
 
+            product.CreatedBy = User.Identity.Name ?? "username";
+            product.CreateDate = DateTime.Now;
+            product.UpdatedBy = User.Identity.Name ?? "username";
+            product.UpdateDate = DateTime.Now;
+
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
@@ -79,20 +84,17 @@ namespace SaleStore.Areas.Admin.Controllers
                 if (uploadFile != null)
                 {
 
-                    product.CreatedBy = User.Identity.Name ?? "username";
-                    product.CreateDate = DateTime.Now;
-                    product.UpdatedBy = User.Identity.Name ?? "username";
-                    product.UpdateDate = DateTime.Now;      
+
 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"
                     || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
                         string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
-                        string FilePath = env.WebRootPath +"\\uploads\\" + category + "\\";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
                         string dosyaismi = Path.GetFileName(uploadFile.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
-                        product.ProductImage = "uploads/" + category +"/"+dosyaismi;
+                        product.ProductImage = "uploads/" + category + "/" + dosyaismi;
                         try
                         {
                             if (!Directory.Exists(FilePath))
@@ -118,8 +120,8 @@ namespace SaleStore.Areas.Admin.Controllers
                 }
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", product.CompanyId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
 
@@ -136,8 +138,8 @@ namespace SaleStore.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", product.CompanyId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
 
@@ -146,57 +148,83 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Product product)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile uploadFile)
         {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            product.Id = id;
+            product.UpdatedBy = User.Identity.Name ?? "username";
+            product.UpdateDate = DateTime.Now;
+
+            if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
-                try
+                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
+            }
+            else if (ModelState.IsValid)
+            {
+                if (uploadFile != null)
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
+
+
+
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
-                        return NotFound();
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        product.ProductImage = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+
+                            _context.Update(product);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("ProductImage", "Hata: " + exc.Message); }
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("ProductImage", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
                     }
                 }
-                return RedirectToAction("Index");
+                else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", product.CompanyId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
+
 
         // GET: Admin/Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+                {
+                    if (id == null)
+                    {
+                        return NotFound();
+                    }
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Company)
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+                    var product = await _context.Products
+                        .Include(p => p.Category)
+                        .Include(p => p.Company)
+                        .SingleOrDefaultAsync(m => m.Id == id);
+                    if (product == null)
+                    {
+                        return NotFound();
+                    }
 
-            return View(product);
-        }
+                    return View(product);
+                }
 
         // POST: Admin/Products/Delete/5
         [HttpPost, ActionName("Delete")]
