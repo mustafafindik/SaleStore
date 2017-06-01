@@ -174,122 +174,122 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li class="heading">
                             <h3 class="uppercase">Modüller</h3>
                         </li>
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="companies"?"active":string.Empty) ">
-                            <a href="/Companies/Index" class="nav-link nav-toggle">
-                                <i class="icon-diamond"></i>
-                                <span class="title">Kurumlar</span>
-
-                            </a>
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="certifications"?"active":string.Empty)">
-                            <a href="/Certifications/Index" class="nav-link nav-toggle">
+                        
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="categories"?"active":string.Empty) ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-puzzle"></i>
-                                <span class="title">Belgelendirmeler</span>
-
+                                <span class="title">Kategoriler</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="Categories" asp-action="Index" class="nav-link">
+                                        <span class="title">Tüm Kategoriler</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Categories" asp-action="Create" class="nav-link">
+                                        <span class="title">Kategori Ekle</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="consultancies"?"active":string.Empty)">
-                            <a href="/Consultancies/Index" class="nav-link nav-toggle">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="companies"?"active":string.Empty) ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
-                                <span class="title">Danışmanlıklar</span>
-
+                                <span class="title">Firmalar</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="Companies" asp-action="Index" class="nav-link">
+                                        <span class="title">Tüm Firmalar</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Companies" asp-action="Create" class="nav-link">
+                                        <span class="title">Firma Ekle</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="educations"?"active":string.Empty)">
-                            <a href="/Educations/Index" class="nav-link nav-toggle">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="products"?"active":string.Empty) ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-bulb"></i>
-                                <span class="title">Eğitimler</span>
-
+                                <span class="title">Ürünler</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="Products" asp-action="Index" class="nav-link">
+                                        <span class="title">Tüm Ürünler</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Products" asp-action="Create" class="nav-link">
+                                        <span class="title">Ürün Ekle</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="countries"?"active":string.Empty)">
-                            <a href="/Countries/Index" class="nav-link nav-toggle">
-                                <i class="icon-briefcase"></i>
-                                <span class="title">Ülkeler</span>
-
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="campaigns"?"active":string.Empty) ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-book-open"></i>
+                                <span class="title">Kampanyalar</span>
+                                <span class="arrow"></span>
                             </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="Campaigns" asp-action="Index" class="nav-link">
+                                        <span class="title">Tüm Kampanyalar</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Campaigns" asp-action="Create" class="nav-link">
+                                        <span class="title">Kampanya Ekle</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="cities"?"active":string.Empty)">
-                            <a href="/Cities/Index" class="nav-link nav-toggle">
-                                <i class="icon-wallet"></i>
-                                <span class="title">Şehirler</span>
-
-                            </a>
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="applicationmethods"?"active":string.Empty)">
-                            <a href="/ApplicationMethods/Index" class="nav-link nav-toggle">
-                                <i class="icon-bar-chart"></i>
-                                <span class="title">Başvuru Yöntemleri</span>
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="marketingmethods"?"active":string.Empty)">
-                            <a href="/MarketingMethods/Index" class="nav-link nav-toggle">
-                                <i class="icon-pointer"></i>
-                                <span class="title">Tanıtım Yöntemleri</span>
-
-                            </a>
-
-                        </li>
-
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="sources"?"active":string.Empty)">
-                            <a href="/Sources/Index" class="nav-link nav-toggle">
-                                <i class="icon-layers"></i>
-                                <span class="title">Haberdar Olma Şekilleri</span>
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="companyfunctions"?"active":string.Empty)">
-                            <a href="/CompanyFunctions/Index" class="nav-link nav-toggle">
-                                <i class="icon-feed"></i>
-                                <span class="title">Kurum İşlevleri</span>
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="certificationresults"?"active":string.Empty)">
-                            <a href="/CertificationResults/Index" class="nav-link nav-toggle">
-                                <i class="icon-paper-plane"></i>
-                                <span class="title">Belgelendirme Sonuçları</span>
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="educationcategories"?"active":string.Empty)">
-                            <a href="/EducationCategories/Index" class="nav-link nav-toggle">
-                                <i class=" icon-wrench"></i>
-                                <span class="title">Eğitim Tipleri</span>
-
-                            </a>
-
-                        </li>
-
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="services"?"active":string.Empty)">
-                            <a href="/Services/Index" class="nav-link nav-toggle">
-                                <i class="icon-basket"></i>
-                                <span class="title">Hizmetler</span>
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="servicefields"?"active":string.Empty)">
-                            <a href="/ServiceFields/Index" class="nav-link nav-toggle">
-                                <i class="icon-docs"></i>
-                                <span class="title">Hizmet Alanları</span>
-
-                            </a>
-
-                        </li>
-                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="applicationUsers"?"active":string.Empty)">
-                            <a href="/ApplicationUsers/Index" class="nav-link nav-toggle">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="members"?"active":string.Empty) ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
-                                <span class="title">Kişiler</span>
-
+                                <span class="title">Üyeler</span>
+                                <span class="arrow"></span>
                             </a>
-
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="Members" asp-action="Index" class="nav-link">
+                                        <span class="title">Tüm Üyeler</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Members" asp-action="Create" class="nav-link">
+                                        <span class="title">Üye Ekle</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="settings"?"active":string.Empty) ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-gears"></i>
+                                <span class="title">Ayarlar</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a asp-controller="Settings" asp-action="Index" class="nav-link">
+                                        <span class="title">Tüm Ayarlar</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Settings" asp-action="Create" class="nav-link">
+                                        <span class="title">Ayar Ekle</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                       
 
                     </ul>
                     <!-- END SIDEBAR MENU -->
@@ -315,52 +315,25 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li>
                                 @switch (ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant())
                                 {
+                                    case "campaings":
+                                        @Html.Raw("Kampanyalar");
+                                        break;
+                                    case "products":
+                                        @Html.Raw("Ürünler");
+                                        break;
                                     case "companies":
-                                        @Html.Raw("Kurumlar");
+                                        @Html.Raw("Firmalar");
                                         break;
-                                    case "consultancies":
-                                        @Html.Raw("Danışmanlıklar");
+                                    case "categories":
+                                        @Html.Raw("Kategoriler");
                                         break;
-                                    case "certifications":
-                                        @Html.Raw("Belgelendirmeler");
+                                    case "members":
+                                        @Html.Raw("Üyeler");
                                         break;
-                                    case "countries":
-                                        @Html.Raw("Ülkeler");
+                                    case "settings":
+                                        @Html.Raw("Ayarlar");
                                         break;
-                                    case "educations":
-                                        @Html.Raw("Eğitimler");
-                                        break;
-                                    case "cities":
-                                        @Html.Raw("Şehirler");
-                                        break;
-                                    case "applicationmethods":
-                                        @Html.Raw("Başvuru Yöntemleri");
-                                        break;
-                                    case "marketingmethods":
-                                        @Html.Raw("Tanıtım Yöntemleri");
-                                        break;
-                                    case "sources":
-                                        @Html.Raw("Haberdar Olma Yöntemleri");
-                                        break;
-                                    case "companyfunctions":
-                                        @Html.Raw("Kurum İşlevleri");
-                                        break;
-                                    case "certificationresults":
-                                        @Html.Raw("Belgelendirme Sonuçları");
-                                        break;
-                                    case "educationcategories":
-                                        @Html.Raw("Eğitim Tipleri");
-                                        break;
-                                    case "services":
-                                        @Html.Raw("Hizmetler");
-                                        break;
-                                    case "servicefields":
-                                        @Html.Raw("Hizmet Alanları");
-                                        break;
-                                    case "applicationusers":
-                                        @Html.Raw("Kişiler");
-                                        break;
-                                    default:
+                                        
                                         @Html.Raw(ViewContext.RouteData.Values["controller"].ToString());
                                         break;
                                 }
