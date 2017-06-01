@@ -192,7 +192,7 @@ namespace SaleStore.Controllers
                     }
                 }
                 else {
-                    campaign.Image = "uploads/6-2017-CampaignImages/Erkek.png";
+                    
                     _context.Update(campaign);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");

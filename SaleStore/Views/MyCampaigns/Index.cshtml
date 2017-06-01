@@ -27,7 +27,7 @@
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapseCategory"
                                class="collapseWill active ">
-                                <span class="pull-left"> <i class="fa fa-caret-right"></i></span> Category
+                                <span class="pull-left"> <i class="fa fa-caret-right"></i></span> Kategoriler
                             </a>
                         </h4>
                     </div>
@@ -56,12 +56,9 @@
                                         <li><a href="sub-category.html">Men Accessories</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> MEN COLLECTION </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Baby & Kids </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Home & Kitchen </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Baby & Kids </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> More Stores </a></li>
-                                <li><a href="#"> <span class="badge pull-right">42</span> Offers Zone </a></li>
+                                @foreach(var item in Model.Categories) { 
+                                <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                                }
                             </ul>
                         </div>
                     </div>
