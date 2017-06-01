@@ -1,0 +1,116 @@
+@model Setting
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Ayarlar</h2>
+
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+}
+
+
+<form asp-area="Admin" role="form" asp-controller="Settings" asp-action="Index" method="post" enctype="multipart/form-data">
+    <div class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Logo" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input type="file" name="logoUpload" asp-for="Logo" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+
+        </div>
+        
+
+        <div class="form-group">
+            <label asp-for="SeoTitle" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="SeoTitle" class="form-control" />
+                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SeoDescription" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <textarea asp-for="SeoDescription" class="form-control"></textarea>
+                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SeoKeywords" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <textarea asp-for="SeoKeywords" class="form-control"></textarea>
+                <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="About" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <textarea asp-for="About" class="form-control"></textarea>
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Mail" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="Mail" class="form-control" />
+                <span asp-validation-for="Mail" class="text-danger"></span>
+            </div>
+        </div>
+     
+      
+        <div class="form-group">
+            <label asp-for="Facebook" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="Facebook" class="form-control" />
+                <span asp-validation-for="Facebook" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Twitter" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="Twitter" class="form-control" />
+                <span asp-validation-for="Twitter" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LinkedIn" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="LinkedIn" class="form-control" />
+                <span asp-validation-for="LinkedIn" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </div>
+
+    </div>
+</form>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
