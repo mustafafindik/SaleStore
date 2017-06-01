@@ -22,20 +22,22 @@ namespace SaleStore.Models
         public string Details { get; set; }
 
         [DisplayName("Birim Fiyat"),Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),
-            DataType(DataType.Currency)]
+            DataType(DataType.Currency), DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal UnitPrice { get; set; }
 
         [DisplayName("İndirimli Fiyat"),
             Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),
-             DataType(DataType.Currency)]
+             DataType(DataType.Currency), DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal SalePrice { get; set; }
 
-        [DisplayName("İndirim Başlangıç Tarihi"),
-             DataType(DataType.DateTime)]
+        [DisplayName("İndirim Başlangıç Tarihi")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false,
+            NullDisplayText = "İndirim Başlangıç Tarihi Girilmemiş")]
         public DateTime SaleStarthDate { get; set; }
 
-        [DisplayName("İndirim Bitiş Tarihi"),
-             DataType(DataType.DateTime)]
+        [DisplayName("İndirim Bitiş Tarihi")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false, 
+            NullDisplayText = "İndirim Bitiş Tarihi Girilmemiş")]
         public DateTime SaleEndDate { get; set; }
         [DisplayName("Ürün Kategorisi")]
         public int CategoryId { get; set; }

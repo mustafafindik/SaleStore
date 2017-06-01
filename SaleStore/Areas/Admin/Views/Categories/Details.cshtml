@@ -1,13 +1,12 @@
 ﻿@model SaleStore.Models.Category
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Kategori Detayları";
 }
 
-<h2>Detaylar</h2>
+<h2>Kategori Detayları</h2>
 
 <div>
-    <h4>Kategori</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -43,6 +42,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
     <a asp-action="Index">Listeye Geri Dön</a>
 </div>
