@@ -30,12 +30,14 @@ namespace SaleStore.Models
              DataType(DataType.Currency)]
         public decimal SalePrice { get; set; }
 
-        [DisplayName("İndirim Başlangıç Tarihi"),
-             DataType(DataType.DateTime)]
+        [DisplayName("İndirim Başlangıç Tarihi")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false,
+            NullDisplayText = "İndirim Başlangıç Tarihi Girilmemiş")]
         public DateTime SaleStarthDate { get; set; }
 
-        [DisplayName("İndirim Bitiş Tarihi"),
-             DataType(DataType.DateTime)]
+        [DisplayName("İndirim Bitiş Tarihi")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false, 
+            NullDisplayText = "İndirim Bitiş Tarihi Girilmemiş")]
         public DateTime SaleEndDate { get; set; }
         [DisplayName("Ürün Kategorisi")]
         public int CategoryId { get; set; }
