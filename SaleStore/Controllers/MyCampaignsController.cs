@@ -26,7 +26,7 @@ namespace SaleStore.Controllers
         }
 
         // GET: Admin/Campaigns
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             HomePageViewModels model = new HomePageViewModels();
             model.Categories = _context.Categories.ToList();
@@ -140,7 +140,7 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Campaign campaign, IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,Description,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Campaign campaign, IFormFile uploadFile)
         {
             if (id != campaign.Id)
             {
@@ -191,7 +191,12 @@ namespace SaleStore.Controllers
                         ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
-                else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
+                else {
+                    campaign.Image = "uploads/6-2017-CampaignImages/Erkek.png";
+                    _context.Update(campaign);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
             return View(campaign);

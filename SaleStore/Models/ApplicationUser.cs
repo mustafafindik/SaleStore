@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SaleStore.Models
 {
@@ -15,10 +17,16 @@ namespace SaleStore.Models
             ProductCount=25;
             CampaignCount = 3;
         }
-
+        [DisplayName("Ad"),
+         Required(ErrorMessage = "Lütfen bir {0} giriniz."),
+         MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
+         MaxLength(35, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Name { get; set; }
+        [DisplayName("Ürün Sayısı")]
         public int ProductCount { get; set; }
+        [DisplayName("Kampanya Sayısı")]
         public int CampaignCount { get; set; }
+
         public string Avatar { get; set; }    
         
         public int CompanyId { get; set; }

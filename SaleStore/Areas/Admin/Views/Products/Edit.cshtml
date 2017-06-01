@@ -1,12 +1,12 @@
-@model SaleStore.Models.Product
+ï»¿@model SaleStore.Models.Product
 
 @{
-    ViewData["Title"] = "Ürün Düzenle";
+    ViewData["Title"] = "ÃœrÃ¼n DÃ¼zenle";
 }
 
-<h2>Ürün Düzenle</h2>
+<h2>ÃœrÃ¼n DÃ¼zenle</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -111,7 +111,7 @@
 </form>
 
 <div>
-    <a asp-action="Index">Listeye Geri Dön</a>
+    <a asp-action="Index">Listeye Geri DÃ¶n</a>
 </div>
 
 @section Scripts {
