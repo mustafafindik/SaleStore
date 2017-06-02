@@ -5,6 +5,8 @@
 }
 
 <h2>Düzenle</h2>
+<script src="~/assets/js/jquery/jquery-1.10.1.min.js"></script>
+<script src="~/assets/js/jquery.validate.js"></script>
 
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
@@ -117,6 +119,10 @@
 <div>
     <a asp-action="Index">Listeye Geri Dön</a>
 </div>
+
+<script src="~/assets/js/jquery/jquery-1.10.1.min.js"></script>
+<script src="~/assets/js/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
