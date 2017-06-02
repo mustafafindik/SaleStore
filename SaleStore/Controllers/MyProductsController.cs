@@ -72,6 +72,10 @@ namespace SaleStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile uploadFile)
         {
+            if(product.SalePrice > product.UnitPrice)
+            {
+                ModelState.AddModelError("SalePrice","İndirimli fiyat birim fiyattan yüksek olamaz");
+            }
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
@@ -154,6 +158,10 @@ namespace SaleStore.Controllers
             if (id != product.Id)
             {
                 return NotFound();
+            }
+            if (product.SalePrice > product.UnitPrice)
+            {
+                ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
             }
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
