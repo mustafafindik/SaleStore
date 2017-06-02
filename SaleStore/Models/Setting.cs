@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace SaleStore.Models
     public class Setting
     {
         public int Id { get; set; }
+
+        [DisplayName("Logo"),Required(ErrorMessage = "Lütfen bir {0} giriniz.")]
         public string Logo { get; set; }
         [Display(Name = "Telefon")]
         public string Phone { get; set; }

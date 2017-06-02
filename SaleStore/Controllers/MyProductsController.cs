@@ -116,7 +116,7 @@ namespace SaleStore.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("ProductImage", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
+                        ModelState.AddModelError("ProductImage", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
@@ -197,12 +197,12 @@ namespace SaleStore.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
+                        ModelState.AddModelError("ProductImage", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
                 else
                 {
-                    product.ProductImage = "uploads/5-2017/banner.png";
+                    
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
