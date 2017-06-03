@@ -22,13 +22,13 @@ namespace SaleStore.Models
         public string Details { get; set; }
 
         [DisplayName("Birim Fiyat"),Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),
-            DataType(DataType.Currency), DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        public decimal UnitPrice { get; set; }
+         DataType(DataType.Currency)]
+        public float? UnitPrice { get; set; }
 
         [DisplayName("İndirimli Fiyat"),
-            Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),
-             DataType(DataType.Currency), DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        public decimal SalePrice { get; set; }
+         Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),
+         DataType(DataType.Currency)]
+        public float? SalePrice { get; set; }
 
         [DisplayName("İndirim Başlangıç Tarihi")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false,
