@@ -137,33 +137,67 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Campaign campaign)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Campaign campaign,IFormFile uploadFile)
         {
             if (id != campaign.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+
+            if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
-                try
+                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
+            }
+            else if (ModelState.IsValid)
+            {
+
+                if (uploadFile != null)
                 {
-                    _context.Update(campaign);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CampaignExists(campaign.Id))
+
+                    campaign.UpdatedBy = User.Identity.Name ?? "username";
+                    campaign.UpdateDate = DateTime.Now;
+
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
-                        return NotFound();
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-CampaignImages";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        campaign.Image = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+                            _context.Update(campaign);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("Image", "Hata: " + exc.Message); }
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
-                return RedirectToAction("Index");
+                else
+                {
+
+                    _context.Update(campaign);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
+          
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
             return View(campaign);
         }

@@ -54,10 +54,10 @@
                 @Html.DisplayNameFor(model => model.UpdateDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.Category.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company)
+                @Html.DisplayNameFor(model => model.Company.Name)
             </th>
             <th data-orderable="false" class="all dt-right ">
                 Eylemler
@@ -105,10 +105,10 @@
                     @Html.DisplayFor(modelItem => item.UpdateDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Category.Id)
+                    @Html.DisplayFor(modelItem => item.Category.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Company.Id)
+                    @Html.DisplayFor(modelItem => item.Company.Name)
                 </td>
                 <td class="dt-right text-nowrap">
                     <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a> 

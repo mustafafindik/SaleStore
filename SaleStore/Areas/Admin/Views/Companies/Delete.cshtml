@@ -9,7 +9,7 @@
 <h3>Silmek istediğinize emin misiniz?</h3>
 <div>
     <hr />
-    <form asp-action="Delete">
+    <form asp-action="Delete"  enctype="multipart/form-data" asp-route-id="@Model.Id">
 
         <dl class="dl-horizontal">
             <dt>

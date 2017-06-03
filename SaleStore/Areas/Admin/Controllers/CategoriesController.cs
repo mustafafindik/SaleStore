@@ -57,6 +57,11 @@ namespace SaleStore.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Category category)
         {
+            category.CreatedBy = User.Identity.Name ?? "username";
+            category.CreateDate = DateTime.Now;
+            category.UpdatedBy = User.Identity.Name ?? "username";
+            category.UpdateDate = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _context.Add(category);
@@ -96,6 +101,8 @@ namespace SaleStore.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                category.UpdatedBy = User.Identity.Name ?? "username";
+                category.UpdateDate = DateTime.Now;
                 try
                 {
                     _context.Update(category);

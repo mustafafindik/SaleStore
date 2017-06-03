@@ -28,12 +28,15 @@ namespace SaleStore.Models
         public Category Category { get; set; }
 
         [DisplayName("Kampanya Başlangıç Tarihi"),
-             DataType(DataType.DateTime)]
+           DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false,
+           NullDisplayText = "Kampanya Başlangıç Tarihi Girilmemiş")]
         public DateTime CampaignStartDate { get; set; }
 
-        [DisplayName("Kampanya Başlangıç Tarihi"),
-             DataType(DataType.DateTime)]
+        [DisplayName("Kampanya Bitiş Tarihi"),
+            DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false, 
+            NullDisplayText = "Kampanya Bitiş Tarihi Girilmemiş")]
         public DateTime CampaignEndDate { get; set; }
+
         [DisplayName("Kampanya Resmi")]
         public string Image { get; set; }
 
