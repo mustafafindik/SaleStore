@@ -18,6 +18,7 @@ namespace SaleStore.Controllers
     {
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
+        HomePageViewModels model = new HomePageViewModels();
 
         public MyProductsController(IHostingEnvironment _env, ApplicationDbContext context)
         {
@@ -28,7 +29,6 @@ namespace SaleStore.Controllers
         // GET: Admin/Products
         public IActionResult Index()
         {
-            HomePageViewModels model = new HomePageViewModels();
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToList();
             model.Products = _context.Products.ToList();
@@ -255,6 +255,6 @@ namespace SaleStore.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
-        }
+        }    
     }
 }

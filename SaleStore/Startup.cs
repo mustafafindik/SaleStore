@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using SaleStore.Data;
 using SaleStore.Models;
 using SaleStore.Services;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using Microsoft.AspNetCore.Authentication.LinkedIn;
 
 namespace SaleStore
 {
@@ -50,6 +52,14 @@ namespace SaleStore
 
             services.AddMvc();
 
+            // Recaptcha Add
+            services.AddRecaptcha(new RecaptchaOptions
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"],
+                ValidationMessage = "Are you a robot?"
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -77,7 +87,17 @@ namespace SaleStore
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = Configuration["Authentication:Facebook:AppId"],
+                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
+            });
+            app.UseLinkedInAuthentication(new LinkedInOptions()
+            {
+                AppId = Configuration["Authentication:LinkedIn:AppId"],
+                AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
+                ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
+            });
             app.UseMvc(routes =>
             {
 
