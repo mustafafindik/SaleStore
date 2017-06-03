@@ -3,63 +3,66 @@
 @{
     ViewData["Title"] = "Firma Detayları";
 }
+<link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" /><br />
 
 <h2>Firma Detayları</h2>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UpdateDate)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-    <a asp-action="Index">Listeye Geri Dön</a>
+<div class="portlet-body form">
+    <div class="form-body">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Logo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Logo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDate)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+        <a asp-action="Index">Listeye Geri Dön</a>
+    </div>
 </div>

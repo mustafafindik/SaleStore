@@ -61,6 +61,12 @@ namespace SaleStore.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Company company, IFormFile uploadFile)
         {
+
+            company.CreatedBy = User.Identity.Name ?? "username";
+            company.CreateDate = DateTime.Now;
+            company.UpdatedBy = User.Identity.Name ?? "username";
+            company.UpdateDate = DateTime.Now;
+
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
@@ -105,7 +111,7 @@ namespace SaleStore.Areas.Admin.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("WrongType", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
+                        ModelState.AddModelError("Logo", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
                     }
                 }
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
@@ -134,32 +140,64 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
         {
             if (id != company.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
-                try
+                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
+            }
+            else if (ModelState.IsValid)
+            {
+
+                if (uploadFile != null)
                 {
-                    _context.Update(company);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompanyExists(company.Id))
+
+                    company.UpdatedBy = User.Identity.Name ?? "username";
+                    company.UpdateDate = DateTime.Now;
+
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
-                        return NotFound();
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-CampaignImages";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        company.Logo = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+                            _context.Update(company);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("Image", "Hata: " + exc.Message); }
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
-                return RedirectToAction("Index");
+                else
+                {
+
+                    _context.Update(company);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
             return View(company);
         }
