@@ -16,10 +16,10 @@ namespace SaleStore.Models.AccountViewModels
 
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Bu tarayıcıda hatırlansın mı?")]
         public bool RememberBrowser { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Beni hatırla.")]
         public bool RememberMe { get; set; }
     }
 }

@@ -13,13 +13,13 @@ namespace SaleStore.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = " {0} {2} karakter ile {1} karakter arasında olmalıdır.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Şifreyi Onayla")]
+        [Compare("Şifre", ErrorMessage = "Şifre ve şifre(tekrar) eşleşmiyor.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
