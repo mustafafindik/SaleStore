@@ -74,6 +74,12 @@ namespace SaleStore.Areas.Admin.Controllers
             product.UpdatedBy = User.Identity.Name ?? "username";
             product.UpdateDate = DateTime.Now;
 
+            if (product.SalePrice > product.UnitPrice)
+            {
+                ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
+            }
+
+
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
@@ -154,6 +160,12 @@ namespace SaleStore.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            if (product.SalePrice > product.UnitPrice)
+            {
+                ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
+            }
+
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
