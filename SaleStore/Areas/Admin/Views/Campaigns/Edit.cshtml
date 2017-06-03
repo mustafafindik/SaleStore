@@ -6,10 +6,18 @@
 
 <h2>Kampanya Düzenle</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit"  method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CreateDate)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.UpdateDate)
+        @Html.HiddenFor(model => model.UpdatedBy)
+    </div>
         <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -45,52 +53,28 @@
                 <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
-                @Html.ValidationMessage("Image", new { @class = "text-danger" })
-                <img src="@Model.Image" style="width:300px; height:200px;" />
-                <span>@Model.Image</span>
+
+    <input type="hidden" asp-for="Image" tabindex="1" value="@Model.Image" />
+    <div class="form-group">
+        <label asp-for="Image" class="col-md-2 control-label"></label>
+        <div class="col-md-8">
+            <input asp-for="Image" type="file" name="uploadFile" class="form-control" />
+            <div class="clearfix margin-top-10">
+                <span class="label label-success">UYARI !</span> Dosyanın uzantısı <strong>.jpg, .gif</strong> ya da <strong>.png</strong> olmalıdır.
             </div>
-            
+            <span asp-validation-for="Image" class="text-danger"></span>
         </div>
+    </div>
+
     <input type="hidden" asp-for="Id" />
-        <div class="form-group">
-            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdateDate" class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-        </div>
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Kaydet" class="btn btn-default" />
             </div>
-
         </div>
-    </div>
+        </div>
+     
 </form>
 
 <div>
