@@ -251,7 +251,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="members"?"active":string.Empty) ">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="ApplicationUsers"?"active":string.Empty) ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
                                 <span class="title">Üyeler</span>
@@ -259,12 +259,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a asp-controller="Members" asp-action="Index" class="nav-link">
+                                    <a asp-controller="ApplicationUsers" asp-action="Index" class="nav-link">
                                         <span class="title">Tüm Üyeler</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a asp-controller="Members" asp-action="Create" class="nav-link">
+                                    <a asp-controller="ApplicationUsers" asp-action="Create" class="nav-link">
                                         <span class="title">Üye Ekle</span>
                                     </a>
                                 </li>

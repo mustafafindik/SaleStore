@@ -14,6 +14,7 @@ using SaleStore.Models;
 using SaleStore.Services;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Microsoft.AspNetCore.Authentication.LinkedIn;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace SaleStore
 {
@@ -49,7 +50,7 @@ namespace SaleStore
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddMvc();
 
             // Recaptcha Add

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SaleStore.Models.ViewModels;
 using SaleStore.Data;
 using SaleStore.Models;
+using PagedList.Core;
 
 namespace SaleStore.Controllers
 {
@@ -18,12 +19,12 @@ namespace SaleStore.Controllers
             _context = context;
             
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
             
-            model.Categories = _context.Categories.ToList();
-            model.Campaigns = _context.Campaigns.ToList();
-            model.Products = _context.Products.ToList();
+            model.Categories = _context.Categories.ToPagedList<Category>(page, 10);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
+            model.Products = _context.Products.ToPagedList<Product>(page, 10);
             return View(model);
         }
 

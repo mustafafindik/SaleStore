@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using SaleStore.Models.ViewModels;
+using PagedList.Core;
 
 namespace SaleStore.Controllers
 {
@@ -27,11 +28,11 @@ namespace SaleStore.Controllers
         }
 
         // GET: Admin/Products
-        public IActionResult Index()
-        {
-            model.Categories = _context.Categories.ToList();
-            model.Campaigns = _context.Campaigns.ToList();
-            model.Products = _context.Products.ToList();
+        public IActionResult Index(int page = 1)
+        { 
+            model.Categories = _context.Categories.ToPagedList<Category>(page, 10);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
+            model.Products = _context.Products.ToPagedList<Product>(page, 10);
             return View(model);
         }
 

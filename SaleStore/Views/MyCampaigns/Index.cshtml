@@ -1,4 +1,5 @@
 ﻿@model SaleStore.Models.ViewModels.HomePageViewModels
+@using PagedList.Core.Mvc
 
 <!-- /.Fixed navbar  -->
 <div class="container main-container headerOffset">
@@ -493,6 +494,10 @@
                             </div>
                     </div>
             <!--/.item--> }
+            </div>
+            <div class="text-center">
+
+                <pager class="pager-container" list="@Model.Campaigns" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="MyCampaigns" />
             </div>
             <!--/.categoryProduct || product content end-->
         </div>
