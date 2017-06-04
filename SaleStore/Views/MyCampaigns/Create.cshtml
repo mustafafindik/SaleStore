@@ -3,109 +3,244 @@
 @{
     ViewData["Title"] = "Kampanya Oluştur";
 }
+<!-- /.Fixed navbar  -->
 
-<h2>Kampanya Oluştur</h2>
+<div class="container main-container headerOffset">
+    <h2>Kampanya Oluştur</h2>
+    <hr />
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="form-horizontal">
-        <hr />
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
-                @Html.ValidationMessage("Image", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label asp-for="Name" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Slogan" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Slogan" class="form-control" />
-                <span asp-validation-for="Slogan" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CategoryId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CampaignStartDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CampaignStartDate" class="form-control" />
-                <span asp-validation-for="CampaignStartDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CampaignEndDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CampaignEndDate" class="form-control" />
-                <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
-            </div>
-        </div>
-        <!--<div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-        </div>-->
-        <div class="form-group">
-            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreateDate" class="form-control" value="@DateTime.Now" readonly/>
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CreatedBy" class="col-md-2 control-label" ></label>
-            <div class="col-md-10">
-                <input asp-for="CreatedBy" class="form-control" value="@(User.Identity.Name ?? "username")" readonly/>
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedBy" class="col-md-2 control-label" ></label>
-            <div class="col-md-10">
-                <input asp-for="UpdatedBy" class="form-control" value="@(User.Identity.Name ?? "username")" readonly/>
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdateDate" class="col-md-2 control-label" ></label>
-            <div class="col-md-10">
-                <input asp-for="UpdateDate" class="form-control" value="@DateTime.Now" readonly/>
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Oluştur" class="btn btn-danger" />
-            </div>
-        </div>
-    </div>
-</form>
 
-<div>
-    <a asp-action="Index">Listeye Geri Dön</a>
+        <input type="hidden" asp-for="CreateDate" class="form-control" value="@DateTime.Now" />
+        <input type="hidden" asp-for="CreatedBy" class="form-control" value="@(User.Identity.Name ?? "username")" />
+        <input type="hidden" asp-for="UpdatedBy" class="form-control" value="@(User.Identity.Name ?? "username")" />
+        <input type="hidden" asp-for="UpdateDate" class="form-control" value="@DateTime.Now" />
+
+
+        <div class="row transitionfx">
+
+            <!-- left column -->
+            <div class="col-lg-5 col-md-5 col-sm-5">
+                <!-- product Image and Zoom -->
+
+                <div class="main-image sp-wrap col-lg-12 no-padding">
+
+
+
+                    <img src="~/images/product_details/low-res-white/1.jpg" class="img-responsive" alt="img" style="max-height:300px;">
+
+
+                    <label asp-for="Image" class="control-label"></label>
+                    <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
+                    @Html.ValidationMessage("Image", new { @class = "text-danger" })
+                    
+
+
+
+
+                    
+                            
+                  
+
+
+
+                </div>
+            </div>
+            <!--/ left column end -->
+            <!-- right column -->
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label asp-for="Slogan" class="control-label"></label>
+                    </div>
+                    <div class="col-md-10">
+                        <input asp-for="Slogan" class="form-control" />
+                        <span asp-validation-for="Slogan" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label asp-for="Name" class="control-label"></label>
+                    </div>
+                    <div class="col-md-10">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+
+                
+                    
+                   
+                        
+             
+
+
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label asp-for="CategoryId" cclass="control-label"></label>
+                    </div>
+                    <div class="col-md-10">
+
+                        <select asp-for="CategoryId" class="form-control " asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <label asp-for="Description" class="control-label"></label>
+                    </div>
+                    <div class="col-md-10">
+                        <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <label asp-for="CampaignStartDate" class="control-label"></label>
+                        <input asp-for="CampaignStartDate" class="form-control" />
+                        <span asp-validation-for="CampaignStartDate" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="col-md-5">
+                        <label asp-for="CampaignEndDate" class="control-label"></label>
+                        <input asp-for="CampaignEndDate" class="form-control" />
+                        <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--/.product-tab-->
+                <!--/.cart-actions-->
+
+                <div class="clear"></div>
+
+
+                <div style="clear:both"></div>
+
+                <!--/.product-share-->
+
+            </div>
+            <!--/ right column end -->
+
+            <div class="text-center">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12col-sm-12 col-xs-12">
+
+                        <input type="submit" value="Kaydet" class="btn btn-primary" />
+                        <a class="btn btn-primary" asp-action="Index">Vazgeç</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+    <!--/.row-->
+
+
+    <div style="clear:both"></div>
+
 </div>
 
+
+<!-- /main-container -->
+
+
+<div class="gap"></div>
+
+
+
+<!-- Modal review start -->
+<!-- /.Modal review -->
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+</script>
+<!-- jquery-migrate only for product details -->
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- include jqueryCycle plugin -->
+<script src="/assets/js/jquery.cycle2.min.js"></script>
+<!-- include easing plugin -->
+<script src="/assets/js/jquery.easing.1.3.js"></script>
+
+<!-- include  parallax plugin -->
+<script type="text/javascript" src="/assets/js/jquery.parallax-1.1.js"></script>
+
+<!-- optionally include helper plugins -->
+<script type="text/javascript" src="/assets/js/helper-plugins/jquery.mousewheel.min.js"></script>
+
+<!-- include mCustomScrollbar plugin //Custom Scrollbar  -->
+
+<script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.js"></script>
+
+<!-- include icheck plugin // customized checkboxes and radio buttons   -->
+<script type="text/javascript" src="/assets/plugins/icheck-1.x/icheck.min.js"></script>
+
+<!-- include grid.js // for equal Div height  -->
+<script src="/assets/js/grids.js"></script>
+
+<!-- include carousel slider plugin  -->
+<script src="/assets/js/owl.carousel.min.js"></script>
+
+<!-- include smoothproducts // product zoom plugin  -->
+<script type="text/javascript" src="/assets/js/smoothproducts.min.js"></script>
+
+<!-- jQuery select2 // custom select   -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+<!-- include touchspin.js // touch friendly input spinner component   -->
+<script src="/assets/js/bootstrap.touchspin.js"></script>
+
+<!-- include custom script for site  -->
+<script src="/assets/js/script.js"></script>
+
+
+<script src="/assets/plugins/rating/bootstrap-rating.min.js"></script>
+<script>
+        $(function () {
+
+            $('.rating-tooltip-manual').rating({
+                extendSymbol: function () {
+                    var title;
+                    $(this).tooltip({
+                        container: 'body',
+                        placement: 'bottom',
+                        trigger: 'manual',
+                        title: function () {
+                            return title;
+                        }
+                    });
+                    $(this).on('rating.rateenter', function (e, rate) {
+                        title = rate;
+                        $(this).tooltip('show');
+                    })
+                        .on('rating.rateleave', function () {
+                            $(this).tooltip('hide');
+                        });
+                }
+            });
+
+        });
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
