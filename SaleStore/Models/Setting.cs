@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SaleStore.Models
 {
-    public class Setting
+    public class Setting : BaseEntity
     {
         public int Id { get; set; }
 
