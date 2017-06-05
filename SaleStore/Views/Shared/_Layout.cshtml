@@ -13,10 +13,15 @@
     <title>TSHOP - Bootstrap E-Commerce Parallax Theme</title>
     <!-- Bootstrap core CSS -->
     <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/custom.css" rel="stylesheet">
+    <!-- styles needed by swiper slider -->
+    <link href="/assets/plugins/swiper-master/css/swiper.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/skin-5.css" rel="stylesheet" />
+
     <!-- Just for debugging purposes. -->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -186,7 +191,6 @@
                             <ul class="userMenu">
                                 <li>
                                     <a href="account-1.html">
-                                        @*@await Html.PartialAsync("_LoginPartial")*@
                                         <span class="hidden-xs"> My Account</span> <i class="glyphicon glyphicon-user hide visible-xs "></i>
                                     </a>
                                 </li>
@@ -975,9 +979,9 @@
                 <div class="pull-right paymentMethodImg">
                     <img height="30" class="pull-right"
                          src="/images/site/payment/master_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/visa_card.png" alt="img"><img height="30"
-                                                                                                                                                                         class="pull-right"
-                                                                                                                                                                         src="/images/site/payment/paypal.png"
-                                                                                                                                                                         alt="img">
+                                                                                                                                                                           class="pull-right"
+                                                                                                                                                                           src="/images/site/payment/paypal.png"
+                                                                                                                                                                           alt="img">
                     <img height="30" class="pull-right" src="/images/site/payment/american_express_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/discover_network_card.png" alt="img">
                     <img height="30" class="pull-right" src="/images/site/payment/google_wallet.png" alt="img">
 
@@ -1051,6 +1055,6 @@
     <script src="/assets/js/script.js"></script>
 
 
-@RenderSection("Scripts", required: false)
-    </body>
+    @RenderSection("Scripts", required: false)
+</body>
 </html>
