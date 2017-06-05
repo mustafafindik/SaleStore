@@ -15,6 +15,7 @@
   <ItemGroup>
     <Content Include="C:\Users\ayber\AppData\Roaming\Microsoft\Windows\Network Shortcuts\Index.cshtml" Link="Index.cshtml" />
     <Content Include="wwwroot\ajax\product.cshtml" />
+    <Content Include="wwwroot\assets\css\custom.css" />
     <Content Include="wwwroot\category.html" />
     <Content Include="wwwroot\css\custom.css" />
     <Content Include="wwwroot\css\site - Copy.css">
