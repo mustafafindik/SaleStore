@@ -35,6 +35,13 @@ namespace SaleStore.Controllers
             return View();
         }
 
+        public IActionResult Campaigns()
+        {
+         
+
+            return View();
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
