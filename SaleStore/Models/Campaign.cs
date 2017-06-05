@@ -40,7 +40,8 @@ namespace SaleStore.Models
         [DisplayName("Kampanya Resmi")]
         public string Image { get; set; }
 
-        
+        [DisplayName("Yayında mı?")]
+        public bool IsPublish { get; set; }
 
     }
 }
