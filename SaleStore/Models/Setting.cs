@@ -11,7 +11,7 @@ namespace SaleStore.Models
     {
         public int Id { get; set; }
 
-        [DisplayName("Logo"),Required(ErrorMessage = "Lütfen bir {0} giriniz.")]
+        [DisplayName("Logo")]
         public string Logo { get; set; }
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
