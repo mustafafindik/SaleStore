@@ -7,5 +7,10 @@
     border-top: 4px solid #e74c3c !important;
 }
 
+@media (max-width: 569px) {
+    .btn {
+        padding: 5px 10px !important;
+    }
+}
 
 
