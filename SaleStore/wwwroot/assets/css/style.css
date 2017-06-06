@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* =============================================================== */
 /* 	TABLE CONTENT
 
@@ -47,7 +47,7 @@
 /* Product zoom  */
 @import url("../plugins/icheck-1.x/skins/all.css");
 /* ion.checkRadio.min.js || customs checkbox and radio plugin  */
-@import url("skin-0.css");
+@import url("skin-5.css");
 /* btn styled from btn.less  */
 @import url("btn.css");
 /* Template Theme color skin */
@@ -2377,6 +2377,12 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     visibility: visible;
 }
 
+.featuredImageLook3 .inner:focus .box-content-overly-white {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.8);
+    visibility: visible;
+}
+
 .image-show-case-wrapper .owl-pagination {
     margin-top: -40px !important;
     position: relative;
@@ -2391,7 +2397,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     color: #fff;
 }
 
-@media (max-width: 650px) {
+/*@media (max-width: 650px) {
     .featuredImageLook3 .inner .box-text-cell-inner h1 {
         font-size: 18px;
         margin-bottom: 0;
@@ -2424,7 +2430,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
         font-size: 16px;
         letter-spacing: 1px;
     }
-}
+}*/
 
 /* ---------- // Home look 3 end //--------*/
 

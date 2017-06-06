@@ -9,7 +9,7 @@ namespace SaleStore.Models
 {
     public class Setting : BaseEntity
     {
-        public int Id { get; set; }
+     
 
         [DisplayName("Logo"),Required(ErrorMessage = "Lütfen bir {0} giriniz.")]
         public string Logo { get; set; }
