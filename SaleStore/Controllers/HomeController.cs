@@ -42,11 +42,13 @@ namespace SaleStore.Controllers
 
             return View();
         }
-        public IActionResult Products()
+        public IActionResult Products(int page=1)
         {
-
-
-            return View();
+            model.Categories = _context.Categories.ToPagedList<Category>(page, 10);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
+            model.Products = _context.Products.ToPagedList<Product>(page, 10);
+            model.Settings = _context.Setting.ToList();
+            return View(model);
         }
 
         public IActionResult Contact()
