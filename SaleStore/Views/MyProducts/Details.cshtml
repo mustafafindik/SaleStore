@@ -29,10 +29,11 @@
         <div class="col-lg-6 col-md-6 col-sm-6">
             <h1 class="product-title">
                 @Html.DisplayFor(model => model.Name)
+                
             </h1>
 
             <h1 class="product-code">@Html.DisplayFor(model => model.Name)-(@Html.DisplayFor(model => model.Name))</h1>
-
+            <h1 class="price-1">@Html.DisplayFor(model => model.SalePrice)</h1>
             <div class="rating">
                 <p>
                     <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
@@ -53,7 +54,7 @@
             <div class="product-tab w100 clearfix">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#details" data-toggle="tab">@Html.DisplayNameFor(model => model.Details)</a></li>
-                        <li><a href="#size" data-toggle="tab">Kampanya Başlangıç-Bitiş Tarihleri</a></li>
+                        <li><a href="#size" data-toggle="tab">İndirim Başlangıç-Bitiş Tarihleri</a></li>
                     </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -63,7 +64,7 @@
                         <td><b>@Html.DisplayNameFor(model => model.UnitPrice) : </b></td>
                         @Html.DisplayFor(model => model.UnitPrice)<br />
                         <td><b>@Html.DisplayNameFor(model => model.SalePrice): </b></td>
-                        @Html.DisplayFor(model => model.SalePrice)
+                        @Html.DisplayFor(model => model.SalePrice) <br />
                     </div>
                     <div class="tab-pane" id="size">
                         <table>
