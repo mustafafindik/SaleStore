@@ -19,7 +19,6 @@
         <input type="hidden" asp-for="UpdatedBy" class="form-control" value="@(User.Identity.Name ?? "username")" />
         <input type="hidden" asp-for="UpdateDate" class="form-control" value="@DateTime.Now" />
 
-
         <div class="row transitionfx">
 
             <!-- left column -->
@@ -63,26 +62,37 @@
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
+                
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label asp-for="CompanyId" cclass="control-label"></label>
+                        </div>
+                        <div class="col-md-10">
+
+                            <select asp-for="CompanyId" class="form-control " asp-items="ViewBag.CompanyId"></select>
+                            <span asp-validation-for="CompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-5">
+                            <label asp-for="UnitPrice" class="control-label"></label>
+                            <input asp-for="UnitPrice" class="form-control" />
+                            <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="col-md-5">
+                            <label asp-for="SalePrice" class="control-label"></label>
+                            <input asp-for="SalePrice" class="form-control" />
+                            <span asp-validation-for="SalePrice" class="text-danger"></span>
+                        </div>
+
 
                     </div>
-                    <div class="col-md-5">
-                        <label asp-for="UnitPrice" class="control-label"></label>
-                        <input asp-for="UnitPrice" class="form-control" />
-                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
-                    </div>
-
-
-
-                    <div class="col-md-5">
-                        <label asp-for="SalePrice" class="control-label"></label>
-                        <input asp-for="SalePrice" class="form-control" />
-                        <span asp-validation-for="SalePrice" class="text-danger"></span>
-                    </div>
-
-
-                </div>
                 
                 
 
