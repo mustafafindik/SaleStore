@@ -2229,7 +2229,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .featuredImgLook2 .inner:hover {
-    border: solid 1px #4EC67F;
+    border: solid 1px #c4c4c4;
 }
 
 .img-link {
@@ -2363,15 +2363,12 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .featuredImageLook3 .inner .img-icon1 {
-  
-    opacity: 0.7;
-    position: absolute !important;
-    bottom: 10px !important;
-}
-
-.featuredImageLook3 .inner:hover .img-icon1 {
-    visibility:visible;
+    padding: 10px;
+    margin: 30px;
+    border-radius: 5px;
+    background-color: #000000;
     opacity: 1;
+    position: absolute !important;
 }
 
 .img-block {
