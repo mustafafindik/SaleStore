@@ -39,26 +39,12 @@
 
                     <span>@Model.ProductImage</span>
 
-
-
-
-
                 </div>
             </div>
             <!--/ left column end -->
             <!-- right column -->
             <div class="col-lg-7 col-md-7 col-sm-7">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="SalePrice" class="control-label"></label>
-                    </div>
-                    <div class="col-md-10">
-                        <input asp-for="SalePrice" class="form-control" />
-                        <span asp-validation-for="SalePrice" class="text-danger"></span>
-                    </div>
-                </div>
-
-
+               
                 <div class="row">
                     <div class="col-md-2">
                         <label asp-for="Name" class="control-label"></label>
@@ -70,7 +56,24 @@
 
                 </div>
 
+                <div class="row">
+                    <div class="col-md-2">
 
+                    </div>
+                    <div class="col-md-5">
+                        <label asp-for="UnitPrice" class="control-label"></label>
+                        <input asp-for="UnitPrice" class="form-control" />
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="col-md-5">
+                        <label asp-for="SalePrice" class="control-label"></label>
+                        <input asp-for="SalePrice" class="form-control" />
+                        <span asp-validation-for="SalePrice" class="text-danger"></span>
+                    </div>
+                </div>
 
 
                 <div class="row">
@@ -126,7 +129,7 @@
 
             </div>
             <!--/ right column end -->
-
+           
             <div class="text-center">
                 <div class="row">
 

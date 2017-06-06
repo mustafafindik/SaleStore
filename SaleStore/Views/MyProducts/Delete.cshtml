@@ -4,104 +4,6 @@
     ViewData["Title"] = "Ürün Sil";
 }
 
-<h2>Ürün Sil</h2>
-
-<h3>Silmek istediğinize emin misiniz?</h3>
-<div>
-    <hr />
-    <form asp-action="Delete">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Details)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Details)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UnitPrice)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.SalePrice)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.SalePrice)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.SaleStarthDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.SaleStarthDate)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.SaleEndDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.SaleEndDate)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProductImage)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ProductImage)
-            </dd>
-            <input type="hidden" asp-for="Id" />
-            <dt>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CreateDate)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CreatedBy)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UpdatedBy)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UpdatedBy)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UpdateDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UpdateDate)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Category)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Category.Id)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Company)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Company.Id)
-            </dd>
-        </dl>
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Sil" class="btn btn-danger" /> |
-                <a asp-action="Index" class="btn btn-danger">Listeye Geri Dön</a>
-            </div>
-        </form>
-
-</div>
-
-
-
 <div class="container main-container headerOffset">
     <h2>Ürünü Sil</h2>
     <hr />
@@ -127,11 +29,11 @@
             <!-- right column -->
             <div class="col-lg-7 col-md-7 col-sm-7">
                 <h1 class="product-title">
-                    @Html.DisplayFor(model => model.UnitPrice)
+                    @Html.DisplayFor(model => model.Name)
                 </h1>
 
                 <h1 class="product-code">@Html.DisplayFor(model => model.Name)-(@Html.DisplayFor(model => model.Category.Name))</h1>
-
+                <h1 class="price-1">@Html.DisplayFor(model => model.SalePrice)</h1>
                 <div class="rating">
                     <p>
                         <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
@@ -152,14 +54,14 @@
                 <div class="product-tab w100 clearfix">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#details" data-toggle="tab">@Html.DisplayNameFor(model => model.Details)</a></li>
-                        <li><a href="#size" data-toggle="tab">Ürün İndirim Başlangıç-Bitiş Tarihleri</a></li>
+                        <li><a href="#size" data-toggle="tab">Kampanya Başlangıç-Bitiş Tarihleri</a></li>
 
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="details">
-                            @Html.DisplayFor(model => model.UnitPrice)
+                            @Html.DisplayFor(model => model.Details)
                         </div>
                         <div class="tab-pane" id="size">
                             <table>
@@ -201,6 +103,16 @@
 
                     </div>
                     <div style="clear:both"></div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="IsPublish" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9">
+
+                            <input asp-for="IsPublish" class="form-control" disabled />
+                            <span asp-validation-for="IsPublish" class="text-danger"></span>
+                        </div>
+                    </div>
                     <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> In stock</h3>
 
                     <h3 style="display:none" class="incaps">
@@ -299,28 +211,28 @@
 
 <script src="/assets/plugins/rating/bootstrap-rating.min.js"></script>
 <script>
-        $(function () {
+    $(function () {
 
-            $('.rating-tooltip-manual').rating({
-                extendSymbol: function () {
-                    var title;
-                    $(this).tooltip({
-                        container: 'body',
-                        placement: 'bottom',
-                        trigger: 'manual',
-                        title: function () {
-                            return title;
-                        }
+        $('.rating-tooltip-manual').rating({
+            extendSymbol: function () {
+                var title;
+                $(this).tooltip({
+                    container: 'body',
+                    placement: 'bottom',
+                    trigger: 'manual',
+                    title: function () {
+                        return title;
+                    }
+                });
+                $(this).on('rating.rateenter', function (e, rate) {
+                    title = rate;
+                    $(this).tooltip('show');
+                })
+                    .on('rating.rateleave', function () {
+                        $(this).tooltip('hide');
                     });
-                    $(this).on('rating.rateenter', function (e, rate) {
-                        title = rate;
-                        $(this).tooltip('show');
-                    })
-                        .on('rating.rateleave', function () {
-                            $(this).tooltip('hide');
-                        });
-                }
-            });
-
+            }
         });
+
+    });
 </script>

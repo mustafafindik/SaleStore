@@ -45,27 +45,6 @@
             <div class="col-lg-7 col-md-7 col-sm-7">
                 <div class="row">
                     <div class="col-md-2">
-                        <label asp-for="UnitPrice" class="control-label"></label>
-                    </div>
-                    <div class="col-md-10">
-                        <input asp-for="UnitPrice" class="form-control" />
-                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="SalePrice" class="control-label"></label>
-                    </div>
-                    <div class="col-md-10">
-                        <input asp-for="SalePrice" class="form-control" />
-                        <span asp-validation-for="SalePrice" class="text-danger"></span>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-2">
                         <label asp-for="Name" class="control-label"></label>
                     </div>
                     <div class="col-md-10">
@@ -74,8 +53,6 @@
                     </div>
 
                 </div>
-                <input type="hidden" asp-for="CompanyId" class="form-control" value="@Model.CompanyId"/>
-
                 <div class="row">
                     <div class="col-md-2">
                         <label asp-for="CategoryId" cclass="control-label"></label>
@@ -86,6 +63,28 @@
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <label asp-for="UnitPrice" class="control-label"></label>
+                        <input asp-for="UnitPrice" class="form-control" />
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                    </div>
+
+
+
+                    <div class="col-md-5">
+                        <label asp-for="SalePrice" class="control-label"></label>
+                        <input asp-for="SalePrice" class="form-control" />
+                        <span asp-validation-for="SalePrice" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+                
+                
 
                 <div class="row">
                     <div class="col-md-2">
@@ -119,6 +118,17 @@
                     
                 </div>
 
+                <div class="row">
+                    <div class="col-md-2">
+                        <label asp-for="IsPublish" class="control-label"></label>
+                    </div>
+                    <div class="col-md-10">
+
+                        <input asp-for="IsPublish" class="form-control" />
+                        <span asp-validation-for="IsPublish" class="text-danger"></span>
+                    </div>
+                </div>
+
                 <!--/.product-tab-->
                 <!--/.cart-actions-->
 
@@ -133,10 +143,8 @@
             <!--/ right column end -->
 
             <div class="text-center">
-                <div class="row">
-
+                <div class="row">       
                     <div class="col-lg-12 col-md-12col-sm-12 col-xs-12">
-
                         <input type="submit" value="Kaydet" class="btn btn-primary" />
                         <a class="btn btn-primary" asp-action="Index">Vazgeç</a>
                     </div>
