@@ -2359,7 +2359,19 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 
 .featuredImageLook3 .inner:hover .img-title {
     visibility: hidden;
-    opacity: 0;
+    opacity: 0.7;
+}
+
+.featuredImageLook3 .inner .img-icon1 {
+  
+    opacity: 0.7;
+    position: absolute !important;
+    bottom: 10px !important;
+}
+
+.featuredImageLook3 .inner:hover .img-icon1 {
+    visibility:visible;
+    opacity: 1;
 }
 
 .img-block {

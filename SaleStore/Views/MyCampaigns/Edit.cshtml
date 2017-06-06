@@ -16,10 +16,8 @@
         <input type="hidden" asp-for="CreateDate" class="form-control" value="@Model.CreateDate" />
         <input type="hidden" asp-for="CreatedBy" class="form-control" value="@Model.CreatedBy" />
         <input type="hidden" asp-for="UpdatedBy" class="form-control" value="@Model.UpdatedBy" />
-        <input type="hidden" asp-for="UpdateDate" class="form-control" value="@DateTime.Now" />
+        <input type="hidden" asp-for="UpdateDate" class="form-control" value="@Model.UpdateDate" />
 
-
-        <div class="row transitionfx">
 
             <!-- left column -->
             <div class="col-lg-5 col-md-5 col-sm-5">
@@ -27,136 +25,114 @@
 
                 <div class="main-image sp-wrap col-lg-12 no-padding">
 
+                    <div class="form-group">
+                        <img src="/@Html.DisplayFor(model => model.Image)" class="img-responsive img-thumbnail" alt="img" style="max-height:300px;">
+                    </div>
+                    <div class="form-group">
 
-                    
-                        <img src="/@Html.DisplayFor(model => model.Image)" class="img-responsive" alt="img" style="max-height:300px;">
-                    
-                    
-            <label asp-for="Image" ></label>
-            
-                
-                <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
-                @Html.ValidationMessage("Image", new { @class = "text-danger" })
-
-                <span>@Model.Image</span>
-            
-                    
+                        <label asp-for="Image"></label>
 
 
+                        <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
+                        @Html.ValidationMessage("Image", new { @class = "text-danger" })
+
+                        <span>@Model.Image</span>
+
+                    </div>
 
                 </div>
             </div>
             <!--/ left column end -->
             <!-- right column -->
             <div class="col-lg-7 col-md-7 col-sm-7">
-                <div class="row">
-                    <div class="col-md-2" >
-                        <label asp-for="Slogan" class="control-label"></label>
-                    </div>
-                    <div class="col-md-10">
-                        <input asp-for="Slogan" class="form-control" />
-                        <span asp-validation-for="Slogan" class="text-danger"></span>
-                    </div>
-                </div>
-
-                
-                <div class="row">
-                    <div class="col-md-2" >
-                        <label asp-for="Name" class="control-label"></label>
-                    </div>
-                    <div class="col-md-10">
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="Slogan" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Slogan" class="form-control" />
+                                <span asp-validation-for="Slogan" class="text-danger"></span>
+                            </div>
                         </div>
-
                     </div>
 
-               
-
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="CategoryId" cclass="control-label"></label>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="Name" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-10">
-                        
-                        <select asp-for="CategoryId" class="form-control " asp-items="ViewBag.CategoryId"></select>
-                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="Description" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2" >
-                        <label asp-for="Description" class="control-label"></label>
+           
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="CategoryId" cclass="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <select asp-for="CategoryId" class="form-control " asp-items="ViewBag.CategoryId"></select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-10">
-                        <textarea rows="5" asp-for="Description" class="form-control"></textarea>
 
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-4">
+                                <label asp-for="CampaignStartDate" class="control-label"></label>
+                                <input asp-for="CampaignStartDate" class="form-control" />
+                                <span asp-validation-for="CampaignStartDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-5">
+                                <label asp-for="CampaignEndDate" class="control-label"></label>
+                                <input asp-for="CampaignEndDate" class="form-control" />
+                                <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-2">
-                        
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="IsPublish" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="IsPublish" class="form-control" />
+                                <span asp-validation-for="IsPublish" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-5">
-                        <label asp-for="CampaignStartDate" class="control-label"></label>
-                        <input asp-for="CampaignStartDate" class="form-control" />
-                        <span asp-validation-for="CampaignStartDate" class="text-danger"></span>
-                    </div>
-               
-                    
 
-                    <div class="col-md-5">
-                        <label asp-for="CampaignEndDate" class="control-label"></label>
-                        <input asp-for="CampaignEndDate" class="form-control" />
-                        <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label asp-for="IsPublish" class="control-label"></label>
-                    </div>
-                    <div class="col-md-10">
-
-                        <input asp-for="IsPublish" class="form-control" />
-                        <span asp-validation-for="IsPublish" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <!--/.product-tab-->
-                
-                
-                <!--/.cart-actions-->
-
-                <div class="clear"></div>
-
-
-                <div style="clear:both"></div>
-
-                <!--/.product-share-->
-
-            </div>
-            <!--/ right column end -->
-            
-            <div class="text-center">
-                <div class="row">
-
-                    <div class="col-lg-12 col-md-12col-sm-12 col-xs-12">
-
-                        
-                     
-                        <input type="submit" value="Kaydet" class="btn btn-primary" />
-                        <a class="btn btn-primary" asp-action="Index">Vazgeç</a>
+                    <div class="clear"></div>
+                    <div style="clear:both"></div>
+                  
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9" style="padding:0;">
+                            <input type="submit" value="Kaydet" class="btn btn-primary" />
+                            <a class="btn btn-primary" asp-action="Index">Vazgeç</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
-        </div>
+            </div>     
     </form>
     <!--/.row-->
 
@@ -178,12 +154,11 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- jquery-migrate only for product details -->
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<script src="~/assets/js/jquery-migrate-1.4.1.js"></script>
 
-<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
 <!-- include jqueryCycle plugin -->
 <script src="/assets/js/jquery.cycle2.min.js"></script>
 <!-- include easing plugin -->
@@ -205,8 +180,6 @@
 <!-- include grid.js // for equal Div height  -->
 <script src="/assets/js/grids.js"></script>
 
-<!-- include carousel slider plugin  -->
-<script src="/assets/js/owl.carousel.min.js"></script>
 
 <!-- include smoothproducts // product zoom plugin  -->
 <script type="text/javascript" src="/assets/js/smoothproducts.min.js"></script>
@@ -221,33 +194,8 @@
 <script src="/assets/js/script.js"></script>
 
 
-<script src="/assets/plugins/rating/bootstrap-rating.min.js"></script>
-<script>
-        $(function () {
 
-            $('.rating-tooltip-manual').rating({
-                extendSymbol: function () {
-                    var title;
-                    $(this).tooltip({
-                        container: 'body',
-                        placement: 'bottom',
-                        trigger: 'manual',
-                        title: function () {
-                            return title;
-                        }
-                    });
-                    $(this).on('rating.rateenter', function (e, rate) {
-                        title = rate;
-                        $(this).tooltip('show');
-                    })
-                        .on('rating.rateleave', function () {
-                            $(this).tooltip('hide');
-                        });
-                }
-            });
 
-        });
-</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
