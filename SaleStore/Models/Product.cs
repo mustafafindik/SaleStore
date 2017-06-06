@@ -50,6 +50,8 @@ namespace SaleStore.Models
         public int CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
-        
+
+        [DisplayName("Yayında mı?")]
+        public bool IsPublish { get; set; }
     }
 }

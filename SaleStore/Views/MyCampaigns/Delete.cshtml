@@ -105,6 +105,16 @@
 
                     </div>
                     <div style="clear:both"></div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label asp-for="IsPublish" class="control-label"></label>
+                        </div>
+                        <div class="col-md-9">
+
+                            <input asp-for="IsPublish" class="form-control" disabled />
+                            <span asp-validation-for="IsPublish" class="text-danger"></span>
+                        </div>
+                    </div>
                     <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> In stock</h3>
 
                     <h3 style="display:none" class="incaps">
