@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,60 +37,67 @@ namespace SaleStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Setting setting, IFormFile logoUpload)
+        public async Task<IActionResult> Index(Setting setting, IFormFile logoUpload)
         {
-            if (ModelState.IsValid)
+            setting.CreatedBy = User.Identity.Name ?? "username";
+            setting.CreateDate = DateTime.Now;
+            setting.UpdatedBy = User.Identity.Name ?? "username";
+            setting.UpdateDate = DateTime.Now;
+            if (logoUpload != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(logoUpload.FileName)) == false)
             {
-                Setting s;
-                if (_context.Setting.Any())
-                {
-                    s = _context.Setting.FirstOrDefault();
-
-                    s.Logo = setting.Logo;
-                    s.Phone = setting.Phone;
-                    s.Address = setting.Address;
-                    s.Mail = setting.Mail;
-                    s.About = setting.About;
-                    s.Title = setting.Title;
-                    s.SeoTitle = setting.SeoTitle;
-                    s.SeoDescription = setting.SeoDescription;
-                    s.SeoKeywords = setting.SeoKeywords;
-
-                    s.Facebook = setting.Facebook;
-                    s.Twitter = setting.Twitter;
-                    s.LinkedIn = setting.LinkedIn;
-
-
-                    if (logoUpload != null && logoUpload.Length > 0)
-                    {
-                        var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
-                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))
-                        {
-                            logoUpload.CopyTo(stream);
-                        }
-                        s.Logo = filePath;
-                    }
-                    _context.SaveChanges();
-                }
-                else
-                {
-                    // file upload i�lemi yap�l�r
-                    if (logoUpload != null && logoUpload.Length > 0)
-                    {
-                        var filePath = new Random().Next(9999).ToString() + logoUpload.FileName;
-                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\" + filePath, FileMode.Create))
-                        {
-                            logoUpload.CopyTo(stream);
-                        }
-                        setting.Logo = filePath;
-                    }
-                    _context.Setting.Add(setting);
-                    _context.SaveChanges();
-                    ViewBag.Message = "Ayarlar ba�ar�yla kaydedildi.";
-                }
-
-
+                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
             }
+            else if (ModelState.IsValid)
+            {
+
+                if (logoUpload != null)
+                {
+
+                    if (Path.GetExtension(logoUpload.FileName) == ".jpg"
+                    || Path.GetExtension(logoUpload.FileName) == ".gif"
+                    || Path.GetExtension(logoUpload.FileName) == ".png")
+                    {
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(logoUpload.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        setting.Logo = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await logoUpload.CopyToAsync(stream);
+                            }
+
+                            if (_context.Setting != null)
+                            {
+                                _context.Update(setting);
+                                await _context.SaveChangesAsync();
+                               
+                            }
+                            else
+                            {
+                                _context.Add(setting);
+                                await _context.SaveChangesAsync();
+
+                            }
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("ProductImage", "Hata: " + exc.Message); }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("ProductImage", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
+                    }
+                }
+                else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
+            }
+            _context.Update(setting);
+            await _context.SaveChangesAsync();
             return View(setting);
         }
     }

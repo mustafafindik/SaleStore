@@ -26,6 +26,17 @@ namespace SaleStore.Controllers
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
             model.Products = _context.Products.ToPagedList<Product>(page, 10);
             model.Settings = _context.Setting.ToList();
+            Setting settings = new Setting();
+            settings = _context.Setting.FirstOrDefault();
+            ViewBag.logo = settings.Logo;
+            ViewBag.Title = settings.Title;
+            ViewBag.phone = settings.Phone;
+            ViewBag.SeoDescription = settings.SeoDescription;
+            ViewBag.SeoKeywords = settings.SeoKeywords;
+            ViewBag.SeoTitle = settings.SeoTitle;
+            ViewBag.Adress = settings.Address;
+            ViewBag.Mail = settings.Mail;
+            ViewBag.SiteSlogan = settings.SiteSlogan;
             return View(model);
         }
 
@@ -78,4 +89,5 @@ namespace SaleStore.Controllers
         //}
 
     }
+    
 }

@@ -57,7 +57,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="/">
-                        <img src="/metronic/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
+                        <img src="@ViewBag.Logo" alt="logo" class="logo-default" />
                     </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
@@ -96,7 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a asp-controller="Manage" asp-action="Index">
-                                        <i class="icon-user"></i> Profilim
+                                        <i class="icon-user"></i> @ViewBag.Title
                                     </a>
                                 </li>
 
