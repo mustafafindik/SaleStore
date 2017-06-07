@@ -437,15 +437,20 @@
                     <div class="image">
                         <div class="quickview">
                             <a data-toggle="modal" class="btn btn-xs btn-quickview" href="~/ajax/product.html"
-                               data-target="#productSetailsModalAjax">İncele</a>
+                               data-target="#productSetailsModalAjax">Hızlı İncele</a>
                         </div>
                         <a href="product-details.html">
-                            <img src="@item.ProductImage" alt="img"
-                                 class="img-responsive">
+                            <img src="/@item.ProductImage" alt="img" class="img-responsive img-thumbnail" style="margin-top:20px;">
                         </a> 
+                        @{ var discount = (int)((@item.SalePrice * 100) / @item.UnitPrice);}
+                        <div class="promotion"><span class="discount">% @discount indirim</span></div>
                     </div>
-                    <div class="description">
-                        <h4><a href="product-details.html">@item.Name </a></h4>
+                    <div class="title">
+                        <h4 style="min-height: 25px;"><a href="product-details.html">@item.Name </a></h4>
+                        <div class="product-price">
+                            <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
+                            <span class="price-sales" style="font-size:24px;"> @Html.DisplayFor(model => item.SalePrice)</span>
+                        </div>
 
                         <div class="grid-description">
                             <p>@item.Details </p>
@@ -457,16 +462,16 @@
                         </div>
                         <span class="size">@item.CreatedBy</span>
                     </div>
-                    <h1 class="price-1"><span>@item.SalePrice</span></h1>
+                    
                     <div class="action-control">
-                        <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">
+                        <a class="btn btn-toolbar" asp-action="Details" asp-route-id="@item.Id">
                             <span class="add2cart">
                                 <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
                             </span>
                         </a>
                     </div>
                     <div class="action-control">
-                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">
+                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">
                             <span class="add2cart">
                                 <i class="glyphicon glyphicon-edit">&nbsp;</i>Ürünü Düzenle
                             </span>
@@ -517,31 +522,29 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
 </script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- include  parallax plugin -->
-<script type="text/javascript" src="assets/js/jquery.parallax-1.1.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.parallax-1.1.js"></script>
 
 <!-- optionally include helper plugins -->
-<script type="text/javascript" src="assets/js/helper-plugins/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="/assets/js/helper-plugins/jquery.mousewheel.min.js"></script>
 
 <!-- include mCustomScrollbar plugin //Custom Scrollbar  -->
 
-<script type="text/javascript" src="assets/js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.js"></script>
 
-<!-- include checkRadio plugin //Custom check & Radio  -->
-<script type="text/javascript" src="http://fronteed.com/iCheck/icheck.js?v=1.0.1"></script>
 
 <!-- include grid.js // for equal Div height  -->
-<script src="assets/js/grids.js"></script>
+<script src="/assets/js/grids.js"></script>
 
 <!-- include carousel slider plugin  -->
-<script src="assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
 
 <!-- jQuery select2 // custom select   -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
 <!-- include touchspin.js // touch friendly input spinner component   -->
-<script src="assets/js/bootstrap.touchspin.js"></script>
+<script src="/assets/js/bootstrap.touchspin.js"></script>
 
 <!-- include custom script for site  -->
-<script src="assets/js/script.js"></script>
+<script src="/assets/js/script.js"></script>

@@ -7,6 +7,9 @@ using SaleStore.Models.ViewModels;
 using SaleStore.Data;
 using SaleStore.Models;
 using PagedList.Core;
+using MimeKit;
+using MailKit.Net.Smtp;
+
 
 namespace SaleStore.Controllers
 {
@@ -64,10 +67,59 @@ namespace SaleStore.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+           
 
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Contact(Inbox inbox)
+        {
+            inbox.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+           
+                _context.Add(inbox);
+                await _context.SaveChangesAsync();
+
+                MailSetting mailSetting;
+                SendMessage sendMessage;
+                mailSetting = _context.MailSettings.FirstOrDefault();
+                sendMessage = _context.SendMessages.Where(x=>x.MailSettingId==1).FirstOrDefault();
+                string FromAddress = mailSetting.FromAddress;
+                string FromAddressTitle = mailSetting.FromAddressTitle;
+
+                string ToAddress = inbox.Email;
+                string ToAddressTitle = inbox.FullName;
+                string Subject = sendMessage.Subject;
+                string BodyContent = sendMessage.BodyContent;
+
+                string SmptServer = mailSetting.SmptServer;
+                int SmptPortNumber = mailSetting.SmptPortNumber;
+
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+                mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+                mimeMessage.Subject = Subject;
+                mimeMessage.Body = new TextPart("plain")
+                {
+                    Text = BodyContent
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect(SmptServer, SmptPortNumber, false);
+                    client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
+                    client.Send(mimeMessage);
+                    client.Disconnect(true);
+                }
+                ViewBag.Message = "Mesajınız başarıyla gönderildi.";
+
+            
+
+            return View(inbox);
+
+        }
+
 
         public IActionResult Error()
         {

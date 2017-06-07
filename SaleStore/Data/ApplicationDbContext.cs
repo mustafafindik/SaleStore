@@ -27,7 +27,9 @@ namespace SaleStore.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
-
+        public DbSet<MailSetting> MailSettings { get; set; }
+        public DbSet<Inbox> Inboxes { get; set; }
+        public DbSet<SendMessage> SendMessages { get; set; }
         public DbSet<SaleStore.Models.Setting> Setting { get; set; }
       
     }

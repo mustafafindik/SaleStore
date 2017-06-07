@@ -6,16 +6,13 @@
 <!-- /main container -->
 <div class="container main-container headerOffset">
     <div class="row">
-        <div class="breadcrumbDiv col-lg-12">
-            <ul class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
-                <li class="active">MEN COLLECTION</li>
-            </ul>
-        </div>
+
     </div>
 
     <h3 class="section-title style2 text-center"><span>KAMPANYALAR</span></h3>
-
+    <div class="form-group text-center">
+        <a asp-action="Create" class=" btn btn-primary">Kampanya Ekle</a>
+    </div>
     <!--left column-->
 
     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -433,8 +430,8 @@
 
         <!--/.subCategoryList-->
 
-
-
+@foreach (var item in Model.Campaigns)
+{
         <div class="featuredImageLook3">
             <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
                 <div class="inner">
@@ -442,40 +439,68 @@
                         <div class="box-text-table">
                             <div class="box-text-cell ">
                                 <div class="box-text-cell-inner dark">
-                                    <h1 class="uppercase">Handbags</h1>
-
-                                    <p>
-                                        Veggies es bonus vobis, proinde vos postulo essum magis
-                                        kohlrabi welsh onion daikon amaranth.
-                                    </p>
+                                    <h1 class="uppercase">@item.Name</h1>
+                                    <a asp-action="Edit" class="btn btn-info btn-xs" asp-route-id="@item.Id">Düzenle</a>
+                                    <a asp-action="Details" class="btn btn-default btn-xs" asp-route-id="@item.Id">Detaylar</a>
+                                    <a asp-action="Delete" class="btn btn-danger btn-xs" asp-route-id="@item.Id">Sil</a>
+                                    
                                     <hr class="submini">
-
+                                   
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--/.box-content-overly -->
-                    <div class="img-title"> Handbags</div>
-                    <a class="img-block" href="#"> <img class="img-responsive" src="/images//look3/2.jpg" alt="img"></a>
+                    <div class="img-title"> @item.Name</div>
+                    <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" src="/@item.Image" alt="img"></a>
+                </div>
+            </div>
+
+        </div>
+}
+    </div>
+
+
+
+        @*<div class="width100 section-block  text-center">
+            <div class="row featuredImgLook2">
+             @foreach (var item in Model.Campaigns)
+             {
+
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="inner">
+                        <a href="category.html" style="height: 250px;" class="img-link"><img alt="img" style="display: block; height: auto; max-width: 100%;" class="img-responsive img-thumbnail" src="/@item.Image"></a>
+
+                        <div class="form-group" style="bottom:0;">
+                            <h3> @item.Name </h3>
+
+                            <p>@item.Description</p>
+                            <p>@item.Slogan</p>
+
+
+                            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Düzenle</a>
+                            <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id">Detaylar</a>
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Sil</a>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col-md-12 col-sm-12 col-xs-12 center-align">
-                    
-                    <div class="col-md-4 col-xs-4">
-                        <a class="btn btn-default btn-xs">Detaylar</a>
-                    </div>
-                    <div class="col-md-4 col-xs-4">
-                        <a class="btn btn-success btn-xs">Düzenle</a>
-                    </div>
-                    <div class="col-md-4 col-xs-4">
-                        <a class="btn btn-danger btn-xs">Sil</a>
-                    </div>
-                </div>
-             
-            </div>
+
+
+             }
+            </div>*@
+            <!--/.row-->
         </div>
-        <!--/.featuredImageLook3-->
-    </div>
+
+             
+        <div class="text-center">
+
+            <pager class="pager-container" list="@Model.Campaigns" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Index" asp-controller="MyCampaigns" />
+        </div>
+
+            
+            <!--/.featuredImageLook3-->
+        </div>
     <!--/.featuredPostContainer-->
 </div>
 <!-- /main container -->

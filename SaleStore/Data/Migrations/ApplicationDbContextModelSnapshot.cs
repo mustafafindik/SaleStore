@@ -283,6 +283,75 @@ namespace SaleStore.Data.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("SaleStore.Models.Inbox", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Message")
+                        .IsRequired();
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("SubmitDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Inboxes");
+                });
+
+            modelBuilder.Entity("SaleStore.Models.MailSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("FromAddress")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FromAddressPassword")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FromAddressTitle")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<int>("SmptPortNumber");
+
+                    b.Property<string>("SmptServer")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MailSettings");
+                });
+
             modelBuilder.Entity("SaleStore.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -330,6 +399,38 @@ namespace SaleStore.Data.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("SaleStore.Models.SendMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BodyContent")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("MailSettingId");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MailSettingId");
+
+                    b.ToTable("SendMessages");
                 });
 
             modelBuilder.Entity("SaleStore.Models.Setting", b =>
@@ -441,6 +542,14 @@ namespace SaleStore.Data.Migrations
                     b.HasOne("SaleStore.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SaleStore.Models.SendMessage", b =>
+                {
+                    b.HasOne("SaleStore.Models.MailSetting", "MailSetting")
+                        .WithMany()
+                        .HasForeignKey("MailSettingId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

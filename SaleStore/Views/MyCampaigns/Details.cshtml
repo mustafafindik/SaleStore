@@ -7,8 +7,7 @@
 
     <!-- /.Fixed navbar  -->
     <div class="container main-container headerOffset">
-        
-        <div class="row transitionfx">
+       
 
             <!-- left column -->
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -18,7 +17,7 @@
 
 
                     <a href="/@Html.DisplayFor(model => model.Image)">
-                        <img src="/@Html.DisplayFor(model => model.Image)" class="img-responsive" alt="img" style="max-height:300px;">
+                        <img src="/@Html.DisplayFor(model => model.Image)" class="img-responsive img-thumbnail" alt="img" style="max-height:300px;">
                     </a>
 
 
@@ -28,11 +27,11 @@
             <!-- right column -->
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <h1 class="product-title">
-                    @Html.DisplayFor(model => model.Slogan)
+                    @Html.DisplayFor(model => model.Name)
                 </h1>
 
-                <h1 class="product-code">@Html.DisplayFor(model => model.Name)-(@Html.DisplayFor(model => model.Category.Name))</h1>
-
+                <h1 class="product-code">@Html.DisplayFor(model => model.Slogan)</h1>
+                <h1 class="product-code">@Html.DisplayFor(model => model.Category.Name)</h1>
                 <div class="rating">
                     <p>
                         <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
@@ -52,8 +51,8 @@
                 </div>
                 <div class="product-tab w100 clearfix">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#details" data-toggle="tab">@Html.DisplayNameFor(model => model.Description)</a></li>
-                        <li><a href="#size" data-toggle="tab">Kampanya Başlangıç-Bitiş Tarihleri</a></li>
+                        <li class="active"><a href="#details" data-toggle="tab">Kampanya Açıklaması</a></li>
+                        <li><a href="#size" data-toggle="tab">Kampanya Tarihleri</a></li>
 
                     </ul>
 
@@ -129,19 +128,21 @@
 
                 <div style="clear:both"></div>
 
-                <!--/.product-share-->
 
-            </div>
-            <!--/ right column end -->
-            <div class="text-center">
                 <div class="row">
 
-                    <div class="col-lg-12 col-md-12col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-10 col-sm-12 col-xs-12">
                         <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Kampanyayı Düzenle</a>
                         <a class="btn btn-primary" asp-action="Index">Kampanya Listesine Geri Dön</a>
                     </div>
                 </div>
+                <!--/.product-share-->
+
             </div>
+            <!--/ right column end -->
+
+             
+           
 
             
         </div>
@@ -149,8 +150,7 @@
 
         
         <div style="clear:both"></div>
-        
-    </div>
+       
 
 
     <!-- /main-container -->
@@ -166,10 +166,9 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
-    </script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- jquery-migrate only for product details -->
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script src="~/assets/js/jquery-migrate-1.4.1.js"></script>
 
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <!-- include jqueryCycle plugin -->
@@ -209,32 +208,6 @@
     <script src="/assets/js/script.js"></script>
 
 
-    <script src="/assets/plugins/rating/bootstrap-rating.min.js"></script>
-    <script>
-        $(function () {
-
-            $('.rating-tooltip-manual').rating({
-                extendSymbol: function () {
-                    var title;
-                    $(this).tooltip({
-                        container: 'body',
-                        placement: 'bottom',
-                        trigger: 'manual',
-                        title: function () {
-                            return title;
-                        }
-                    });
-                    $(this).on('rating.rateenter', function (e, rate) {
-                        title = rate;
-                        $(this).tooltip('show');
-                    })
-                        .on('rating.rateleave', function () {
-                            $(this).tooltip('hide');
-                        });
-                }
-            });
-
-        });
-    </script>
+ 
 
 

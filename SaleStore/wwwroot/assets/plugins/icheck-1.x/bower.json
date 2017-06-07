@@ -29,14 +29,5 @@
     "CHANGELOG.md",
     "README.md",
     "demo/"
-  ],
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Damir Sultanov",
-      "email": "info@fronteed.com",
-      "homepage": "http://fronteed.com/"
-    }
-  ],
-  "homepage": "http://fronteed.com/iCheck/"
+  ]
 }
