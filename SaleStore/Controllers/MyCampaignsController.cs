@@ -31,7 +31,7 @@ namespace SaleStore.Controllers
         {
             HomePageViewModels model = new HomePageViewModels();
             model.Categories = _context.Categories.ToPagedList<Category>(page, 9);
-            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 8);
             model.Products = _context.Products.ToPagedList<Product>(page, 9);
             return View(model);
         }
