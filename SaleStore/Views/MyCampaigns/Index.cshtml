@@ -6,7 +6,7 @@
 <!-- /main container -->
 <div class="container main-container headerOffset">
     <div class="row">
-        
+
     </div>
 
     <h3 class="section-title style2 text-center"><span>KAMPANYALAR</span></h3>
@@ -425,13 +425,44 @@
     </div>
 
     <!--right column-->
-    <div class="col-lg-9 col-md-9 col-sm-12">   
-     
-
-            <!--/.subCategoryList-->
+    <div class="col-lg-9 col-md-9 col-sm-12">
 
 
-        <div class="width100 section-block  text-center">
+        <!--/.subCategoryList-->
+
+@foreach (var item in Model.Campaigns)
+{
+        <div class="featuredImageLook3">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
+                <div class="inner">
+                    <div class="box-content-overly box-content-overly-white">
+                        <div class="box-text-table">
+                            <div class="box-text-cell ">
+                                <div class="box-text-cell-inner dark">
+                                    <h1 class="uppercase">@item.Name</h1>
+                                    <a asp-action="Edit" class="btn btn-info btn-xs" asp-route-id="@item.Id">Düzenle</a>
+                                    <a asp-action="Details" class="btn btn-default btn-xs" asp-route-id="@item.Id">Detaylar</a>
+                                    <a asp-action="Delete" class="btn btn-danger btn-xs" asp-route-id="@item.Id">Sil</a>
+                                    
+                                    <hr class="submini">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.box-content-overly -->
+                    <div class="img-title"> @item.Name</div>
+                    <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" src="/@item.Image" alt="img"></a>
+                </div>
+            </div>
+
+        </div>
+}
+    </div>
+
+
+
+        @*<div class="width100 section-block  text-center">
             <div class="row featuredImgLook2">
              @foreach (var item in Model.Campaigns)
              {
@@ -457,7 +488,7 @@
 
 
              }
-            </div>
+            </div>*@
             <!--/.row-->
         </div>
 
