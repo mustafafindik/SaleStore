@@ -1,17 +1,77 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿@model SaleStore.Models.Inbox
+@{
+    ViewData["Title"] = "İletişim";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<!-- Site header -->
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <h1 class="text-center">İletişim</h1>
+        <p class="lead text-center">İstek ve şikayetleriniz için bizimle iletişime geçin.</p>
+    </div>
+</header>
+<!-- END Site header -->
+<!-- Main container -->
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <section>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <h4>İletişim Formu</h4>
+                    @if (!String.IsNullOrEmpty(ViewBag.Message))
+                    {
+                        <div class="alert alert-success">@ViewBag.Message</div>
+                    }
+                    <form asp-controller="Home" asp-action="Contact" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Ip" />
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="Ad" name="FullName">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control input-lg" placeholder="Telefon" name="Phone">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control input-lg" placeholder="Email" name="Email">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" placeholder="Mesajınızı Girin" name="Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gönder</button>
+
+                    </form>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <h4>İletişim Bilgilerimiz</h4>
+                    <div class="highlighted-block">
+                        <dl class="icon-holder">
+                            <dt><i class="fa fa-map-marker"></i></dt>
+                            <dd>adress</dd>
+
+                            <dt><i class="fa fa-phone"></i></dt>
+                            <dd>Phone</dd>
+
+                            <dt><i class="fa fa-fax"></i></dt>
+                            <dd>Fax</dd>
+
+                            <dt><i class="fa fa-envelope"></i></dt>
+                            <dd>Mail</dd>
+                        </dl>
+                    </div>
+
+                    <br>
+
+                    <ul class="social-icons size-sm text-center">
+                        <li><a class="facebook" target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="linkedin" target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
