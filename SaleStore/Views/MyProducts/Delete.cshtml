@@ -9,143 +9,139 @@
     <hr />
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <div class="row transitionfx">
 
-            <!-- left column -->
-            <div class="col-lg-5 col-md-5 col-sm-5">
-                <!-- product Image and Zoom -->
+        <div class="col-lg-5 col-md-5 col-sm-5">
+            <!-- product Image and Zoom -->
 
-                <div class="main-image sp-wrap col-lg-12 no-padding">
+            <div class="main-image sp-wrap col-lg-12 no-padding">
 
 
 
-                    <img src="/@Html.DisplayFor(model => model.ProductImage)" class="img-responsive" alt="img" style="max-height:300px;">
+                <img src="/@Html.DisplayFor(model => model.ProductImage)" class="img-responsive img-thumbnail" alt="img" style="max-height:300px;">
 
 
 
-                </div>
             </div>
-            <!--/ left column end -->
-            <!-- right column -->
-            <div class="col-lg-7 col-md-7 col-sm-7">
-                <h1 class="product-title">
-                    @Html.DisplayFor(model => model.Name)
-                </h1>
+        </div>
+        <!--/ left column end -->
+        <!-- right column -->
+        <div class="col-lg-7 col-md-7 col-sm-7">
+            <h1 class="product-title">
+                @Html.DisplayFor(model => model.Name)
+            </h1>
 
-                <h1 class="product-code">@Html.DisplayFor(model => model.Name)-(@Html.DisplayFor(model => model.Category.Name))</h1>
-                <h1 class="price-1">@Html.DisplayFor(model => model.SalePrice)</h1>
-                <div class="rating">
-                    <p>
-                        <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
-                            <i class="fa fa-star"></i>
-                        </span> <span><i class="fa fa-star"></i></span> <span>
-                            <i class="fa fa-star-o "></i>
-                        </span> <span class="ratingInfo">
-                            <span> / </span> <a data-target="#modal-review" data-toggle="modal">Write a review</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="product-price">
+            <h1 class="product-code">@Html.DisplayFor(model => model.Details)</h1>
+            <h1 class="product-code">@Html.DisplayFor(model => model.Category.Name)</h1>
+            <h1 class="price-1">@Html.DisplayFor(model => model.SalePrice)</h1>
+            <div class="rating">
+                <p>
+                    <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
+                        <i class="fa fa-star"></i>
+                    </span> <span><i class="fa fa-star"></i></span> <span>
+                        <i class="fa fa-star-o "></i>
+                    </span> <span class="ratingInfo">
+                        <span> / </span> <a data-target="#modal-review" data-toggle="modal">Write a review</a>
+                    </span>
+                </p>
+            </div>
+            <div class="product-price">
 
-                </div>
-                <div class="details-description">
-                    <p> </p>
-                </div>
-                <div class="product-tab w100 clearfix">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#details" data-toggle="tab">@Html.DisplayNameFor(model => model.Details)</a></li>
-                        <li><a href="#size" data-toggle="tab">Kampanya Başlangıç-Bitiş Tarihleri</a></li>
+            </div>
+            <div class="details-description">
+                <p> </p>
+            </div>
+            <div class="product-tab w100 clearfix">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#details" data-toggle="tab">@Html.DisplayNameFor(model => model.Details)</a></li>
+                    <li><a href="#size" data-toggle="tab">İndirim Tarihleri</a></li>
 
-                    </ul>
+                </ul>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="details">
-                            @Html.DisplayFor(model => model.Details)
-                        </div>
-                        <div class="tab-pane" id="size">
-                            <table>
-                                <colgroup>
-                                    <col style="width:40%">
-                                    <col style="width:40%">
-
-                                </colgroup>
-                                <tbody>
-                                    <tr>
-                                        <td>@Html.DisplayNameFor(model => model.SaleStarthDate)</td>
-                                        <td>:@Html.DisplayFor(model => model.SaleStarthDate)</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.DisplayNameFor(model => model.SaleEndDate)</td>
-                                        <td>:@Html.DisplayFor(model => model.SaleEndDate)</td>
-
-                                    </tr>
-
-                                </tbody>
-
-                            </table>
-                        </div>
-                        <div class="tab-pane" id="shipping">
-
-                        </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="details">
+                        @Html.DisplayFor(model => model.Details)
                     </div>
-                    <!-- /.tab content -->
+                    <div class="tab-pane" id="size">
+                        <table>
+                            <colgroup>
+                                <col style="width:40%">
+                                <col style="width:40%">
 
-                </div>
-                <!--/.product-tab-->
-                <hr />
-                <div class="cart-actions">
-                    <div class="addto row">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.SaleStarthDate)</td>
+                                    <td>:@Html.DisplayFor(model => model.SaleStarthDate)</td>
 
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.SaleEndDate)</td>
+                                    <td>:@Html.DisplayFor(model => model.SaleEndDate)</td>
 
+                                </tr>
 
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="shipping">
 
                     </div>
-                    <div style="clear:both"></div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label asp-for="IsPublish" class="control-label"></label>
-                        </div>
-                        <div class="col-md-9">
-
-                            <input asp-for="IsPublish" class="form-control" disabled />
-                            <span asp-validation-for="IsPublish" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> In stock</h3>
-
-                    <h3 style="display:none" class="incaps">
-                        <i class="fa fa-minus-circle color-out"></i> Out of stock
-                    </h3>
-
-                    <h3 class="incaps"><i class="glyphicon glyphicon-lock"></i> Secure online ordering</h3>
                 </div>
-                <!--/.cart-actions-->
+                <!-- /.tab content -->
 
-                <div class="clear"></div>
+            </div>
+            <!--/.product-tab-->
+            <hr />
+            <div class="cart-actions">
+                <div class="addto row">
 
 
+
+
+                </div>
                 <div style="clear:both"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="IsPublish" class="control-label"></label>
+                    </div>
+                    <div class="col-md-9">
 
-                <!--/.product-share-->
+                        <input asp-for="IsPublish" class="form-control" disabled />
+                        <span asp-validation-for="IsPublish" class="text-danger"></span>
+                    </div>
+                </div>
+                <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> In stock</h3>
 
+                <h3 style="display:none" class="incaps">
+                    <i class="fa fa-minus-circle color-out"></i> Out of stock
+                </h3>
+
+                <h3 class="incaps"><i class="glyphicon glyphicon-lock"></i> Secure online ordering</h3>
             </div>
+            <!--/.cart-actions-->
+
+            <div class="clear"></div>
+
+
+            <div style="clear:both"></div>
+
+            <!--/.product-share-->
             <!--/ right column end -->
 
-            <div class="text-center">
-                <div class="row">
-                    <h3>Silmek istediğinize emin misiniz?</h3>
-                    <div class="col-lg-12 col-md-12col-sm-12 col-xs-12">
-                        <input type="submit" value="Sil" class="btn btn-primary" />
+            <div class="row">
 
-                        <a class="btn btn-primary" asp-action="Index">Vazgeç</a>
-                    </div>
+                <h3>Silmek istediğinize emin misiniz?</h3>
+                <div class="col-lg-12 col-md-12col-sm-12 col-xs-12">
+                    <input type="submit" value="Sil" class="btn btn-primary" />
+
+                    <a class="btn btn-primary" asp-action="Index">Vazgeç</a>
                 </div>
             </div>
 
-
         </div>
+
         <!--/.row-->
 
     </form>
@@ -165,11 +161,9 @@
 <!-- /.Modal review -->
 <!-- Le javascript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- jquery-migrate only for product details -->
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<script src="~/assets/js/jquery-migrate-1.4.1.js"></script>
 
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- include jqueryCycle plugin -->
