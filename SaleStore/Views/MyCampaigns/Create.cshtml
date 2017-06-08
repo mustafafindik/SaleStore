@@ -27,7 +27,7 @@
                 <div class="form-group">
 
                     <label asp-for="Image" class="control-label"></label>
-                    <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
+                    <input title="uploadFile" type="file" name="uploadFile" class="form-control" accept="image/gif,image/jpg,image/jpeg,image/png"  />
                     @Html.ValidationMessage("Image", new { @class = "text-danger" })
 
                 </div>
