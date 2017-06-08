@@ -305,34 +305,46 @@
                         </a>
                     </h4>
                 </div>
-                <div id="collapseCategory" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul class="nav nav-pills nav-stacked tree">
-                            <li class="active dropdown-tree open-tree">
-                                <a class="dropdown-tree-a">
-                                    <span class="badge pull-right">42</span> WOMEN COLLECTION
-                                </a>
-                                <ul class="category-level-2 dropdown-menu-tree">
-                                    <li class="dropdown-tree">
-                                        <a class="dropdown-tree-a" href="sub-category.html">
-                                            Tshirt
-                                        </a>
-                                    </li>
-                                    <li><a> Shoes</a></li>
-                                    <li><a> Shirt</a></li>
-                                    <li><a>T shirt</a></li>
-                                    <li><a href="sub-category.html"> Shirt</a></li>
-                                    <li><a href="sub-category.html">Fragrances</a></li>
-                                    <li><a href="sub-category.html">Scarf</a></li>
-                                    <li><a href="sub-category.html">Sandal</a></li>
-                                    <li><a href="sub-category.html">Underwear</a></li>
-                                    <li><a href="sub-category.html">Winter Collection</a></li>
-                                    <li><a href="sub-category.html">Men Accessories</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                @foreach (var item in Model.Categories)
+                {
+                    <div id="collapseCategory" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked tree">
+                                <li class="active dropdown-tree open-tree">
+                                    <a  class ="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> @item.Name
+                                       
+                                       
+                                            @*@foreach (var item1 in Model.Categories)
+                                            {
+                                                @foreach (var item2 in Model.Products)
+                                                {
+                                                    if (item1.Id == item2.CategoryId)
+                                                    {
+                                                        @await Component.InvokeAsync("Products")
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        @await Component.InvokeAsync("Products")
+                                                    }
+
+                                                }
+
+                                            }*@
+                                        
+                                        
+                                    </a>
+                                   
+
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+
+                }
+              
             </div>
             <!--/Category menu end-->
 
@@ -587,7 +599,27 @@
         </div>
         <!--/.productFilter-->
         <div class="row  categoryProduct xsResponse clearfix">
+          
             @await Component.InvokeAsync("Products")
+           @*@foreach(var item1 in Model.Categories)
+           {
+                @foreach (var item2 in Model.Products)
+                {
+                    if (item1.Id == item2.CategoryId)
+                    {
+                        @await Component.InvokeAsync("Products")
+
+                    }
+                    else
+                    {
+
+                        @await Component.InvokeAsync("Products")
+                    }
+
+                }
+
+           }*@
+            
 
             @*<div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
                 @foreach (var item in Model.Products)

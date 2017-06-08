@@ -55,6 +55,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Shared\Components\Campaigns\" />
     <Folder Include="Views\Shared\Components\Products\" />
   </ItemGroup>
 
