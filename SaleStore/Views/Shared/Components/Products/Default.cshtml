@@ -1,4 +1,4 @@
-@model IEnumerable<SaleStore.Models.Product>
+ï»¿@model IEnumerable<SaleStore.Models.Product>
 
 <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
     @foreach (var item in Model)
@@ -7,8 +7,8 @@
 
             <div class="imageHover">
                 <a href="product-details.html">
-                    <img src="/images/product/12.jpg" alt="img" class="img-responsive primaryImage">
-                    <img src="/images/product/21.jpg" alt="img" class="img-responsive secondaryImage">
+                    <img src="/@item.ProductImage" alt="img" class="img-responsive primaryImage">
+                    <img src="/@item.ProductImage" alt="img" class="img-responsive secondaryImage">
                 </a>
                 @{ var discount = (int)((@item.SalePrice * 100) / @item.UnitPrice);}
                 <div class="promotion"><span class="discount">% @discount indirim</span></div>
@@ -23,12 +23,7 @@
                 </div>
                 <div class="list-description">
                     <p>
-                        Sed sed rutrum purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Pellentesque risus lacus, iaculis in ante vitae, viverra hendrerit ante. Aliquam vel
-                        fermentum elit. Morbi rhoncus, neque in vulputate facilisis, leo tortor sollicitudin
-                        odio, quis pellentesque lorem nisi quis enim. In dolor mi, hendrerit at blandit
-                        vulputate, congue a purus. Sed eget turpis sit amet orci euismod accumsan. Praesent
-                        sit amet placerat elit.
+                        @item.Details
                     </p>
                 </div>
                 <span class="size"><b>@item.SaleStarthDate / @item.SaleEndDate</b> </span>
@@ -37,7 +32,7 @@
             <div class="action-control">
                 <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">
                     <span class="add2cart">
-                        <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü Ýncele
+                        <i class="glyphicon glyphicon-eye-open">&nbsp;</i>ÃœrÃ¼nÃ¼ Ä°ncele
                     </span>
                 </a>
             </div>
