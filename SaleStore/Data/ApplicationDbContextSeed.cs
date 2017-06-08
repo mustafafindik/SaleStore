@@ -40,7 +40,7 @@ namespace SaleStore.Data
                     UpdateDate = DateTime.Now,
                     CompanyId =1,
                     CategoryId = 1,
-                    Details= "iPhone 7, inovasyon ve işçiliği yepyeni bir boyuta taşıyor.",
+                    Details= "iPhone 7, teknolojiyi yepyeni bir boyuta taşıyor.",
                     ProductImage= "uploads/ProductImages/1.png",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
@@ -254,7 +254,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 3,
                     Slogan = "Sepete %15 indirim",
-                    Image = "uploads/CampaignImages/4.png",
+                    Image = "uploads/CampaignImages/4.jpg",
                     Description = "Satıcı hepsiburada olan ürünlerde geçerlidir.",
                     IsPublish = true
                 },
@@ -284,7 +284,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 5,
                     Slogan = "%80'e varan indirimler",
-                    Image = "uploads/CampaignImages/1.jpg",
+                    Image = "uploads/CampaignImages/1.png",
                     Description = "En iyi kadın ve erkek parfümlerinin yer aldığı dünyaca ünlü, Burberry, Chanel, Tom Ford, Bvlgari, Estee Lauder, Calvin Klein ve diğer markaların en çok satan ürünlerinden oluşan bu kampanya, aradığınız tüm parfümleri özel indirimlerle size sunuyor. Bu orijinal parfümlere, size özel indirim fırsatları ile sahip olma fırsatını kaçırmayın!",
                     IsPublish = true
                 },
@@ -344,7 +344,7 @@ namespace SaleStore.Data
                        CampaignEndDate = DateTime.Now,
                        CategoryId = 9,
                        Slogan = "Stoklarla sınırlı Aldın Aldın ürünlerinde uygun fiyatlarla A101'de...",
-                       Image = "uploads/CampaignImages/1.jpg",
+                       Image = "uploads/CampaignImages/1.png",
                        Description = "Bu hafta 15 Haziran tarihinden itibaren Televizyon, Ev Tekstil Ürünleri, Mutfak Gereçleri ve Elektrikli El Aletlerinden oluşan onlarca üründen oluşan Aldın Aldın kampanyası bizi bekliyor.",
                        IsPublish = true
                    },
