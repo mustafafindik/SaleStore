@@ -31,6 +31,7 @@ namespace SaleStore.Controllers
             model.Settings = _context.Setting.ToList();
             Setting settings = new Setting();
             settings = _context.Setting.FirstOrDefault();
+            
             ViewBag.logo = settings.Logo;
             ViewBag.Title = settings.Title;
             ViewBag.phone = settings.Phone;
@@ -40,11 +41,24 @@ namespace SaleStore.Controllers
             ViewBag.Adress = settings.Address;
             ViewBag.Mail = settings.Mail;
             ViewBag.SiteSlogan = settings.SiteSlogan;
+            ViewBag.About = settings.About;
             return View(model);
         }
 
         public IActionResult About()
         {
+            Setting settings = new Setting();
+            settings = _context.Setting.FirstOrDefault();
+            ViewBag.Title =settings.Title + "/Hakkımızda";
+            ViewBag.logo = settings.Logo;
+            ViewBag.phone = settings.Phone;
+            ViewBag.SeoDescription = settings.SeoDescription;
+            ViewBag.SeoKeywords = settings.SeoKeywords;
+            ViewBag.SeoTitle = settings.SeoTitle;
+            ViewBag.Mail = settings.Mail;
+            ViewBag.SiteSlogan = settings.SiteSlogan;
+            ViewBag.Adress = settings.Address;
+            ViewBag.About = settings.About;
             ViewData["Message"] = "Your application description page.";
 
             return View();

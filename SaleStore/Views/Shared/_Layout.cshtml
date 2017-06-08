@@ -166,7 +166,7 @@
                             <ul class="userMenu ">
                                 <li>
                                     <a href="#">
-                                        <span class="hidden-xs">HELP</span><i class="glyphicon glyphicon-info-sign hide visible-xs "></i>
+                                        <span class="hidden-xs">YARDIM</span><i class="glyphicon glyphicon-info-sign hide visible-xs "></i>
                                     </a>
                                 </li>
                                 <li class="phone-number">
@@ -174,7 +174,7 @@
                                         <span>
                                             <i class="glyphicon glyphicon-phone-alt "></i>
                                         </span> <span class="hidden-xs"
-                                                      style="margin-left:5px">+90-506-111-2233</span>
+                                                      style="margin-left:5px">@ViewBag.Phone</span>
                                     </a>
                                 </li>
                             </ul>
@@ -190,7 +190,7 @@
                                 </li>
                                 <li>
                                     <a href="#" data-toggle="modal" data-target="#ModalLogin">
-                                        <span class="hidden-xs">Sign In</span>
+                                        <span class="hidden-xs">Giriş</span>
                                         <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
                                     </a>
                                 </li>
@@ -215,7 +215,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart">
                     <i class="fa fa-shopping-cart colorWhite"></i> <span class="cartRespons colorWhite">Cart ($210.00)</span>
                 </button>
-                <a class="navbar-brand " href="index.html"> <img src="@ViewBag.Logo" alt="SaleStore"> </a>
+                <a class="navbar-brand " href="index.html" > <img src="@ViewBag.Logo" width="100px" height="50px" alt="SaleStore"> </a>
 
                 <!-- this part for mobile -->
                 <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
@@ -851,11 +851,11 @@
                         <ul>
                             <li class="supportLi">
                                 <p>  </p>
-                                <h4><a class="inline" href="callto:+905061112233"> <strong> <i class="fa fa-phone"> </i> +90 506 111 22 33</strong> </a></h4>
+                                <h5><a class="inline" href="callto:+905061112233"> <strong> <b class="fa fa-phone"> </b> @ViewBag.Phone </strong> </a></h5>
                                 <h4>
                                     <a class="inline" href="mailto:yardim@salestore.com">
                                         <i class="fa fa-envelope-o"> </i>
-                                        yardim@salestore.com
+                                        @ViewBag.Mail
                                     </a>
                                 </h4>
                             </li>
