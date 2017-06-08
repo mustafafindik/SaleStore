@@ -1,4 +1,5 @@
-﻿<!-- /main container -->
+﻿@model SaleStore.Models.ViewModels.HomePageViewModels
+<!-- /main container -->
 <div class="container main-container headerOffset">
     <h3 class="section-title style2 text-center"><span>KAMPANYALAR</span></h3>
 
@@ -414,41 +415,9 @@
     </div>
 
     <!--right column-->
-    <div class="col-lg-9 col-md-9 col-sm-12">
-
-
-        <!--/.subCategoryList-->
-
-
-
-        <div class="featuredImageLook3">
-            <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
-                <div class="inner">
-                    <div class="box-content-overly box-content-overly-white" >
-                        <div class="box-text-table">
-                            <div class="box-text-cell ">
-                                <div class="box-text-cell-inner dark">
-                                    <h1 class="uppercase">Handbags</h1>
-
-                                    <p>
-                                        Veggies es bonus vobis, proinde vos postulo essum magis
-                                        kohlrabi welsh onion daikon amaranth.
-                                    </p>
-                                    <hr class="submini">
-                                    <a class="btn btn-inverse"> SHOP NOW</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.box-content-overly -->
-                    <div class="img-title"> Handbags</div>
-                    <a class="img-block" href="#"> <img class="img-responsive" src="/images//look3/2.jpg" alt="img"></a>
-                </div>
-            </div>
-           
-        </div>
+           @await Component.InvokeAsync("Campaigns")
         <!--/.featuredImageLook3-->
-    </div>
+ 
     <!--/.featuredPostContainer-->
 </div>
 <!-- /main container -->
