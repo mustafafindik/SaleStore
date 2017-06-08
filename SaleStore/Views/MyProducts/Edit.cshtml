@@ -35,7 +35,7 @@
                     <label asp-for="ProductImage"></label>
 
 
-                    <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
+                    <input title="uploadFile" type="file" name="uploadFile" class="form-control" accept="image/gif,image/jpg,image/jpeg,image/png" />
                     @Html.ValidationMessage("Image", new { @class = "text-danger" })
 
                     <span>@Model.ProductImage</span>
