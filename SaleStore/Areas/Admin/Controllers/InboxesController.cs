@@ -11,13 +11,11 @@ using SaleStore.Models;
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class InboxesController : Controller
+    public class InboxesController : ControllerBaseAdmin
     {
-        private readonly ApplicationDbContext _context;
 
-        public InboxesController(ApplicationDbContext context)
-        {
-            _context = context;    
+        public InboxesController(ApplicationDbContext context) : base(context)
+        {  
         }
 
         // GET: Admin/Inboxes

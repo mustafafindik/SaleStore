@@ -14,13 +14,11 @@ using System.IO;
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class SettingsController : Controller
+    public class SettingsController : ControllerBaseAdmin
     {
-        private Data.ApplicationDbContext _context;
         private IHostingEnvironment env;
-        public SettingsController(IHostingEnvironment _env, Data.ApplicationDbContext context)
+        public SettingsController(IHostingEnvironment _env, Data.ApplicationDbContext context) :base(context)
         {
-            this._context = context;
             this.env = _env;
         }
         // GET: Admin/Settings
@@ -61,7 +59,7 @@ namespace SaleStore.Areas.Admin.Controllers
                         string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
                         string dosyaismi = Path.GetFileName(logoUpload.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
-                        setting.Logo = "uploads/" + category + "/" + dosyaismi;
+                        setting.Logo = "/uploads/" + category + "/" + dosyaismi;
                         try
                         {
                             if (!Directory.Exists(FilePath))
@@ -91,7 +89,7 @@ namespace SaleStore.Areas.Admin.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("ProductImage", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
+                        ModelState.AddModelError("ProductImage", "Dosya uzantýsý izin verilen uzantılardan olmalıdır.");
                     }
                 }
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }

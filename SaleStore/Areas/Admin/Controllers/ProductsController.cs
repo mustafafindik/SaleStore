@@ -14,15 +14,13 @@ using Microsoft.AspNetCore.Hosting;
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductsController : Controller
+    public class ProductsController : ControllerBaseAdmin
     {
-        private readonly ApplicationDbContext _context;
      
         private IHostingEnvironment env;
 
-        public ProductsController(IHostingEnvironment _env,ApplicationDbContext context)
+        public ProductsController(IHostingEnvironment _env,ApplicationDbContext context) :base(context)
         {
-            _context = context;
             this.env = _env;
         }
 

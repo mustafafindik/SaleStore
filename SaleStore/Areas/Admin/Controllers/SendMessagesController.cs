@@ -11,13 +11,11 @@ using SaleStore.Models;
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class SendMessagesController : Controller
+    public class SendMessagesController : ControllerBaseAdmin
     {
-        private readonly ApplicationDbContext _context;
 
-        public SendMessagesController(ApplicationDbContext context)
-        {
-            _context = context;    
+        public SendMessagesController(ApplicationDbContext context) :base(context)
+        {    
         }
 
         // GET: Admin/SendMessages

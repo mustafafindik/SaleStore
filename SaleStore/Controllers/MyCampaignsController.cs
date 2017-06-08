@@ -15,14 +15,12 @@ using PagedList.Core;
 
 namespace SaleStore.Controllers
 {
-    public class MyCampaignsController : Controller
+    public class MyCampaignsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
 
-        public MyCampaignsController(IHostingEnvironment _env, ApplicationDbContext context)
+        public MyCampaignsController(IHostingEnvironment _env, ApplicationDbContext context) :base(context)
         {
-            _context = context;
             this.env = _env;
         }
 

@@ -15,15 +15,13 @@ using PagedList.Core;
 
 namespace SaleStore.Controllers
 {
-    public class MyProductsController : Controller
+    public class MyProductsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
         HomePageViewModels model = new HomePageViewModels();
 
-        public MyProductsController(IHostingEnvironment _env, ApplicationDbContext context)
+        public MyProductsController(IHostingEnvironment _env, ApplicationDbContext context) :base(context)
         {
-            _context = context;
             this.env = _env;
         }
 

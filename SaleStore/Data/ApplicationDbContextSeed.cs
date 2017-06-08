@@ -37,9 +37,9 @@ namespace SaleStore.Data
         {
             var s = new Setting();
             s.Logo = "";
-            s.Phone = "444 55 55";
+            s.Phone = "+90 506 111 22 33";
             s.Address = "Bahariye Caddesi Süleymanpaşa Sokak No:2";
-            s.Mail = "salestore@gmail.com";
+            s.Mail = "yardim@salestore.com";
             s.SiteSlogan = "Herşeyi indirdik sizi bekliyoruz";
             s.About = "EN kaliteli ürünleri EN uygun fiyatlarla bulmanın en kolay yolu";
             s.Title = "EN kaliteli ürünleri EN uygun fiyatlarla bulmanın en kolay yolu";

@@ -13,15 +13,15 @@ using MailKit.Net.Smtp;
 
 namespace SaleStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+      
         HomePageViewModels model = new HomePageViewModels();
-        public HomeController(ApplicationDbContext context)
+
+        public HomeController(ApplicationDbContext context) : base(context)
         {
-            _context = context;
-            
         }
+
         public IActionResult Index(int page = 1)
         {
             
@@ -29,19 +29,19 @@ namespace SaleStore.Controllers
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
             model.Products = _context.Products.ToPagedList<Product>(page, 10);
             model.Settings = _context.Setting.ToList();
-            Setting settings = new Setting();
-            settings = _context.Setting.FirstOrDefault();
-            
-            ViewBag.logo = settings.Logo;
-            ViewBag.Title = settings.Title;
-            ViewBag.phone = settings.Phone;
-            ViewBag.SeoDescription = settings.SeoDescription;
-            ViewBag.SeoKeywords = settings.SeoKeywords;
-            ViewBag.SeoTitle = settings.SeoTitle;
-            ViewBag.Adress = settings.Address;
-            ViewBag.Mail = settings.Mail;
-            ViewBag.SiteSlogan = settings.SiteSlogan;
-            ViewBag.About = settings.About;
+            //Setting settings = new Setting();
+            //settings = _context.Setting.FirstOrDefault();
+
+            //ViewBag.logo = settings.Logo;
+            //ViewBag.Title = settings.Title;
+            //ViewBag.phone = settings.Phone;
+            //ViewBag.SeoDescription = settings.SeoDescription;
+            //ViewBag.SeoKeywords = settings.SeoKeywords;
+            //ViewBag.SeoTitle = settings.SeoTitle;
+            //ViewBag.Adress = settings.Address;
+            //ViewBag.Mail = settings.Mail;
+            //ViewBag.SiteSlogan = settings.SiteSlogan;
+            //ViewBag.About = settings.About;
             return View(model);
         }
 
@@ -81,8 +81,19 @@ namespace SaleStore.Controllers
 
         public IActionResult Contact()
         {
-           
 
+            Setting settings = new Setting();
+            settings = _context.Setting.FirstOrDefault();
+            ViewBag.Title = settings.Title + "/Hakkımızda";
+            ViewBag.logo = settings.Logo;
+            ViewBag.phone = settings.Phone;
+            ViewBag.SeoDescription = settings.SeoDescription;
+            ViewBag.SeoKeywords = settings.SeoKeywords;
+            ViewBag.SeoTitle = settings.SeoTitle;
+            ViewBag.Mail = settings.Mail;
+            ViewBag.SiteSlogan = settings.SiteSlogan;
+            ViewBag.Adress = settings.Address;
+            ViewBag.About = settings.About;
             return View();
         }
 
