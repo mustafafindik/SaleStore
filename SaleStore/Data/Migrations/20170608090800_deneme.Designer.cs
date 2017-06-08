@@ -8,9 +8,10 @@ using SaleStore.Data;
 namespace SaleStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170608090800_deneme")]
+    partial class deneme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -23,9 +24,6 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
 
                     b.Property<string>("Name")
                         .HasMaxLength(256);
@@ -40,8 +38,6 @@ namespace SaleStore.Data.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -482,16 +478,6 @@ namespace SaleStore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Setting");
-                });
-
-            modelBuilder.Entity("SaleStore.Models.Role", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
-
-
-                    b.ToTable("Role");
-
-                    b.HasDiscriminator().HasValue("Role");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

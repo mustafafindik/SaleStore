@@ -57,7 +57,7 @@ namespace SaleStore.Areas.Admin.Controllers
                     || Path.GetExtension(logoUpload.FileName) == ".gif"
                     || Path.GetExtension(logoUpload.FileName) == ".png")
                     {
-                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-Logos";
                         string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
                         string dosyaismi = Path.GetFileName(logoUpload.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);

@@ -15,6 +15,7 @@ using SaleStore.Services;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Microsoft.AspNetCore.Authentication.LinkedIn;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 namespace SaleStore
 {
@@ -45,11 +46,11 @@ namespace SaleStore
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-        
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+
+            services.AddIdentity<ApplicationUser, Role>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddMvc();
 
@@ -86,7 +87,7 @@ namespace SaleStore
             app.UseStaticFiles();
 
             app.UseIdentity();
-
+            app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed(app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>(), app.ApplicationServices.GetRequiredService<RoleManager<Role>>());
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseFacebookAuthentication(new FacebookOptions()
             {
