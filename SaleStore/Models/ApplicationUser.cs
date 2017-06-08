@@ -14,6 +14,7 @@ namespace SaleStore.Models
     {
         public ApplicationUser()
         {
+            Name = "onur";
             ProductCount=25;
             CampaignCount = 3;
         }

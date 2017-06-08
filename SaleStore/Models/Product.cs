@@ -14,11 +14,10 @@ namespace SaleStore.Models
         [DisplayName("Ürün Adı"),
          Required(ErrorMessage = "Lütfen bir {0} giriniz."),
          MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
-         MaxLength(35, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
+         MaxLength(250, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Name { get; set; }
 
-        [DisplayName("Ürün Detayı"),
-         MaxLength(200, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
+        [DisplayName("Ürün Detayı")]
         public string Details { get; set; }
 
         [DisplayName("Birim Fiyat"),Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),

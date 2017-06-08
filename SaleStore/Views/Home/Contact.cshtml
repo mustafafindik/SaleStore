@@ -4,12 +4,12 @@
 }
 
 <!-- Site header -->
-<header class="page-header bg-img size-lg">
-    <div class="container">
-        <h1 class="text-center">İletişim</h1>
-        <p class="lead text-center">İstek ve şikayetleriniz için bizimle iletişime geçin.</p>
+ 
+ 
+    <div class="container page-header headerOffset">    
+        <h2 class="text-center">İstek ve şikayetleriniz için bizimle iletişime geçin.</h2>
     </div>
-</header>
+ 
 <!-- END Site header -->
 <!-- Main container -->
 
@@ -24,7 +24,9 @@
                         <div class="alert alert-success">@ViewBag.Message</div>
                     }
                     <form asp-controller="Home" asp-action="Contact" method="post" enctype="multipart/form-data">
+                        
                         <input type="hidden" asp-for="Ip" />
+                        
                         <div class="form-group">
                             <input type="text" class="form-control input-lg" placeholder="Ad" name="FullName">
                         </div>
@@ -44,34 +46,31 @@
                     </form>
                 </div>
 
-                <div class="col-sm-12 col-md-4">
-                    <h4><strong>İletişim Bilgilerimiz</strong></h4>
+                <div class="col-sm-12 col-md-5">
+                    <h4>İletişim Bilgilerimiz</h4>
                     <div class="highlighted-block">
-                        <dl class="icon-holder">
-                            <dt><i class="fa fa-map-marker"></i></dt>
-                            <dd>@ViewBag.Address</dd>
+                        <div class="icon-holder">
+                            <h3><i class="fa fa-map-marker" style="margin-right:10px;"></i> Esatpaşa Mah. Fidanlı Sok. No :33 / 4 </h3>
+                         
 
-                            <dt><i class="fa fa-phone"></i></dt>
-                            <dd>@ViewBag.Phone</dd>
+                            <h3><i class="fa fa-phone" style="margin-right:10px;"></i> +90 555 456 45 45</h3>
+                     
 
-                            <dt><i class="fa fa-fax"></i></dt>
-                            <dd>Fax</dd>
+                            <h3><i class="fa fa-fax"  style="margin-right:10px;"></i>+90 555 456 45 45</h3>
+                      
 
-                            <dt><i class="fa fa-envelope"></i></dt>
-                            <dd>@ViewBag.Mail</dd>
-                        </dl>
+                            <h3><i class="fa fa-envelope" style="margin-right:10px;"></i>info@salestore.com</h3>
+                          
+                        </div>
                     </div>
 
-                    <br>
-                    <div class="col-sm-12 col-md-4">
-                        <ul class="social-icons size-sm text-center">
-                            <li><a class="facebook" target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a class="twitter" target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a class="linkedin" target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
+                    
+                  
+
                 </div>
             </div>
 
         </div>
     </section>
+<div class="gap"></div>
+ 

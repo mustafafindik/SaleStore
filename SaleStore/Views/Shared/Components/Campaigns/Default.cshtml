@@ -1,0 +1,33 @@
+@model IEnumerable<SaleStore.Models.Campaign>
+    <div class="col-lg-9 col-md-9 col-sm-12">
+
+
+        <!--/.subCategoryList-->
+        @foreach (var item in Model)
+        {
+            <div class="featuredImageLook3">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
+                    <div class="inner">
+                        <div class="box-content-overly box-content-overly-white">
+                            <div class="box-text-table">
+                                <div class="box-text-cell ">
+                                    <div class="box-text-cell-inner dark">
+                                        <h1 class="uppercase">@item.Name</h1>
+                                        <a asp-action="Details" class="btn btn-default btn-xs" asp-route-id="@item.Id">Detaylar</a>
+
+                                        <hr class="submini">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.box-content-overly -->
+                        <div class="img-title"> @item.Name</div>
+                        <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" width="" height="" src="/@item.Image" alt="img"></a>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>

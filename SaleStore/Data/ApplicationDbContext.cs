@@ -31,6 +31,7 @@ namespace SaleStore.Data
         public DbSet<Inbox> Inboxes { get; set; }
         public DbSet<SendMessage> SendMessages { get; set; }
         public DbSet<SaleStore.Models.Setting> Setting { get; set; }
+        public DbSet<Role> ApplicationRoles { get; set; }
       
     }
 }

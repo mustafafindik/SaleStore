@@ -8,9 +8,10 @@ using SaleStore.Data;
 namespace SaleStore.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170608142600_RoleToSeed")]
+    partial class RoleToSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -216,10 +217,10 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250);
+                        .HasMaxLength(35);
 
                     b.Property<string>("Slogan")
-                        .HasMaxLength(500);
+                        .HasMaxLength(200);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -371,13 +372,14 @@ namespace SaleStore.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(30);
 
-                    b.Property<string>("Details");
+                    b.Property<string>("Details")
+                        .HasMaxLength(200);
 
                     b.Property<bool>("IsPublish");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250);
+                        .HasMaxLength(35);
 
                     b.Property<string>("ProductImage");
 
