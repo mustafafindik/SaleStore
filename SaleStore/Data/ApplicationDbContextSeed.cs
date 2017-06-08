@@ -21,6 +21,8 @@ namespace SaleStore.Data
             AddCampaigns(context);
             AddProducts(context);
             AddSettings(context);
+            AddMailSettings(context);
+            AddSendMessages(context);
             AddUsers(userManager);
             AddRoles(roleManager);
             AddRoleToUser(userManager);
@@ -38,7 +40,7 @@ namespace SaleStore.Data
                     UpdateDate = DateTime.Now,
                     CompanyId =1,
                     CategoryId = 1,
-                    Details= "iPhone 7, inovasyon ve işçiliği yepyeni bir boyuta taşıyor. Yeni simsiyah gövdesi şimdiye dek tasarladığımız her şeyden çok daha farklı. Kasası suya ve sıçramalara dayanıklı. Ana Ekran düğmesi tamamen yeni. Ve kusursuz hatlara sahip yeni unibody tasarımı sadece mükemmel görünmekle kalmıyor, aynı zamanda mükemmel bir his veriyor.",
+                    Details= "iPhone 7, inovasyon ve işçiliği yepyeni bir boyuta taşıyor.",
                     ProductImage= "uploads/ProductImages/1.png",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
@@ -252,7 +254,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 3,
                     Slogan = "Sepete %15 indirim",
-                    Image = "uploads/CampaignImages/3.png",
+                    Image = "uploads/CampaignImages/4.png",
                     Description = "Satıcı hepsiburada olan ürünlerde geçerlidir.",
                     IsPublish = true
                 },
@@ -267,7 +269,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 4,
                     Slogan = "Spor ve dinginliğe dair her şey!",
-                    Image = "uploads/CampaignImages/4.jpg",
+                    Image = "uploads/CampaignImages/6.jpg",
                     Description = "1 Aylık Fitness + 600 TL Yerine 150 TL 3 Aylık Fitness + 1 Seans Kese - Köpük Masaj 1320 TL Yerine 300 TL 6 Aylık Fitness + 2 Seans Kese - Köpük Masaj 2200 TL Yerine 500 TL",
                     IsPublish = true
                 },
@@ -282,7 +284,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 5,
                     Slogan = "%80'e varan indirimler",
-                    Image = "uploads/CampaignImages/5.jpg",
+                    Image = "uploads/CampaignImages/1.jpg",
                     Description = "En iyi kadın ve erkek parfümlerinin yer aldığı dünyaca ünlü, Burberry, Chanel, Tom Ford, Bvlgari, Estee Lauder, Calvin Klein ve diğer markaların en çok satan ürünlerinden oluşan bu kampanya, aradığınız tüm parfümleri özel indirimlerle size sunuyor. Bu orijinal parfümlere, size özel indirim fırsatları ile sahip olma fırsatını kaçırmayın!",
                     IsPublish = true
                 },
@@ -297,7 +299,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 6,
                     Slogan = "Bu Kitaplar 9,90 TL",
-                    Image = "uploads/CampaignImages/6.jpg",
+                    Image = "uploads/CampaignImages/4.jpg",
                     Description = "Kampanya 1-30 Haziran arasında www.dr.com.tr'de ve Mağazalarımızda (D&R  kart ile alışverişlerinizde) geçerlidir. ",
                     IsPublish = true
                 },
@@ -312,7 +314,7 @@ namespace SaleStore.Data
                      CampaignEndDate = DateTime.Now,
                      CategoryId = 7,
                      Slogan = "Philips Avent Ürünlerinde Özel Fiyatlar 1- 29 Haziran Arası",
-                     Image = "uploads/CampaignImages/7.jpg",
+                     Image = "uploads/CampaignImages/2.jpg",
                      Description = "1- 29 Haziran Arası",
                      IsPublish = true
                  },
@@ -327,7 +329,7 @@ namespace SaleStore.Data
                       CampaignEndDate = DateTime.Now,
                       CategoryId = 8,
                       Slogan = "3 Gömlek 89 TL - Ücretsiz Kargo",
-                      Image = "uploads/CampaignImages/8.jpg",
+                      Image = "uploads/CampaignImages/6.jpg",
                       Description = "D's Damat - TWN Babalar Gününe Özel 3 Gömlek 89 TL - Ücretsiz Kargo",
                       IsPublish = true
                   },
@@ -342,7 +344,7 @@ namespace SaleStore.Data
                        CampaignEndDate = DateTime.Now,
                        CategoryId = 9,
                        Slogan = "Stoklarla sınırlı Aldın Aldın ürünlerinde uygun fiyatlarla A101'de...",
-                       Image = "uploads/CampaignImages/9.jpg",
+                       Image = "uploads/CampaignImages/1.jpg",
                        Description = "Bu hafta 15 Haziran tarihinden itibaren Televizyon, Ev Tekstil Ürünleri, Mutfak Gereçleri ve Elektrikli El Aletlerinden oluşan onlarca üründen oluşan Aldın Aldın kampanyası bizi bekliyor.",
                        IsPublish = true
                    },
@@ -357,7 +359,7 @@ namespace SaleStore.Data
                        CampaignEndDate = DateTime.Now,
                        CategoryId = 10,
                        Slogan = "Kablosuz bağlantı teknolojisiyle üstün bir ses kalitesi sunan Apple AirPods kulaklık Türk Telekom’da!",
-                       Image = "uploads/CampaignImages/10.jpg",
+                       Image = "uploads/CampaignImages/6.jpg",
                        Description = "Üstelik 3 ay boyunca Türk Telekom Müzik hediye!",
                        IsPublish = true
                    }
@@ -412,7 +414,7 @@ namespace SaleStore.Data
         private static void AddSettings(ApplicationDbContext context)
         {
             var s = new Setting();
-            s.Logo = "";
+            s.Logo = "/uploads/logo.png";
             s.Phone = "+90 506 111 22 33";
             s.Address = "Bahariye Caddesi Süleymanpaşa Sokak No:2";
             s.Mail = "yardim@salestore.com";
@@ -438,6 +440,20 @@ namespace SaleStore.Data
             context.AddRange(
                 new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "/images/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
                 
+            context.SaveChanges();
+        }
+        public static void AddMailSettings(ApplicationDbContext context)
+        {
+            context.AddRange(
+                new MailSetting { FromAddress="salestoredeneme@gmail.com", FromAddressPassword="123:Asdf",FromAddressTitle="Sale Store",SmptServer="smtp.gmail.com",SmptPortNumber=587, CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
+
+            context.SaveChanges();
+        }
+        public static void AddSendMessages(ApplicationDbContext context)
+        {
+            context.AddRange(
+                new SendMessage {  Subject="İletişim", BodyContent="Mesajınız bize iletilmiştir. Teşekür ederiz.", MailSettingId=1 ,CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
+
             context.SaveChanges();
         }
     }

@@ -25,6 +25,7 @@
     <Content Include="wwwroot\category.html" />
     <Content Include="wwwroot\uploads\5-2017-CampaignImages\githubhata.png" />
     <Content Include="wwwroot\uploads\6-2017-CampaignImages\m1.png" />
+    <Content Include="wwwroot\uploads\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="jQuery" Version="3.1.1" />
