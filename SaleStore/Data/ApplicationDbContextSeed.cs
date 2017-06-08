@@ -16,16 +16,16 @@ namespace SaleStore.Data
             context.Database.Migrate();
 
             // Perform seed operations
+            AddCompanies(context);
+            AddCategories(context);
             AddCampaigns(context);
             AddProducts(context);
-            AddCategories(context);
             AddSettings(context);
-            AddCompanies(context);
             AddUsers(userManager);
             AddRoles(roleManager);
             AddRoleToUser(userManager);
         }
-        public static void AddCampaigns(ApplicationDbContext context)
+        public static void AddProducts(ApplicationDbContext context)
         {
             context.AddRange(
                 
@@ -207,7 +207,7 @@ namespace SaleStore.Data
 
             context.SaveChanges();
         }
-        public static void AddProducts(ApplicationDbContext context)
+        public static void AddCampaigns(ApplicationDbContext context)
         {
             context.AddRange(
 
@@ -222,7 +222,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 1,
                     Slogan = "Telefonları yenileme zamanı",
-                    Image = "http://img-teknosa.mncdn.com/TeknosaImg/productImages/568x434/125076153-1-iphone-7-plus-32gb-black-akilli-telefon.jpg",
+                    Image = "uploads/6-2017-CampaignImages/m1.png",
                     Description = "İkinci el ürünler TECHPOİNT SERVİS HİZMETLERİ A.Ş. adına Teknosa tarafından teslim alınmakta olup, ikinci el cihaz bedeli karşılığında verilen hediye çeki ilgili firma tarafından karşılanmaktadır.",
                     IsPublish = true
                 },
@@ -237,7 +237,7 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 2,
                     Slogan = "AYNI GÜN ÜCRETSİZ KARGO + HEDİYE PAKETİ",
-                    Image = "https://mcdn01.gittigidiyor.net/28150/tn50/281504096_tn50_0.jpg?1496931234",
+                    Image = "uploads/6-2017-CampaignImages/m1.png",
                     Description = "AYNI GÜN İÇERİSİNDE DÜKKANIMIZDAN VERMİŞ OLDUĞUNUZ TÜM SİPARİŞLER TEK BİR KARGO İLE GÖNDERİLMEKTEDİR.",
                     IsPublish = true
                 },

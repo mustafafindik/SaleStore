@@ -13,11 +13,11 @@ namespace SaleStore.Models
         [DisplayName("Kampanya Adı"),
          Required(ErrorMessage = "Lütfen bir {0} giriniz."),
          MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
-         MaxLength(35, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
+         MaxLength(250, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Name { get; set; }
 
         [MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
-         MaxLength(200, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
+         MaxLength(500, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Slogan { get; set; }
 
         [DisplayName("Kampanya Açıklaması")]
