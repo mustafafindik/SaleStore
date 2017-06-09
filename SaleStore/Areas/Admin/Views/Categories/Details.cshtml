@@ -6,48 +6,61 @@
 <link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
 <link href="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" /><br />
 
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+            
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Kategori Detayları</span>
+                </div>
 
-<h2>Kategori Detayları</h2>
-<div class="portlet-body form">
-    <div class="form-body">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CreateDate)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CreatedBy)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UpdatedBy)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UpdatedBy)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UpdateDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UpdateDate)
-            </dd>
-        </dl>
+            </div>
+                <div class="portlet-body form">
+                    <div class="form-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CreateDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.UpdatedBy)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UpdateDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.UpdateDate)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+                        <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-        <a asp-action="Index">Listeye Geri Dön</a>
-    </div>
-
-
 </div>
- 
