@@ -4,85 +4,98 @@
     ViewData["Title"] = "Kampanya Sil";
 }
 
-<h2>Kampanya Sil</h2>
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
 
-<h3>Silmek istediğinize emin misiniz?</h3>
-<div>
-    <form asp-action="Delete" enctype="multipart/form-data" asp-route-id="@Model.Id">
-
-        <hr />
-        <div class="portlet-body form">
-            <div class="form-body">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Slogan)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Slogan)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CampaignStartDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CampaignStartDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CampaignEndDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CampaignEndDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Image)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Image)
-                    </dd>
-                    <input type="hidden" asp-for="Id" />
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CreateDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CreateDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CreatedBy)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CreatedBy)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.UpdatedBy)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.UpdatedBy)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.UpdateDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.UpdateDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Category)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Category.Id)
-                    </dd>
-                </dl>
-
-
-                <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-danger" /> |
-                    <a asp-action="Index">Listeye Geri Dön</a>
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Kampanya Sil</span>
+                    <h3>Silmek istediğinize emin misiniz?</h3>
                 </div>
+
             </div>
+            <form asp-action="Delete" enctype="multipart/form-data" asp-route-id="@Model.Id">
+
+                <hr />
+                <div class="portlet-body form">
+                    <div class="form-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Slogan)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Slogan)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CampaignStartDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CampaignStartDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CampaignEndDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CampaignEndDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Image)
+                            </dt>
+                            <dd>
+                                <img style="width:80px;" class="img-thumbnail img-responsive" src="/@Html.DisplayFor(model => model.Image)" />
+
+                            </dd>
+                            <input type="hidden" asp-for="Id" />
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CreateDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.UpdatedBy)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UpdateDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.UpdateDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Category.Name)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Category.Name)
+                            </dd>
+                        </dl>
+
+
+                        <div class="form-actions">
+                            <input type="submit" value="Sil" class="btn btn-danger" /> |
+                            <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
