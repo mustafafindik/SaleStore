@@ -56,7 +56,16 @@
                                 </li*@
                             @foreach (var item in Model.Categories)
                             {
-                                <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                                var count = 0;
+                                @foreach (var campaign in Model.Campaigns)
+                                {
+                                    if (item.Id == campaign.CategoryId)
+                                    {
+                                        count++;
+
+                                    }
+                                }
+                                <li><a href="#"> <span class="badge pull-right">@count</span>@item.Name</a></li>
                             }
                         </ul>
                     </div>

@@ -67,6 +67,10 @@ namespace SaleStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Campaign campaign, IFormFile uploadFile)
         {
+            if (campaign.CampaignStartDate > campaign.CampaignEndDate)
+            {
+                ModelState.AddModelError("CampaignEndDate", "Kampanya bitiş tarihi kampanya başlangıç tarihinden erken olamaz");
+            }
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
@@ -144,6 +148,10 @@ namespace SaleStore.Controllers
             if (id != campaign.Id)
             {
                 return NotFound();
+            }
+            if (campaign.CampaignStartDate > campaign.CampaignEndDate)
+            {
+                ModelState.AddModelError("CampaignEndDate", "Kampanya bitiş tarihi kampanya başlangıç tarihinden erken olamaz");
             }
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
