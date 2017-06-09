@@ -75,15 +75,15 @@ namespace SaleStore.Areas.Admin.Controllers
                             {
                                 _context.Update(setting);
                                 await _context.SaveChangesAsync();
-                               
+                                ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
                             }
                             else
                             {
                                 _context.Add(setting);
                                 await _context.SaveChangesAsync();
-
+                                ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
                             }
-                            return RedirectToAction("Index");
+                            return View(setting);
                         }
                         catch (Exception exc) { ModelState.AddModelError("ProductImage", "Hata: " + exc.Message); }
                     }
@@ -96,6 +96,7 @@ namespace SaleStore.Areas.Admin.Controllers
             }
             _context.Update(setting);
             await _context.SaveChangesAsync();
+            ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
             return View(setting);
         }
     }
