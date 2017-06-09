@@ -45,7 +45,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="/metronic/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-    <link href="/metronic/layouts/layout/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="/metronic/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="/metronic/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
@@ -62,7 +62,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
                     <a href="/">
-                        <img src="@ViewBag.Logo" alt="logo" class="logo-default" />
+                        <img src="~/metronic/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
                     </a>
                     <div class="menu-toggler sidebar-toggler">
                         <span></span>
@@ -112,22 +112,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </li>
                             <!-- END INBOX DROPDOWN -->
-
-
-                        <!-- BEGIN NOTIFICATION DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
-                        <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
-                        <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-                        <!-- END NOTIFICATION DROPDOWN -->
-                        <!-- BEGIN INBOX DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <!-- END INBOX DROPDOWN -->
-                        <!-- BEGIN TODO DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <!-- END TODO DROPDOWN -->
-                        <!-- BEGIN USER LOGIN DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        
+                           
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="/metronic/layouts/layout/img/avatar.png" />
@@ -156,13 +141,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li class="dropdown dropdown-quick-sidebar-toggler">
                         <li>
                             <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();"><i class="icon-logout"></i></a>
-
-
                         </li>
                         <!-- END QUICK SIDEBAR TOGGLER -->
-
-
-
                     </ul>
                     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
                 </div>
@@ -208,7 +188,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item start ">
-                                    <a href="/" class="nav-link ">
+                                    <a href="/Admin" class="nav-link ">
                                         <i class="icon-bar-chart"></i>
                                         <span class="title">Giriş</span>
                                     </a>
@@ -389,7 +369,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                     case "settings":
                                         @Html.Raw("Ayarlar");
                                         break;
-                                        
+                                    case "dashboard":
+                                        @Html.Raw("Admin Paneli");
+                                        break;
+                                    case "Inboxes":
+                                        @Html.Raw("Gelen Mesajlar");
+                                        break;
+                                    case "mailsettings":
+                                        @Html.Raw("Mail Ayarları");
+                                        break;
+                                    case "sendmessages":
+                                        @Html.Raw("Giden Mesajlar");
+                                        break;
+
                                         @Html.Raw(ViewContext.RouteData.Values["controller"].ToString());
                                         break;
                                 }
