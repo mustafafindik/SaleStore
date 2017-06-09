@@ -1,65 +1,114 @@
-@model IEnumerable<SaleStore.Models.Inbox>
+﻿@model IEnumerable<SaleStore.Models.Inbox>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gelen Mesajlar";
 }
 
-<h2>Index</h2>
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Gelen Mesajlar</span>
+                </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Message)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SubmitDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Ip)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubmitDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ip)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <a asp-action="Create" class="btn sbold green">
+                                    Yeni Ekle
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="tblRecords">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Message)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SubmitDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ip)
+                            </th>
+                            <th data-orderable="false" class="all dt-right ">
+                                Eylemler
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Message)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SubmitDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ip)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li>
+                                                <a asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="fa fa-pencil-square-o"></i> Düzenle
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Details" asp-route-id="@item.Id">
+                                                    <i class="fa fa-info"></i> Detaylar
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Delete" asp-route-id="@item.Id">
+                                                    <i class="fa fa-times "></i> Sil
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

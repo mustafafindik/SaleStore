@@ -1,59 +1,71 @@
-@model SaleStore.Models.Inbox
+﻿@model SaleStore.Models.Inbox
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Inbox</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <input type="hidden" asp-for="Id" />
-        <dt>
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Message)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Message)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SubmitDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SubmitDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Ip)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Kampanya Sil</span>
+                    <h3>Silmek istediğinize emin misiniz?</h3>
+                </div>
+
+            </div>
+            <form asp-action="Delete" enctype="multipart/form-data" asp-route-id="@Model.Id">
+                <br />
+                <dl class="dl-horizontal">
+                    <input type="hidden" asp-for="Id" />
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FullName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FullName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Message)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Message)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubmitDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubmitDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Ip)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Ip)
+                    </dd>
+                </dl>
+
+
+                <div class="form-actions">
+                    <input type="submit" value="Sil" class="btn btn-danger" /> |
+                    <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
