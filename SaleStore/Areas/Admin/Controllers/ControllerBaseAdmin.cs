@@ -19,36 +19,7 @@ namespace SaleStore.Areas.Admin.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (_context.Setting.Any())
-            {
-                var setting = _context.Setting.FirstOrDefault();
-                ViewBag.logo = setting.Logo;
-                ViewBag.Title = setting.Title;
-                ViewBag.phone = setting.Phone;
-                ViewBag.SeoDescription = setting.SeoDescription;
-                ViewBag.SeoKeywords = setting.SeoKeywords;
-                ViewBag.SeoTitle = setting.SeoTitle;
-                ViewBag.Adress = setting.Address;
-                ViewBag.Mail = setting.Mail;
-                ViewBag.SiteSlogan = setting.SiteSlogan;
-                ViewBag.About = setting.About;
-
-            }
-            else
-            {
-                var settings = new Setting();
-                ViewBag.logo = settings.Logo;
-                ViewBag.Title = settings.Title;
-                ViewBag.phone = settings.Phone;
-                ViewBag.SeoDescription = settings.SeoDescription;
-                ViewBag.SeoKeywords = settings.SeoKeywords;
-                ViewBag.SeoTitle = settings.SeoTitle;
-                ViewBag.Adress = settings.Address;
-                ViewBag.Mail = settings.Mail;
-                ViewBag.SiteSlogan = settings.SiteSlogan;
-                ViewBag.About = settings.About;
-
-            }
+            
 
         }
     }

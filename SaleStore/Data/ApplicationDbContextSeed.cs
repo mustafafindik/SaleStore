@@ -15,6 +15,11 @@ namespace SaleStore.Data
             // migration'ları veritabanına uygula
             context.Database.Migrate();
 
+            if (context.Setting.Any())
+            {
+                return;   // DB has been seeded
+            }
+
             // Perform seed operations
             AddCompanies(context);
             AddCategories(context);
@@ -40,7 +45,7 @@ namespace SaleStore.Data
                     UpdateDate = DateTime.Now,
                     CompanyId =1,
                     CategoryId = 1,
-                    Details= "iPhone 7, teknolojiyi yepyeni bir boyuta taşıyor.",
+                    Details= "iPhone 7",
                     ProductImage= "uploads/ProductImages/1.png",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
@@ -170,14 +175,14 @@ namespace SaleStore.Data
 
                 new Product
                 {
-                    Name = "ANTEP FISTIKLI BALLI SARMA",
+                    Name = "BALLI SARMA",
                     CreatedBy = "username",
                     CreateDate = DateTime.Now,
                     UpdatedBy = "username",
                     UpdateDate = DateTime.Now,
                     CompanyId = 1,
                     CategoryId = 9,
-                    Details = "1 KG - ANTEP FISTIKLI BALLI SARMA - ÇEREZCİ İBRAHİM",
+                    Details = "1 KG - ANTEP FISTIKLI ",
                     ProductImage = "uploads/ProductImages/9.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
@@ -438,7 +443,7 @@ namespace SaleStore.Data
         public static void AddCompanies(ApplicationDbContext context)
         {
             context.AddRange(
-                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "/images/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
+                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
                 
             context.SaveChanges();
         }

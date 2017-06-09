@@ -6,13 +6,16 @@
 <!-- /main container -->
 <div class="container main-container headerOffset">
     <div class="row">
-
+        <div class="breadcrumbDiv col-lg-12">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li class="active">Kampanyalarım</li>
+            </ul>
+        </div>
     </div>
 
-    <h3 class="section-title style2 text-center"><span>KAMPANYALAR</span></h3>
-    <div class="form-group text-center">
-        <a asp-action="Create" class=" btn btn-primary">Kampanya Ekle</a>
-    </div>
+    
+    
     <!--left column-->
 
     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -21,43 +24,40 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapseCategory"
-                           class="collapseWill active ">
-                            <span class="pull-left"> <i class="fa fa-caret-right"></i></span> Category
+                        <a data-toggle="collapse" href="#collapseCategory" class="collapseWill active ">
+                            <span class="pull-left"> <i class="fa fa-caret-right"></i></span> Kategoriler
                         </a>
                     </h4>
                 </div>
                 <div id="collapseCategory" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked tree">
-                            <li class="active dropdown-tree open-tree">
-                                <a class="dropdown-tree-a">
-                                    <span class="badge pull-right">42</span> WOMEN COLLECTION
-                                </a>
-                                <ul class="category-level-2 dropdown-menu-tree">
-                                    <li class="dropdown-tree">
-                                        <a class="dropdown-tree-a" href="sub-category.html">
-                                            Tshirt
-                                        </a>
-                                    </li>
-                                    <li><a> Shoes</a></li>
-                                    <li><a> Shirt</a></li>
-                                    <li><a>T shirt</a></li>
-                                    <li><a href="sub-category.html"> Shirt</a></li>
-                                    <li><a href="sub-category.html">Fragrances</a></li>
-                                    <li><a href="sub-category.html">Scarf</a></li>
-                                    <li><a href="sub-category.html">Sandal</a></li>
-                                    <li><a href="sub-category.html">Underwear</a></li>
-                                    <li><a href="sub-category.html">Winter Collection</a></li>
-                                    <li><a href="sub-category.html">Men Accessories</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#"> <span class="badge pull-right">42</span> MEN COLLECTION </a></li>
-                            <li><a href="#"> <span class="badge pull-right">42</span> Baby & Kids </a></li>
-                            <li><a href="#"> <span class="badge pull-right">42</span> Home & Kitchen </a></li>
-                            <li><a href="#"> <span class="badge pull-right">42</span> Baby & Kids </a></li>
-                            <li><a href="#"> <span class="badge pull-right">42</span> More Stores </a></li>
-                            <li><a href="#"> <span class="badge pull-right">42</span> Offers Zone </a></li>
+                            @*<li class="active dropdown-tree open-tree">
+                                    <a class="dropdown-tree-a">
+                                        <span class="badge pull-right">42</span> WOMEN COLLECTION
+                                    </a>
+                                    <ul class="category-level-2 dropdown-menu-tree">
+                                        <li class="dropdown-tree">
+                                            <a class="dropdown-tree-a" href="sub-category.html">
+                                                Tshirt
+                                            </a>
+                                        </li>
+                                        <li><a> Shoes</a></li>
+                                        <li><a> Shirt</a></li>
+                                        <li><a>T shirt</a></li>
+                                        <li><a href="sub-category.html"> Shirt</a></li>
+                                        <li><a href="sub-category.html">Fragrances</a></li>
+                                        <li><a href="sub-category.html">Scarf</a></li>
+                                        <li><a href="sub-category.html">Sandal</a></li>
+                                        <li><a href="sub-category.html">Underwear</a></li>
+                                        <li><a href="sub-category.html">Winter Collection</a></li>
+                                        <li><a href="sub-category.html">Men Accessories</a></li>
+                                    </ul>
+                                </li*@
+                            @foreach (var item in Model.Categories)
+                            {
+                                <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -67,13 +67,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a class="collapseWill active " data-toggle="collapse"
+                        <a class="collapseWill collapsed hasPlus" data-toggle="collapse"
                            href="#collapsePrice">
                             Price <span class="pull-left"> <i class="fa fa-caret-right"></i></span>
                         </a> <span class="pull-right clearFilter  label-danger">Clear</span>
                     </h4>
                 </div>
-                <div id="collapsePrice" class="panel-collapse collapse in">
+                <div id="collapsePrice" class="panel-collapse collapse">
                     <div class="panel-body priceFilterBody">
                         <!-- -->
                         <label>
@@ -134,12 +134,12 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapseBrand"
-                           class="collapseWill active ">
+                           class="collapseWill collapsed hasPlus">
                             Brand <span class="pull-left"> <i class="fa fa-caret-right"></i></span>
                         </a>
                     </h4>
                 </div>
-                <div id="collapseBrand" class="panel-collapse collapse in">
+                <div id="collapseBrand" class="panel-collapse collapse">
                     <div class="panel-body smoothscroll maxheight300">
                         <div class="block-element">
                             <label>
@@ -268,12 +268,12 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapseColor"
-                           class="collapseWill active ">
+                           class="collapseWill collapsed hasPlus">
                             Color <span class="pull-left"> <i class="fa fa-caret-right"></i></span>
                         </a>
                     </h4>
                 </div>
-                <div id="collapseColor" class="panel-collapse collapse in">
+                <div id="collapseColor" class="panel-collapse collapse">
                     <div class="panel-body smoothscroll maxheight300 color-filter">
                         <div class="block-element">
                             <label>
@@ -398,12 +398,12 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapseThree"
-                           class="collapseWill active ">
+                           class="collapseWill collapsed hasPlus">
                             Discount <span class="pull-left"> <i class="fa fa-caret-right"></i></span>
                         </a>
                     </h4>
                 </div>
-                <div id="collapseThree" class="panel-collapse collapse in">
+                <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="block-element">
                             <label>
@@ -426,7 +426,9 @@
 
     <!--right column-->
     <div class="col-lg-9 col-md-9 col-sm-12">
-
+        <div class="form-group text-center">
+            <p><a asp-action="Create" class="btn btn-block btn-primary">Kampanya Ekle</a></p>
+        </div>
 
         <!--/.subCategoryList-->
 
@@ -500,9 +502,9 @@
 
             
             <!--/.featuredImageLook3-->
-        </div>
+        
     <!--/.featuredPostContainer-->
-</div>
+
 <!-- /main container -->
 <!--/.section-block-->
 <!--/right column end-->
