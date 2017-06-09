@@ -10,7 +10,7 @@
                     <img src="/@item.ProductImage" alt="img" class="img-responsive primaryImage">
                     <img src="/@item.ProductImage" alt="img" class="img-responsive secondaryImage">
                 </a>
-                @{ var discount = (int)((@item.SalePrice * 100) / @item.UnitPrice);}
+                @{ var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));}
                 <div class="promotion"><span class="discount">% @discount indirim</span></div>
             </div>
 
@@ -22,9 +22,20 @@
                     <p>@item.Details</p>
                 </div>
                 <div class="list-description">
+                    
                     <p>
-                        @item.Details
+                        @if (string.IsNullOrEmpty(item.Details) == false && item.Details.Length > 30)
+                        {
+                            @item.Details.Substring(0, 30)
+
+                        }
+                        else
+                        {
+                            @item.Details
+
+                        }
                     </p>
+
                 </div>
                 <span class="size"><b>@item.SaleStarthDate / @item.SaleEndDate</b> </span>
             </div>

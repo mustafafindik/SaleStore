@@ -256,7 +256,18 @@
                     <div class="description">
                         <h4><a href="product-details.html">@item.Name</a></h4>
 
-                        <p>@item.Details</p>
+                        <p>
+                            @if(string.IsNullOrEmpty(item.Details)==false && item.Details.Length > 30)
+                            {
+                                @item.Details.Substring(0,30)
+
+                            }
+                            else
+                            {
+                                @item.Details
+
+                            }
+                        </p>
                         <span class="size">XL / XXL / S </span>
                     </div>
                     <div class="price"><span>@item.SalePrice</span></div>
