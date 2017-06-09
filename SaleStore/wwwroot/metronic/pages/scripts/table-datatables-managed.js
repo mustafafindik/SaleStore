@@ -1,4 +1,4 @@
-var TableDatatablesManaged = function () {
+﻿var TableDatatablesManaged = function () {
 
     var initTable1 = function () {
 
@@ -14,17 +14,17 @@ var TableDatatablesManaged = function () {
                     "sortDescending": ": activate to sort column descending"
                 },
                 "emptyTable": "No data available in table",
-                "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                "infoEmpty": "No records found",
-                "infoFiltered": "(filtered1 from _MAX_ total records)",
-                "lengthMenu": "Show _MENU_",
-                "search": "Search:",
-                "zeroRecords": "No matching records found",
+                "info": "_TOTAL_ Kayıttan _START_ ile _END_ Arası Sonuç Gösteriliyor",
+                "infoEmpty": "Kayıt Bulunamadı",
+                "infoFiltered": "( _MAX_ Kayıt  İçinden)",
+                "lengthMenu": " _MENU_ Kayıt Gösteriliyor.",
+                "search": "Ara:",
+                "zeroRecords": "Eşleşen Kayıt Bulunamadı",
                 "paginate": {
-                    "previous":"Prev",
-                    "next": "Next",
-                    "last": "Last",
-                    "first": "First"
+                    "previous":"Önceki",
+                    "next": "Sonraki",
+                    "last": "Son",
+                    "first": "İlk"
                 }
             },
 
