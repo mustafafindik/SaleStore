@@ -418,8 +418,11 @@ namespace SaleStore.Data
         }
         private static void AddSettings(ApplicationDbContext context)
         {
+
+
+
             var s = new Setting();
-            s.Logo = "/uploads/logo.png";
+            s.Logo = "/uploads/6-2017-Logos/logo-small.png";
             s.Phone = "+90 506 111 22 33";
             s.Address = "Bahariye Caddesi Süleymanpaşa Sokak No:2";
             s.Mail = "yardim@salestore.com";
@@ -443,7 +446,7 @@ namespace SaleStore.Data
         public static void AddCompanies(ApplicationDbContext context)
         {
             context.AddRange(
-                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
+                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "/uploads/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
                 
             context.SaveChanges();
         }
