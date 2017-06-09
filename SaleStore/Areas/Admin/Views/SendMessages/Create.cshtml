@@ -1,76 +1,63 @@
-@model SaleStore.Models.SendMessage
+﻿@model SaleStore.Models.SendMessage
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Giden Mesaj Ekle";
 }
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
 
-<h2>Create</h2>
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase">Giden Mesaj Ekle</span>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>SendMessage</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Subject" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="BodyContent" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="BodyContent" class="form-control" />
-                <span asp-validation-for="BodyContent" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="MailSettingId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="MailSettingId" class ="form-control" asp-items="ViewBag.MailSettingId"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdateDate" class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+
+                    <br />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Subject" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="Subject" class="form-control" />
+                            <span asp-validation-for="Subject" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BodyContent" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <input asp-for="BodyContent" class="form-control" />
+                            <span asp-validation-for="BodyContent" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MailSettingId" class="col-md-2 control-label"></label>
+                        <div class="col-md-8">
+                            <select asp-for="MailSettingId" class="form-control" asp-items="ViewBag.MailSettingId"></select>
+                        </div>
+                    </div>
+                
+                    
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8">
+                            <input type="submit" value="Oluştur" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div>
+                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
             </div>
         </div>
     </div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
