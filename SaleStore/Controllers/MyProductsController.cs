@@ -166,6 +166,10 @@ namespace SaleStore.Controllers
             {
                 ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
             }
+            if (product.SaleStarthDate > product.SaleEndDate)
+            {
+                ModelState.AddModelError("SaleEndDate", "İndirim bitiş tarihi indirim başlangıç tarihinden erken olamaz");
+            }
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
