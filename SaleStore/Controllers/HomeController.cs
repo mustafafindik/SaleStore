@@ -80,6 +80,25 @@ namespace SaleStore.Controllers
             model.Settings = _context.Setting.ToList();
             return View(model);
         }
+        public ActionResult Select(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            model.Categories = _context.Categories.ToPagedList<Category>(1, 9);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
+            if (id == 0)
+            {
+                model.Products = _context.Products.ToPagedList<Product>(1, 9);      
+            }
+            else
+            {
+                model.Products = _context.Products.Where(x => x.CategoryId == id).OrderByDescending(x => x.CreateDate).ToPagedList(1, 9);
+            }
+            return View("Products",model);
+            
+        }
 
         public IActionResult Contact()
         {

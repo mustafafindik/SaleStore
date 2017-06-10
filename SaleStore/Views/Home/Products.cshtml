@@ -316,45 +316,28 @@
                         </a>
                     </h4>
                 </div>
-                @foreach (var item in Model.Categories)
-                {
+                
                     <div id="collapseCategory" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked tree">
                                 <li class="active dropdown-tree open-tree">
-                                    <a href="Select/id?" class ="dropdown-tree-a">
-                                        <span class="badge pull-right"></span> @item.Name
-                                       
-                                       
-                                            @*@foreach (var item1 in Model.Categories)
-                                            {
-                                                @foreach (var item2 in Model.Products)
-                                                {
-                                                    if (item1.Id == item2.CategoryId)
-                                                    {
-                                                        @await Component.InvokeAsync("Products")
-
-                                                    }
-                                                    else
-                                                    {
-
-                                                        @await Component.InvokeAsync("Products")
-                                                    }
-
-                                                }
-
-                                            }*@
-                                        
-                                        
+                                    <a asp-controller="Home" asp-action="Select/0" class="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> Tümü
                                     </a>
-                                   
-
+                                </li>
+                                <li class="active dropdown-tree open-tree">
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                    <a asp-controller="Home" asp-action="Select/@item.Id" class ="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> @item.Name                                       
+                                    </a>
+                                    }
                                 </li>
                             </ul>
                         </div>
                     </div>
 
-                }
+                
               
             </div>
             <!--/Category menu end-->
@@ -609,17 +592,52 @@
             </div>
         </div>
         <!--/.productFilter-->
-            
-        @foreach (var item in Model.Categories)
-        {
-            if (item.Id == 1)
-            {
                 <div class="row  categoryProduct xsResponse clearfix">
-                    @await Component.InvokeAsync("Products",item)
-                </div>
-            }
+                   @foreach (var item in Model.Products)
+            {
+                    <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 
-        }
+                        <div class="product">
+
+                            <div class="imageHover">
+                                <a href="product-details.html">
+                                    <img src="/@item.ProductImage" alt="img" class="img-responsive primaryImage">
+                                    <img src="/@item.ProductImage" alt="img" class="img-responsive secondaryImage">
+                                </a>
+                                @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
+                                <div class="promotion"><span class="discount">% @discount indirim</span></div>
+                            </div>
+
+
+                            <div class="description">
+                                <h4><a href="product-details.html"> @item.Name </a></h4>
+
+                                <div class="grid-description">
+                                    <p>@item.Details</p>
+                                </div>
+                                <div class="list-description">
+                                    <p>
+                                       @item.Details
+                                    </p>
+                                </div>
+                                <span class="size"><b>@item.SaleStarthDate / @item.SaleEndDate</b> </span>
+                            </div>
+                            <div class="price"><span>@item.SalePrice</span></div>
+                            <div class="action-control">
+                                <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">
+                                    <span class="add2cart">
+                                        <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                    }
+                </div>
+        <div class="text-center">
+
+            <pager class="pager-container" list="@Model.Products" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Products" asp-controller="Home" />
+        </div>
 
               
 
