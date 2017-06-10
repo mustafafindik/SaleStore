@@ -36,128 +36,7 @@
 
 <body>
 
-    <!-- Modal Login start -->
-    <div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                    <h3 class="modal-title-site text-center"> Giriş </h3>
-                </div>
-                <div class="modal-body">
-                    
-                    <div class="form-group login-username">
-                        <div>
-                            <input name="log" id="login-user" class="form-control input" size="20"
-                                   placeholder="Kullanıcı Adı" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group login-password">
-                        <div>
-                            <input name="Password" id="login-password" class="form-control input" size="20"
-                                   placeholder="Şifre" type="password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox login-remember">
-                                <label>
-                                    <input name="rememberme" value="forever" checked="checked" type="checkbox">
-                                    Beni Hatırla
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Giriş" type="submit">
-                        </div>
-                    </div>
-                    <!--userForm-->
 
-                </div>
-                <div class="modal-footer">
-                    <p class="text-center">
-                        Not here before? <a data-toggle="modal" data-dismiss="modal"
-                                            href="#ModalSignup">Çıkış</a> <br>
-                        <a href="forgot-password.html"> Şifreni mi Unuttun? </a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-
-        </div>
-        <!-- /.modal-dialog -->
-
-    </div>
-    <!-- /.Modal Login -->
-    <!-- Modal Signup start -->
-    <div class="modal signUpContent fade" id="ModalSignup" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                    <h3 class="modal-title-site text-center"> Kayıt </h3>
-                </div>
-                <div class="modal-body">
-                    <div class="control-group">
-                        <a class="fb_button btn  btn-block btn-lg " href="#">
-                            Facebook ile Kayıt Ol
-                        </a>
-                    </div>
-                    <h5 style="padding:10px 0 10px 0;" class="text-center"> VEYA </h5>
-
-                    <div class="form-group reg-username">
-                        <div>
-                            <input name="login" class="form-control input" size="20" placeholder="Kullanıcı Adı"
-                                   type="text">
-                        </div>
-                    </div>
-                    <div class="form-group reg-email">
-                        <div>
-                            <input name="reg" class="form-control input" size="20" placeholder="Enter Email" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group reg-password">
-                        <div>
-                            <input name="password" class="form-control input" size="20" placeholder="Şifre"
-                                   type="password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox login-remember">
-                                <label>
-                                    <input name="rememberme" id="rememberme" value="forever" checked="checked"
-                                           type="checkbox">
-                                    Beni Hatırla
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Kayıt" type="submit">
-                        </div>
-                    </div>
-                    <!--userForm-->
-
-                </div>
-                <div class="modal-footer">
-                    <p class="text-center">
-                        Beni Hatırla? <a data-toggle="modal" data-dismiss="modal" href="#ModalLogin">
-                            Giriş
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-
-        </div>
-        <!-- /.modal-dialog -->
-
-    </div>
-    <!-- /.ModalSignup End -->
     <!-- Fixed navbar start -->
     <div class="navbar navbar-tshop navbar-fixed-top megamenu" role="navigation">
         <div class="navbar-top">
@@ -201,13 +80,13 @@
                                            </ul></li>
                                        
                                         <li>
-                                            <a href="#" data-toggle="modal" data-target="#ModalLogin">
+                                            <a href="/account/login" >
                                                 <span class="hidden-xs">Giriş</span>
                                                 <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
                                             </a>
                                         </li>
                                         <li class="hidden-xs">
-                                            <a href="#" data-toggle="modal" data-target="#ModalSignup">
+                                            <a href="/account/register" >
                                                 Hesap Oluştur
                                             </a>
                                         </li>
