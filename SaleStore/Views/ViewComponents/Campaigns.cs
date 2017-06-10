@@ -19,22 +19,22 @@ namespace SaleStore.Views.ViewComponents
             this._context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(string categoryNames)
+        public async Task<IViewComponentResult> InvokeAsync(Category category)
         {
 
-            var items = GetItems(categoryNames).AsEnumerable();
+            var items = GetItems(category).AsEnumerable();
 
             return View(items);
         }
-        public List<Campaign> GetItems(string categoryNames)
+        public List<Campaign> GetItems(Category category)
         {
-            if (categoryNames != null)
+            if (category != null)
             {
-                return GetCampaignsByCategoryNames(categoryNames, 4).Where(w => w.IsPublish == true).ToList();
+                return GetCampaignsByCategoryNames(category).ToList();
             }
             else
             {
-                return GetCampaigns().Where(w => w.IsPublish == true).ToList();
+                return GetCampaigns().ToList();
             }
         }
         public IEnumerable<Campaign> GetCampaigns()
@@ -49,36 +49,17 @@ namespace SaleStore.Views.ViewComponents
                 set = set.Include(nav);
             return set.AsEnumerable();
         }
-        public IEnumerable<Campaign> GetCampaignsByCategoryNames(string categoryNames, int count)
+
+
+        public IEnumerable<Campaign> GetCampaignsByCategoryNames(Category category)
         {
-            string[] categories;
-            if (categoryNames == "")
+            if (category != null)
             {
-                categories = new string[0];
+                return (from c in _context.Campaigns where (c.CategoryId == category.Id) orderby c.CreateDate descending select c).ToList();
             }
             else
             {
-                categories = categoryNames.Split(',');
-            }
-
-            for (var i = 0; i < categories.Length; i++)
-            {
-                categories[i] = categories[i].Trim().ToLower();
-            }
-            var campaigns = GetCampaignsByCategoryNames(categories, count);
-            return campaigns;
-        }
-
-
-        public IEnumerable<Campaign> GetCampaignsByCategoryNames(string[] categories, int count)
-        {
-            if (categories.Length > 0)
-            {
-                return (from p in _context.Campaigns join pc in _context.Categories on p.CategoryId equals pc.Id where (categories.Length > 0 ? categories.Contains(p.Name.ToLower()) : true) orderby p.CreateDate descending select p).Take(count).ToList();
-            }
-            else
-            {
-                return (from p in _context.Campaigns orderby p.CreateDate descending select p).Take(count).ToList();
+                return (from c in _context.Campaigns orderby c.CreateDate descending select c).ToList();
             }
         }
     }

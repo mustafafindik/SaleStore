@@ -322,7 +322,7 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked tree">
                                 <li class="active dropdown-tree open-tree">
-                                    <a  class ="dropdown-tree-a">
+                                    <a href="Select/id?" class ="dropdown-tree-a">
                                         <span class="badge pull-right"></span> @item.Name
                                        
                                        
@@ -609,11 +609,19 @@
             </div>
         </div>
         <!--/.productFilter-->
-        <div class="row  categoryProduct xsResponse clearfix">
-          
-            @await Component.InvokeAsync("Products")
+            
+        @foreach (var item in Model.Categories)
+        {
+            if (item.Id == 1)
+            {
+                <div class="row  categoryProduct xsResponse clearfix">
+                    @await Component.InvokeAsync("Products",item)
+                </div>
+            }
 
-        </div>
+        }
+
+              
 
 
         <!--/.categoryProduct || product content end-->
