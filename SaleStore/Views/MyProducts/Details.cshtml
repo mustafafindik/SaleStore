@@ -38,17 +38,7 @@
                 <span class="price-sales"> @Html.DisplayFor(model => model.SalePrice)</span>
             </div>
     
-            <div class="rating">
-                <p>
-                    <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
-                        <i class="fa fa-star"></i>
-                    </span> <span><i class="fa fa-star"></i></span> <span>
-                        <i class="fa fa-star-o "></i>
-                    </span> <span class="ratingInfo">
-                        <span> / </span> <a data-target="#modal-review" data-toggle="modal">Write a review</a>
-                    </span>
-                </p>
-            </div>
+        
             <div class="product-price">
 
             </div>
@@ -126,8 +116,8 @@
             <div class="row">
 
                 <div class="col-lg-12 col-md-10 col-sm-12 col-xs-12">
-                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Kampanyayı Düzenle</a>
-                    <a class="btn btn-primary" asp-action="Index">Kampanya Listesine Geri Dön</a>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Ürün Düzenle</a>
+                    <a class="btn btn-primary" asp-action="Index">Ürün Listesine Geri Dön</a>
                 </div>
             </div>
 

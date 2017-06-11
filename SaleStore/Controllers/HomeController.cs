@@ -9,7 +9,7 @@ using SaleStore.Models;
 using PagedList.Core;
 using MimeKit;
 using MailKit.Net.Smtp;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace SaleStore.Controllers
 {
@@ -72,11 +72,31 @@ namespace SaleStore.Controllers
             model.Settings = _context.Setting.ToList();
             return View(model);
         }
+
+        public async Task <IActionResult> Product(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Company)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
         public IActionResult Products(int page=1)
         {
-            model.Categories = _context.Categories.ToPagedList<Category>(page, 10);
-            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
-            model.Products = _context.Products.ToPagedList<Product>(page, 10);
+            model.Categories = _context.Categories.ToPagedList<Category>(page, 12);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 12);
+            model.Products = _context.Products.ToPagedList<Product>(page, 12);
             model.Settings = _context.Setting.ToList();
             return View(model);
         }

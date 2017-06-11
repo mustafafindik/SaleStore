@@ -445,14 +445,24 @@
                 <div class="product">               
                     <div class="image">
                         <div class="quickview">
-                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="~/ajax/product.html"
+                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="/Home/Product/@item.Id"
                                data-target="#productSetailsModalAjax">Hızlı İncele</a>
                         </div>
                         <a href="product-details.html">
-                            <img src="/@item.ProductImage" alt="img" class="img-responsive img-thumbnail" style="margin-top:20px;">
+                            <img src="/@item.ProductImage" alt="img" class="img-responsive img-thumbnail" style="margin:10px;">
                         </a> 
                         @{ var discount = (int)(100-((@item.SalePrice * 100) / @item.UnitPrice));}
-                        <div class="promotion"><span class="discount">% @discount indirim</span></div>
+                        <div class="promotion">
+                            @{ if ((DateTime.Now.Day - item.UpdateDate.Day) < 3)
+                                {
+                                    <span class="new-product"> Yeni</span>
+                                }
+
+                            }
+                            <span class="discount">% @discount indirim</span>
+
+                        </div>
+
                     </div>
                     <div class="title">
                         <h4 style="min-height: 25px;"><a href="product-details.html">@item.Name </a></h4>
@@ -460,15 +470,7 @@
                             <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
                             <span class="price-sales" style="font-size:24px;"> @Html.DisplayFor(model => item.SalePrice)</span>
                         </div>
-
-                        <div class="grid-description">
-                            <p>@item.Details </p>
-                        </div>
-                        <div class="list-description">
-                            <p>
-                                @item.Details
-                            </p>
-                        </div>
+                                        
                         <span class="size">@item.CreatedBy</span>
                     </div>
                     
