@@ -46,7 +46,7 @@ namespace SaleStore.Data
                     CompanyId =1,
                     CategoryId = 1,
                     Details= "iPhone 7",
-                    ProductImage= "uploads/ProductImages/1.png",
+                    ProductImage= "uploads/Seed/iphone7.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice= 3509,
@@ -63,7 +63,7 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 2,
                     Details = "Kadın Kol Saati AR1925",
-                    ProductImage = "uploads/ProductImages/2.jpg",
+                    ProductImage = "uploads/Seed/Saat_er.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 1099,
@@ -80,7 +80,7 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 3,
                     Details = "Rotring 600 0.5 mm ",
-                    ProductImage = "uploads/ProductImages/3.jpg",
+                    ProductImage = "uploads/Seed/versatil-kalem.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 76,
@@ -97,7 +97,7 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 4,
                     Details = "4 MEVSİM ÜÇ KİŞİLİK KAMP ÇADIR TENTE SİNEKLİK",
-                    ProductImage = "uploads/ProductImages/4.jpg",
+                    ProductImage = "uploads/Seed/cadir.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 59,
@@ -114,7 +114,7 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 5,
                     Details = "In2U Edt 50 ml Erkek Parfümü 088300196920",
-                    ProductImage = "uploads/ProductImages/5.jpg",
+                    ProductImage = "uploads/Seed/calvin.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 49,
@@ -131,7 +131,7 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 6,
                     Details = "Kurtuluş savaşının öyküsü.",
-                    ProductImage = "uploads/ProductImages/6.jpg",
+                    ProductImage = "uploads/Seed/nutuk.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 5,
@@ -148,48 +148,15 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 7,
                     Details = "Beyaz Erkek Çocuk T-shirt 3232CIC1538",
-                    ProductImage = "uploads/ProductImages/7.jpg",
+                    ProductImage = "uploads/Seed/Cioccolata.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 11,
                     UnitPrice = 29,
                     IsPublish = true
                 },
-                new Product
-                {
-                    Name = "COLUMBIA",
-                    CreatedBy = "username",
-                    CreateDate = DateTime.Now,
-                    UpdatedBy = "username",
-                    UpdateDate = DateTime.Now,
-                    CompanyId = 1,
-                    CategoryId = 8,
-                    Details = "Şok Emici Eva Taban",
-                    ProductImage = "uploads/ProductImages/8.jpg",
-                    SaleStarthDate = DateTime.Now,
-                    SaleEndDate = DateTime.Now,
-                    SalePrice = 259,
-                    UnitPrice = 399,
-                    IsPublish = true
-                },
-
-                new Product
-                {
-                    Name = "BALLI SARMA",
-                    CreatedBy = "username",
-                    CreateDate = DateTime.Now,
-                    UpdatedBy = "username",
-                    UpdateDate = DateTime.Now,
-                    CompanyId = 1,
-                    CategoryId = 9,
-                    Details = "1 KG - ANTEP FISTIKLI ",
-                    ProductImage = "uploads/ProductImages/9.jpg",
-                    SaleStarthDate = DateTime.Now,
-                    SaleEndDate = DateTime.Now,
-                    SalePrice = 32,
-                    UnitPrice = 49,
-                    IsPublish = true
-                },
+                
+             
                 new Product
                 {
                     Name = "İncili Çatal İğne Sallantılı Küpe",
@@ -200,7 +167,7 @@ namespace SaleStore.Data
                     CompanyId = 1,
                     CategoryId = 10,
                     Details = "SS 17 % 45 BAKIR % 35 CAM % 15 KRİSTAL % 5 DEMİR",
-                    ProductImage = "uploads/ProductImages/10.jpg",
+                    ProductImage = "uploads/Seed/kupe.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
                     SalePrice = 15,
@@ -229,25 +196,11 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 1,
                     Slogan = "Telefonları yenileme zamanı",
-                    Image = "uploads/CampaignImages/1.png",
+                    Image = "uploads/Seed/eskiyeni.jpg",
                     Description = "İkinci el ürünler TECHPOİNT SERVİS HİZMETLERİ A.Ş. adına Teknosa tarafından teslim alınmakta olup, ikinci el cihaz bedeli karşılığında verilen hediye çeki ilgili firma tarafından karşılanmaktadır.",
                     IsPublish = true
                 },
-                new Campaign
-                {
-                    Name = "RENGARENK BAY VE BAYAN JEAN SAAT KOT SAAT",
-                    CreatedBy = "username",
-                    CreateDate = DateTime.Now,
-                    UpdatedBy = "username",
-                    UpdateDate = DateTime.Now,
-                    CampaignStartDate = DateTime.Now,
-                    CampaignEndDate = DateTime.Now,
-                    CategoryId = 2,
-                    Slogan = "AYNI GÜN ÜCRETSİZ KARGO + HEDİYE PAKETİ",
-                    Image = "uploads/CampaignImages/2.jpg",
-                    Description = "AYNI GÜN İÇERİSİNDE DÜKKANIMIZDAN VERMİŞ OLDUĞUNUZ TÜM SİPARİŞLER TEK BİR KARGO İLE GÖNDERİLMEKTEDİR.",
-                    IsPublish = true
-                },
+                
                 new Campaign
                 {
                     Name = "Seçili projeksiyon aletlerinde",
@@ -259,25 +212,11 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 3,
                     Slogan = "Sepete %15 indirim",
-                    Image = "uploads/CampaignImages/4.jpg",
+                    Image = "uploads/Seed/projeksiyon.png",
                     Description = "Satıcı hepsiburada olan ürünlerde geçerlidir.",
                     IsPublish = true
                 },
-                new Campaign
-                {
-                    Name = "Holiday Inn Istanbul Airport Mandala'da Fitness Üyeliklerini Kaçırmayın!",
-                    CreatedBy = "username",
-                    CreateDate = DateTime.Now,
-                    UpdatedBy = "username",
-                    UpdateDate = DateTime.Now,
-                    CampaignStartDate = DateTime.Now,
-                    CampaignEndDate = DateTime.Now,
-                    CategoryId = 4,
-                    Slogan = "Spor ve dinginliğe dair her şey!",
-                    Image = "uploads/CampaignImages/6.jpg",
-                    Description = "1 Aylık Fitness + 600 TL Yerine 150 TL 3 Aylık Fitness + 1 Seans Kese - Köpük Masaj 1320 TL Yerine 300 TL 6 Aylık Fitness + 2 Seans Kese - Köpük Masaj 2200 TL Yerine 500 TL",
-                    IsPublish = true
-                },
+               
                 new Campaign
                 {
                     Name = "Parfümde yaz fırsatı",
@@ -289,85 +228,12 @@ namespace SaleStore.Data
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 5,
                     Slogan = "%80'e varan indirimler",
-                    Image = "uploads/CampaignImages/1.png",
+                    Image = "uploads/Seed/parfumyaz.jpg",
                     Description = "En iyi kadın ve erkek parfümlerinin yer aldığı dünyaca ünlü, Burberry, Chanel, Tom Ford, Bvlgari, Estee Lauder, Calvin Klein ve diğer markaların en çok satan ürünlerinden oluşan bu kampanya, aradığınız tüm parfümleri özel indirimlerle size sunuyor. Bu orijinal parfümlere, size özel indirim fırsatları ile sahip olma fırsatını kaçırmayın!",
                     IsPublish = true
-                },
-                new Campaign
-                {
-                    Name = "Herkes okusun diye",
-                    CreatedBy = "username",
-                    CreateDate = DateTime.Now,
-                    UpdatedBy = "username",
-                    UpdateDate = DateTime.Now,
-                    CampaignStartDate = DateTime.Now,
-                    CampaignEndDate = DateTime.Now,
-                    CategoryId = 6,
-                    Slogan = "Bu Kitaplar 9,90 TL",
-                    Image = "uploads/CampaignImages/4.jpg",
-                    Description = "Kampanya 1-30 Haziran arasında www.dr.com.tr'de ve Mağazalarımızda (D&R  kart ile alışverişlerinizde) geçerlidir. ",
-                    IsPublish = true
-                },
-                 new Campaign
-                 {
-                     Name = "Philips Avent Ürünlerinde Özel Fiyatlar",
-                     CreatedBy = "username",
-                     CreateDate = DateTime.Now,
-                     UpdatedBy = "username",
-                     UpdateDate = DateTime.Now,
-                     CampaignStartDate = DateTime.Now,
-                     CampaignEndDate = DateTime.Now,
-                     CategoryId = 7,
-                     Slogan = "Philips Avent Ürünlerinde Özel Fiyatlar 1- 29 Haziran Arası",
-                     Image = "uploads/CampaignImages/2.jpg",
-                     Description = "1- 29 Haziran Arası",
-                     IsPublish = true
-                 },
-                  new Campaign
-                  {
-                      Name = "D's Damat - TWN Babalar Gününe Özel",
-                      CreatedBy = "username",
-                      CreateDate = DateTime.Now,
-                      UpdatedBy = "username",
-                      UpdateDate = DateTime.Now,
-                      CampaignStartDate = DateTime.Now,
-                      CampaignEndDate = DateTime.Now,
-                      CategoryId = 8,
-                      Slogan = "3 Gömlek 89 TL - Ücretsiz Kargo",
-                      Image = "uploads/CampaignImages/6.jpg",
-                      Description = "D's Damat - TWN Babalar Gününe Özel 3 Gömlek 89 TL - Ücretsiz Kargo",
-                      IsPublish = true
-                  },
-                   new Campaign
-                   {
-                       Name = "A101 15 Haziran 2017 Aldın Aldın Kampanyası",
-                       CreatedBy = "username",
-                       CreateDate = DateTime.Now,
-                       UpdatedBy = "username",
-                       UpdateDate = DateTime.Now,
-                       CampaignStartDate = DateTime.Now,
-                       CampaignEndDate = DateTime.Now,
-                       CategoryId = 9,
-                       Slogan = "Stoklarla sınırlı Aldın Aldın ürünlerinde uygun fiyatlarla A101'de...",
-                       Image = "uploads/CampaignImages/1.png",
-                       Description = "Bu hafta 15 Haziran tarihinden itibaren Televizyon, Ev Tekstil Ürünleri, Mutfak Gereçleri ve Elektrikli El Aletlerinden oluşan onlarca üründen oluşan Aldın Aldın kampanyası bizi bekliyor.",
-                       IsPublish = true
-                   },
-                   new Campaign
-                   {
-                       Name = "Olağanüstü Ses Kalitesi Sağlayan Teknoloji!",
-                       CreatedBy = "username",
-                       CreateDate = DateTime.Now,
-                       UpdatedBy = "username",
-                       UpdateDate = DateTime.Now,
-                       CampaignStartDate = DateTime.Now,
-                       CampaignEndDate = DateTime.Now,
-                       CategoryId = 10,
-                       Slogan = "Kablosuz bağlantı teknolojisiyle üstün bir ses kalitesi sunan Apple AirPods kulaklık Türk Telekom’da!",
-                       Image = "uploads/CampaignImages/6.jpg",
-                       Description = "Üstelik 3 ay boyunca Türk Telekom Müzik hediye!",
-                       IsPublish = true
-                   }
+                }
+                
+               
                    );
             context.SaveChanges();
         }
