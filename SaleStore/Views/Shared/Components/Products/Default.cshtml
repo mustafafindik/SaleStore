@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<SaleStore.Models.Product>
 
-<div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
-    @foreach (var item in Model)
-                {
+@foreach (var item in Model)
+            {
+    <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
+
         <div class="product">
 
             <div class="imageHover">
@@ -10,7 +11,7 @@
                     <img src="/@item.ProductImage" alt="img" class="img-responsive primaryImage">
                     <img src="/@item.ProductImage" alt="img" class="img-responsive secondaryImage">
                 </a>
-                @{ var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));}
+                @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
                 <div class="promotion"><span class="discount">% @discount indirim</span></div>
             </div>
 
@@ -22,20 +23,14 @@
                     <p>@item.Details</p>
                 </div>
                 <div class="list-description">
-                    
                     <p>
-                        @if (string.IsNullOrEmpty(item.Details) == false && item.Details.Length > 30)
-                        {
-                            @item.Details.Substring(0, 30)
-
-                        }
-                        else
-                        {
-                            @item.Details
-
-                        }
+                        Sed sed rutrum purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Pellentesque risus lacus, iaculis in ante vitae, viverra hendrerit ante. Aliquam vel
+                        fermentum elit. Morbi rhoncus, neque in vulputate facilisis, leo tortor sollicitudin
+                        odio, quis pellentesque lorem nisi quis enim. In dolor mi, hendrerit at blandit
+                        vulputate, congue a purus. Sed eget turpis sit amet orci euismod accumsan. Praesent
+                        sit amet placerat elit.
                     </p>
-
                 </div>
                 <span class="size"><b>@item.SaleStarthDate / @item.SaleEndDate</b> </span>
             </div>
@@ -48,6 +43,5 @@
                 </a>
             </div>
         </div>
-                }
-
-</div>
+    </div>
+                    }

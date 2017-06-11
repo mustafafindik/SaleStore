@@ -245,8 +245,8 @@
 
                     <div class="image">
                         <div class="quickview">
-                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="ajax/product.html"
-                               data-target="#productSetailsModalAjax">Detaylar</a>
+                            <a data-toggle="modal" class="btn btn-xs btn-quickview" href="/mycampaigns/details/@item.Id"
+                               data-target="#productSetailsModalAjax">Gözat</a>
                         </div>
                         <a href="product-details.html">
                             <img src="/@item.ProductImage" alt="img"
@@ -272,9 +272,9 @@
                     </div>
                     <div class="price"><span>@item.SalePrice</span></div>
                     <div class="action-control">
-                        <a class="btn btn-primary">
+                        <a class="btn btn-primary" href="/mycampaigns/details/@item.Id">
                             <span class="add2cart">
-                                <i class="glyphicon glyphicon-shopping-cart"></i> Add to cart
+                                <i class="glyphicon glyphicon-shopping-cart"></i> Detayları Gör
                             </span>
                         </a>
                     </div>
@@ -316,45 +316,28 @@
                         </a>
                     </h4>
                 </div>
-                @foreach (var item in Model.Categories)
-                {
+                
                     <div id="collapseCategory" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked tree">
                                 <li class="active dropdown-tree open-tree">
-                                    <a  class ="dropdown-tree-a">
-                                        <span class="badge pull-right"></span> @item.Name
-                                       
-                                       
-                                            @*@foreach (var item1 in Model.Categories)
-                                            {
-                                                @foreach (var item2 in Model.Products)
-                                                {
-                                                    if (item1.Id == item2.CategoryId)
-                                                    {
-                                                        @await Component.InvokeAsync("Products")
-
-                                                    }
-                                                    else
-                                                    {
-
-                                                        @await Component.InvokeAsync("Products")
-                                                    }
-
-                                                }
-
-                                            }*@
-                                        
-                                        
+                                    <a asp-controller="Home" asp-action="Select/0" class="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> Tümü
                                     </a>
-                                   
-
+                                </li>
+                                <li class="active dropdown-tree open-tree">
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                    <a asp-controller="Home" asp-action="Select/@item.Id" class ="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> @item.Name                                       
+                                    </a>
+                                    }
                                 </li>
                             </ul>
                         </div>
                     </div>
 
-                }
+                
               
             </div>
             <!--/Category menu end-->
@@ -609,133 +592,54 @@
             </div>
         </div>
         <!--/.productFilter-->
-        <div class="row  categoryProduct xsResponse clearfix">
-          
-            @await Component.InvokeAsync("Products")
-           @*@foreach(var item1 in Model.Categories)
-           {
-                @foreach (var item2 in Model.Products)
-                {
-                    if (item1.Id == item2.CategoryId)
-                    {
-                        @await Component.InvokeAsync("Products")
+                <div class="row  categoryProduct xsResponse clearfix">
+                   @foreach (var item in Model.Products)
+            {
+                    <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 
-                    }
-                    else
-                    {
+                        <div class="product">
 
-                        @await Component.InvokeAsync("Products")
-                    }
-
-                }
-
-           }*@
-            
-
-            @*<div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
-                @foreach (var item in Model.Products)
-                {
-                    <div class="product">
-
-                        <div class="imageHover">
-                            <a href="product-details.html">
-                                <img src="/images/product/12.jpg" alt="img" class="img-responsive primaryImage">
-                                <img src="/images/product/21.jpg" alt="img" class="img-responsive secondaryImage">
-                            </a>
-                            @{ var discount = (int)((@item.SalePrice * 100) / @item.UnitPrice);}
-                            <div class="promotion"><span class="discount">% @discount indirim</span></div>
-                        </div>
-
-
-                        <div class="description">
-                            <h4><a href="product-details.html"> @item.Name </a></h4>
-
-                            <div class="grid-description">
-                                <p>@item.Details</p>
+                            <div class="imageHover">
+                                <a href="product-details.html">
+                                    <img src="/@item.ProductImage" alt="img" class="img-responsive primaryImage">
+                                    <img src="/@item.ProductImage" alt="img" class="img-responsive secondaryImage">
+                                </a>
+                                @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
+                                <div class="promotion"><span class="discount">% @discount indirim</span></div>
                             </div>
-                            <div class="list-description">
-                                <p>
-                                    Sed sed rutrum purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Pellentesque risus lacus, iaculis in ante vitae, viverra hendrerit ante. Aliquam vel
-                                    fermentum elit. Morbi rhoncus, neque in vulputate facilisis, leo tortor sollicitudin
-                                    odio, quis pellentesque lorem nisi quis enim. In dolor mi, hendrerit at blandit
-                                    vulputate, congue a purus. Sed eget turpis sit amet orci euismod accumsan. Praesent
-                                    sit amet placerat elit.
-                                </p>
+
+
+                            <div class="description">
+                                <h4><a href="product-details.html"> @item.Name </a></h4>
+
+                                <div class="grid-description">
+                                    <p>@item.Details</p>
+                                </div>
+                                <div class="list-description">
+                                    <p>
+                                       @item.Details
+                                    </p>
+                                </div>
+                                <span class="size"><b>@item.SaleStarthDate / @item.SaleEndDate</b> </span>
                             </div>
-                            <span class="size"><b>@item.SaleStarthDate / @item.SaleEndDate</b> </span>
-                        </div>
-                        <div class="price"><span>@item.SalePrice</span></div>
-                        <div class="action-control">
-                            <a class="btn btn-default" asp-action="Details" asp-route-id="@item.Id">
-                                <span class="add2cart">
-                                    <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
-                                </span>
-                            </a>
+                            <div class="price"><span>@item.SalePrice</span></div>
+                            <div class="action-control">
+                                <a class="btn btn-default" href="/mycampaigns/details/@item.Id">
+                                    <span class="add2cart">
+                                        <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                }
-               
-            </div>*@
-            <!--/.item-->
-
-
-
-
-
-
-
-            @*<div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
-                <div class="product">
-                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
-                       data-placement="left">
-                        <i class="glyphicon glyphicon-heart"></i>
-                    </a>
-
-
-                    <div class="imageHover imageHoverFlip">
-                        <a href="product-details.html">
-                            <img src="/images/product/7.jpg" alt="img"
-                                 class="img-responsive primaryImage">
-                            <img src="/images/product/13.jpg" alt="img" class="img-responsive secondaryImage">
-                        </a>
-
-                        <div class="promotion"><span class="discount">15% OFF</span></div>
-                    </div>
-
-
-                    <div class="description">
-                        <h4><a href="product-details.html"> Hover Flip </a></h4>
-
-                        <div class="grid-description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                        </div>
-                        <div class="list-description">
-                            <p>
-                                Sed sed rutrum purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Pellentesque risus lacus, iaculis in ante vitae, viverra hendrerit ante. Aliquam vel
-                                fermentum elit. Morbi rhoncus, neque in vulputate facilisis, leo tortor sollicitudin
-                                odio, quis pellentesque lorem nisi quis enim. In dolor mi, hendrerit at blandit
-                                vulputate, congue a purus. Sed eget turpis sit amet orci euismod accumsan. Praesent
-                                sit amet placerat elit.
-                            </p>
-                        </div>
-                        <span class="size">XL / XXL / S </span>
-                    </div>
-                    <div class="price"><span>$25</span></div>
-                    <div class="action-control">
-                        <a class="btn btn-primary">
-                            <span class="add2cart">
-                                <i class="glyphicon glyphicon-shopping-cart"></i> Add to cart
-                            </span>
-                        </a>
-                    </div>
+                                    }
                 </div>
-            </div>*@
-           
-            <!--/.item-->
+        <div class="text-center">
 
+            <pager class="pager-container" list="@Model.Products" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Products" asp-controller="Home" />
         </div>
+
+              
 
 
         <!--/.categoryProduct || product content end-->
@@ -764,7 +668,7 @@
 <div class="container">
     <div class=" width100 section-block">
         <h3 class="section-title">
-            <span> FİRMALAR</span> <a id="nextBrand" class="link pull-right carousel-nav">
+            <span> MARKALAR</span> <a id="nextBrand" class="link pull-right carousel-nav">
                 <i class="fa fa-angle-right"></i>
             </a> <a id="prevBrand" class="link pull-right carousel-nav">
                 <i class="fa fa-angle-left"></i>
@@ -774,22 +678,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="no-margin brand-carousel owl-carousel owl-theme">
-                    <li><a><img src="/images/brand/1.gif" alt="img"></a></li>
-                    <li><img src="/images/brand/2.png" alt="img"></li>
-                    <li><img src="/images/brand/3.png" alt="img"></li>
-                    <li><img src="/images/brand/4.png" alt="img"></li>
-                    <li><img src="/images/brand/5.png" alt="img"></li>
-                    <li><img src="/images/brand/6.png" alt="img"></li>
-                    <li><img src="/images/brand/7.png" alt="img"></li>
-                    <li><img src="/images/brand/8.png" alt="img"></li>
-                    <li><img src="/images/brand/1.gif" alt="img"></li>
-                    <li><img src="/images/brand/2.png" alt="img"></li>
-                    <li><img src="/images/brand/3.png" alt="img"></li>
-                    <li><img src="/images/brand/4.png" alt="img"></li>
-                    <li><img src="/images/brand/5.png" alt="img"></li>
-                    <li><img src="/images/brand/6.png" alt="img"></li>
-                    <li><img src="/images/brand/7.png" alt="img"></li>
-                    <li><img src="/images/brand/8.png" alt="img"></li>
+                    <li><a><img src="~/images/brand/arcelik.jpg" alt="img" height="70" width="100"></a></li>
+                    <li><img src="~/images/brand/columbia (1).jpg" alt="img" height="70" width="100"></li>
+                    <li><img src="~/images/brand/iphone.png" alt="img" height="60" width="100"></li>
+                    <li><img src="~/images/brand/tommy.png" alt="img" height="80" width="110"></li>
+                    <li><img src="~/images/brand/samsung.png" alt="img" height="70" width="100"></li>
+                    <li><img src="~/images/brand/columbia (2).jpg" alt="img" height="70" width="110"></li>
+                    <li><img src="~/images/brand/vestel.png" alt="img" height="70" width="90"></li>
+                    <li><img src="~/images/brand/adidas.jpg" alt="img" height="70" width="100"></li>
+                    <li><img src="~/images/brand/philips.gif" alt="img" height="70" width="100"></li>
                 </ul>
             </div>
         </div>
