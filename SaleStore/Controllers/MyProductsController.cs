@@ -28,9 +28,9 @@ namespace SaleStore.Controllers
         // GET: Admin/Products
         public IActionResult Index(int page = 1)
         { 
-            model.Categories = _context.Categories.ToPagedList<Category>(page, 10);
-            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
-            model.Products = _context.Products.ToPagedList<Product>(page, 10);
+            model.Categories = _context.Categories.ToList();
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
+            model.Products = _context.Products.ToPagedList<Product>(page, 9);
             return View(model);
         }
 
