@@ -13,11 +13,13 @@ using SaleStore.Models;
 using SaleStore.Models.AccountViewModels;
 using SaleStore.Services;
 using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
+using SaleStore.Models.ViewModels;
+using SaleStore.Data;
 
 namespace SaleStore.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -26,13 +28,14 @@ namespace SaleStore.Controllers
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
 
+
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory) 
+            ILoggerFactory loggerFactory, ApplicationDbContext context) : base(context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
