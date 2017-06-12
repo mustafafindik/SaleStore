@@ -28,7 +28,7 @@ namespace SaleStore.Controllers
         public IActionResult Index(int page = 1)
         {
             HomePageViewModels model = new HomePageViewModels();
-            model.Categories = _context.Categories.ToPagedList<Category>(page, 9);
+            model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 8);
             model.Products = _context.Products.ToPagedList<Product>(page, 9);
             return View(model);

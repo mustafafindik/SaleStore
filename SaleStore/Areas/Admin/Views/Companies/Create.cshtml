@@ -1,4 +1,5 @@
 ﻿@model SaleStore.Models.Company
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Firma Oluştur";
@@ -67,6 +68,29 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label asp-for="ProductCount" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="ProductCount" class="form-control" />
+                                        <span asp-validation-for="ProductCount" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="CampaignCount" class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="CampaignCount" class="form-control" />
+                                        <span asp-validation-for="CampaignCount" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="UserId" class="col-md-2 control-label">Kullanıcı Kodu</label>
+                                    <div class="col-md-10">
+                                        <select asp-for="UserId" class="form-control"><option> @UserManager.GetUserId(User)</option></select>
+                                    </div>
+                                </div>
+
                                 @*<div class="form-group">
                                     <label asp-for="Logo" class="col-md-2 control-label"></label>
                                     <div class="col-md-10">
@@ -82,6 +106,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
             </form>
 

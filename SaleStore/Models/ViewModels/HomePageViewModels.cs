@@ -9,7 +9,7 @@ namespace SaleStore.Models.ViewModels
     public class HomePageViewModels 
     {
         
-        public IPagedList<Category> Categories { get; set; }
+        public List<Category> Categories { get; set; }
         public IPagedList<Product> Products { get; set; }
         public IPagedList<Campaign> Campaigns { get; set; }
         public List<Setting> Settings { get; set; }
