@@ -20,13 +20,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Views\Home\product.html" />
+    <Content Include="wwwroot\product.html" />
     <Content Include="C:\Users\ayber\AppData\Roaming\Microsoft\Windows\Network Shortcuts\Index.cshtml" Link="Index.cshtml" />
     <Content Include="wwwroot\assets\css\custom.css" />
     <Content Include="wwwroot\category.html" />
+    <Content Include="wwwroot\images\brand\.png" />
+    <Content Include="wwwroot\images\brand\23.jpg" />
+    <Content Include="wwwroot\images\brand\41.jpg" />
+    <Content Include="wwwroot\images\brand\adidas.jpg" />
+    <Content Include="wwwroot\images\brand\arcelik-logo.jpg" />
+    <Content Include="wwwroot\images\brand\arcelik.jpg" />
+    <Content Include="wwwroot\images\brand\columbia (1).jpg" />
+    <Content Include="wwwroot\images\brand\columbia (2).jpg" />
+    <Content Include="wwwroot\images\brand\columbia_sports_logo._V192262626_.jpg" />
+    <Content Include="wwwroot\images\brand\f07ck-calvinklein-100k.jpg" />
+    <Content Include="wwwroot\images\brand\iphone.png" />
+    <Content Include="wwwroot\images\brand\philips.gif" />
+    <Content Include="wwwroot\images\brand\samsung.png" />
+    <Content Include="wwwroot\images\brand\tommy.png" />
+    <Content Include="wwwroot\images\brand\vestel.png" />
     <Content Include="wwwroot\metronic\pages\scripts\table-datatables-managed.js" />
     <Content Include="wwwroot\uploads\5-2017-CampaignImages\githubhata.png" />
     <Content Include="wwwroot\uploads\6-2017-CampaignImages\m1.png" />
     <Content Include="wwwroot\uploads\logo.png" />
+    <Content Include="wwwroot\uploads\Seed\calvin.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="jQuery" Version="3.1.1" />

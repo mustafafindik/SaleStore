@@ -9,7 +9,7 @@ using SaleStore.Models;
 using PagedList.Core;
 using MimeKit;
 using MailKit.Net.Smtp;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace SaleStore.Controllers
 {
@@ -72,6 +72,26 @@ namespace SaleStore.Controllers
             model.Settings = _context.Setting.ToList();
             return View(model);
         }
+
+        public async Task <IActionResult> Product(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Company)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
         public IActionResult Products(int page=1)
         {
             model.Categories = _context.Categories.ToList();
@@ -79,6 +99,45 @@ namespace SaleStore.Controllers
             model.Products = _context.Products.ToPagedList<Product>(page, 10);
             model.Settings = _context.Setting.ToList();
             return View(model);
+        }
+        public ActionResult Select(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            model.Categories = _context.Categories.ToPagedList<Category>(1, 9);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
+            if (id == 0)
+            {
+                model.Products = _context.Products.ToPagedList<Product>(1, 9);      
+            }
+            else
+            {
+                model.Products = _context.Products.Where(x => x.CategoryId == id).OrderByDescending(x => x.CreateDate).ToPagedList(1, 9);
+            }
+            return View("Products",model);
+            
+        }
+
+        public ActionResult SelectCampaigns(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            model.Products = _context.Products.ToPagedList<Product>(1, 9);
+            model.Categories = _context.Categories.ToPagedList<Category>(1, 9);
+            if (id == 0)
+            {
+                model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
+            }
+            else
+            {
+                model.Campaigns = _context.Campaigns.Where(x => x.CategoryId == id).OrderByDescending(x => x.CreateDate).ToPagedList(1, 9);
+            }
+            return View("Campaigns", model);
+
         }
 
         public IActionResult Contact()

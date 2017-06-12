@@ -1,10 +1,178 @@
 ﻿@model IEnumerable<SaleStore.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ürünler";
 }
 
-<link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Ürünler</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <a asp-action="Create" class="btn sbold green">
+                                    Yeni Ekle
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="tblRecords">
+                    <thead>
+                        <tr>
+                            <th  data-orderable="false" class="all">
+                                @Html.DisplayName("Ürün Resmi")
+                            </th>
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                           
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.UnitPrice)
+                            </th>
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.SalePrice)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.SaleStarthDate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.SaleEndDate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.Details)
+                            </th>
+
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.ProductImage)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.UpdateDate)
+                            </th>
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.Category.Name)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.Company.Name)
+                            </th>
+                            <th data-orderable="false" class="all ">
+                                Eylemler
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="/@item.ProductImage" class="img-thumbnail    " style="height:50px;"  />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalePrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SaleStarthDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SaleEndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Details)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductImage)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UpdateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Category.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Company.Name)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li>
+                                                <a asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="fa fa-pencil-square-o"></i> Düzenle
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Details" asp-route-id="@item.Id">
+                                                    <i class="fa fa-info"></i> Detaylar
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Delete" asp-route-id="@item.Id">
+                                                    <i class="fa fa-times "></i> Sil
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@*<link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
 <link href="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" /><br />
 
 
@@ -28,7 +196,7 @@
             <th class="all">
                 @Html.DisplayNameFor(model => model.UnitPrice)
             </th>
-            <th class="all">
+            <th>
                 @Html.DisplayNameFor(model => model.SalePrice)
             </th>
             <th>
@@ -118,4 +286,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@

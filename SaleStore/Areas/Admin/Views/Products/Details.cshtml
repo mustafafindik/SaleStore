@@ -1,108 +1,115 @@
-@model SaleStore.Models.Product
+﻿@model SaleStore.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Ürün Detayları";
 }
-<link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-<link href="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" /><br />
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Ürün Detayları</span>
+                </div>
+
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+                    <dl class="dl-horizontal ">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Details)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Details)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UnitPrice)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.UnitPrice)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SalePrice)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SalePrice)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SaleStarthDate)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SaleStarthDate)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SaleEndDate)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SaleEndDate)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ProductImage)
+                        </dt>
+                        <dd>
+                            <img style="width:80px;" class="img-thumbnail img-responsive" src="/@Html.DisplayFor(model => model.ProductImage)" />
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreateDate)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CreateDate)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreatedBy)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CreatedBy)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UpdatedBy)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.UpdatedBy)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UpdateDate)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.UpdateDate)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Company.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Company.Name)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
 
 
-<h2>Details</h2>
-<div class="portlet-body form">
-    <div class="form-body">
-        <div>
-            <h4>Product</h4>
-            <hr />
-            <dl class="dl-horizontal ">
-              
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Details)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Details)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.UnitPrice)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.UnitPrice)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SalePrice)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.SalePrice)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SaleStarthDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.SaleStarthDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SaleEndDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.SaleEndDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ProductImage)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.ProductImage)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CreateDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CreateDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CreatedBy)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CreatedBy)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.UpdatedBy)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.UpdatedBy)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.UpdateDate)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.UpdateDate)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Category)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Category.Id)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Company)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Company.Id)
-                    </dd>
-            </dl>
+            </div>
         </div>
     </div>
-         <div class="form-group">
-    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index" class="btn btn-default" tabindex="11">Cancel</a>
-
-
 </div>
-    </div>
 
- 
+
 

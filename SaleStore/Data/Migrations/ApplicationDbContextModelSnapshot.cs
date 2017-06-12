@@ -135,12 +135,6 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Avatar");
-
-                    b.Property<int>("CampaignCount");
-
-                    b.Property<int>("CompanyId");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -152,10 +146,6 @@ namespace SaleStore.Data.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(35);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -169,8 +159,6 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<int>("ProductCount");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -179,8 +167,6 @@ namespace SaleStore.Data.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -265,6 +251,8 @@ namespace SaleStore.Data.Migrations
                     b.Property<string>("Address")
                         .HasMaxLength(80);
 
+                    b.Property<int>("CampaignCount");
+
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("CreatedBy")
@@ -278,12 +266,18 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<int>("ProductCount");
+
                     b.Property<DateTime>("UpdateDate");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(30);
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Companies");
                 });
@@ -530,20 +524,19 @@ namespace SaleStore.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SaleStore.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("SaleStore.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("SaleStore.Models.Campaign", b =>
                 {
                     b.HasOne("SaleStore.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SaleStore.Models.Company", b =>
+                {
+                    b.HasOne("SaleStore.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SaleStore.Models.Product", b =>

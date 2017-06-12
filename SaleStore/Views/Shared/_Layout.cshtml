@@ -1,4 +1,6 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @*@model SaleStore.Models.ViewModels.HomePageViewModels*@
 <!DOCTYPE html>
 <html lang="en">
@@ -36,128 +38,7 @@
 
 <body>
 
-    <!-- Modal Login start -->
-    <div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                    <h3 class="modal-title-site text-center"> Giriş </h3>
-                </div>
-                <div class="modal-body">
-                    
-                    <div class="form-group login-username">
-                        <div>
-                            <input name="log" id="login-user" class="form-control input" size="20"
-                                   placeholder="Kullanıcı Adı" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group login-password">
-                        <div>
-                            <input name="Password" id="login-password" class="form-control input" size="20"
-                                   placeholder="Şifre" type="password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox login-remember">
-                                <label>
-                                    <input name="rememberme" value="forever" checked="checked" type="checkbox">
-                                    Beni Hatırla
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Giriş" type="submit">
-                        </div>
-                    </div>
-                    <!--userForm-->
 
-                </div>
-                <div class="modal-footer">
-                    <p class="text-center">
-                        Not here before? <a data-toggle="modal" data-dismiss="modal"
-                                            href="#ModalSignup">Çıkış</a> <br>
-                        <a href="forgot-password.html"> Şifreni mi Unuttun? </a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-
-        </div>
-        <!-- /.modal-dialog -->
-
-    </div>
-    <!-- /.Modal Login -->
-    <!-- Modal Signup start -->
-    <div class="modal signUpContent fade" id="ModalSignup" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                    <h3 class="modal-title-site text-center"> Kayıt </h3>
-                </div>
-                <div class="modal-body">
-                    <div class="control-group">
-                        <a class="fb_button btn  btn-block btn-lg " href="#">
-                            Facebook ile Kayıt Ol
-                        </a>
-                    </div>
-                    <h5 style="padding:10px 0 10px 0;" class="text-center"> VEYA </h5>
-
-                    <div class="form-group reg-username">
-                        <div>
-                            <input name="login" class="form-control input" size="20" placeholder="Kullanıcı Adı"
-                                   type="text">
-                        </div>
-                    </div>
-                    <div class="form-group reg-email">
-                        <div>
-                            <input name="reg" class="form-control input" size="20" placeholder="Enter Email" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group reg-password">
-                        <div>
-                            <input name="password" class="form-control input" size="20" placeholder="Şifre"
-                                   type="password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox login-remember">
-                                <label>
-                                    <input name="rememberme" id="rememberme" value="forever" checked="checked"
-                                           type="checkbox">
-                                    Beni Hatırla
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Kayıt" type="submit">
-                        </div>
-                    </div>
-                    <!--userForm-->
-
-                </div>
-                <div class="modal-footer">
-                    <p class="text-center">
-                        Beni Hatırla? <a data-toggle="modal" data-dismiss="modal" href="#ModalLogin">
-                            Giriş
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-
-        </div>
-        <!-- /.modal-dialog -->
-
-    </div>
-    <!-- /.ModalSignup End -->
     <!-- Fixed navbar start -->
     <div class="navbar navbar-tshop navbar-fixed-top megamenu" role="navigation">
         <div class="navbar-top">
@@ -185,49 +66,79 @@
                     <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
                         <div class="pull-right">
                             <ul class="userMenu">
+@if (SignInManager.IsSignedIn(User))
+{
                                 <li class="dropdown">
+                                
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                         Profilim<b class="caret"> </b>
                                     </a>
                                     <ul class="dropdown-menu">
                                         
                                             
-                                                
+                                        @if (User.IsInRole("ADMIN") == true)
+                                        {
+                                            <li><a href="/Admin">Yöenetim Paneli </a></li>
+                                        }else { 
                                         <li><a href="/MyCampaigns">Kampanyalarım </a></li>
                                         <li><a href="/MyProducts">Ürünlerim </a></li>
-                                        <li><a href="/Admin">Yöenetim Paneli </a></li>
-                                                
-                            
+                                        }
+                                        
+                                        
+
+
                                            </ul></li>
+}
                                        
+                                @if (SignInManager.IsSignedIn(User) || User.IsInRole("ADMIN") == true)
+                                {
+                                    <li>
+                                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Merhaba @UserManager.GetUserName(User)!</a>
+                                    </li>
+                                    <li>
+                                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
+                                            <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
+                                                 <span class="hidden-xs">Çıkış Yap</span>
+                                                 <i class="glyphicon glyphicon-log-out hide visible-xs "></i>
+                                            </a>
+                                            
+                                    </li>
+
+                                }
+                                else
+                                {
                                         <li>
-                                            <a href="#" data-toggle="modal" data-target="#ModalLogin">
+                                            <a href="/account/login" >
                                                 <span class="hidden-xs">Giriş</span>
                                                 <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
                                             </a>
                                         </li>
                                         <li class="hidden-xs">
-                                            <a href="#" data-toggle="modal" data-target="#ModalSignup">
+                                            <a href="/account/register" >
                                                 Hesap Oluştur
                                             </a>
                                         </li>
+                                }
+
                                     </ul>
+
+                            
+
+
 </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        
         <!--/.navbar-top-->
 
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"> </span> <span class="icon-bar"></span> <span class="icon-bar"> </span>
-                </button>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart">
-                    <i class="fa fa-shopping-cart colorWhite"></i> <span class="cartRespons colorWhite">Cart ($210.00)</span>
-                </button>
-                <a class="navbar-brand " href="index.html" > <img src="@ViewBag.Logo"style=" width:180px; height:180px; margin-top:-77px;" alt="SaleStore"> </a>
+                
+                
+                <a class="navbar-brand " href="/" > <img src="@ViewBag.Logo" style="height:60px;margin-top:-15px;" alt="SaleStore" /></a>
 
                 <!-- this part for mobile -->
                 <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
@@ -429,9 +340,9 @@
                 <!--- this part will be hidden for mobile version -->
                 <div class="nav navbar-nav navbar-right hidden-xs">
                     <div class="dropdown  cartMenu ">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-shopping-cart"></i> <span class="cartRespons"> Cart ($210.00) </span> <b class="caret"></b>
-                        </a>
+                        </a>*@
 
                         <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
                             <div class="w100 miniCartTable scroll-pane">

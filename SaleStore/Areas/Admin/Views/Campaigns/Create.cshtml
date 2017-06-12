@@ -3,75 +3,99 @@
 @{
     ViewData["Title"] = "Kampanya Oluştur";
 }
-<link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-<link href="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" /><br />
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
 
-<h2>Kampanya Oluştur</h2>
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Kampanya Ekle</span>
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
-    <div class="form-horizontal">
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="portlet-body form">
-            <div class="form-body">
-                <div class="form-group">
-                    <label asp-for="Image" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
-                        @Html.ValidationMessage("Image", new { @class = "text-danger" })
-                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Name" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+                    <br />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="portlet-body form">
+                        <div class="form-body">
+                            <div class="form-group ">
+                                <label asp-for="Image" class="col-md-2 control-label"></label>
+                                <div class="col-md-9">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
+                                        <div>
+                                            <span class="btn red btn-outline btn-file">
+                                                <span class="fileinput-new"> Select image </span>
+                                                <span class="fileinput-exists"> Change </span>
+                                                <input title="uploadFile" type="file" name="uploadFile" />
+                                            </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix margin-top-10">
+                                        <span class="label label-success">NOTE!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Name" class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Slogan" class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="Slogan" class="form-control" />
+                                    <span asp-validation-for="Slogan" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CampaignStartDate" class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="CampaignStartDate" class="form-control" />
+                                    <span asp-validation-for="CampaignStartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CampaignEndDate" class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="CampaignEndDate" class="form-control" />
+                                    <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8">
+                                    <input type="submit" value="Oluştur" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Slogan" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Slogan" class="form-control" />
-                        <span asp-validation-for="Slogan" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CategoryId" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CampaignStartDate" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="CampaignStartDate" class="form-control" />
-                        <span asp-validation-for="CampaignStartDate" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CampaignEndDate" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="CampaignEndDate" class="form-control" />
-                        <span asp-validation-for="CampaignEndDate" class="text-danger"></span>
-                    </div>
-                </div>
-                -
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
+
+            </form>
+
+            <div>
+                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
             </div>
         </div>
     </div>
-
-</form>
-
-<div>
-    <a asp-action="Index">Listeye Geri Dön</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }

@@ -1,0 +1,94 @@
+﻿@model SaleStore.Models.Product
+
+@{
+    Layout = null;
+}
+
+<a aria-hidden="true" data-dismiss="modal" class="close btn">X</a>
+<div class="col-lg-5 col-md-5 col-sm-5  col-xs-12">
+
+    <!-- product Image -->
+
+    <div class="main-image  col-lg-12 no-padding style3">
+        <a class="product-largeimg-link" href="/MyProducts/details/@Model.Id">
+            <img src="/@Html.DisplayFor(model => model.ProductImage)"
+                 class="img-responsive product-largeimg"
+                 alt="img">
+        </a>
+    </div>
+    <!--/.main-image-->
+
+    <div class="modal-product-thumb">
+        <a class="thumbLink selected">
+            <img data-large="/@Html.DisplayFor(model => model.ProductImage)" alt="img"
+                 class="img-responsive" src="/@Html.DisplayFor(model => model.ProductImage)">
+        </a>
+       
+    </div>
+    <!--/.modal-product-thumb-->
+</div>
+<!--/ product Image-->
+
+
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 modal-details no-padding">
+    <div class="modal-details-inner">
+        <div class="product-title">
+            <h1>@Html.DisplayFor(model => model.Name)</h1>
+            <h3>@Html.DisplayFor(model => model.Category.Name)</h3>
+            <div class="product-price">
+                <span class="price-sales"> @Html.DisplayFor(model => model.SalePrice)</span> <span class="price-standard">@Html.DisplayFor(model => model.UnitPrice)</span>
+            </div>
+       
+          
+            <div class="color-details">
+                <div class="details-description">
+                    <p style="font-size:14px;font-weight:normal;">@Html.DisplayFor(model => model.Details) </p>
+                </div>
+            </div>
+        </div>
+            <!--/.color-details-->
+
+            <div class="productFilter productFilterLook2">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6">
+                        <div class="filterBox">
+                          <h4>İndirim Başlangıç : @Html.DisplayFor(model => model.SaleStarthDate) </h4> 
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6">
+                        <div class="filterBox">
+                            <div class="filterBox">
+                                <h4>İndirim Bitiş :@Html.DisplayFor(model => model.SaleEndDate)</h4>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- productFilter -->
+
+            <div class="cart-actions">
+                <div class="addto row">
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                        <a href="/MyProducts/details/@Model.Id" class="btn btn-primary first" title="Ürün Detayı">
+                           Ürünü İncele
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                        <a href="/Campaigns" class="btn btn-default first" title="Kampanyalar">
+                            Kampanyalar
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                        <a href="/Products" class="btn btn-success first" title="Tüm Ürünler">
+                            Ürünler
+                        </a>
+                    </div>
+                </div>
+            </div>     
+            <!--/.product-share-->
+    </div>
+    <!--/.modal-details-inner-->
+</div>
+<!--/.modal-details-->
+<div class="clear"></div>

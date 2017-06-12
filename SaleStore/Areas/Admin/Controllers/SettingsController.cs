@@ -41,9 +41,9 @@ namespace SaleStore.Areas.Admin.Controllers
             setting.CreateDate = DateTime.Now;
             setting.UpdatedBy = User.Identity.Name ?? "username";
             setting.UpdateDate = DateTime.Now;
-            if (logoUpload != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(logoUpload.FileName)) == false)
+            if (logoUpload != null && ".png".Contains(Path.GetExtension(logoUpload.FileName)) == false)
             {
-                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
+                ModelState.AddModelError("logoUpload", "Dosyanın uzantısı .png olmalıdır.");
             }
             else if (ModelState.IsValid)
             {
@@ -51,9 +51,7 @@ namespace SaleStore.Areas.Admin.Controllers
                 if (logoUpload != null)
                 {
 
-                    if (Path.GetExtension(logoUpload.FileName) == ".jpg"
-                    || Path.GetExtension(logoUpload.FileName) == ".gif"
-                    || Path.GetExtension(logoUpload.FileName) == ".png")
+                    if (Path.GetExtension(logoUpload.FileName) == ".png")
                     {
                         string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-Logos";
                         string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
@@ -75,15 +73,15 @@ namespace SaleStore.Areas.Admin.Controllers
                             {
                                 _context.Update(setting);
                                 await _context.SaveChangesAsync();
-                               
+                                ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
                             }
                             else
                             {
                                 _context.Add(setting);
                                 await _context.SaveChangesAsync();
-
+                                ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
                             }
-                            return RedirectToAction("Index");
+                            return View(setting);
                         }
                         catch (Exception exc) { ModelState.AddModelError("ProductImage", "Hata: " + exc.Message); }
                     }
@@ -96,6 +94,7 @@ namespace SaleStore.Areas.Admin.Controllers
             }
             _context.Update(setting);
             await _context.SaveChangesAsync();
+            ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
             return View(setting);
         }
     }
