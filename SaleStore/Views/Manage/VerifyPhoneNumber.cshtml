@@ -1,26 +1,29 @@
 ﻿@model VerifyPhoneNumberViewModel
 @{
-    ViewData["Title"] = "Verify Phone Number";
+    ViewData["Title"] = "Dogrulama Kodu Gönder";
 }
 
 <h2>@ViewData["Title"].</h2>
 
-<form asp-controller="Manage" asp-action="VerifyPhoneNumber" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+<form asp-controller="Manage" asp-action="VerifyPhoneNumber" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal headerOffset" style="padding-top:80px;">
     <input asp-for="PhoneNumber" type="hidden" />
-    <h4>Add a phone number.</h4>
-    <h5>@ViewData["Status"]</h5>
+    <h2 class="col-md-offset-5"><i class="fa fa-phone" style="margin-right:10px;" aria-hidden="true"></i>Telefon Numarası Ekle</h2>
+    <h1 class="col-md-offset-2">@ViewData["Status"]</h1>
+ 
     <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <br />
+    <div asp-validation-summary="All" class="text-danger col-md-offset-2"></div>
+    <br />
     <div class="form-group">
-        <label asp-for="Code" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <label asp-for="Code" class="col-md-2 control-label">Dogrulama Kodu</label>
+        <div class="col-md-6">
             <input asp-for="Code" class="form-control" />
             <span asp-validation-for="Code" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Submit</button>
+        <div class="col-md-offset-2 col-md-6">
+            <button type="submit" class="btn btn-info">Gönder</button>
         </div>
     </div>
 </form>
