@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SaleStore.Data;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
 
-    public class DashboardController: Controller
+    public class DashboardController: ControllerBaseAdmin
     {
+        public DashboardController(ApplicationDbContext context) : base(context)
+        {
+        }
+
         public IActionResult Index()
         {
             return View();

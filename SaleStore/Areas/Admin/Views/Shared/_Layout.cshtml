@@ -94,21 +94,61 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </li>
                                     <li>
                                         <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                            
+                                            @if (ViewBag.message != null)
+                                            {
                                             <li>
                                                 <a href="#">
+                                                   
                                                     <span class="photo">
-                                                        <img src="/metronic/layouts/layout/img/avatar.png" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">Just Now </span>
+                                                        <img src="/metronic/layouts/layout/img/avatar.png" class="img-circle" alt="">
                                                     </span>
-                                                    <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
+                                                    <span class="subject">        
+                                                            <span class="from"> @ViewBag.FullName </span>
+                                                            <span class="time">@ViewBag.SubmitDate</span>
+                                                    </span> 
+                                                            <span class="message"> @ViewBag.message</span>
+
                                                 </a>
                                             </li>
+                                             }
+                                           @if (ViewBag.message2 != null)
+                                           {
+                                            <li>
+                                                <a href="#">
+
+                                                    <span class="photo">
+                                                        <img src="/metronic/layouts/layout/img/avatar.png" class="img-circle" alt="">
+                                                    </span>
+                                                    <span class="subject">
+                                                        <span class="from"> @ViewBag.FullName2 </span>
+                                                        <span class="time">@ViewBag.SubmitDate2</span>
+                                                    </span>
+                                                    <span class="message"> @ViewBag.message2</span>
+
+                                                </a>
+                                            </li>
+                                           }
+                                           @if (ViewBag.message3 != null)
+                                           {
+                                            <li>
+                                                <a href="#">
+
+                                                    <span class="photo">
+                                                        <img src="/metronic/layouts/layout/img/avatar.png" class="img-circle" alt="">
+                                                    </span>
+                                                    <span class="subject">
+                                                        <span class="from"> @ViewBag.FullName3 </span>
+                                                        <span class="time">@ViewBag.SubmitDate3</span>
+                                                    </span>
+                                                    <span class="message"> @ViewBag.message3</span>
+
+                                                </a>
+                                            </li>
+                                           }
                                          
                                         </ul>
                                     </li>
+                                  
                                 </ul>
                             </li>
                             <!-- END INBOX DROPDOWN -->

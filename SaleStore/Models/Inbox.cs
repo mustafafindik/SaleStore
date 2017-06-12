@@ -24,7 +24,8 @@ namespace SaleStore.Models
         [Display(Name = "Mesaj")]
         [Required]
         public string Message { get; set; }
-        [Display(Name = "İletilme Tarihi")]
+        [Display(Name = "İletilme Tarihi"),
+             DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime SubmitDate { get; set; }
         [Required]
         [StringLength(200)]

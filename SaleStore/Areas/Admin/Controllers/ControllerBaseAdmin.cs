@@ -19,7 +19,35 @@ namespace SaleStore.Areas.Admin.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            
+            if (_context.Inboxes.Any())
+            {
+                IEnumerable<Inbox> messages = _context.Inboxes.OrderByDescending(x=> x.SubmitDate).Take(3);
+                var count = 0;
+                if (messages.ElementAtOrDefault(count) != null)
+                {
+                    ViewBag.FullName = messages.ElementAt(count).FullName;
+                    ViewBag.message = messages.ElementAt(count).Message;
+                    ViewBag.SubmitDate = messages.ElementAt(count).SubmitDate;
+                }
+                count++;
+                if(messages.ElementAtOrDefault(count) != null)
+                {
+                    ViewBag.FullName2 = messages.ElementAt(count).FullName;
+                    ViewBag.message2 = messages.ElementAt(count).Message;
+                    ViewBag.SubmitDate2 = messages.ElementAt(count).SubmitDate;
+                }
+                count++;
+                if (messages.ElementAtOrDefault(count) != null)
+                {
+                    ViewBag.FullName3 = messages.ElementAt(count).FullName;
+                    ViewBag.message3 = messages.ElementAt(count).Message;
+                    ViewBag.SubmitDate3 = messages.ElementAt(count).SubmitDate;
+                }       
+            }
+            else
+            {
+                ViewBag.message = "Hiç mesaj yok.";
+            }
 
         }
     }
