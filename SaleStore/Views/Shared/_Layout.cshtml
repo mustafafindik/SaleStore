@@ -1,4 +1,6 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @*@model SaleStore.Models.ViewModels.HomePageViewModels*@
 <!DOCTYPE html>
 <html lang="en">
@@ -64,21 +66,47 @@
                     <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
                         <div class="pull-right">
                             <ul class="userMenu">
+@if (SignInManager.IsSignedIn(User))
+{
                                 <li class="dropdown">
+                                
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                         Profilim<b class="caret"> </b>
                                     </a>
                                     <ul class="dropdown-menu">
                                         
                                             
-                                                
+                                        @if (User.IsInRole("ADMIN") == true)
+                                        {
+                                            <li><a href="/Admin">Yöenetim Paneli </a></li>
+                                        }else { 
                                         <li><a href="/MyCampaigns">Kampanyalarım </a></li>
                                         <li><a href="/MyProducts">Ürünlerim </a></li>
-                                        <li><a href="/Admin">Yöenetim Paneli </a></li>
-                                                
-                            
+                                        }
+                                        
+                                        
+
+
                                            </ul></li>
+}
                                        
+                                @if (SignInManager.IsSignedIn(User) || User.IsInRole("ADMIN") == true)
+                                {
+                                    <li>
+                                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Merhaba @UserManager.GetUserName(User)!</a>
+                                    </li>
+                                    <li>
+                                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
+                                            <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
+                                                 <span class="hidden-xs">Çıkış Yap</span>
+                                                 <i class="glyphicon glyphicon-log-out hide visible-xs "></i>
+                                            </a>
+                                            
+                                    </li>
+
+                                }
+                                else
+                                {
                                         <li>
                                             <a href="/account/login" >
                                                 <span class="hidden-xs">Giriş</span>
@@ -90,12 +118,20 @@
                                                 Hesap Oluştur
                                             </a>
                                         </li>
+                                }
+
                                     </ul>
+
+                            
+
+
 </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        
         <!--/.navbar-top-->
 
         <div class="container">

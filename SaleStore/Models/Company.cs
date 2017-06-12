@@ -10,6 +10,14 @@ namespace SaleStore.Models
 {
     public class Company:BaseEntity
     {
+        public Company()
+        {
+
+            ProductCount = 25;
+            CampaignCount = 3;
+
+        }
+
         [DisplayName("Firma Adı"),
          Required(ErrorMessage = "Lütfen bir {0} giriniz."),
          MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
@@ -23,6 +31,15 @@ namespace SaleStore.Models
         public string Phone { get; set; }
         [DisplayName("Firma Logosu")]
         public string Logo { get; set; }
+
+        [DisplayName("Ürün Sayısı")]
+        public int ProductCount { get; set; }
+        [DisplayName("Kampanya Sayısı")]
+        public int CampaignCount { get; set; }
+
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser ApplicationUser { get; set; }
 
 
     }

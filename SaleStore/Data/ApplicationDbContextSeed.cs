@@ -240,12 +240,17 @@ namespace SaleStore.Data
 
 
         private static ApplicationUser user;
+        private static ApplicationUser user2;
 
         private static void AddUsers(UserManager<ApplicationUser> _userManager)
         {
-            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "salestoredeneme@gmail.com", Email = "salestoredeneme@gmail.com", EmailConfirmed = true, NormalizedEmail = "SALESTOREDENEME@GMAİL.COM", NormalizedUserName = "SALESTOREDENEME@GMAİL.COM", CompanyId = 1 };
+            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "salestoredeneme@gmail.com", Email = "salestoredeneme@gmail.com", EmailConfirmed = true, NormalizedEmail = "SALESTOREDENEME@GMAIL.COM", NormalizedUserName = "SALESTOREDENEME@GMAIL.COM"};
             var task1 = Task.Run(() => _userManager.CreateAsync(user, "123:Asdf"));
             task1.Wait();
+
+            user2 = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "company@gmail.com", Email = "company@gmail.com", EmailConfirmed = true, NormalizedEmail = "COMPANY@GMAIL.COM", NormalizedUserName = "COMPANY@GMAIL.COM" };
+            var task2 = Task.Run(() => _userManager.CreateAsync(user2, "123:Asdf"));
+            task2.Wait();
 
         }
 

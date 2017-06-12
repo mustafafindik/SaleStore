@@ -9,6 +9,7 @@ using SaleStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
@@ -27,6 +28,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // GET: Admin/Companies
         public async Task<IActionResult> Index()
         {
+            var applicationDbContext = _context.Companies.Include(p => p.ApplicationUser);
             return View(await _context.Companies.ToListAsync());
         }
 
@@ -51,6 +53,8 @@ namespace SaleStore.Areas.Admin.Controllers
         // GET: Admin/Companies/Create
         public IActionResult Create()
         {
+            ViewBag.UserId = new SelectList(_context.Users, "Id","Id");
+
             return View();
         }
 
