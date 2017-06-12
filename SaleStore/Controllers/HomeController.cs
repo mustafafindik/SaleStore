@@ -106,7 +106,7 @@ namespace SaleStore.Controllers
             {
                 return BadRequest();
             }
-            model.Categories = _context.Categories.ToPagedList<Category>(1, 9);
+            model.Categories = _context.Categories.ToList<Category>();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
             if (id == 0)
             {
@@ -127,7 +127,7 @@ namespace SaleStore.Controllers
                 return BadRequest();
             }
             model.Products = _context.Products.ToPagedList<Product>(1, 9);
-            model.Categories = _context.Categories.ToPagedList<Category>(1, 9);
+            model.Categories = _context.Categories.ToList<Category>();
             if (id == 0)
             {
                 model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
