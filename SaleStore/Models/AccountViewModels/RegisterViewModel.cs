@@ -23,5 +23,7 @@ namespace SaleStore.Models.AccountViewModels
         [Display(Name = "Şifre(Tekrar)")]
         [Compare("Password", ErrorMessage = "Şifre ve Şifre(Tekrar) eşleşmiyor.")]
         public string ConfirmPassword { get; set; }
+
+        public Company Companies { get; set; }
     }
 }

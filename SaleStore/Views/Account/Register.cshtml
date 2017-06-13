@@ -1,4 +1,6 @@
 ﻿@model RegisterViewModel
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Register";
 }
@@ -31,27 +33,155 @@
                         <div class="col-xs-12 col-sm-4">
                             <h2 class="block-title-2"> Bir hesap Oluşturun</h2>
 
-                            <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                            
 
-                                <div class="form-group">
-                                    <label asp-for="Email">Email</label>
-                                    <input asp-for="Email" class="form-control" placeholder="Email adresinizi giriniz" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                <!--Tab-->
+                                <div class="product-tab w100 clearfix">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#details" data-toggle="tab">1.Adım</a></li>
+                                        <li><a href="#size" data-toggle="tab">2.Adım</a></li>
+
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="details">
+                                            <h3>Üyelik Bilgileri</h3>
+                                            <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                                                <div class="form-group">
+                                                    <label asp-for="Email">Email</label>
+                                                    <input asp-for="Email" class="form-control" placeholder="Email adresinizi giriniz" />
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Password">Şifre</label>
+                                                    <input asp-for="Password" class="form-control" placeholder="Şifre giriniz giriniz" />
+                                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="ConfirmPassword">Şifre Onayla</label>
+                                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi tekrar giriniz">
+                                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                                </div>
+                                                <button type="submit" class="btn   btn-primary">
+                                                    <i class="fa fa-user"></i> Kaydol
+                                                </button>
+                                                </form>
+</div>
+                                        <div class="tab-pane" id="size">
+                                            <h3>Firma Bilgileri</h3>
+                                            <form asp-area="Admin" asp-controller="Companies" asp-action="Create" method="post">
+                                                <div class="form-horizontal">
+
+                                                    <br />
+                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                    <div class="portlet-body form">
+                                                        <div class="form-body">
+                                                            <div class="form-body">
+                                                                <div class="form-group">
+                                                                    <label asp-for="Companies.Name" class="col-md-2 control-label"></label>
+                                                                    <div class="col-md-10">
+                                                                        <input asp-for="Companies.Name" class="form-control" />
+                                                                        <span asp-validation-for="Companies.Name" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="Companies.Address" class="col-md-2 control-label"></label>
+                                                                    <div class="col-md-10">
+                                                                        <input asp-for="Companies.Address" class="form-control" />
+                                                                        <span asp-validation-for="Companies.Address" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label asp-for="Companies.Phone" class="col-md-2 control-label"></label>
+                                                                    <div class="col-md-10">
+                                                                        <input asp-for="Companies.Phone" class="form-control" />
+                                                                        <span asp-validation-for="Companies.Phone" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group ">
+                                                                    <label asp-for="Companies.Logo" class="col-md-2 control-label"></label>
+                                                                    <div class="col-md-9">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
+                                                                            <div>
+                                                                                <span class="btn red btn-outline btn-file">
+                                                                                    <span class="fileinput-new"> Select image </span>
+                                                                                    <span class="fileinput-exists"> Change </span>
+                                                                                    <input title="uploadFile" type="file" name="Companies.uploadFile" />
+                                                                                </span>
+                                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clearfix margin-top-10">
+                                                                            <span class="label label-success">NOTE!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label asp-for="Companies.ProductCount" class="col-md-2 control-label"></label>
+                                                                    <div class="col-md-10">
+                                                                        <input asp-for="Companies.ProductCount" class="form-control" />
+                                                                        <span asp-validation-for="Companies.ProductCount" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label asp-for="Companies.CampaignCount" class="col-md-2 control-label"></label>
+                                                                    <div class="col-md-10">
+                                                                        <input asp-for="Companies.CampaignCount" class="form-control" />
+                                                                        <span asp-validation-for="Companies.CampaignCount" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label asp-for="Companies.UserId" class="col-md-2 control-label">Kullanıcı Kodu</label>
+                                                                    <div class="col-md-10">
+                                                                        <select asp-for="Companies.UserId" class="form-control"><option> @UserManager.GetUserId(User)</option></select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-2 col-md-10">
+                                                                        <input type="submit" value="Kaydet" class="btn btn-default" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>                
+                                                                       
+                                                                        
+                                                                
+                                                                
+
+                                                                
+
+                                                                
+
+                                                                
+
+                                                                
+
+                                                                
+
+                                                                
+                                                </div>
+                                            
+                                       
+                                        <div class="tab-pane" id="shipping">
+
+                                        </div>
+                                    </div>
+                                    <!-- /.tab content -->
+
                                 </div>
-                                <div class="form-group">
-                                    <label asp-for="Password">Şifre</label>
-                                    <input asp-for="Password" class="form-control" placeholder="Şifre giriniz giriniz" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="ConfirmPassword">Şifre Onayla</label>
-                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi tekrar giriniz">
-                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                </div>
-                                <button type="submit" class="btn   btn-primary">
-                                    <i class="fa fa-user"></i> Kaydol
-                                </button>
-                            </form>
+                                <!--Tab-->
+                               
+                            
                         </div>
 
                         <div class="col-xs-12 col-sm-4">
@@ -97,6 +227,8 @@
                     </div>
                 </div>
             </form>*@
+            
+
 
             @section Scripts {
                 @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
