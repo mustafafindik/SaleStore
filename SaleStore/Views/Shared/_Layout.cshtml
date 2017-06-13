@@ -651,6 +651,13 @@
             e.preventDefault()
             mySwiper.swipeNext()
         })
+
+                $(document).ready(function () {
+                    $(document).on('hidden.bs.modal', function (e) {
+                        $(e.target).removeData('bs.modal');
+                    });
+               });
+   
     </script>
 
     <!-- include jqueryCycle plugin -->
