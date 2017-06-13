@@ -241,7 +241,7 @@
                                    data-target="#productSetailsModalAjax">Gözat</a>
                             </div>
                             <a href="/MyProducts/details/@item.Id">
-                                <img src="/@item.ProductImage" alt="img" style="margin-top:10px;height:250px;width:225px;"
+                                <img src="/@item.ProductImage" alt="img" style="margin-top:10px;height:250px;"
                                      class="img-responsive ">
                             </a>
                             @{ var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));}
@@ -725,10 +725,10 @@
                 <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 
                     <div class="product">
-
-                        <div class="imageHover">
+                         
+                        <div class="imageHover"> 
                             <a href="/myproducts/Details/@item.Id">
-                                <img src="/@item.ProductImage" alt="img" class="img-responsive" style="margin-top:10px;height:240px;width:225px;" />
+                                <img src="/@item.ProductImage" alt="img" class="img-responsive" style="margin-top:10px;height:240px;display:inline-block" />
                  
                             </a>
                             @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
