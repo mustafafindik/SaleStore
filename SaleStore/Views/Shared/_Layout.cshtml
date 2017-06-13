@@ -78,7 +78,7 @@
                                             
                                         @if (User.IsInRole("ADMIN") == true)
                                         {
-                                            <li><a href="/Admin">Yöenetim Paneli </a></li>
+                                            <li><a href="/Admin">Yönetim Paneli </a></li>
                                         }else { 
                                         <li><a href="/MyCampaigns">Kampanyalarım </a></li>
                                         <li><a href="/MyProducts">Ürünlerim </a></li>
@@ -90,7 +90,7 @@
                                            </ul></li>
 }
                                        
-                                @if (SignInManager.IsSignedIn(User) || User.IsInRole("ADMIN") == true)
+                                @if (SignInManager.IsSignedIn(User))
                                 {
                                     <li>
                                         <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Merhaba @UserManager.GetUserName(User)!</a>

@@ -47,10 +47,11 @@ namespace SaleStore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            //seedden rol ve üye eklemek için bu servis eklenir
             services.AddIdentity<ApplicationUser, Role>()
                .AddEntityFrameworkStores<ApplicationDbContext>()
                .AddDefaultTokenProviders();
+            // Levent burası pagedlist için ekle 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddMvc();
 
@@ -87,8 +88,10 @@ namespace SaleStore
             app.UseStaticFiles();
 
             app.UseIdentity();
+            //role ve üye için parantezlere dikkat ediniz (seed ekleme )
             app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed(app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>(), app.ApplicationServices.GetRequiredService<RoleManager<Role>>());
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+            //facebook ile giriş yap ekleme 
             app.UseFacebookAuthentication(new FacebookOptions()
             {
                 AppId = Configuration["Authentication:Facebook:AppId"],
