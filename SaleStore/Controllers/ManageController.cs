@@ -10,11 +10,12 @@ using Microsoft.Extensions.Options;
 using SaleStore.Models;
 using SaleStore.Models.ManageViewModels;
 using SaleStore.Services;
+using SaleStore.Data;
 
 namespace SaleStore.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -29,7 +30,7 @@ namespace SaleStore.Controllers
           IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILoggerFactory loggerFactory)
+          ILoggerFactory loggerFactory,ApplicationDbContext context) : base(context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
