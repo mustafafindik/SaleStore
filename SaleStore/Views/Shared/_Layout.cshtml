@@ -285,6 +285,51 @@
                 <!--/.cartMenu-->
             </div>
             <!--/.navbar-cart-->
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="/Home"> Anasayfa </a></li>
+                    <li class="dropdown megamenu-fullwidth">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            Kategoriler<b class="caret"> </b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="megamenu-content ">
+                                <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
+                                    <li class="no-border">
+                                        <p class="promo-1"><strong> Kategoriler </strong></p>
+                                    </li>
+                                    @*@foreach (var item in Model.Categories)
+                                    {
+                                        <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                                    }*@
+                                </ul>
+                                <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
+                                    <li>
+                                        <a class="newProductMenuBlock" href="product-details.html">
+                                            <img class="img-responsive" src="/images/site/promo1.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>JEANS</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
+                                    <li>
+                                        <a class="newProductMenuBlock" href="product-details.html">
+                                            <img class="img-responsive" src="/images/site/promo2.jpg" alt="product"> <span class="ProductMenuCaption">
+                                                <i class="fa fa-caret-right"></i> PARTY DRESS
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
+                                    <li>
+                                        <a class="newProductMenuBlock" href="product-details.html">
+                                            <img class="img-responsive" src="/images/site/promo3.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>SHOES</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
             <div class="col-lg-6 col-sm-9 col-xs-9 col-md-4 no-margin no-padding">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/Home"> Anasayfa </a></li>
