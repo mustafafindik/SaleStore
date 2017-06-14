@@ -5008,6 +5008,11 @@ div.quickview {
     h3 {
         font-size: 15px;
     }
+   
+    .form-horizontal .form-group {
+         margin-right: 10px; 
+         margin-left: 10px;
+    }
 
     .phone-number i.glyphicon-phone-alt {
         padding-top: 2px !important;
