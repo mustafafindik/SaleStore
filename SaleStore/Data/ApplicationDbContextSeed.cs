@@ -301,6 +301,9 @@ namespace SaleStore.Data
             s.Mail = "yardim@salestore.com";
             s.SiteSlogan = "Herşeyi indirdik sizi bekliyoruz";
             s.About = "EN kaliteli ürünleri EN uygun fiyatlarla bulmanın en kolay yolu";
+            s.Vision = "Türkiye’de ve bölgede e-ticaret sektörünün lideri olmak.";
+            s.Mission = "E-ticaret sektöründe hem müşterilere hem mağazalara yenilikçi hizmetler sunarak Türkiye e-ticaret sektörünün yeniden şekillendirilmesine öncülük etmek.";
+            s.Strategy = "Stratejik ortaklıklarla güçlü entegrasyona dayanan eko-sistemimizde, müşterilere Güven ve Kolaylık; mağazalara ise Destek ve Özen üzerine dayalı değer önerileri sunmaktır.";
             s.Title = "EN kaliteli ürünleri EN uygun fiyatlarla bulmanın en kolay yolu";
             s.SeoTitle = "EN kaliteli ürünleri EN uygun fiyatlarla bulmanın en kolay yolu";
             s.SeoDescription = "EN kaliteli ürünleri EN uygun fiyatlarla bulmanın en kolay yolu";
