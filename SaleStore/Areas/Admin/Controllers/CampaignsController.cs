@@ -10,10 +10,13 @@ using SaleStore.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
+
     public class CampaignsController : Controller
     {
         private readonly ApplicationDbContext _context;

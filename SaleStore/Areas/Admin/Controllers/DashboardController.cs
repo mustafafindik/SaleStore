@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SaleStore.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
+
 
     public class DashboardController: ControllerBaseAdmin
     {

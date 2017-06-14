@@ -12,9 +12,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using SaleStore.Models.ViewModels;
 using PagedList.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
+    [Authorize]
+
     public class MyProductsController : ControllerBase
     {
         private IHostingEnvironment env;
