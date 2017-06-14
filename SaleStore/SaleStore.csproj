@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Views\Home\product.html" />
     <Content Include="wwwroot\product.html" />
     <Content Include="C:\Users\ayber\AppData\Roaming\Microsoft\Windows\Network Shortcuts\Index.cshtml" Link="Index.cshtml" />
     <Content Include="wwwroot\assets\css\custom.css" />

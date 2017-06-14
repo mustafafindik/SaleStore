@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
-    
+   
 
     public class HomeController : ControllerBase
     {
