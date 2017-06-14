@@ -100,6 +100,7 @@ namespace SaleStore.Controllers
             model.Settings = _context.Setting.ToList();
             return View(model);
         }
+        //kategori filtreleme metodu
         public ActionResult Select(int? id)
         {
             if (id == null)

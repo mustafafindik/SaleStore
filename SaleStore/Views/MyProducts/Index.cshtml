@@ -533,6 +533,15 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+@section scripts {
+<script>
+$(document).ready(function () {
+    $(document).on('hidden.bs.modal', function (e) {
+        $(e.target).removeData('bs.modal');
+    });
+    });
+</script>
+}
 <!-- /.modal -->
 <!-- Le javascript
 ================================================== -->

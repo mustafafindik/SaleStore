@@ -73,13 +73,13 @@ namespace SaleStore.Areas.Admin.Controllers
                             {
                                 _context.Update(setting);
                                 await _context.SaveChangesAsync();
-                                ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
+                                ViewBag.Messagesettings = "Ayarlarınız Başarıyla kaydedildi.";
                             }
                             else
                             {
                                 _context.Add(setting);
                                 await _context.SaveChangesAsync();
-                                ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
+                                ViewBag.Messagesettings = "Ayarlarınız Başarıyla kaydedildi.";
                             }
                             return View(setting);
                         }
@@ -94,7 +94,7 @@ namespace SaleStore.Areas.Admin.Controllers
             }
             _context.Update(setting);
             await _context.SaveChangesAsync();
-            ViewBag.Message = "Ayarlarınız Başarıyla kaydedildi.";
+            ViewBag.Messagesettings = "Ayarlarınız Başarıyla kaydedildi.";
             return View(setting);
         }
     }

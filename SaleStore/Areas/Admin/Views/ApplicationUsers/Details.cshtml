@@ -1,0 +1,119 @@
+﻿@model SaleStore.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Üye Detayları";
+}
+
+<br />
+<div class="row">
+    <div class="col-md-12 col-xs-11 col-sm-11">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Kampanya Detayları</span>
+                </div>
+
+            </div>
+            <div class="portlet-body form">
+                <div class="form-body">
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NormalizedUserName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.NormalizedUserName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NormalizedEmail)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.NormalizedEmail)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.EmailConfirmed)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.EmailConfirmed)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PasswordHash)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PasswordHash)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SecurityStamp)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SecurityStamp)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ConcurrencyStamp)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ConcurrencyStamp)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.TwoFactorEnabled)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LockoutEnd)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.LockoutEnd)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LockoutEnabled)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.LockoutEnabled)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AccessFailedCount)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.AccessFailedCount)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+                    <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

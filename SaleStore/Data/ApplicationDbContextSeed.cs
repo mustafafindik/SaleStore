@@ -28,6 +28,8 @@ namespace SaleStore.Data
             AddSettings(context);
             AddMailSettings(context);
             AddSendMessages(context);
+
+            //kullanıcı ve role ilişkisi
             AddUsers(userManager);
             AddRoles(roleManager);
             AddRoleToUser(userManager);

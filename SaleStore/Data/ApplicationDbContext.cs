@@ -32,6 +32,7 @@ namespace SaleStore.Data
         public DbSet<SendMessage> SendMessages { get; set; }
         public DbSet<SaleStore.Models.Setting> Setting { get; set; }
         public DbSet<Role> ApplicationRoles { get; set; }
+        public DbSet<SaleStore.Models.ApplicationUser> ApplicationUser { get; set; }
       
     }
 }
