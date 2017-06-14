@@ -10,9 +10,12 @@ using PagedList.Core;
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
+    [Authorize]
+
     public class HomeController : ControllerBase
     {
       

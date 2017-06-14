@@ -4994,8 +4994,24 @@ div.quickview {
     }
 
     .userMenu li a {
-        padding-top: 3px;
+        padding-top: 8px;
         line-height: normal;
+        padding-top:3px;
+    }
+
+   #telefon .userMenu li a {
+        padding-top: 15px;
+        line-height: normal;
+        padding-top: 3px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+   
+    .form-horizontal .form-group {
+         margin-right: 10px; 
+         margin-left: 10px;
     }
 
     .phone-number i.glyphicon-phone-alt {
@@ -5007,7 +5023,7 @@ div.quickview {
     }
 
     .search-box .input-group {
-        margin-top: 9px;
+        margin-top: 15px;
     }
 
     .search-box .input-group .btn {

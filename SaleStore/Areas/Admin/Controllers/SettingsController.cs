@@ -10,10 +10,13 @@ using SaleStore.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
+
     public class SettingsController : ControllerBaseAdmin
     {
         private IHostingEnvironment env;

@@ -30,9 +30,15 @@
                             </a>
                         </h4>
                     </div>
+
                     <div id="collapseCategory" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked tree">
+                                <li class="active dropdown-tree open-tree">
+                                    <a asp-controller="Home" asp-action="Select/0" class="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> Tümü
+                                    </a>
+                                </li>
                                 @*<li class="active dropdown-tree open-tree">
                                     <a class="dropdown-tree-a">
                                         <span class="badge pull-right">42</span> WOMEN COLLECTION
@@ -449,7 +455,7 @@
                                data-target="#productSetailsModalAjax">Hızlı İncele</a>
                         </div>
                         <a href="product-details.html">
-                            <img src="/@item.ProductImage" alt="img" class="img-responsive img-thumbnail" style="margin:10px;">
+                            <img src="/@item.ProductImage" alt="img" class="img-responsive"  style="margin-top:10px;height:250px;"
                         </a> 
                         @{ var discount = (int)(100-((@item.SalePrice * 100) / @item.UnitPrice));}
                         <div class="promotion">

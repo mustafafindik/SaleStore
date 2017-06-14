@@ -44,16 +44,17 @@
         <div class="navbar-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                    
+                    <div class="col-lg-6 col-sm-3 col-xs-3 col-md-6">
                         <div class="pull-left ">
                             <ul class="userMenu ">
                                 <li>
-                                    <a href="#">
+                                    <a href="Home/Contact">
                                         <span class="hidden-xs">YARDIM</span><i class="glyphicon glyphicon-info-sign hide visible-xs "></i>
                                     </a>
                                 </li>
                                 <li class="phone-number">
-                                    <a href="callto:+905061112233">
+                                    <a href="callto:+@ViewBag.Phone">
                                         <span>
                                             <i class="glyphicon glyphicon-phone-alt "></i>
                                         </span> <span class="hidden-xs"
@@ -63,22 +64,22 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
+                    <div class="col-lg-6 col-sm-9 col-xs-9 col-md-6 no-margin no-padding">
                         <div class="pull-right">
                             <ul class="userMenu">
-@if (SignInManager.IsSignedIn(User))
-{
+                               @if (SignInManager.IsSignedIn(User))
+                               {
                                 <li class="dropdown">
                                 
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <a id="telefon"  data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
                                         Profilim<b class="caret"> </b>
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" style="min-width:100px";>
                                         
                                             
                                         @if (User.IsInRole("ADMIN") == true)
                                         {
-                                            <li><a href="/Admin">Yönetim Paneli </a></li>
+                                            <li><a  href="/Admin">Yönetim Paneli </a></li>
                                         }else { 
                                         <li><a href="/MyCampaigns">Kampanyalarım </a></li>
                                         <li><a href="/MyProducts">Ürünlerim </a></li>
@@ -93,13 +94,13 @@
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <li>
-                                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Merhaba @UserManager.GetUserName(User)!</a>
+                                        <a  asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><i class="glyphicon glyphicon-user hide visible-xs "></i>  <span class="visible-md visible-lg">Merhaba,@UserManager.GetUserName(User)!</span></a>
                                     </li>
                                     <li>
                                         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
                                             <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
-                                                 <span class="hidden-xs">Çıkış Yap</span>
-                                                 <i class="glyphicon glyphicon-log-out hide visible-xs "></i>
+                                                 <span class="hidden-xs">Çıkıs Yap</span>
+                                                 <i  class="glyphicon glyphicon-log-out hide visible-xs "></i>
                                             </a>
                                             
                                     </li>
@@ -136,7 +137,9 @@
 
         <div class="container">
             <div class="navbar-header">
-                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"> </span> <span class="icon-bar"></span> <span class="icon-bar"> </span>
+                </button>
                 
                 <a class="navbar-brand " href="/" > <img src="@ViewBag.Logo" style="height:60px;margin-top:-15px;" alt="SaleStore" /></a>
 
@@ -285,7 +288,7 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/Home"> Anasayfa </a></li>
+                    <li ><a href="/Home"> Anasayfa </a></li>
                     <li class="dropdown megamenu-fullwidth">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             Kategoriler<b class="caret"> </b>
