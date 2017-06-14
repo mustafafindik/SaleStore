@@ -10,9 +10,12 @@ using PagedList.Core;
 using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
+    [Authorize]
+
     public class HomeController : ControllerBase
     {
       
@@ -59,9 +62,64 @@ namespace SaleStore.Controllers
             ViewBag.SiteSlogan = settings.SiteSlogan;
             ViewBag.Adress = settings.Address;
             ViewBag.About = settings.About;
+            ViewBag.Vision = settings.Vision;
+            ViewBag.Mission = settings.Mission;
+            ViewBag.Strategy = settings.Strategy;
+
             ViewData["Message"] = "Your application description page.";
 
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> About(Inbox inbox)
+        {
+            Setting settings = new Setting();
+            inbox.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
+            _context.Add(inbox);
+            await _context.SaveChangesAsync();
+            ViewBag.Vision = settings.Vision;
+            ViewBag.Mission = settings.Mission;
+            ViewBag.Strategy = settings.Strategy;
+            MailSetting mailSetting;
+            SendMessage sendMessage;
+            mailSetting = _context.MailSettings.FirstOrDefault();
+            sendMessage = _context.SendMessages.Where(x => x.MailSettingId == 1).FirstOrDefault();
+            string FromAddress = mailSetting.FromAddress;
+            string FromAddressTitle = mailSetting.FromAddressTitle;
+
+
+            string ToAddress = inbox.Email;
+            string ToAddressTitle = inbox.FullName;
+            string Subject = sendMessage.Subject;
+            string BodyContent = sendMessage.BodyContent;
+
+            string SmptServer = mailSetting.SmptServer;
+            int SmptPortNumber = mailSetting.SmptPortNumber;
+
+            var mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+            mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+            mimeMessage.Subject = Subject;
+            mimeMessage.Body = new TextPart("plain")
+            {
+                Text = BodyContent
+            };
+
+            using (var client = new SmtpClient())
+            {
+                client.Connect(SmptServer, SmptPortNumber, false);
+                client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
+                client.Send(mimeMessage);
+                client.Disconnect(true);
+            }
+            ViewBag.Message1 = "Mesajınız başarıyla gönderildi.";
+
+
+
+            return View(inbox);
+
         }
 
         public IActionResult Campaigns(int page=1)

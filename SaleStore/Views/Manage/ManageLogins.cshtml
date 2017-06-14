@@ -9,7 +9,7 @@
 <p class="text-success headerOffset" style="padding-top:80px;">@ViewData["StatusMessage"]</p>
 @if (Model.CurrentLogins.Count > 0)
 {
-    <h3 class="col-md-offset-5"><i class="fa fa-user-plus" style="margin-right:10px;" aria-hidden="true"></i>Kayıtlı Girişler</h3>
+    <h3 class="col-md-offset-5 col-xs-offset-2 col-sm-offset-2"><i class="fa fa-user-plus" style="margin-right:10px;" aria-hidden="true"></i>Kayıtlı Girişler</h3>
 
     <table class="table col-md-offset-2">
         <tbody>
@@ -40,10 +40,10 @@
 }
 @if (Model.OtherLogins.Count > 0)
 {
-    <h3 class="col-md-offset-5"><i class="fa fa-user-plus" style="margin-right:10px;" aria-hidden="true"></i>Oturum Açmak İçin Başka Bir Servis Ekleyin</h3>
+    <h3 class="col-md-offset-5 col-xs-offset-1 col-sm-offset-1"><i class="fa fa-user-plus" style="margin-right:10px;" aria-hidden="true"></i>Oturum Açmak İçin Başka Bir Servis Ekleyin</h3>
     <hr />
     <form asp-controller="Manage" asp-action="LinkLogin" method="post" class="form-horizontal">
-        <div class="col-md-offset-2" id="socialLoginList">
+        <div class="col-md-offset-5 col-xs-offset-1 col-sm-offset-1" id="socialLoginList">
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {

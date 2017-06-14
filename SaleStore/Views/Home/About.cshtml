@@ -17,7 +17,10 @@
     </div>
     <!-- /.parallax -->
 
-
+@if (!String.IsNullOrEmpty(ViewBag.Message1))
+{
+    <div class="alert alert-success">@ViewBag.Message1</div>
+}
     <div class="container main-container ">
 
         <div class="row innerPage">
@@ -45,16 +48,15 @@
                                             Vizyonumuz
                                         </h3>
                                         <p>
-                                            Türkiye’de ve bölgede e-ticaret sektörünün lideri olmak.
+                                            @ViewBag.Vision
                                         </p>
                                         <h3>Misyonumuz</h3>
                                         <p>
-                                            E-ticaret sektöründe hem müşterilere hem mağazalara yenilikçi hizmetler sunarak 
-                                            Türkiye e-ticaret sektörünün yeniden şekillendirilmesine öncülük etmek.
+                                            @ViewBag.Mission
                                         </p>
                                         <h3>Stratejimiz</h3>
                                         <p>
-                                            Stratejik ortaklıklarla güçlü entegrasyona dayanan eko-sistemimizde, müşterilere Güven ve Kolaylık; mağazalara ise Destek ve Özen üzerine dayalı değer önerileri sunmaktır.
+                                            @ViewBag.Strategy
                                         </p>
                                     </div>
                                 </div>
@@ -181,7 +183,7 @@
     </div>
     <!-- /.Modal Login -->
     <!-- Modal Signup start -->
-    <div class="modal signUpContent fade" id="ModalSignup" tabindex="-1" role="dialog">
+    @*<div class="modal signUpContent fade" id="ModalSignup" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -245,54 +247,48 @@
         </div>
         <!-- /.modal-dialog -->
 
-    </div>
+    </div>*@
 
 
     <div role="dialog" tabindex="-1" id="contact-us" class="modal fade" aria-hidden="true">
         <div class="modal-dialog modal-xs">
             <div class="modal-content">
-
+                
                 <div class="modal-header">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button"> ×</button>
                     <h3 class="modal-title-site text-center"> Selling Enquiries </h3>
                 </div>
-
+                
 
                 <div class="modal-body">
-                    <form role="form" lpformnum="24">
+                    <form asp-controller="Home" asp-action="About" method="post" enctype="multipart/form-data" role="form" lpformnum="24">
                         <div class="form-group">
-                            <label class="control-label" for="recipient-name">İsim:</label>
-                            <input type="text"
-                                   data-content="Must be at least 3 characters long, and must only contain letters."
-                                   data-trigger="manual" data-placement="top" placeholder="İsim" id="recipient-name"
-                                   class="form-control required">
+                            <input type="text" class="form-control input-lg" placeholder="Ad" name="FullName">
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="sender-email">E-mail:</label>
-                            <input type="text" class="form-control email" placeholder="email@website.com"
-                                   data-placement="top" data-trigger="manual" id="sender-email">
+                            <input type="email" class="form-control input-lg" placeholder="Email" name="Email">
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="recipient-Phone-Number">Telefon:</label>
-                            <input type="text" id="recipient-Phone-Number" class="form-control" maxlength="60">
+                            <input type="tel" class="form-control input-lg" placeholder="Telefon" name="Phone">
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="message-text">Message <span class="text-count">(300) </span>:</label>
-                            <textarea data-trigger="manual" data-placement="top" placeholder="Mesajınız.."
-                                      id="message-text" class="form-control"></textarea>
+                            <textarea class="form-control" rows="5" placeholder="Mesajınızı Girin" name="Message"></textarea>
                         </div>
                         <div class="form-group">
                             <p id="form-error" class="help-block pull-left error text-danger hide">
                                 &nbsp; Geçersiz Form
                             </p>
                         </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary btn-lg pull-right btn-block" type="submit">Mesaj Gönder!</button>
+                        </div>
                     </form>
+
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary btn-lg pull-right btn-block" type="submit">Mesaj Gönder!</button>
-                </div>
+                
             </div>
         </div>
+
     </div>
 
     <!-- Le javascript

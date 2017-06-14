@@ -23,6 +23,12 @@ namespace SaleStore.Models
         public string SiteSlogan { get; set; }
         [Display(Name = "Hakkımızda")]
         public string About { get; set; }
+        [Display(Name = "Vizyon")]
+        public string Vision { get; set; }
+        [Display(Name = "Misyon")]
+        public string Mission { get; set; }
+        [Display(Name = "Strateji")]
+        public string Strategy { get; set; }
         [Display(Name = "Başlık")]
         public string Title { get; set; }
         [Display(Name = "SEO Başlık")]

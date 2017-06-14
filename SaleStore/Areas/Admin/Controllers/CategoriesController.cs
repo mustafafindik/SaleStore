@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SaleStore.Data;
 using SaleStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ADMIN")]
+
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;

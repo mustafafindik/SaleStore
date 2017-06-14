@@ -44,16 +44,17 @@
         <div class="navbar-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                    
+                    <div class="col-lg-6 col-sm-3 col-xs-3 col-md-6">
                         <div class="pull-left ">
                             <ul class="userMenu ">
                                 <li>
-                                    <a href="#">
+                                    <a href="Home/Contact">
                                         <span class="hidden-xs">YARDIM</span><i class="glyphicon glyphicon-info-sign hide visible-xs "></i>
                                     </a>
                                 </li>
                                 <li class="phone-number">
-                                    <a href="callto:+905061112233">
+                                    <a href="callto:+@ViewBag.Phone">
                                         <span>
                                             <i class="glyphicon glyphicon-phone-alt "></i>
                                         </span> <span class="hidden-xs"
@@ -63,22 +64,22 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
+                    <div class="col-lg-6 col-sm-9 col-xs-9 col-md-6 no-margin no-padding">
                         <div class="pull-right">
                             <ul class="userMenu">
-@if (SignInManager.IsSignedIn(User))
-{
+                               @if (SignInManager.IsSignedIn(User))
+                               {
                                 <li class="dropdown">
                                 
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <a id="telefon"  data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
                                         Profilim<b class="caret"> </b>
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" style="min-width:100px";>
                                         
                                             
                                         @if (User.IsInRole("ADMIN") == true)
                                         {
-                                            <li><a href="/Admin">Yönetim Paneli </a></li>
+                                            <li><a  href="/Admin">Yönetim Paneli </a></li>
                                         }else { 
                                         <li><a href="/MyCampaigns">Kampanyalarım </a></li>
                                         <li><a href="/MyProducts">Ürünlerim </a></li>
@@ -93,13 +94,13 @@
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <li>
-                                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Merhaba @UserManager.GetUserName(User)!</a>
+                                        <a  asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><i class="glyphicon glyphicon-user hide visible-xs "></i>  <span class="visible-md visible-lg">Merhaba,@UserManager.GetUserName(User)!</span></a>
                                     </li>
                                     <li>
                                         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
                                             <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
-                                                 <span class="hidden-xs">Çıkış Yap</span>
-                                                 <i class="glyphicon glyphicon-log-out hide visible-xs "></i>
+                                                 <span class="hidden-xs">Çıkıs Yap</span>
+                                                 <i  class="glyphicon glyphicon-log-out hide visible-xs "></i>
                                             </a>
                                             
                                     </li>
@@ -136,7 +137,9 @@
 
         <div class="container">
             <div class="navbar-header">
-                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"> </span> <span class="icon-bar"></span> <span class="icon-bar"> </span>
+                </button>
                 
                 <a class="navbar-brand " href="/" > <img src="@ViewBag.Logo" style="height:60px;margin-top:-15px;" alt="SaleStore" /></a>
 
@@ -285,7 +288,7 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/Home"> Anasayfa </a></li>
+                    <li ><a href="/Home"> Anasayfa </a></li>
                     <li class="dropdown megamenu-fullwidth">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             Kategoriler<b class="caret"> </b>
@@ -327,181 +330,211 @@
                             </li>
                         </ul>
                     </li>
+            <div class="col-lg-6 col-sm-9 col-xs-9 col-md-4 no-margin no-padding">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/Home"> Anasayfa </a></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
+                                Kategoriler<b class="caret"> </b>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width:100px; max-width:200px;" ;>
+                                <li class="megamenu-content ">
 
-                    <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
-                    
-                    
-                    <li ><a href="/Home/About" > Hakkımızda </a></li>
-                    <li><a href="/Home/Contact" > İletişim </a></li>
+                                    <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
+                                        <li class="no-border">
+                                        <li><a href="/home/campaigns">KAMPANYALAR </a></li>
+                                        </li>
+                                <li class="no-border">
+                                        <li><a href="/home/products">ÜRÜNLER </a></li>
+                                            
+                                        </li>
 
-                </ul>
-                
+                                        @*@foreach (var item in Model.Categories)
+                                {
+                                    <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                                }*@
+                                    </ul>
 
-                <!--- this part will be hidden for mobile version -->
-                <div class="nav navbar-nav navbar-right hidden-xs">
-                    <div class="dropdown  cartMenu ">
-                        @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-shopping-cart"></i> <span class="cartRespons"> Cart ($210.00) </span> <b class="caret"></b>
-                        </a>*@
 
-                        <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
-                            <div class="w100 miniCartTable scroll-pane">
-                                <table>
-                                    <tbody>
-                                        <tr class="miniCartProduct">
-                                            <td style="width:20%" class="miniCartProductThumb">
-                                                <div>
-                                                    <a href="product-details.html">
-                                                        <img src="/images/product/3.jpg" alt="img">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td style="width:40%">
-                                                <div class="miniCartDescription">
-                                                    <h4><a href="product-details.html"> TSHOP Tshirt DO9 </a></h4>
-                                                    <span class="size"> 12 x 1.5 L </span>
 
-                                                    <div class="price"><span> $22 </span></div>
-                                                </div>
-                                            </td>
-                                            <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                            <td style="width:15%" class="miniCartSubtotal"><span> $33 </span></td>
-                                            <td style="width:5%" class="delete"><a> x </a></td>
-                                        </tr>
-                                        <tr class="miniCartProduct">
-                                            <td style="width:20%" class="miniCartProductThumb">
-                                                <div>
-                                                    <a href="product-details.html">
-                                                        <img src="/images/product/2.jpg" alt="img">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td style="width:40%">
-                                                <div class="miniCartDescription">
-                                                    <h4><a href="product-details.html"> TShir TSHOP 09 </a></h4>
-                                                    <span class="size"> 12 x 1.5 L </span>
+                                </li>
+                            </ul>
+                        </li>
 
-                                                    <div class="price"><span> $15 </span></div>
-                                                </div>
-                                            </td>
-                                            <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                            <td style="width:15%" class="miniCartSubtotal"><span> $120 </span></td>
-                                            <td style="width:5%" class="delete"><a> x </a></td>
-                                        </tr>
-                                        <tr class="miniCartProduct">
-                                            <td style="width:20%" class="miniCartProductThumb">
-                                                <div>
-                                                    <a href="product-details.html">
-                                                        <img src="/images/product/5.jpg" alt="img">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td style="width:40%">
-                                                <div class="miniCartDescription">
-                                                    <h4><a href="product-details.html"> Tshir 2014 </a></h4>
-                                                    <span class="size"> 12 x 1.5 L </span>
+                        <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
 
-                                                    <div class="price"><span> $30 </span></div>
-                                                </div>
-                                            </td>
-                                            <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                            <td style="width:15%" class="miniCartSubtotal"><span> $80 </span></td>
-                                            <td style="width:5%" class="delete"><a> x </a></td>
-                                        </tr>
-                                        <tr class="miniCartProduct">
-                                            <td style="width:20%" class="miniCartProductThumb">
-                                                <div>
-                                                    <a href="product-details.html">
-                                                        <img src="/images/product/3.jpg" alt="img">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td style="width:40%">
-                                                <div class="miniCartDescription">
-                                                    <h4><a href="product-details.html"> TSHOP T shirt DO20 </a></h4>
-                                                    <span class="size"> 12 x 1.5 L </span>
 
-                                                    <div class="price"><span> $15 </span></div>
-                                                </div>
-                                            </td>
-                                            <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                            <td style="width:15%" class="miniCartSubtotal"><span> $55 </span></td>
-                                            <td style="width:5%" class="delete"><a> x </a></td>
-                                        </tr>
-                                        <tr class="miniCartProduct">
-                                            <td style="width:20%" class="miniCartProductThumb">
-                                                <div>
-                                                    <a href="product-details.html">
-                                                        <img src="/images/product/4.jpg" alt="img">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td style="width:40%">
-                                                <div class="miniCartDescription">
-                                                    <h4><a href="product-details.html"> T shirt Black </a></h4>
-                                                    <span class="size"> 12 x 1.5 L </span>
+                        <li><a href="/Home/About"> Hakkımızda </a></li>
+                        <li><a href="/Home/Contact"> İletişim </a></li>
 
-                                                    <div class="price"><span> $44 </span></div>
-                                                </div>
-                                            </td>
-                                            <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                            <td style="width:15%" class="miniCartSubtotal"><span> $40 </span></td>
-                                            <td style="width:5%" class="delete"><a> x </a></td>
-                                        </tr>
-                                        <tr class="miniCartProduct">
-                                            <td style="width:20%" class="miniCartProductThumb">
-                                                <div>
-                                                    <a href="product-details.html">
-                                                        <img src="/images/site/winter.jpg"
-                                                             alt="img">
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td style="width:40%">
-                                                <div class="miniCartDescription">
-                                                    <h4><a href="product-details.html"> G Star T shirt </a></h4>
-                                                    <span class="size"> 12 x 1.5 L </span>
+                    </ul>
 
-                                                    <div class="price"><span> $80 </span></div>
-                                                </div>
-                                            </td>
-                                            <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                            <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                            <td style="width:5%" class="delete"><a> x </a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                    <!--- this part will be hidden for mobile version -->
+                    <div class="nav navbar-nav navbar-right hidden-xs">
+                        <div class="dropdown  cartMenu ">
+                            @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-shopping-cart"></i> <span class="cartRespons"> Cart ($210.00) </span> <b class="caret"></b>
+                    </a>*@
+
+                            <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
+                                <div class="w100 miniCartTable scroll-pane">
+                                    <table>
+                                        <tbody>
+                                            <tr class="miniCartProduct">
+                                                <td style="width:20%" class="miniCartProductThumb">
+                                                    <div>
+                                                        <a href="product-details.html">
+                                                            <img src="/images/product/3.jpg" alt="img">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <div class="miniCartDescription">
+                                                        <h4><a href="product-details.html"> TSHOP Tshirt DO9 </a></h4>
+                                                        <span class="size"> 12 x 1.5 L </span>
+
+                                                        <div class="price"><span> $22 </span></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $33 </span></td>
+                                                <td style="width:5%" class="delete"><a> x </a></td>
+                                            </tr>
+                                            <tr class="miniCartProduct">
+                                                <td style="width:20%" class="miniCartProductThumb">
+                                                    <div>
+                                                        <a href="product-details.html">
+                                                            <img src="/images/product/2.jpg" alt="img">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <div class="miniCartDescription">
+                                                        <h4><a href="product-details.html"> TShir TSHOP 09 </a></h4>
+                                                        <span class="size"> 12 x 1.5 L </span>
+
+                                                        <div class="price"><span> $15 </span></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $120 </span></td>
+                                                <td style="width:5%" class="delete"><a> x </a></td>
+                                            </tr>
+                                            <tr class="miniCartProduct">
+                                                <td style="width:20%" class="miniCartProductThumb">
+                                                    <div>
+                                                        <a href="product-details.html">
+                                                            <img src="/images/product/5.jpg" alt="img">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <div class="miniCartDescription">
+                                                        <h4><a href="product-details.html"> Tshir 2014 </a></h4>
+                                                        <span class="size"> 12 x 1.5 L </span>
+
+                                                        <div class="price"><span> $30 </span></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $80 </span></td>
+                                                <td style="width:5%" class="delete"><a> x </a></td>
+                                            </tr>
+                                            <tr class="miniCartProduct">
+                                                <td style="width:20%" class="miniCartProductThumb">
+                                                    <div>
+                                                        <a href="product-details.html">
+                                                            <img src="/images/product/3.jpg" alt="img">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <div class="miniCartDescription">
+                                                        <h4><a href="product-details.html"> TSHOP T shirt DO20 </a></h4>
+                                                        <span class="size"> 12 x 1.5 L </span>
+
+                                                        <div class="price"><span> $15 </span></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $55 </span></td>
+                                                <td style="width:5%" class="delete"><a> x </a></td>
+                                            </tr>
+                                            <tr class="miniCartProduct">
+                                                <td style="width:20%" class="miniCartProductThumb">
+                                                    <div>
+                                                        <a href="product-details.html">
+                                                            <img src="/images/product/4.jpg" alt="img">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <div class="miniCartDescription">
+                                                        <h4><a href="product-details.html"> T shirt Black </a></h4>
+                                                        <span class="size"> 12 x 1.5 L </span>
+
+                                                        <div class="price"><span> $44 </span></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $40 </span></td>
+                                                <td style="width:5%" class="delete"><a> x </a></td>
+                                            </tr>
+                                            <tr class="miniCartProduct">
+                                                <td style="width:20%" class="miniCartProductThumb">
+                                                    <div>
+                                                        <a href="product-details.html">
+                                                            <img src="/images/site/winter.jpg"
+                                                                 alt="img">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width:40%">
+                                                    <div class="miniCartDescription">
+                                                        <h4><a href="product-details.html"> G Star T shirt </a></h4>
+                                                        <span class="size"> 12 x 1.5 L </span>
+
+                                                        <div class="price"><span> $80 </span></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
+                                                <td style="width:5%" class="delete"><a> x </a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--/.miniCartTable-->
+
+                                <div class="miniCartFooter text-right">
+                                    <h3 class="text-right subtotal"> Subtotal: $210 </h3>
+                                    <a class="btn btn-sm btn-danger" href="cart.html">
+                                        <i class="fa fa-shopping-cart"> </i> VIEW
+                                        CART
+                                    </a><a class="btn btn-sm btn-primary">CHECKOUT</a>
+                                </div>
+                                <!--/.miniCartFooter-->
+
                             </div>
-                            <!--/.miniCartTable-->
+                            <!--/.dropdown-menu-->
+                        </div>
+                        <!--/.cartMenu-->
 
-                            <div class="miniCartFooter text-right">
-                                <h3 class="text-right subtotal"> Subtotal: $210 </h3>
-                                <a class="btn btn-sm btn-danger" href="cart.html">
-                                    <i class="fa fa-shopping-cart"> </i> VIEW
-                                    CART
-                                </a><a class="btn btn-sm btn-primary">CHECKOUT</a>
+                        <div class="search-box">
+                            <div class="input-group">
+                                <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
                             </div>
-                            <!--/.miniCartFooter-->
+                            <!-- /input-group -->
 
                         </div>
-                        <!--/.dropdown-menu-->
+                        <!--/.search-box -->
                     </div>
-                    <!--/.cartMenu-->
-
-                    <div class="search-box">
-                        <div class="input-group">
-                            <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-                        </div>
-                        <!-- /input-group -->
-
-                    </div>
-                    <!--/.search-box -->
+                    <!--/.navbar-nav hidden-xs-->
                 </div>
-                <!--/.navbar-nav hidden-xs-->
-            </div>
-            <!--/.nav-collapse -->
+                <!--/.nav-collapse -->
 
-        </div>
+            </div>
         <!--/.container -->
 
         <div class="search-full text-right">

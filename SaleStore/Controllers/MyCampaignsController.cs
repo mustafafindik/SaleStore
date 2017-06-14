@@ -12,9 +12,12 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using SaleStore.Models.ViewModels;
 using PagedList.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
+    [Authorize]
+
     public class MyCampaignsController : ControllerBase
     {
         private IHostingEnvironment env;
