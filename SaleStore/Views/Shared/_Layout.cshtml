@@ -23,7 +23,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/assets/css/style.css" rel="stylesheet">
-    
+
 
     <!-- Just for debugging purposes. -->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,7 +44,7 @@
         <div class="navbar-top">
             <div class="container">
                 <div class="row">
-                    
+
                     <div class="col-lg-6 col-sm-3 col-xs-3 col-md-6">
                         <div class="pull-left ">
                             <ul class="userMenu ">
@@ -59,443 +59,211 @@
                                             <i class="glyphicon glyphicon-phone-alt "></i>
                                         </span> <span class="hidden-xs"
                                                       style="margin-left:5px">@ViewBag.Phone</span>
-                                    </a>
-                                </li>
-                            </ul>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-9 col-xs-9 col-md-6 no-margin no-padding">
+                                    <div class="pull-right">
+                                        <ul class="userMenu">
+                                            @if (SignInManager.IsSignedIn(User))
+                                            {
+                                                <li class="dropdown">
+
+                                                    <a id="telefon" data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
+                                                        Profilim<b class="caret"> </b>
+                                                    </a>
+                                                    <ul class="dropdown-menu" style="min-width:100px" ;>
+
+
+                                                        @if (User.IsInRole("ADMIN") == true)
+                                                        {
+                                                            <li><a href="/Admin">Yönetim Paneli </a></li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><a href="/MyCampaigns">Kampanyalarım </a></li>
+                                                            <li><a href="/MyProducts">Ürünlerim </a></li>
+                                                        }
+
+
+
+
+                                                    </ul>
+                                                </li>
+                                            }
+
+                                            @if (SignInManager.IsSignedIn(User))
+                                            {
+                                                <li>
+                                                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><i class="glyphicon glyphicon-user hide visible-xs "></i>  <span class="visible-md visible-lg">Merhaba,@UserManager.GetUserName(User)!</span></a>
+                                                </li>
+                                                <li>
+                                                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
+                                                    <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
+                                                        <span class="hidden-xs">Çıkıs Yap</span>
+                                                        <i class="glyphicon glyphicon-log-out hide visible-xs "></i>
+                                                    </a>
+
+                                                </li>
+
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="/account/login">
+                                                        <span class="hidden-xs">Giriş</span>
+                                                        <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
+                                                    </a>
+                                                </li>
+                                                <li class="hidden-xs">
+                                                    <a href="/account/register">
+                                                        Hesap Oluştur
+                                                    </a>
+                                                </li>
+                                            }
+
+                                        </ul>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-9 col-xs-9 col-md-6 no-margin no-padding">
-                        <div class="pull-right">
-                            <ul class="userMenu">
-                               @if (SignInManager.IsSignedIn(User))
-                               {
-                                <li class="dropdown">
-                                
-                                    <a id="telefon"  data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
-                                        Profilim<b class="caret"> </b>
-                                    </a>
-                                    <ul class="dropdown-menu" style="min-width:100px";>
-                                        
-                                            
-                                        @if (User.IsInRole("ADMIN") == true)
-                                        {
-                                            <li><a  href="/Admin">Yönetim Paneli </a></li>
-                                        }else { 
-                                        <li><a href="/MyCampaigns">Kampanyalarım </a></li>
-                                        <li><a href="/MyProducts">Ürünlerim </a></li>
-                                        }
-                                        
-                                        
 
 
-                                           </ul></li>
-}
-                                       
-                                @if (SignInManager.IsSignedIn(User))
-                                {
-                                    <li>
-                                        <a  asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><i class="glyphicon glyphicon-user hide visible-xs "></i>  <span class="visible-md visible-lg">Merhaba,@UserManager.GetUserName(User)!</span></a>
-                                    </li>
-                                    <li>
-                                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
-                                            <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
-                                                 <span class="hidden-xs">Çıkıs Yap</span>
-                                                 <i  class="glyphicon glyphicon-log-out hide visible-xs "></i>
-                                            </a>
-                                            
-                                    </li>
+                    <!--/.navbar-top-->
 
-                                }
-                                else
-                                {
-                                        <li>
-                                            <a href="/account/login" >
-                                                <span class="hidden-xs">Giriş</span>
-                                                <i class="glyphicon glyphicon-log-in hide visible-xs "></i>
-                                            </a>
-                                        </li>
-                                        <li class="hidden-xs">
-                                            <a href="/account/register" >
-                                                Hesap Oluştur
-                                            </a>
-                                        </li>
-                                }
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"> </span> <span class="icon-bar"></span> <span class="icon-bar"> </span>
+                            </button>
 
-                                    </ul>
+                            <a class="navbar-brand " href="/"> <img src="@ViewBag.Logo" style="height:60px;margin-top:-15px;" alt="SaleStore" /></a>
 
-                            
+                            <!-- this part for mobile -->
+                            <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+                                <div class="input-group">
+                                    <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                                </div>
+                                <!-- /input-group -->
 
+                            </div>
+                        </div>
 
-</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <!--/.navbar-top-->
-
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"> </span> <span class="icon-bar"></span> <span class="icon-bar"> </span>
-                </button>
-                
-                <a class="navbar-brand " href="/" > <img src="@ViewBag.Logo" style="height:60px;margin-top:-15px;" alt="SaleStore" /></a>
-
-                <!-- this part for mobile -->
-                <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
-                    <div class="input-group">
-                        <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-                    </div>
-                    <!-- /input-group -->
-
-                </div>
-            </div>
-
-            <!-- this part is duplicate from cartMenu  keep it for mobile -->
-            <div class="navbar-cart  collapse">
-                <div class="cartMenu  col-lg-4 col-xs-12 col-md-4 ">
-                    <div class="w100 miniCartTable scroll-pane">
-                        <table>
-                            <tbody>
-                                <tr class="miniCartProduct">
-                                    <td style="width:20%" class="miniCartProductThumb">
-                                        <div>
-                                            <a href="product-details.html"> <img src="/images/product/3.jpg" alt="img"> </a>
-                                        </div>
-                                    </td>
-                                    <td style="width:40%">
-                                        <div class="miniCartDescription">
-                                            <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
-                                            <span class="size"> 12 x 1.5 L </span>
-
-                                            <div class="price"><span> $8.80 </span></div>
-                                        </div>
-                                    </td>
-                                    <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                    <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                </tr>
-                                <tr class="miniCartProduct">
-                                    <td style="width:20%" class="miniCartProductThumb">
-                                        <div>
-                                            <a href="product-details.html"> <img src="/images/product/2.jpg" alt="img"> </a>
-                                        </div>
-                                    </td>
-                                    <td style="width:40%">
-                                        <div class="miniCartDescription">
-                                            <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
-                                            <span class="size"> 12 x 1.5 L </span>
-
-                                            <div class="price"><span> $8.80 </span></div>
-                                        </div>
-                                    </td>
-                                    <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                    <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                </tr>
-                                <tr class="miniCartProduct">
-                                    <td style="width:20%" class="miniCartProductThumb">
-                                        <div>
-                                            <a href="product-details.html"> <img src="/images/product/5.jpg" alt="img"> </a>
-                                        </div>
-                                    </td>
-                                    <td style="width:40%">
-                                        <div class="miniCartDescription">
-                                            <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
-                                            <span class="size"> 12 x 1.5 L </span>
-
-                                            <div class="price"><span> $8.80 </span></div>
-                                        </div>
-                                    </td>
-                                    <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                    <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                </tr>
-                                <tr class="miniCartProduct">
-                                    <td style="width:20%" class="miniCartProductThumb">
-                                        <div>
-                                            <a href="product-details.html"> <img src="/images/product/3.jpg" alt="img"> </a>
-                                        </div>
-                                    </td>
-                                    <td style="width:40%">
-                                        <div class="miniCartDescription">
-                                            <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
-                                            <span class="size"> 12 x 1.5 L </span>
-
-                                            <div class="price"><span> $8.80 </span></div>
-                                        </div>
-                                    </td>
-                                    <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                    <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                </tr>
-                                <tr class="miniCartProduct">
-                                    <td style="width:20%" class="miniCartProductThumb">
-                                        <div>
-                                            <a href="product-details.html"> <img src="/images/product/3.jpg" alt="img"> </a>
-                                        </div>
-                                    </td>
-                                    <td style="width:40%">
-                                        <div class="miniCartDescription">
-                                            <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
-                                            <span class="size"> 12 x 1.5 L </span>
-
-                                            <div class="price"><span> $8.80 </span></div>
-                                        </div>
-                                    </td>
-                                    <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                    <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                </tr>
-                                <tr class="miniCartProduct">
-                                    <td style="width:20%" class="miniCartProductThumb">
-                                        <div>
-                                            <a href="product-details.html"> <img src="/images/product/4.jpg" alt="img"> </a>
-                                        </div>
-                                    </td>
-                                    <td style="width:40%">
-                                        <div class="miniCartDescription">
-                                            <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
-                                            <span class="size"> 12 x 1.5 L </span>
-
-                                            <div class="price"><span> $8.80 </span></div>
-                                        </div>
-                                    </td>
-                                    <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                    <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
-                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--/.miniCartTable-->
-
-                    <div class="miniCartFooter  miniCartFooterInMobile text-right">
-                        <h3 class="text-right subtotal"> Subtotal: $210 </h3>
-                        <a class="btn btn-sm btn-danger" href="cart.html">
-                            <i class="fa fa-shopping-cart"> </i> VIEW CART
-                        </a> <a href="checkout-0.html"
-                                class="btn btn-sm btn-primary">CHECKOUT</a>
-                    </div>
-                    <!--/.miniCartFooter-->
-
-                </div>
-                <!--/.cartMenu-->
-            </div>
-            <!--/.navbar-cart-->
-
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li ><a href="/Home"> Anasayfa </a></li>
-                    <li class="dropdown megamenu-fullwidth">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            Kategoriler<b class="caret"> </b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="megamenu-content ">
-                                <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
-                                    <li class="no-border">
-                                        <p class="promo-1"><strong> Kategoriler </strong></p>
-                                    </li>
-                                    @*@foreach (var item in Model.Categories)
-                                    {
-                                        <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
-                                    }*@
-                                </ul>
-                                <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
-                                    <li>
-                                        <a class="newProductMenuBlock" href="product-details.html">
-                                            <img class="img-responsive" src="/images/site/promo1.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>JEANS</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                    <li>
-                                        <a class="newProductMenuBlock" href="product-details.html">
-                                            <img class="img-responsive" src="/images/site/promo2.jpg" alt="product"> <span class="ProductMenuCaption">
-                                                <i class="fa fa-caret-right"></i> PARTY DRESS
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                    <li>
-                                        <a class="newProductMenuBlock" href="product-details.html">
-                                            <img class="img-responsive" src="/images/site/promo3.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>SHOES</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-            <div class="col-lg-6 col-sm-9 col-xs-9 col-md-4 no-margin no-padding">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/Home"> Anasayfa </a></li>
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
-                                Kategoriler<b class="caret"> </b>
-                            </a>
-                            <ul class="dropdown-menu" style="min-width:100px; max-width:200px;" ;>
-                                <li class="megamenu-content ">
-
-                                    <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
-                                        <li class="no-border">
-                                        <li><a href="/home/campaigns">KAMPANYALAR </a></li>
-                                        </li>
-                                <li class="no-border">
-                                        <li><a href="/home/products">ÜRÜNLER </a></li>
-                                            
-                                        </li>
-
-                                        @*@foreach (var item in Model.Categories)
-                                {
-                                    <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
-                                }*@
-                                    </ul>
-
-
-
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
-
-
-                        <li><a href="/Home/About"> Hakkımızda </a></li>
-                        <li><a href="/Home/Contact"> İletişim </a></li>
-
-                    </ul>
-
-
-                    <!--- this part will be hidden for mobile version -->
-                    <div class="nav navbar-nav navbar-right hidden-xs">
-                        <div class="dropdown  cartMenu ">
-                            @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-shopping-cart"></i> <span class="cartRespons"> Cart ($210.00) </span> <b class="caret"></b>
-                    </a>*@
-
-                            <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
+                        <!-- this part is duplicate from cartMenu  keep it for mobile -->
+                        <div class="navbar-cart  collapse">
+                            <div class="cartMenu  col-lg-4 col-xs-12 col-md-4 ">
                                 <div class="w100 miniCartTable scroll-pane">
                                     <table>
                                         <tbody>
                                             <tr class="miniCartProduct">
                                                 <td style="width:20%" class="miniCartProductThumb">
                                                     <div>
-                                                        <a href="product-details.html">
-                                                            <img src="/images/product/3.jpg" alt="img">
-                                                        </a>
+                                                        <a href="product-details.html"> <img src="/images/product/3.jpg" alt="img"> </a>
                                                     </div>
                                                 </td>
                                                 <td style="width:40%">
                                                     <div class="miniCartDescription">
-                                                        <h4><a href="product-details.html"> TSHOP Tshirt DO9 </a></h4>
+                                                        <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
                                                         <span class="size"> 12 x 1.5 L </span>
 
-                                                        <div class="price"><span> $22 </span></div>
+                                                        <div class="price"><span> $8.80 </span></div>
                                                     </div>
                                                 </td>
                                                 <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                                <td style="width:15%" class="miniCartSubtotal"><span> $33 </span></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
                                                 <td style="width:5%" class="delete"><a> x </a></td>
                                             </tr>
                                             <tr class="miniCartProduct">
                                                 <td style="width:20%" class="miniCartProductThumb">
                                                     <div>
-                                                        <a href="product-details.html">
-                                                            <img src="/images/product/2.jpg" alt="img">
-                                                        </a>
+                                                        <a href="product-details.html"> <img src="/images/product/2.jpg" alt="img"> </a>
                                                     </div>
                                                 </td>
                                                 <td style="width:40%">
                                                     <div class="miniCartDescription">
-                                                        <h4><a href="product-details.html"> TShir TSHOP 09 </a></h4>
+                                                        <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
                                                         <span class="size"> 12 x 1.5 L </span>
 
-                                                        <div class="price"><span> $15 </span></div>
+                                                        <div class="price"><span> $8.80 </span></div>
                                                     </div>
                                                 </td>
                                                 <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                                <td style="width:15%" class="miniCartSubtotal"><span> $120 </span></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
                                                 <td style="width:5%" class="delete"><a> x </a></td>
                                             </tr>
                                             <tr class="miniCartProduct">
                                                 <td style="width:20%" class="miniCartProductThumb">
                                                     <div>
-                                                        <a href="product-details.html">
-                                                            <img src="/images/product/5.jpg" alt="img">
-                                                        </a>
+                                                        <a href="product-details.html"> <img src="/images/product/5.jpg" alt="img"> </a>
                                                     </div>
                                                 </td>
                                                 <td style="width:40%">
                                                     <div class="miniCartDescription">
-                                                        <h4><a href="product-details.html"> Tshir 2014 </a></h4>
+                                                        <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
                                                         <span class="size"> 12 x 1.5 L </span>
 
-                                                        <div class="price"><span> $30 </span></div>
+                                                        <div class="price"><span> $8.80 </span></div>
                                                     </div>
                                                 </td>
                                                 <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                                <td style="width:15%" class="miniCartSubtotal"><span> $80 </span></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
                                                 <td style="width:5%" class="delete"><a> x </a></td>
                                             </tr>
                                             <tr class="miniCartProduct">
                                                 <td style="width:20%" class="miniCartProductThumb">
                                                     <div>
-                                                        <a href="product-details.html">
-                                                            <img src="/images/product/3.jpg" alt="img">
-                                                        </a>
+                                                        <a href="product-details.html"> <img src="/images/product/3.jpg" alt="img"> </a>
                                                     </div>
                                                 </td>
                                                 <td style="width:40%">
                                                     <div class="miniCartDescription">
-                                                        <h4><a href="product-details.html"> TSHOP T shirt DO20 </a></h4>
+                                                        <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
                                                         <span class="size"> 12 x 1.5 L </span>
 
-                                                        <div class="price"><span> $15 </span></div>
+                                                        <div class="price"><span> $8.80 </span></div>
                                                     </div>
                                                 </td>
                                                 <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                                <td style="width:15%" class="miniCartSubtotal"><span> $55 </span></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
                                                 <td style="width:5%" class="delete"><a> x </a></td>
                                             </tr>
                                             <tr class="miniCartProduct">
                                                 <td style="width:20%" class="miniCartProductThumb">
                                                     <div>
-                                                        <a href="product-details.html">
-                                                            <img src="/images/product/4.jpg" alt="img">
-                                                        </a>
+                                                        <a href="product-details.html"> <img src="/images/product/3.jpg" alt="img"> </a>
                                                     </div>
                                                 </td>
                                                 <td style="width:40%">
                                                     <div class="miniCartDescription">
-                                                        <h4><a href="product-details.html"> T shirt Black </a></h4>
+                                                        <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
                                                         <span class="size"> 12 x 1.5 L </span>
 
-                                                        <div class="price"><span> $44 </span></div>
+                                                        <div class="price"><span> $8.80 </span></div>
                                                     </div>
                                                 </td>
                                                 <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
-                                                <td style="width:15%" class="miniCartSubtotal"><span> $40 </span></td>
+                                                <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
                                                 <td style="width:5%" class="delete"><a> x </a></td>
                                             </tr>
                                             <tr class="miniCartProduct">
                                                 <td style="width:20%" class="miniCartProductThumb">
                                                     <div>
-                                                        <a href="product-details.html">
-                                                            <img src="/images/site/winter.jpg"
-                                                                 alt="img">
-                                                        </a>
+                                                        <a href="product-details.html"> <img src="/images/product/4.jpg" alt="img"> </a>
                                                     </div>
                                                 </td>
                                                 <td style="width:40%">
                                                     <div class="miniCartDescription">
-                                                        <h4><a href="product-details.html"> G Star T shirt </a></h4>
+                                                        <h4><a href="product-details.html"> TSHOP T shirt Black </a></h4>
                                                         <span class="size"> 12 x 1.5 L </span>
 
-                                                        <div class="price"><span> $80 </span></div>
+                                                        <div class="price"><span> $8.80 </span></div>
                                                     </div>
                                                 </td>
                                                 <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
@@ -507,230 +275,436 @@
                                 </div>
                                 <!--/.miniCartTable-->
 
-                                <div class="miniCartFooter text-right">
+                                <div class="miniCartFooter  miniCartFooterInMobile text-right">
                                     <h3 class="text-right subtotal"> Subtotal: $210 </h3>
                                     <a class="btn btn-sm btn-danger" href="cart.html">
-                                        <i class="fa fa-shopping-cart"> </i> VIEW
-                                        CART
-                                    </a><a class="btn btn-sm btn-primary">CHECKOUT</a>
+                                        <i class="fa fa-shopping-cart"> </i> VIEW CART
+                                    </a> <a href="checkout-0.html"
+                                            class="btn btn-sm btn-primary">CHECKOUT</a>
                                 </div>
                                 <!--/.miniCartFooter-->
 
                             </div>
-                            <!--/.dropdown-menu-->
+                            <!--/.cartMenu-->
                         </div>
-                        <!--/.cartMenu-->
+                        <!--/.navbar-cart-->
 
-                        <div class="search-box">
-                            <div class="input-group">
-                                <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-                            </div>
-                            <!-- /input-group -->
-
-                        </div>
-                        <!--/.search-box -->
-                    </div>
-                    <!--/.navbar-nav hidden-xs-->
-                </div>
-                <!--/.nav-collapse -->
-
-            </div>
-        <!--/.container -->
-
-        <div class="search-full text-right">
-            <a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
-
-            <div class="searchInputBox pull-right">
-                <input type="search" data-searchurl="search?=" name="q" placeholder="start typing and hit enter to search"
-                       class="search-input">
-                <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
-            </div>
-        </div>
-        <!--/.search-full-->
-
-    </div>
-    <!-- /.Fixed navbar  -->
-
-    @RenderBody()
-
-    <footer>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3  col-md-3 col-sm-4 col-xs-6">
-                        <h3> Destek </h3>
-                        <ul>
-                            <li class="supportLi">
-                                <p>  </p>
-                                <h5><a class="inline" href="callto:+905061112233"> <strong> <b class="fa fa-phone"> </b> @ViewBag.Phone </strong> </a></h5>
-                                <h4>
-                                    <a class="inline" href="mailto:yardim@salestore.com">
-                                        <i class="fa fa-envelope-o"> </i>
-                                        @ViewBag.Mail
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/Home"> Anasayfa </a></li>
+                                <li class="dropdown megamenu-fullwidth">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                        Kategoriler<b class="caret"> </b>
                                     </a>
-                                </h4>
-                            </li>
-                        </ul>
-                    </div>
-                    
+                                    <ul class="dropdown-menu">
+                                        <li class="megamenu-content ">
+                                            <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
+                                                <li class="no-border">
+                                                    <p class="promo-1"><strong> Kategoriler </strong></p>
+                                                </li>
+                                                @*@foreach (var item in Model.Categories)
+                                                    {
+                                                        <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+                                                    }*@
+                                            </ul>
+                                            <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
+                                                <li>
+                                                    <a class="newProductMenuBlock" href="product-details.html">
+                                                        <img class="img-responsive" src="/images/site/promo1.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>JEANS</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
+                                                <li>
+                                                    <a class="newProductMenuBlock" href="product-details.html">
+                                                        <img class="img-responsive" src="/images/site/promo2.jpg" alt="product"> <span class="ProductMenuCaption">
+                                                            <i class="fa fa-caret-right"></i> PARTY DRESS
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
+                                                <li>
+                                                    <a class="newProductMenuBlock" href="product-details.html">
+                                                        <img class="img-responsive" src="/images/site/promo3.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>SHOES</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                              
 
-                       
+                            <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
 
-                    <div style="clear:both" class="hide visible-xs"></div>
 
-                    <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                        <h3> Bilgi </h3>
-                        <ul class="list-unstyled footer-nav">
-                            <li>
-                                <a href="#">
-                                    Sorular?
-                                </a>
-                            </li>
+                            <li><a href="/Home/About"> Hakkımızda </a></li>
+                            <li><a href="/Home/Contact"> İletişim </a></li>
 
-                            <li>
-                                <a href="#">
-                                    Sipariş Detayı  
-                                </a>
-                            </li>
-                           
-                            <li>
-                                <a href="#">
-                                    İletişim
-                                </a>
-                            </li>
+                            </ul>
 
-                        </ul>
-                    </div>
-                    <div class="col-lg-2  col-md-3 col-sm-3 col-xs-6">
-                        <h3> Hesabım </h3>
-                        <ul>
-                            <li><a href="account.html"> Hesap </a></li>
-                            <li><a href="my-address.html"> Adres </a></li>
-                            <li><a href="wishlist.html"> İstek Listesi </a></li>
-                            <li><a href="order-list.html"> Sİpariş Listesi </a></li>
-                            <li><a href="order-status.html"> Sipariş Durumu </a></li>
-                        </ul>
-                    </div>
 
-                    <div style="clear:both" class="hide visible-xs"></div>
+                            <!--- this part will be hidden for mobile version -->
+                            <div class="nav navbar-nav navbar-right hidden-xs">
+                                <div class="dropdown  cartMenu ">
+                                    @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-shopping-cart"></i> <span class="cartRespons"> Cart ($210.00) </span> <b class="caret"></b>
+                                        </a>*@
 
-                    <div class="col-lg-4  col-md-4 col-sm-4 col-xs-12 ">
-                        <h3> İletişimde Kalın </h3>
-                        <ul>
-                            <li>
-                                <div class="input-append newsLatterBox text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  bg-gray" type="button">
-                                        Gönder <i class="fa fa-long-arrow-right"></i>
-                                    </button>
+                                    <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
+                                        <div class="w100 miniCartTable scroll-pane">
+                                            <table>
+                                                <tbody>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div>
+                                                                <a href="product-details.html">
+                                                                    <img src="/images/product/3.jpg" alt="img">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                                <h4><a href="product-details.html"> TSHOP Tshirt DO9 </a></h4>
+                                                                <span class="size"> 12 x 1.5 L </span>
+
+                                                                <div class="price"><span> $22 </span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                        <td style="width:15%" class="miniCartSubtotal"><span> $33 </span></td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div>
+                                                                <a href="product-details.html">
+                                                                    <img src="/images/product/2.jpg" alt="img">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                                <h4><a href="product-details.html"> TShir TSHOP 09 </a></h4>
+                                                                <span class="size"> 12 x 1.5 L </span>
+
+                                                                <div class="price"><span> $15 </span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                        <td style="width:15%" class="miniCartSubtotal"><span> $120 </span></td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div>
+                                                                <a href="product-details.html">
+                                                                    <img src="/images/product/5.jpg" alt="img">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                                <h4><a href="product-details.html"> Tshir 2014 </a></h4>
+                                                                <span class="size"> 12 x 1.5 L </span>
+
+                                                                <div class="price"><span> $30 </span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                        <td style="width:15%" class="miniCartSubtotal"><span> $80 </span></td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div>
+                                                                <a href="product-details.html">
+                                                                    <img src="/images/product/3.jpg" alt="img">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                                <h4><a href="product-details.html"> TSHOP T shirt DO20 </a></h4>
+                                                                <span class="size"> 12 x 1.5 L </span>
+
+                                                                <div class="price"><span> $15 </span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                        <td style="width:15%" class="miniCartSubtotal"><span> $55 </span></td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div>
+                                                                <a href="product-details.html">
+                                                                    <img src="/images/product/4.jpg" alt="img">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                                <h4><a href="product-details.html"> T shirt Black </a></h4>
+                                                                <span class="size"> 12 x 1.5 L </span>
+
+                                                                <div class="price"><span> $44 </span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                        <td style="width:15%" class="miniCartSubtotal"><span> $40 </span></td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div>
+                                                                <a href="product-details.html">
+                                                                    <img src="/images/site/winter.jpg"
+                                                                         alt="img">
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                                <h4><a href="product-details.html"> G Star T shirt </a></h4>
+                                                                <span class="size"> 12 x 1.5 L </span>
+
+                                                                <div class="price"><span> $80 </span></div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity"><a> X 1 </a></td>
+                                                        <td style="width:15%" class="miniCartSubtotal"><span> $8.80 </span></td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--/.miniCartTable-->
+
+                                        <div class="miniCartFooter text-right">
+                                            <h3 class="text-right subtotal"> Subtotal: $210 </h3>
+                                            <a class="btn btn-sm btn-danger" href="cart.html">
+                                                <i class="fa fa-shopping-cart"> </i> VIEW
+                                                CART
+                                            </a><a class="btn btn-sm btn-primary">CHECKOUT</a>
+                                        </div>
+                                        <!--/.miniCartFooter-->
+
+                                    </div>
+                                    <!--/.dropdown-menu-->
                                 </div>
-                            </li>
-                        </ul>
-                        <ul class="social">
-                            <li><a href="http://facebook.com"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
-                            <li><a href="http://twitter.com"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
-                            <li><a href="https://plus.google.com"> <i class="fa fa-google-plus"> &nbsp; </i> </a></li>
-                            <li><a href="http://youtube.com"> <i class="fa fa-pinterest"> &nbsp; </i> </a></li>
-                            <li><a href="http://youtube.com"> <i class="fa fa-youtube"> &nbsp; </i> </a></li>
-                        </ul>
+                                <!--/.cartMenu-->
+
+                                <div class="search-box">
+                                    <div class="input-group">
+                                        <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                                    </div>
+                                    <!-- /input-group -->
+
+                                </div>
+                                <!--/.search-box -->
+                            </div>
+                            <!--/.navbar-nav hidden-xs-->
+                        </div>
+                        <!--/.nav-collapse -->
+
                     </div>
-                </div>
-                <!--/.row-->
-            </div>
-            <!--/.container-->
-        </div>
-        <!--/.footer-->
+                    <!--/.container -->
 
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="pull-left"> &copy; SaleStore 2017. Tüm Hakları Saklıdır. </p>
+                    <div class="search-full text-right">
+                        <a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
 
-                <div class="pull-right paymentMethodImg">
-                    <img height="30" class="pull-right"
-                         src="/images/site/payment/master_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/visa_card.png" alt="img"><img height="30"
-                                                                                                                                                                           class="pull-right"
-                                                                                                                                                                           src="/images/site/payment/paypal.png"
-                                                                                                                                                                           alt="img">
-                    <img height="30" class="pull-right" src="/images/site/payment/american_express_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/discover_network_card.png" alt="img">
-                    <img height="30" class="pull-right" src="/images/site/payment/google_wallet.png" alt="img">
+                        <div class="searchInputBox pull-right">
+                            <input type="search" data-searchurl="search?=" name="q" placeholder="start typing and hit enter to search"
+                                   class="search-input">
+                            <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+                        </div>
+                    </div>
+                    <!--/.search-full-->
 
                 </div>
-            </div>
-        </div>
-        <!--/.footer-bottom-->
-    </footer>
+                <!-- /.Fixed navbar  -->
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="/assets/js/jquery/jquery-1.10.1.min.js"></script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/js/idangerous.swiper-2.1.min.js"></script>
-    <script>
-        var mySwiper = new Swiper('.swiper-container', {
-            pagination: '.box-pagination',
-            keyboardControl: true,
-            paginationClickable: true,
-            slidesPerView: 'auto',
-            autoResize: true,
-            resizeReInit: true,
-        })
+                @RenderBody()
 
-        $('.prevControl').on('click', function (e) {
-            e.preventDefault()
-            mySwiper.swipePrev()
-        })
-        $('.nextControl').on('click', function (e) {
-            e.preventDefault()
-            mySwiper.swipeNext()
-        })
+                <footer>
+                    <div class="footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3  col-md-3 col-sm-4 col-xs-6">
+                                    <h3> Destek </h3>
+                                    <ul>
+                                        <li class="supportLi">
+                                            <p>  </p>
+                                            <h5><a class="inline" href="callto:+905061112233"> <strong> <b class="fa fa-phone"> </b> @ViewBag.Phone </strong> </a></h5>
+                                            <h4>
+                                                <a class="inline" href="mailto:yardim@salestore.com">
+                                                    <i class="fa fa-envelope-o"> </i>
+                                                    @ViewBag.Mail
+                                                </a>
+                                            </h4>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                $(document).ready(function () {
-                    $(document).on('hidden.bs.modal', function (e) {
-                        $(e.target).removeData('bs.modal');
+
+
+
+                                <div style="clear:both" class="hide visible-xs"></div>
+
+                                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                                    <h3> Bilgi </h3>
+                                    <ul class="list-unstyled footer-nav">
+                                        <li>
+                                            <a href="#">
+                                                Sorular?
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                Sipariş Detayı
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                İletişim
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-lg-2  col-md-3 col-sm-3 col-xs-6">
+                                    <h3> Hesabım </h3>
+                                    <ul>
+                                        <li><a href="account.html"> Hesap </a></li>
+                                        <li><a href="my-address.html"> Adres </a></li>
+                                        <li><a href="wishlist.html"> İstek Listesi </a></li>
+                                        <li><a href="order-list.html"> Sİpariş Listesi </a></li>
+                                        <li><a href="order-status.html"> Sipariş Durumu </a></li>
+                                    </ul>
+                                </div>
+
+                                <div style="clear:both" class="hide visible-xs"></div>
+
+                                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-12 ">
+                                    <h3> İletişimde Kalın </h3>
+                                    <ul>
+                                        <li>
+                                            <div class="input-append newsLatterBox text-center">
+                                                <input type="text" class="full text-center" placeholder="Email ">
+                                                <button class="btn  bg-gray" type="button">
+                                                    Gönder <i class="fa fa-long-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="social">
+                                        <li><a href="http://facebook.com"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
+                                        <li><a href="http://twitter.com"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
+                                        <li><a href="https://plus.google.com"> <i class="fa fa-google-plus"> &nbsp; </i> </a></li>
+                                        <li><a href="http://youtube.com"> <i class="fa fa-pinterest"> &nbsp; </i> </a></li>
+                                        <li><a href="http://youtube.com"> <i class="fa fa-youtube"> &nbsp; </i> </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/.row-->
+                        </div>
+                        <!--/.container-->
+                    </div>
+                    <!--/.footer-->
+
+                    <div class="footer-bottom">
+                        <div class="container">
+                            <p class="pull-left"> &copy; SaleStore 2017. Tüm Hakları Saklıdır. </p>
+
+                            <div class="pull-right paymentMethodImg">
+                                <img height="30" class="pull-right"
+                                     src="/images/site/payment/master_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/visa_card.png" alt="img"><img height="30"
+                                                                                                                                                                                       class="pull-right"
+                                                                                                                                                                                       src="/images/site/payment/paypal.png"
+                                                                                                                                                                                       alt="img">
+                                <img height="30" class="pull-right" src="/images/site/payment/american_express_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/discover_network_card.png" alt="img">
+                                <img height="30" class="pull-right" src="/images/site/payment/google_wallet.png" alt="img">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.footer-bottom-->
+                </footer>
+
+                <!-- Le javascript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script type="text/javascript" src="/assets/js/jquery/jquery-1.10.1.min.js"></script>
+                <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+                <script src="/assets/js/idangerous.swiper-2.1.min.js"></script>
+                <script>
+                    var mySwiper = new Swiper('.swiper-container', {
+                        pagination: '.box-pagination',
+                        keyboardControl: true,
+                        paginationClickable: true,
+                        slidesPerView: 'auto',
+                        autoResize: true,
+                        resizeReInit: true,
+                    })
+
+                    $('.prevControl').on('click', function (e) {
+                        e.preventDefault()
+                        mySwiper.swipePrev()
+                    })
+                    $('.nextControl').on('click', function (e) {
+                        e.preventDefault()
+                        mySwiper.swipeNext()
+                    })
+
+                    $(document).ready(function () {
+                        $(document).on('hidden.bs.modal', function (e) {
+                            $(e.target).removeData('bs.modal');
+                        });
                     });
-               });
-   
-    </script>
 
-    <!-- include jqueryCycle plugin -->
-    <script src="/assets/js/jquery.cycle2.min.js"></script>
+                </script>
 
-    <!-- include easing plugin -->
-    <script src="/assets/js/jquery.easing.1.3.js"></script>
+                <!-- include jqueryCycle plugin -->
+                <script src="/assets/js/jquery.cycle2.min.js"></script>
 
-    <!-- include  parallax plugin -->
-    <script type="text/javascript" src="/assets/js/jquery.parallax-1.1.js"></script>
+                <!-- include easing plugin -->
+                <script src="/assets/js/jquery.easing.1.3.js"></script>
 
-    <!-- optionally include helper plugins -->
-    <script type="text/javascript" src="/assets/js/helper-plugins/jquery.mousewheel.min.js"></script>
+                <!-- include  parallax plugin -->
+                <script type="text/javascript" src="/assets/js/jquery.parallax-1.1.js"></script>
 
-    <!-- include mCustomScrollbar plugin //Custom Scrollbar  -->
+                <!-- optionally include helper plugins -->
+                <script type="text/javascript" src="/assets/js/helper-plugins/jquery.mousewheel.min.js"></script>
 
-    <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.js"></script>
+                <!-- include mCustomScrollbar plugin //Custom Scrollbar  -->
 
-    <!-- include icheck plugin // customized checkboxes and radio buttons   -->
-    <script type="text/javascript" src="/assets/plugins/icheck-1.x/icheck.min.js"></script>
+                <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.js"></script>
 
-    <!-- include grid.js // for equal Div height  -->
-    <script src="/assets/js/grids.js"></script>
+                <!-- include icheck plugin // customized checkboxes and radio buttons   -->
+                <script type="text/javascript" src="/assets/plugins/icheck-1.x/icheck.min.js"></script>
 
-    <!-- include carousel slider plugin  -->
-    <script src="/assets/js/owl.carousel.min.js"></script>
+                <!-- include grid.js // for equal Div height  -->
+                <script src="/assets/js/grids.js"></script>
 
-    <!-- jQuery select2 // custom select   -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+                <!-- include carousel slider plugin  -->
+                <script src="/assets/js/owl.carousel.min.js"></script>
 
-    <!-- include touchspin.js // touch friendly input spinner component   -->
-    <script src="/assets/js/bootstrap.touchspin.js"></script>
+                <!-- jQuery select2 // custom select   -->
+                <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
-    <!-- include custom script for only homepage  -->
-    <script src="/assets/js/home.js"></script>
+                <!-- include touchspin.js // touch friendly input spinner component   -->
+                <script src="/assets/js/bootstrap.touchspin.js"></script>
 
-    <!-- include custom script for site  -->
-    <script src="/assets/js/script.js"></script>
+                <!-- include custom script for only homepage  -->
+                <script src="/assets/js/home.js"></script>
+
+                <!-- include custom script for site  -->
+                <script src="/assets/js/script.js"></script>
 
 
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
+                @RenderSection("Scripts", required: false)
+            </body>
+        </html>
