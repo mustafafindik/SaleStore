@@ -56,31 +56,31 @@
                                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                             </div>
                                             <button type="submit" class="btn   btn-primary">
-                                                <i class="fa fa-user"></i> Kaydol
+                                                <i class="fa fa-user"></i> İleri
                                             </button>
-                                        </form>
+ 
                                     </div>
                                     <div class="tab-pane" id="size">
                                         <h3>Firma Bilgileri</h3>
-                                        <form asp-area="Admin" asp-controller="Companies" asp-action="Create" method="post">
+                                        
                                             <div class="form-group">
-                                                <label asp-for="Companies.Name" class=" control-label"></label>                                              
-                                                    <input asp-for="Companies.Name" class="form-control" />
-                                                    <span asp-validation-for="Companies.Name" class="text-danger"></span>                                             
+                                                <label asp-for="Name" class=" control-label"></label>                                              
+                                                    <input asp-for="Name" class="form-control" />
+                                                    <span asp-validation-for="Name" class="text-danger"></span>                                             
                                             </div>
                                             <div class="form-group">
-                                                <label asp-for="Companies.Address" class="control-label"></label>                                             
-                                                    <input asp-for="Companies.Address" class="form-control" />
-                                                    <span asp-validation-for="Companies.Address" class="text-danger"></span>                                            
+                                                <label asp-for="Address" class="control-label"></label>                                             
+                                                    <input asp-for="Address" class="form-control" />
+                                                    <span asp-validation-for="Address" class="text-danger"></span>                                            
                                             </div>
                                             <div class="form-group">
-                                                <label asp-for="Companies.Phone" class="control-label"></label>                                          
-                                                    <input asp-for="Companies.Phone" class="form-control" />
-                                                    <span asp-validation-for="Companies.Phone" class="text-danger"></span>                                               
+                                                <label asp-for="Phone" class="control-label"></label>                                          
+                                                    <input asp-for="Phone" class="form-control" />
+                                                    <span asp-validation-for="Phone" class="text-danger"></span>                                               
                                             </div>
 
                                             <div class="form-group ">
-                                                <label asp-for="Companies.Logo" class="control-label"></label>
+                                                <label asp-for="Logo" class="control-label"></label>
                                              
                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
@@ -94,25 +94,17 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label asp-for="Companies.ProductCount" class="control-label"></label>                                              
-                                                    <input asp-for="Companies.ProductCount" class="form-control" />
-                                                    <span asp-validation-for="Companies.ProductCount" class="text-danger"></span>                                              
+                                                <label asp-for="ProductCount" class="control-label"></label>                                              
+                                                    <input asp-for="ProductCount" class="form-control" />
+                                                    <span asp-validation-for="ProductCount" class="text-danger"></span>                                              
                                             </div>
-
-                                            @*Sorunlu*@
-                                            <div class="form-group">
-                                                <label asp-for="Companies.UserId" class="control-label">Kullanıcı Kodu</label>
-
-                                                <select asp-for="Companies.UserId" class="form-control">
-                                                    <option> @UserManager.GetUserId(User)</option>
-                                                </select>
-                                            </div>
+                                           
 
                                             <div class="form-group">
-                                                <label asp-for="Companies.CampaignCount" class="control-label"></label>
+                                                <label asp-for="CampaignCount" class="control-label"></label>
                                                 
-                                                    <input asp-for="Companies.CampaignCount" class="form-control" />
-                                                    <span asp-validation-for="Companies.CampaignCount" class="text-danger"></span>
+                                                    <input asp-for="CampaignCount" class="form-control" />
+                                                    <span asp-validation-for="CampaignCount" class="text-danger"></span>
                                                
                                             </div>
                                         

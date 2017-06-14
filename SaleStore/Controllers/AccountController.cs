@@ -117,6 +117,8 @@ namespace SaleStore.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+               
+               
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -128,10 +130,16 @@ namespace SaleStore.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
+                    var lastUser = _context.Users.OrderByDescending(x =>x.CreateDate).FirstOrDefault();
+                    var newCompany = new Company { Name = model.Name, Address = model.Address, Phone = model.Phone, Logo = model.Logo, CreateDate = DateTime.Now, UpdateDate = DateTime.Now, UserId = lastUser.Id };
+                    _context.Add(newCompany);
+                    _context.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
+           
+       
 
             // If we got this far, something failed, redisplay form
             return View(model);
