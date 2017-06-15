@@ -39,6 +39,12 @@ namespace SaleStore.Models
 
         [DisplayName("Kampanya Resmi")]
         public string Image { get; set; }
+        [DisplayName("Firma Adı")]
+        public int CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        public Company Companies { get; set; }
+
+
 
         [DisplayName("Yayında mı?")]
         public bool IsPublish { get; set; }
