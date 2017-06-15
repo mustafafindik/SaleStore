@@ -197,6 +197,7 @@ namespace SaleStore.Data
                     CampaignStartDate = DateTime.Now,
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 1,
+                    CompanyId = 1,
                     Slogan = "Telefonları yenileme zamanı",
                     Image = "uploads/Seed/eskiyeni.jpg",
                     Description = "İkinci el ürünler TECHPOİNT SERVİS HİZMETLERİ A.Ş. adına Teknosa tarafından teslim alınmakta olup, ikinci el cihaz bedeli karşılığında verilen hediye çeki ilgili firma tarafından karşılanmaktadır.",
@@ -213,6 +214,7 @@ namespace SaleStore.Data
                     CampaignStartDate = DateTime.Now,
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 3,
+                    CompanyId = 1,
                     Slogan = "Sepete %15 indirim",
                     Image = "uploads/Seed/projeksiyon.png",
                     Description = "Satıcı hepsiburada olan ürünlerde geçerlidir.",
@@ -229,6 +231,7 @@ namespace SaleStore.Data
                     CampaignStartDate = DateTime.Now,
                     CampaignEndDate = DateTime.Now,
                     CategoryId = 5,
+                    CompanyId = 1,
                     Slogan = "%80'e varan indirimler",
                     Image = "uploads/Seed/parfumyaz.jpg",
                     Description = "En iyi kadın ve erkek parfümlerinin yer aldığı dünyaca ünlü, Burberry, Chanel, Tom Ford, Bvlgari, Estee Lauder, Calvin Klein ve diğer markaların en çok satan ürünlerinden oluşan bu kampanya, aradığınız tüm parfümleri özel indirimlerle size sunuyor. Bu orijinal parfümlere, size özel indirim fırsatları ile sahip olma fırsatını kaçırmayın!",
@@ -246,11 +249,11 @@ namespace SaleStore.Data
 
         private static void AddUsers(UserManager<ApplicationUser> _userManager)
         {
-            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "salestoredeneme@gmail.com", Email = "salestoredeneme@gmail.com", EmailConfirmed = true, NormalizedEmail = "SALESTOREDENEME@GMAIL.COM", NormalizedUserName = "SALESTOREDENEME@GMAIL.COM"};
+            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "salestoredeneme@gmail.com", Email = "salestoredeneme@gmail.com", EmailConfirmed = true, NormalizedEmail = "SALESTOREDENEME@GMAIL.COM", NormalizedUserName = "SALESTOREDENEME@GMAIL.COM",CreateDate=DateTime.Now};
             var task1 = Task.Run(() => _userManager.CreateAsync(user, "123:Asdf"));
             task1.Wait();
 
-            user2 = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "company@gmail.com", Email = "company@gmail.com", EmailConfirmed = true, NormalizedEmail = "COMPANY@GMAIL.COM", NormalizedUserName = "COMPANY@GMAIL.COM" };
+            user2 = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "company@gmail.com", Email = "company@gmail.com", EmailConfirmed = true, NormalizedEmail = "COMPANY@GMAIL.COM", NormalizedUserName = "COMPANY@GMAIL.COM" , CreateDate = DateTime.Now};
             var task2 = Task.Run(() => _userManager.CreateAsync(user2, "123:Asdf"));
             task2.Wait();
 

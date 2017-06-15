@@ -292,54 +292,29 @@
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="/Home"> Anasayfa </a></li>
-                                <li class="dropdown megamenu-fullwidth">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                        Kategoriler<b class="caret"> </b>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#"> KATEGORİLER<b class="caret"> </b>
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" style="min-width:100px;max-width:600px;" ;>
                                         <li class="megamenu-content ">
                                             <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
                                                 <li class="no-border">
-                                                    <p class="promo-1"><strong> Kategoriler </strong></p>
-                                                </li>
-                                                @*@foreach (var item in Model.Categories)
-                                                    {
-                                                        <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
-                                                    }*@
+                                                <li><a href="/home/campaigns">KAMPANYALAR </a></li>
+                                                <li><a href="/home/products">ÜRÜNLER </a></li>
+
+
+
                                             </ul>
-                                            <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
-                                                <li>
-                                                    <a class="newProductMenuBlock" href="product-details.html">
-                                                        <img class="img-responsive" src="/images/site/promo1.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>JEANS</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                                <li>
-                                                    <a class="newProductMenuBlock" href="product-details.html">
-                                                        <img class="img-responsive" src="/images/site/promo2.jpg" alt="product"> <span class="ProductMenuCaption">
-                                                            <i class="fa fa-caret-right"></i> PARTY DRESS
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                                <li>
-                                                    <a class="newProductMenuBlock" href="product-details.html">
-                                                        <img class="img-responsive" src="/images/site/promo3.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>SHOES</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
+
                                         </li>
                                     </ul>
-                                </li>
-                              
-
-                            <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
 
 
-                            <li><a href="/Home/About"> Hakkımızda </a></li>
-                            <li><a href="/Home/Contact"> İletişim </a></li>
+                                    <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
+
+
+                                <li><a href="/Home/About"> HAKKIMIZDA </a></li>
+                                <li><a href="/Home/Contact"> İLETİŞİM </a></li>
 
                             </ul>
 
@@ -531,7 +506,8 @@
                     <div class="footer">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-3  col-md-3 col-sm-4 col-xs-6">
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                     <h3> Destek </h3>
                                     <ul>
                                         <li class="supportLi">
@@ -552,60 +528,25 @@
 
                                 <div style="clear:both" class="hide visible-xs"></div>
 
-                                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                                    <h3> Bilgi </h3>
-                                    <ul class="list-unstyled footer-nav">
-                                        <li>
-                                            <a href="#">
-                                                Sorular?
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                Sipariş Detayı
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                İletişim
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-lg-2  col-md-3 col-sm-3 col-xs-6">
+                                <div class="col-lg-4  col-md-4 col-sm-3 col-xs-6">
                                     <h3> Hesabım </h3>
                                     <ul>
-                                        <li><a href="account.html"> Hesap </a></li>
-                                        <li><a href="my-address.html"> Adres </a></li>
-                                        <li><a href="wishlist.html"> İstek Listesi </a></li>
-                                        <li><a href="order-list.html"> Sİpariş Listesi </a></li>
-                                        <li><a href="order-status.html"> Sipariş Durumu </a></li>
+                                        <li><a href="/Manage/"> Hesap </a></li>
+                                        <li><a href="/MyCampaigns"> Kampanyalarım </a></li>
+                                        <li><a href="/MyProducts"> Ürünlerim </a></li>
+
                                     </ul>
                                 </div>
 
                                 <div style="clear:both" class="hide visible-xs"></div>
 
-                                <div class="col-lg-4  col-md-4 col-sm-4 col-xs-12 ">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                                     <h3> İletişimde Kalın </h3>
-                                    <ul>
-                                        <li>
-                                            <div class="input-append newsLatterBox text-center">
-                                                <input type="text" class="full text-center" placeholder="Email ">
-                                                <button class="btn  bg-gray" type="button">
-                                                    Gönder <i class="fa fa-long-arrow-right"></i>
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
                                     <ul class="social">
-                                        <li><a href="http://facebook.com"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
-                                        <li><a href="http://twitter.com"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
-                                        <li><a href="https://plus.google.com"> <i class="fa fa-google-plus"> &nbsp; </i> </a></li>
-                                        <li><a href="http://youtube.com"> <i class="fa fa-pinterest"> &nbsp; </i> </a></li>
-                                        <li><a href="http://youtube.com"> <i class="fa fa-youtube"> &nbsp; </i> </a></li>
+                                        <li><a href="@ViewBag.facebook"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
+                                        <li><a href="@ViewBag.Twitter"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
+                                        <li><a href="@ViewBag.LinkedIn"> <i class="fa fa-linkedin"> &nbsp; </i> </a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -619,16 +560,7 @@
                         <div class="container">
                             <p class="pull-left"> &copy; SaleStore 2017. Tüm Hakları Saklıdır. </p>
 
-                            <div class="pull-right paymentMethodImg">
-                                <img height="30" class="pull-right"
-                                     src="/images/site/payment/master_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/visa_card.png" alt="img"><img height="30"
-                                                                                                                                                                                       class="pull-right"
-                                                                                                                                                                                       src="/images/site/payment/paypal.png"
-                                                                                                                                                                                       alt="img">
-                                <img height="30" class="pull-right" src="/images/site/payment/american_express_card.png" alt="img"> <img height="30" class="pull-right" src="/images/site/payment/discover_network_card.png" alt="img">
-                                <img height="30" class="pull-right" src="/images/site/payment/google_wallet.png" alt="img">
 
-                            </div>
                         </div>
                     </div>
                     <!--/.footer-bottom-->

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using SaleStore.Models.ViewModels;
 using PagedList.Core;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace SaleStore.Controllers
 {
@@ -22,18 +23,31 @@ namespace SaleStore.Controllers
     {
         private IHostingEnvironment env;
         HomePageViewModels model = new HomePageViewModels();
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MyProductsController(IHostingEnvironment _env, ApplicationDbContext context) :base(context)
+        public MyProductsController(IHostingEnvironment _env, ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
         {
             this.env = _env;
+            this._userManager = userManager;
+        }
+        [HttpGet]
+        public async Task<string> GetCurrentUserId()
+        {
+            ApplicationUser usr = await GetCurrentUserAsync();
+            return usr?.Id;
         }
 
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         // GET: Admin/Products
-        public IActionResult Index(int page = 1)
-        { 
+        public async Task<IActionResult> Index(int page = 1)
+        {
+
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
-            model.Products = _context.Products.ToPagedList<Product>(page, 9);
+            List<Company> companies = _context.Companies.ToList();
+            string CurrentUserId = await GetCurrentUserId();
+            //string CurrentUserId = (await _userManager.GetUserAsync(HttpContext.User))?.Id;
+            model.Products = _context.Products.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Product>(page, 9);
             return View(model);
         }
 
@@ -74,13 +88,13 @@ namespace SaleStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile uploadFile)
         {
-            if(product.SalePrice > product.UnitPrice)
+            if (product.SalePrice > product.UnitPrice)
             {
-                ModelState.AddModelError("SalePrice","İndirimli fiyat birim fiyattan yüksek olamaz");
+                ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
             }
-            if(product.SaleStarthDate > product.SaleEndDate)
+            if (product.SaleStarthDate > product.SaleEndDate)
             {
-                ModelState.AddModelError("SaleEndDate","İndirim bitiş tarihi indirim başlangıç tarihinden erken olamaz");
+                ModelState.AddModelError("SaleEndDate", "İndirim bitiş tarihi indirim başlangıç tarihinden erken olamaz");
             }
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
@@ -105,12 +119,12 @@ namespace SaleStore.Controllers
                         string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
                         string dosyaismi = Path.GetFileName(uploadFile.FileName);
                         var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
-                        product.ProductImage = "uploads/" + category + "/"+dosyaismi;
+                        product.ProductImage = "uploads/" + category + "/" + dosyaismi;
                         try
                         {
                             if (!Directory.Exists(FilePath))
                             {
-                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                                Directory.CreateDirectory(FilePath);//E?er klasör yoksa olu?tur    
                             }
                             using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
                             {
@@ -159,7 +173,7 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublished")] Product product,IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublished")] Product product, IFormFile uploadFile)
         {
             if (id != product.Id)
             {
@@ -200,7 +214,7 @@ namespace SaleStore.Controllers
                         {
                             if (!Directory.Exists(FilePath))
                             {
-                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                                Directory.CreateDirectory(FilePath);//E?er klasör yoksa olu?tur    
                             }
                             using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
                             {
@@ -220,7 +234,7 @@ namespace SaleStore.Controllers
                 }
                 else
                 {
-                    
+
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
@@ -265,6 +279,6 @@ namespace SaleStore.Controllers
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
-        }    
+        }
     }
 }

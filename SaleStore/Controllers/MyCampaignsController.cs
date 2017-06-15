@@ -13,6 +13,7 @@ using System.IO;
 using SaleStore.Models.ViewModels;
 using PagedList.Core;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace SaleStore.Controllers
 {
@@ -21,19 +22,31 @@ namespace SaleStore.Controllers
     public class MyCampaignsController : ControllerBase
     {
         private IHostingEnvironment env;
+        HomePageViewModels model = new HomePageViewModels();
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MyCampaignsController(IHostingEnvironment _env, ApplicationDbContext context) :base(context)
+        public MyCampaignsController(IHostingEnvironment _env, ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
         {
             this.env = _env;
+            this._userManager = userManager;
+        }
+        [HttpGet]
+        public async Task<string> GetCurrentUserId()
+        {
+            ApplicationUser usr = await GetCurrentUserAsync();
+            return usr?.Id;
         }
 
-        // GET: Admin/Campaigns
-        public IActionResult Index(int page = 1)
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        // GET: Admin/Products
+        public async Task<IActionResult> Index(int page = 1)
         {
-            HomePageViewModels model = new HomePageViewModels();
+
             model.Categories = _context.Categories.ToList();
-            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 8);
             model.Products = _context.Products.ToPagedList<Product>(page, 9);
+            List<Company> companies = _context.Companies.ToList();
+            string CurrentUserId = await GetCurrentUserId();
+            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
             return View(model);
         }
 
@@ -60,6 +73,7 @@ namespace SaleStore.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View();
         }
 
@@ -121,6 +135,7 @@ namespace SaleStore.Controllers
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
             return View(campaign);
         }
 
@@ -138,6 +153,7 @@ namespace SaleStore.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
             return View(campaign);
         }
 
@@ -209,6 +225,7 @@ namespace SaleStore.Controllers
                 }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
             return View(campaign);
         }
 
