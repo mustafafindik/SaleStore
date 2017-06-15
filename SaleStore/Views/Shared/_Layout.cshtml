@@ -292,44 +292,24 @@
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
                                 <li><a href="/Home"> Anasayfa </a></li>
-                                <li class="dropdown megamenu-fullwidth">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                        Kategoriler<b class="caret"> </b>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle padding-fix" href="#">
+                                        KATEGORİLER<b class="caret"> </b>
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" style="min-width:100px;max-width:600px;" ;>
                                         <li class="megamenu-content ">
                                             <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
                                                 <li class="no-border">
-                                                    <p class="promo-1"><strong> Kategoriler </strong></p>
-                                                </li>
-                                                @*@foreach (var item in Model.Categories)
-                                                    {
-                                                        <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
-                                                    }*@
-                                            </ul>
-                                            <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
-                                                <li>
-                                                    <a class="newProductMenuBlock" href="product-details.html">
-                                                        <img class="img-responsive" src="/images/site/promo1.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>JEANS</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                                <li>
-                                                    <a class="newProductMenuBlock" href="product-details.html">
-                                                        <img class="img-responsive" src="/images/site/promo2.jpg" alt="product"> <span class="ProductMenuCaption">
-                                                            <i class="fa fa-caret-right"></i> PARTY DRESS
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                                <li>
-                                                    <a class="newProductMenuBlock" href="product-details.html">
-                                                        <img class="img-responsive" src="/images/site/promo3.jpg" alt="product"> <span class="ProductMenuCaption"><i class="fa fa-caret-right"> </i>SHOES</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                                <li><a href="/home/campaigns">KAMPANYALARIM </a></li>
+                                                <li><a href="/home/products">ÜRÜNLERİM </a></li>
+
+                                        </li>
+                                        @*@foreach (var item in Model.Categories)
+            {
+                <li><a href="#"> <span class="badge pull-right">42</span> @item.Name </a></li>
+            }*@
+                                    </ul>
+    
                                         </li>
                                     </ul>
                                 </li>
@@ -338,8 +318,8 @@
                             <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
 
 
-                            <li><a href="/Home/About"> Hakkımızda </a></li>
-                            <li><a href="/Home/Contact"> İletişim </a></li>
+                            <li><a href="/Home/About"> HAKKIMIZDA </a></li>
+                            <li><a href="/Home/Contact"> İLETİŞİM </a></li>
 
                             </ul>
 
