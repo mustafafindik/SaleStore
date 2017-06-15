@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using SaleStore.Data;
 
-namespace SaleStore.Data.Migrations
+namespace SaleStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170603084719_xd")]
-    partial class xd
+    [Migration("20170615134216_IntializeCreat")]
+    partial class IntializeCreat
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,9 @@ namespace SaleStore.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Name")
                         .HasMaxLength(256);
 
@@ -38,6 +41,8 @@ namespace SaleStore.Data.Migrations
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -131,14 +136,10 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Avatar");
-
-                    b.Property<int>("CampaignCount");
-
-                    b.Property<int>("CompanyId");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -148,10 +149,6 @@ namespace SaleStore.Data.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(35);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -165,8 +162,6 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<int>("ProductCount");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -175,8 +170,6 @@ namespace SaleStore.Data.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -208,12 +201,14 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("Image");
 
+                    b.Property<bool>("IsPublish");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(35);
+                        .HasMaxLength(250);
 
                     b.Property<string>("Slogan")
-                        .HasMaxLength(200);
+                        .HasMaxLength(500);
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -259,6 +254,8 @@ namespace SaleStore.Data.Migrations
                     b.Property<string>("Address")
                         .HasMaxLength(80);
 
+                    b.Property<int>("CampaignCount");
+
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("CreatedBy")
@@ -272,6 +269,81 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("Phone");
 
+                    b.Property<int>("ProductCount");
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("SaleStore.Models.Inbox", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Message")
+                        .IsRequired();
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("SubmitDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Inboxes");
+                });
+
+            modelBuilder.Entity("SaleStore.Models.MailSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("FromAddress")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FromAddressPassword")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FromAddressTitle")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<int>("SmptPortNumber");
+
+                    b.Property<string>("SmptServer")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
                     b.Property<DateTime>("UpdateDate");
 
                     b.Property<string>("UpdatedBy")
@@ -279,7 +351,7 @@ namespace SaleStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("MailSettings");
                 });
 
             modelBuilder.Entity("SaleStore.Models.Product", b =>
@@ -296,22 +368,25 @@ namespace SaleStore.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(30);
 
-                    b.Property<string>("Details")
-                        .HasMaxLength(200);
+                    b.Property<string>("Details");
+
+                    b.Property<bool>("IsPublish");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(35);
+                        .HasMaxLength(250);
 
                     b.Property<string>("ProductImage");
 
                     b.Property<DateTime>("SaleEndDate");
 
-                    b.Property<decimal>("SalePrice");
+                    b.Property<float?>("SalePrice")
+                        .IsRequired();
 
                     b.Property<DateTime>("SaleStarthDate");
 
-                    b.Property<decimal>("UnitPrice");
+                    b.Property<float?>("UnitPrice")
+                        .IsRequired();
 
                     b.Property<DateTime>("UpdateDate");
 
@@ -327,6 +402,38 @@ namespace SaleStore.Data.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("SaleStore.Models.SendMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BodyContent")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("MailSettingId");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MailSettingId");
+
+                    b.ToTable("SendMessages");
+                });
+
             modelBuilder.Entity("SaleStore.Models.Setting", b =>
                 {
                     b.Property<int>("Id")
@@ -336,14 +443,20 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
                     b.Property<string>("Facebook");
 
                     b.Property<string>("LinkedIn");
 
-                    b.Property<string>("Logo")
-                        .IsRequired();
+                    b.Property<string>("Logo");
 
                     b.Property<string>("Mail");
+
+                    b.Property<string>("Mission");
 
                     b.Property<string>("Phone");
 
@@ -355,13 +468,32 @@ namespace SaleStore.Data.Migrations
 
                     b.Property<string>("SiteSlogan");
 
+                    b.Property<string>("Strategy");
+
                     b.Property<string>("Title");
 
                     b.Property<string>("Twitter");
 
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Vision");
+
                     b.HasKey("Id");
 
                     b.ToTable("Setting");
+                });
+
+            modelBuilder.Entity("SaleStore.Models.Role", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
+
+
+                    b.ToTable("Role");
+
+                    b.HasDiscriminator().HasValue("Role");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -401,20 +533,19 @@ namespace SaleStore.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SaleStore.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("SaleStore.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("SaleStore.Models.Campaign", b =>
                 {
                     b.HasOne("SaleStore.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SaleStore.Models.Company", b =>
+                {
+                    b.HasOne("SaleStore.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SaleStore.Models.Product", b =>
@@ -427,6 +558,14 @@ namespace SaleStore.Data.Migrations
                     b.HasOne("SaleStore.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SaleStore.Models.SendMessage", b =>
+                {
+                    b.HasOne("SaleStore.Models.MailSetting", "MailSetting")
+                        .WithMany()
+                        .HasForeignKey("MailSettingId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
