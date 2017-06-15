@@ -7,22 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SaleStore.Data;
 using SaleStore.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace SaleStore.Controllers
 {
-    public class MyCompaniesController : Controller
+    public class MyCompaniesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MyCompaniesController(ApplicationDbContext context)
+        public MyCompaniesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
+        [HttpGet]
+        public async Task<string> GetCurrentUserId()
+        {
+            ApplicationUser usr = await GetCurrentUserAsync();
+            return usr?.Id;
+        }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: MyCompanies
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Companies.Include(c => c.ApplicationUser);
+            string CurrentUserId = await GetCurrentUserId();
+            var applicationDbContext = _context.Companies.Where(x => x.UserId == CurrentUserId);
             return View(await applicationDbContext.ToListAsync());
         }
 
