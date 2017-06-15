@@ -9,129 +9,78 @@
 <div>
     <h2 class="col-md-offset-5"><i class="fa fa-user" style="margin-right:10px;" aria-hidden="true"></i>Üyelik Bilgilerini Değiştir.</h2>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            @if (Model.HasPassword)
+    <div class="container   ">
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <dl class="dl-horizontal">
+                    <dt>Şifre:</dt>
+                    <dd>
+                        @if (Model.HasPassword)
             {
-                <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Değiştir</a>
-            }
-            else
-            {
-                <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Yeni Ekle</a>
-            }
-        </dd>
-        <dt>Harici Girişler:</dt>
-        <dd>
+                            <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Değiştir</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">Yeni Ekle</a>
+                        }
+                    </dd>
+                    <dt>Harici Girişler:</dt>
+                    <dd>
 
-            @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Yönet</a>
-        </dd>
-        <dt>Telefon Numarası :</dt>
-        <dd>
-            @*<p>
-                Phone Numbers can be used as a second factor of verification in two-factor authentication.
-                See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-            </p>*@
-            @(Model.PhoneNumber ?? "Yok")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Değiştir</a>
-                    <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
-                        [<button type="submit" class="btn-link">Sil</button>]
-                    </form>
-                }
-                else
-                {
-                    <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Ekle</a>
-                }
-        </dd>
+                        @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Yönet</a>
+                    </dd>
+                    <dt>Telefon Numarası :</dt>
+                    <dd>
+                        @*<p>
+                                Phone Numbers can be used as a second factor of verification in two-factor authentication.
+                                See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
+                                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+                            </p>*@
+                        @(Model.PhoneNumber ?? "Yok")
+                        @if (Model.PhoneNumber != null)
+                        {
+                            <br />
+                            <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Değiştir</a>
+                            <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
+                                [<button type="submit" class="btn-link">Sil</button>]
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Ekle</a>
+                        }
+                    </dd>
 
-        <dt>İki Faktörlü Doğrulama:</dt>
-        <dd>
-            @*<p>
-                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                for setting up this application to support two-factor authentication.
-            </p>*@
-            @if (Model.TwoFactor)
-                {
-                    <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
-                        Aktif <button type="submit" class="btn-link btn-bracketed">Pasif</button>
-                    </form>
-                }
-                else
-                {
-                    <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
-                        <button type="submit" class="btn-link btn-bracketed">Aktif</button> Pasif
-                    </form>
-                }
-        </dd>
-    </dl>
-</div>
-
-
-@*<div class="container main-container headerOffset">
-    <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-7">
-            <h1 class="section-title-inner"><span><i class="fa fa-unlock-alt"></i> My account </span></h1>
-
-            <div class="row userInfo">
-                <div class="col-xs-12 col-sm-12">
-                    <p> Your account has been created. </p>
-
-                    <h2 class="block-title-2">
-                        <span>Welcome to your account. Here you can manage all of your personal information and orders.</span>
-                    </h2>
-                    <ul class="myAccountList row">
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-                            <div class="thumbnail equalheight">
-                                <a title="Orders" href="order-list.html">
-                                    <i class="fa fa-calendar"></i> Order history
-                                </a>
-                            </div>
-                        </li>
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-                            <div class="thumbnail equalheight">
-                                <a title="My addresses" href="my-address.html">
-                                    <i class="fa fa-map-marker"></i> My addresses
-                                </a>
-                            </div>
-                        </li>
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-                            <div class="thumbnail equalheight">
-                                <a title="Add  address" href="add-address.html">
-                                    <i class="fa fa-edit"></i> Add address
-                                </a>
-                            </div>
-                        </li>
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-                            <div class="thumbnail equalheight">
-                                <a title="Personal information"
-                                   href="user-information.html">
-                                    <i class="fa fa-cog"></i>
-                                    Personal information
-                                </a>
-                            </div>
-                        </li>
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-                            <div class="thumbnail equalheight">
-                                <a title="My wishlists" href="wishlist.html">
-                                    <i class="fa fa-heart"></i> My wishlists
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="clear clearfix"></div>
-                </div>
+                    <dt>İki Faktörlü Doğrulama:</dt>
+                    <dd>
+                        @*<p>
+                                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
+                                for setting up this application to support two-factor authentication.
+                            </p>*@
+                        @if (Model.TwoFactor)
+                        {
+                            <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
+                                Aktif <button type="submit" class="btn-link btn-bracketed">Pasif</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
+                                <button type="submit" class="btn-link btn-bracketed">Aktif</button> Pasif
+                            </form>
+                        }
+                    </dd>
+                </dl>
             </div>
-            <!--/row end-->
+            <div class="col-md-6 col-lg-6">
 
+               Firma Bilgileri
+
+
+            </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-5"></div>
     </div>
-    <!--/row-->
-
-    <div style="clear:both"></div>
 </div>
-<!-- /wrapper -->*@
+      
+<div class="gap"></div>
+<div class="gap"></div>
