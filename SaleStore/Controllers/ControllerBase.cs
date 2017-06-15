@@ -32,6 +32,11 @@ namespace SaleStore.Controllers
                 ViewBag.Mail = setting.Mail;
                 ViewBag.SiteSlogan = setting.SiteSlogan;
                 ViewBag.About = setting.About;
+                ViewBag.facebook = setting.Facebook;
+                ViewBag.Twitter = setting.Twitter;
+                ViewBag.LinkedIn = setting.LinkedIn;
+
+
 
             }
             else
@@ -47,6 +52,9 @@ namespace SaleStore.Controllers
                 ViewBag.Mail = settings.Mail;
                 ViewBag.SiteSlogan = settings.SiteSlogan;
                 ViewBag.About = settings.About;
+                ViewBag.facebook = settings.Facebook;
+                ViewBag.Twitter = settings.Twitter;
+                ViewBag.LinkedIn = settings.LinkedIn;
 
             }
 

@@ -1,6 +1,6 @@
 ﻿
     <div class="parallax-section parallax-fx about-3 parallaxOffset no-padding"
-         style="background-image: url(/images/about/1.jpg); ">
+         style="background-image: url(/images/hero-bg/1.jpg);opacity:0.6;filter: grayscale(100%); ">
         <div class="w100 ">
             <div class="container">
                 <div class="row">
@@ -38,8 +38,8 @@
 
 
                 <div class="row has-equal-height-child">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xxs-12 is-equal">
-                        <div class="hw100 display-table">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 col-xxs-12 ">
+                        <div class=" display-table">
                             <div class="hw100 display-table-cell">
                                 <div class="content-inner wow fadeInRight" data-wow-duration=".8s" data-wow-delay="0">
 
@@ -50,14 +50,17 @@
                                         <p>
                                             @ViewBag.Vision
                                         </p>
+                                        <br />
                                         <h3>Misyonumuz</h3>
                                         <p>
                                             @ViewBag.Mission
                                         </p>
+                                        <br />
                                         <h3>Stratejimiz</h3>
                                         <p>
                                             @ViewBag.Strategy
                                         </p>
+                                        <br />
                                     </div>
                                 </div>
                             </div>
@@ -66,9 +69,9 @@
 
                     </div>
 
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xxs-12 is-equal">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-xxs-12 is-equal">
                         <div class="content-inner wow fadeInLeft" data-wow-duration=".8s" data-wow-delay="0">
-                            <img src="/images/about/2.jpg" class="img-responsive abt-img" alt="img">
+                            <img src="~/images/about/7.jpg" class="img-responsive abt-img img-thumbnail" style="opacity:0.5;" alt="img">
                         </div>
 
                     </div>
@@ -116,7 +119,7 @@
                     </p>
 
 
-                    <a class="btn btn-center btn-lg  btn-primary" data-toggle="modal" href="#contact-us">
+                    <a class="btn btn-center btn-lg  btn-primary" href="/Home/Contact">
                         <i class=" fa fa-envelope"></i> Mesaj Gönder
                     </a>
                 </div>
@@ -126,64 +129,9 @@
     </div>
     <!-- /.section-about-bottom -->
 
-
-
-    <!-- Modal Login start -->
-    <div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                    <h3 class="modal-title-site text-center"> Giriş</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group login-username">
-                        <div>
-                            <input name="log" id="login-user" class="form-control input" size="20"
-                                   placeholder="Kullanıcı Adı" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group login-password">
-                        <div>
-                            <input name="Password" id="login-password" class="form-control input" size="20"
-                                   placeholder="Şifre" type="password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox login-remember">
-                                <label>
-                                    <input name="rememberme" value="forever" checked="checked" type="checkbox">
-                                    Beni Hatırla
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Giriş" type="submit">
-                        </div>
-                    </div>
-                    <!--userForm-->
-
-                </div>
-                <div class="modal-footer">
-                    <p class="text-center">
-                        Not here before? <a data-toggle="modal" data-dismiss="modal"
-                                            href="#ModalSignup">ÇIKIŞ</a> <br>
-                        <a href="forgot-password.html"> Şifreni mi unuttun? </a>
-                    </p>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-
-        </div>
-        <!-- /.modal-dialog -->
-
-    </div>
     
 
-    <div role="dialog" tabindex="-1" id="contact-us" class="modal fade" aria-hidden="true">
+    @*<div role="dialog" tabindex="-1" id="contact-us" class="modal fade" aria-hidden="true">
         <div class="modal-dialog modal-xs">
             <div class="modal-content">
                 
@@ -222,7 +170,7 @@
             </div>
         </div>
 
-    </div>
+    </div>*@
 
     
 

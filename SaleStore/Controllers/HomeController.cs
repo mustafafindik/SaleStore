@@ -30,7 +30,8 @@ namespace SaleStore.Controllers
 
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
-            model.Products = _context.Products.ToPagedList<Product>(page, 10);
+            model.Products = _context.Products.OrderByDescending(x => x.CreateDate).Take(9).ToPagedList<Product>(page, 10); ;
+            model.Companies = _context.Companies.ToList();
             model.Settings = _context.Setting.ToList();
             //Setting settings = new Setting();
             //settings = _context.Setting.FirstOrDefault();
@@ -153,8 +154,8 @@ namespace SaleStore.Controllers
         public IActionResult Products(int page=1)
         {
             model.Categories = _context.Categories.ToList();
-            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
-            model.Products = _context.Products.ToPagedList<Product>(page, 10);
+            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
+            model.Products = _context.Products.ToPagedList<Product>(page, 9);
             model.Settings = _context.Setting.ToList();
             return View(model);
         }

@@ -12,6 +12,7 @@ namespace SaleStore.Models.ViewModels
         public List<Category> Categories { get; set; }
         public IPagedList<Product> Products { get; set; }
         public IPagedList<Campaign> Campaigns { get; set; }
+        public List<Company> Companies { get; set; }
         public List<Setting> Settings { get; set; }
     }
 }
