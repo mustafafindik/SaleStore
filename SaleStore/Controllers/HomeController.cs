@@ -29,7 +29,7 @@ namespace SaleStore.Controllers
         {
 
             model.Categories = _context.Categories.ToList();
-            model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
+            model.Campaigns = _context.Campaigns.Take(6).ToPagedList<Campaign>(page, 10);
             model.Products = _context.Products.ToPagedList<Product>(page, 10);
             model.Settings = _context.Setting.ToList();
             //Setting settings = new Setting();
@@ -216,6 +216,45 @@ namespace SaleStore.Controllers
             ViewBag.About = settings.About;
             return View();
         }
+
+
+        public async Task<IActionResult> CampaignDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var campaign = await _context.Campaigns
+                .Include(c => c.Category)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (campaign == null)
+            {
+                return NotFound();
+            }
+
+            return View(campaign);
+        }
+
+        public async Task<IActionResult> ProductDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Company)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
