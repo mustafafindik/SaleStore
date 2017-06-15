@@ -249,11 +249,11 @@ namespace SaleStore.Data
 
         private static void AddUsers(UserManager<ApplicationUser> _userManager)
         {
-            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "salestoredeneme@gmail.com", Email = "salestoredeneme@gmail.com", EmailConfirmed = true, NormalizedEmail = "SALESTOREDENEME@GMAIL.COM", NormalizedUserName = "SALESTOREDENEME@GMAIL.COM"};
+            user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "salestoredeneme@gmail.com", Email = "salestoredeneme@gmail.com", EmailConfirmed = true, NormalizedEmail = "SALESTOREDENEME@GMAIL.COM", NormalizedUserName = "SALESTOREDENEME@GMAIL.COM",CreateDate=DateTime.Now};
             var task1 = Task.Run(() => _userManager.CreateAsync(user, "123:Asdf"));
             task1.Wait();
 
-            user2 = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "company@gmail.com", Email = "company@gmail.com", EmailConfirmed = true, NormalizedEmail = "COMPANY@GMAIL.COM", NormalizedUserName = "COMPANY@GMAIL.COM" };
+            user2 = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "company@gmail.com", Email = "company@gmail.com", EmailConfirmed = true, NormalizedEmail = "COMPANY@GMAIL.COM", NormalizedUserName = "COMPANY@GMAIL.COM" , CreateDate = DateTime.Now};
             var task2 = Task.Run(() => _userManager.CreateAsync(user2, "123:Asdf"));
             task2.Wait();
 
