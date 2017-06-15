@@ -7,59 +7,47 @@
     <div class="slider-content">
         <span class="prevControl sliderControl"> <i class="fa fa-angle-left fa-3x "></i></span>
         <span class="nextControl sliderControl"> <i class="fa fa-angle-right fa-3x "></i></span>
-
+        
+        
         <div class="swiper-container swiper-container-h">
+           
+                
             <div class="swiper-wrapper">
-                <div class="swiper-slide slide-2x">
+
+   
+
+    @foreach (var item in Model.Campaigns)
+    {
+        <div class="swiper-slide slide-2x">
                     <div class="box-slider-content">
                         <div class="box-text">
-                            <h1>NEW COLLECTION</h1>
+                            <h1>@item.Slogan</h1>
 
                             <p>
-                                Veggies es bonus vobis, proinde vos postulo essum magis
-                                kohlrabi welsh onion daikon amaranth.
+                                @item.Description
                             </p>
-                            <a class="btn btn-stroke-light"> SHOP NOW</a>
+                            
+                            <a asp-controller="Home" asp-action="CampaignDetail" class="btn btn-stroke-light" asp-route-id="@item.Id">İncele</a>
                         </div>
                         <div class="box-content-overly">
                             <!-- Delete this div if you dont want overly effect -->
                         </div>
-                        <a href="#" class="box-img"> <img src="/images/slider/box/1.jpg" alt="img"></a>
+                        <a href="#" class="box-img"> <img src="/@item.Image" alt="img"></a>
                     </div>
                 </div>
-                <div class="swiper-slide slide-2x">
-                    <div class="slider-box-top">
-                        <div class="box-slider-content">
-                            <div class="box-text-table">
-                                <div class="box-text-cell">
-                                    <h1 class="bolder-style light"><a href="#">SALE</a></h1>
-                                    <span class="bolder-sub"> <a href="#"> EXTRA 80% OFF </a> </span>
-                                </div>
-                            </div>
-                            <div class="box-content-overly">
-                                <!-- Delete this div if you dont want overly effect -->
-                            </div>
-                            <a href="#" class="box-img"> <img src="/images/slider/box/2a.jpg" alt="img"></a>
-                        </div>
-                    </div>
-                    <div class="slider-box-bottom">
-                        <div class="box-slider-content">
-                            <div class="box-price-tag"><span class="price">$200</span></div>
-                            <a href="#" class="box-img"> <img src="/images/slider/box/2b.jpg" alt="img"> </a>
 
-                            <div class="box-content-overly">
-                                <a href="#" class="box-blank-url">
-                                    <!-- keep this blank. This link will provide a hyperlink over the box-content-overly div -->
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
+            }
+
+
+
+    
+
             </div>
+                
             <div class="box-pagination swiper-pagination"></div>
+            
         </div>
-
+        
         <!--/.full-container-->
     </div>
 </div>
@@ -87,7 +75,7 @@
                                 <a data-toggle="modal" class="btn btn-xs btn-quickview" href="/Home/Product/@item.Id"
                                    data-target="#productSetailsModalAjax">Gözat</a>
                             </div>
-                            <a href="/MyProducts/details/@item.Id">
+                            <a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
                                 <img src="/@item.ProductImage" alt="img" style="margin-top:10px;height:250px;"
                                      class="img-responsive ">
                             </a>
@@ -104,7 +92,7 @@
                             </div>
                         </div>
                         <div class="description">
-                            <h4 style="min-height: 25px;"><a href="product-details.html">@item.Name </a></h4>
+                            <h4 style="min-height: 25px;"><a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">@item.Name </a></h4>
 
                             <p>
                                 @if (string.IsNullOrEmpty(item.Details) == false && item.Details.Length > 30)
@@ -124,7 +112,7 @@
                             <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
                         </div>
                         <div class="action-control">
-                            <a class="btn btn-primary" href="/MyProducts/details/@item.Id">
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
                                 <span class="add2cart">
                                     <i class="glyphicon glyphicon-shopping-cart"></i> Detayları Gör
                                 </span>
@@ -220,7 +208,7 @@
                     <div class="product">
                          
                         <div class="imageHover"> 
-                            <a href="/myproducts/Details/@item.Id">
+                            <a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
                                 <img src="/@item.ProductImage" alt="img" class="img-responsive" style="margin-top:10px;height:240px;display:inline-block" />
                  
                             </a>
@@ -240,7 +228,7 @@
 
 
                         <div class="description">
-                            <h4><a href="product-details.html"> @item.Name </a></h4>
+                            <h4><a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id"> @item.Name </a></h4>
 
                             <div class="grid-description">
                                 <p>@item.Details</p>
@@ -258,7 +246,7 @@
                             <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
                         </div>
                         <div class="action-control">
-                            <a class="btn btn-default" href="/MyProducts/details/@item.Id">
+                            <a class="btn btn-default" asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
                                 <span class="add2cart">
                                     <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
                                 </span>
