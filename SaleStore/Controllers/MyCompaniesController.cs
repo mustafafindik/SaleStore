@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,18 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using SaleStore.Data;
 using SaleStore.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
+    [Authorize]
     public class MyCompaniesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private IHostingEnvironment env;
 
-        public MyCompaniesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
+        public MyCompaniesController(IHostingEnvironment _env, ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
         {
             _context = context;
             _userManager = userManager;
+            this.env = _env;
         }
         [HttpGet]
         public async Task<string> GetCurrentUserId()
@@ -33,7 +40,9 @@ namespace SaleStore.Controllers
         // GET: MyCompanies
         public async Task<IActionResult> Index()
         {
+                    
             string CurrentUserId = await GetCurrentUserId();
+            ViewBag.Id = CurrentUserId;
             var applicationDbContext = _context.Companies.Where(x => x.UserId == CurrentUserId);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -69,13 +78,66 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company)
+        public async Task<IActionResult> Create([Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
         {
-            if (ModelState.IsValid)
+            string CurrentUserId = await GetCurrentUserId();
+            company.CreatedBy = User.Identity.Name ?? "username";
+            company.CreateDate = DateTime.Now;
+            company.UpdatedBy = User.Identity.Name ?? "username";
+            company.UpdateDate = DateTime.Now;
+            company.CampaignCount = 3;
+            company.ProductCount = 25;
+            company.UserId = CurrentUserId;
+          
+
+            if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
-                _context.Add(company);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
+            }
+
+            else if (ModelState.IsValid)
+            {
+                if (uploadFile != null)
+                {
+
+                    company.CreatedBy = User.Identity.Name ?? "username";
+                    company.CreateDate = DateTime.Now;
+                    company.UpdatedBy = User.Identity.Name ?? "username";
+                    company.UpdateDate = DateTime.Now;
+
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
+                    {
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year;
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        company.Logo = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+
+                            _context.Add(company);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("Logo", "Hata: " + exc.Message); }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Logo", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
+                    }
+                }
+                else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
             ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", company.UserId);
             return View(company);
@@ -103,37 +165,75 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
         {
+            string CurrentUserId = await GetCurrentUserId();
             if (id != company.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
-                try
+                ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
+            }
+            else if (ModelState.IsValid)
+            {
+
+                if (uploadFile != null)
                 {
-                    _context.Update(company);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompanyExists(company.Id))
+
+                    company.UpdatedBy = User.Identity.Name ?? "username";
+                    company.UpdateDate = DateTime.Now;
+                    company.CampaignCount = 3;
+                    company.ProductCount = 25;
+                    company.UserId = CurrentUserId;
+
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
                     {
-                        return NotFound();
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-CampaignImages";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        company.Logo = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+                            _context.Update(company);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("Image", "Hata: " + exc.Message); }
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
-                return RedirectToAction("Index");
+                else
+                {
+
+                    _context.Update(company);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
+
             ViewData["UserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", company.UserId);
             return View(company);
         }
-
+    
+       
         // GET: MyCompanies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -73,6 +73,8 @@ namespace SaleStore.Areas.Admin.Controllers
             company.CreateDate = DateTime.Now;
             company.UpdatedBy = User.Identity.Name ?? "username";
             company.UpdateDate = DateTime.Now;
+            company.CampaignCount = 3;
+            company.ProductCount = 25;
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
@@ -166,6 +168,9 @@ namespace SaleStore.Areas.Admin.Controllers
 
                     company.UpdatedBy = User.Identity.Name ?? "username";
                     company.UpdateDate = DateTime.Now;
+                    company.CampaignCount = 3;
+                    company.ProductCount = 25;
+                  
 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"
