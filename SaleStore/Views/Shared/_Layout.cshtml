@@ -491,10 +491,15 @@
                         <a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
 
                         <div class="searchInputBox pull-right">
-                            <input type="search" data-searchurl="search?=" name="q" placeholder="start typing and hit enter to search"
-                                   class="search-input">
-                            <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
-                        </div>
+                            <form role="form" asp-action="Search" asp-controller="Home" method="get">
+                                <input type="search" name="query" id="query" value="@ViewBag.Query" placeholder="Ürün Arayınız..."
+                                       class="search-input">
+                                <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+                                </form>
+
+
+                                
+</div>
                     </div>
                     <!--/.search-full-->
 

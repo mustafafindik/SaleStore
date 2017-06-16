@@ -49,6 +49,49 @@ namespace SaleStore.Controllers
             return View(model);
         }
 
+
+        public IActionResult Search(string query = "", int page = 1)
+        {
+
+
+            ViewBag.Query = query;
+            if (String.IsNullOrEmpty(query))
+            {
+                // query parametresinden değer gelmiyorsa tüm kayıtları getir
+                model.Categories = _context.Categories.ToList();
+                model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
+                model.Products = _context.Products.OrderByDescending(x => x.CreateDate).Take(9).ToPagedList<Product>(page, 10); ;
+                model.Companies = _context.Companies.ToList();
+                model.Settings = _context.Setting.ToList();
+                return View(model);
+            }
+            else
+            {
+                // query'den değer geliyorsa where metoduyla filtreleme yap
+                query = query.ToLower();
+                string[] terms = query.Split(' ');
+                model.Categories = _context.Categories.ToList();
+                model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
+                
+                model.Companies = _context.Companies.ToList();
+                model.Settings = _context.Setting.ToList();
+
+                foreach (var term in terms)
+                {
+                   
+                    model.Products = _context.Products.Where(r =>
+                    r.Name.ToLower().Contains(term) ||
+                    r.Details.ToLower().Contains(term)).ToPagedList<Product>(1,9);
+
+                    model.Campaigns = _context.Campaigns.Where(r =>
+                    r.Name.ToLower().Contains(term) ||
+                    r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
+                }
+
+                return View("Index",model);
+            }
+        }
+
         public IActionResult About()
         {
             Setting settings = new Setting();

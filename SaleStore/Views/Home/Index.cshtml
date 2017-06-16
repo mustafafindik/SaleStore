@@ -3,7 +3,11 @@
 
 
 
+
+
 <div class="banner banner-boxes">
+@if (String.IsNullOrEmpty(ViewBag.Query))
+{
     <div class="slider-content">
         <span class="prevControl sliderControl"> <i class="fa fa-angle-left fa-3x "></i></span>
         <span class="nextControl sliderControl"> <i class="fa fa-angle-right fa-3x "></i></span>
@@ -36,7 +40,7 @@
                     </div>
                 </div>
 
-            }
+    }
 
 
 
@@ -50,16 +54,26 @@
         
         <!--/.full-container-->
     </div>
-</div>
-<!--/.banner style1-->
+}
+ 
+    
 
+</div>
+
+<!--/.banner style1-->
+@if (!String.IsNullOrEmpty(ViewBag.Query))
+{
+<br />
+}
+@if (String.IsNullOrEmpty(ViewBag.Query))
+{
 <div class="container main-container">
 
     <!-- Main component call to action -->
 
     <div class="row featuredPostContainer globalPadding style2">
         <h3 class="section-title style2 text-center"><span>En Çok İndirimde Olanlar</span></h3>
-
+        
         <div id="productslider" class="owl-carousel owl-theme">
             @foreach (var item in Model.Products)
             {
@@ -129,8 +143,10 @@
         <!--/.productslider-->
 
     </div>
+                                    
     <!--/.featuredPostContainer-->
 </div>
+                                    }
 <!-- /main container -->
 <div style="padding-top:0;" class="container main-container headerOffset">
 
@@ -186,7 +202,7 @@
 
         <div class="w100 productFilter clearfix">
             <p class="pull-left"> Showing <strong>12</strong> products </p>
-
+            
             <div class="pull-right ">
 
                 <div class="change-view pull-right">
@@ -198,6 +214,10 @@
                 </div>
             </div>
         </div>
+@if (!String.IsNullOrEmpty(ViewBag.Query))
+{
+        <h2>Bulunan Ürünler ve Kampanyalar</h2>
+}
         <!--/.productFilter-->
         <div class="row  categoryProduct xsResponse clearfix">
 
@@ -255,6 +275,40 @@
                     </div>
                 </div>
                                 }
+
+@if (!String.IsNullOrEmpty(ViewBag.Query))
+{
+    <div class="col-md-12"></div>
+    @foreach (var item in Model.Campaigns)
+    {
+        
+            <div class="featuredImageLook3">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
+                    <div class="inner">
+                        <div class="box-content-overly box-content-overly-white">
+                            <div class="box-text-table">
+                                <div class="box-text-cell ">
+                                    <div class="box-text-cell-inner dark">
+                                        <h1 class="uppercase">@item.Name</h1>
+                                        <a href="/Home/CampaignDetail/@item.Id" class="btn btn-default btn-xs">Detaylar</a>
+
+                                        <hr class="submini">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.box-content-overly -->
+                        <div class="img-title"> @item.Name</div>
+                        <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" width="" height="" src="/@item.Image" alt="img"></a>
+                    </div>
+                </div>
+
+            </div>
+        
+    }
+
+}
             <!--/.item-->
         </div>
 
