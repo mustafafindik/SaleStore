@@ -91,7 +91,7 @@
                                 <img src="/@item.ProductImage" alt="img" style="margin-top:10px;height:250px;"
                                      class="img-responsive ">
                             </a>
-                            
+
                             <div class="promotion">
                                 @{ if ((DateTime.Now.Day - item.UpdateDate.Day) < 3)
                                     {
@@ -130,6 +130,7 @@
                                 </span>
                             </a>
                         </div>
+                        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Paylaş</a></div>
                     </div>
                 </div>
 
@@ -270,6 +271,7 @@
                                 </span>
                             </a>
                         </div>
+                        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Paylaş</a></div>
                     </div>
                 </div>
                                 }
@@ -363,3 +365,12 @@
 </div>
   <!--/.section-block-->
 
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.9&appId=2323778817761402";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
