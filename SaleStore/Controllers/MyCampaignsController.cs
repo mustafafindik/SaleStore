@@ -70,10 +70,11 @@ namespace SaleStore.Controllers
         }
 
         // GET: Admin/Campaigns/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
+            string CurrentUserId = await GetCurrentUserId();
+            ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
             return View();
         }
 
@@ -135,6 +136,8 @@ namespace SaleStore.Controllers
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            string CurrentUserId = await GetCurrentUserId();
+            campaign.CompanyId = _context.Companies.Where(x => x.UserId == CurrentUserId).FirstOrDefault().Id;
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
             return View(campaign);
         }
@@ -147,13 +150,15 @@ namespace SaleStore.Controllers
                 return NotFound();
             }
 
+
             var campaign = await _context.Campaigns.SingleOrDefaultAsync(m => m.Id == id);
             if (campaign == null)
             {
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
+            string CurrentUserId = await GetCurrentUserId();
+            ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
             return View(campaign);
         }
 
@@ -225,6 +230,8 @@ namespace SaleStore.Controllers
                 }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            string CurrentUserId = await GetCurrentUserId();
+            campaign.CompanyId = _context.Companies.Where(x => x.UserId == CurrentUserId).FirstOrDefault().Id;
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
             return View(campaign);
         }
