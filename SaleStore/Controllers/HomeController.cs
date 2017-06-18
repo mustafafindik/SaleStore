@@ -201,6 +201,7 @@ namespace SaleStore.Controllers
             }
             model.Categories = _context.Categories.ToList<Category>();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
+            model.Companies = _context.Companies.ToList();
             if (id == 0)
             {
                 model.Products = _context.Products.ToPagedList<Product>(1, 9);      
@@ -208,6 +209,7 @@ namespace SaleStore.Controllers
             else
             {
                 model.Products = _context.Products.Where(x => x.CategoryId == id).OrderByDescending(x => x.CreateDate).ToPagedList(1, 9);
+                
             }
             return View("Products",model);
             
