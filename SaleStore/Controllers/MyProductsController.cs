@@ -167,7 +167,8 @@ namespace SaleStore.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
+            string CurrentUserId = await GetCurrentUserId();
+            ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
             return View(product);
         }
 
@@ -244,6 +245,8 @@ namespace SaleStore.Controllers
                 }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            string CurrentUserId = await GetCurrentUserId();
+            product.CompanyId = _context.Companies.Where(x => x.UserId == CurrentUserId).FirstOrDefault().Id;
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
