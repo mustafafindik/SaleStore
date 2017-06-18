@@ -13,174 +13,129 @@
 </header>
 <!-- END Page header -->
 <!-- Main container -->
-<main>
-    <section class="no-padding-top bg-alt">
-        <div class="container main-container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12  col-sm-12">
 
-                    <h1 class="section-title-inner"><span><i class="fa fa-lock"></i> Kaydol</span></h1>
-
-                    <div class="row userInfo">
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                            <h2 class="block-title-2"> Bir hesap Oluşturun</h2>
+<div class="container main-container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12  col-sm-12">
+            <div class="row userInfo">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" enctype="multipart/form-data">
+                        <h2 class="block-title-2"> Bir hesap Oluşturun</h2>
 
 
 
-                            <!--Tab-->
-                            <div class="product-tab w100 clearfix">
-                                <ul class="nav nav-tabs">
-                                    <li  class="active"><a href="#details"  data-toggle="tab">1.Adım</a></li>
-                                    <li class="firm"><a href="#size"  data-toggle="tab">2.Adım</a></li>
+                        <!--Tab-->
+                        <div class="product-tab w100 clearfix">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#details" data-toggle="tab">1.Adım</a></li>
+                                <li class="firm"><a href="#size" data-toggle="tab">2.Adım</a></li>
 
-                                </ul>
+                            </ul>
 
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="details">
-                                        <h3>Üyelik Bilgileri</h3>
-                                        <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                                            <div class="form-group">
-                                                <label asp-for="Email">Email</label>
-                                                <input asp-for="Email" class="form-control" placeholder="Email adresinizi giriniz" />
-                                                <span asp-validation-for="Email" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Password">Şifre</label>
-                                                <input asp-for="Password" class="form-control" placeholder="Şifre giriniz" />
-                                                <span asp-validation-for="Password" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="ConfirmPassword">Şifre Onayla</label>
-                                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi tekrar giriniz">
-                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                            </div>
-                                            <a href="#size" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> İleri</a>
-                                          
- 
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="details">
+                                    <h3>Üyelik Bilgileri</h3>
+
+                                    <div class="form-group">
+                                        <label asp-for="Email">Email</label>
+                                        <input asp-for="Email" class="form-control" placeholder="Email adresinizi giriniz" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
-                                    <div class="tab-pane" id="size">
-                                        <h3>Firma Bilgileri</h3>
-                                        
-                                            <div class="form-group">
-                                                <label asp-for="Name" class=" control-label"></label>                                              
-                                                    <input asp-for="Name" class="form-control" />
-                                                    <span asp-validation-for="Name" class="text-danger"></span>                                             
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Address" class="control-label"></label>                                             
-                                                    <input asp-for="Address" class="form-control" />
-                                                    <span asp-validation-for="Address" class="text-danger"></span>                                            
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Phone" class="control-label"></label>                                          
-                                                    <input asp-for="Phone" class="form-control" />
-                                                    <span asp-validation-for="Phone" class="text-danger"></span>                                               
-                                            </div>
-
-                                        <div class="form-group">
-
-                                            <label asp-for="Logo" class=" control-label"></label>
-                                           
-                                                <input title="uploadFile" type="file" name="uploadFile" class="form-control" accept="image/gif,image/jpg,image/jpeg,image/png" />
-                                                @Html.ValidationMessage("Image", new { @class = "text-danger" })
-
-                                           
-                                        </div>
-
-                                         
-                                           
-
-                                           
-                                        
-                                            <div class="form-group">
-                                                <div>
-                                                    <input type="submit" value="Kaydet" class="btn btn-primary" />
-                                                </div>
-                                            </div>
-                                        </form>
-
-                                        <div class="tab-pane" id="shipping">
-
-                                        </div>
+                                    <div class="form-group">
+                                        <label asp-for="Password">Şifre</label>
+                                        <input asp-for="Password" class="form-control" placeholder="Şifre giriniz" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
-                                    <!-- /.tab content -->
+                                    <div class="form-group">
+                                        <label asp-for="ConfirmPassword">Şifre Onayla</label>
+                                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi tekrar giriniz">
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <a href="#size" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> İleri</a>
+
 
                                 </div>
+                                <div class="tab-pane" id="size">
+                                    <h3>Firma Bilgileri</h3>
+
+                                    <div class="form-group">
+                                        <label asp-for="Name" class=" control-label"></label>
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Address" class="control-label"></label>
+                                        <input asp-for="Address" class="form-control" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Phone" class="control-label"></label>
+                                        <input asp-for="Phone" class="form-control" />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Logo" class=" control-label"></label>
+                                        <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
+                                        @Html.ValidationMessage("Logo", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div>
+                                            <input type="submit" value="Kaydet" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <!--Tab-->
+                            <!-- /.tab content -->
 
 
                         </div>
 
-                        <div class="col-xs-12 col-sm-4">
-                            <h2 class="block-title-2"><span>Üye olmadan devam et</span></h2>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <h2 class="block-title-2"><span>Üye olmadan devam et</span></h2>
 
-                            <p>Eğer üye değilseniz ve sitemize giriş yapmak istiyorsanız...</p>
-                            <a href="/Home/Index" class="btn btn-primary">
-                                <i class="fa fa-sign-in"></i> Üye olmadan devam et
-                            </a>
-                        </div>
-                    </div>
-                    <!--/row end-->
-
+                    <p>Eğer üye değilseniz ve sitemize giriş yapmak istiyorsanız...</p>
+                    <a href="/Home/Index" class="btn btn-primary">
+                        <i class="fa fa-sign-in"></i> Üye olmadan devam et
+                    </a>
                 </div>
             </div>
-            @*<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                    <h4>Yeni bir hesap oluştur.</h4>
-                    <hr />
-                    <div class="form-group">
-                        <label asp-for="Email" class="col-md-2 control-label"></label>
-                        <div class="col-md-10">
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="col-md-2 control-label"></label>
-                        <div class="col-md-10">
-                            <input asp-for="Password" class="form-control" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
-                        <div class="col-md-10">
-                            <input asp-for="ConfirmPassword" class="form-control" />
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" class="btn btn-primary">Kaydol</button>
-                        </div>
-                    </div>
-                </form>*@
+            <!--/row end-->
 
-
-
-            @section Scripts {
-                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); 
-                    
-                    
-                    }
-
-
-            <script>
-                $(document).ready(function () {
-                    $('#active').click(function (e) {
-
-                        $('.nav li').removeClass('active');
-                        $('.firm').addClass('active');
-                        
-                    });
-                });
-             
-            </script>
-
-            }
         </div>
-    </section>
-</main>
+    </div>
+
+</div>
+
 
 <div class="gap"></div>
+
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+
+    }
+
+
+    <script>
+        $(document).ready(function () {
+            $('#active').click(function (e) {
+
+                $('.nav li').removeClass('active');
+                $('.firm').addClass('active');
+
+            });
+        });
+
+    </script>
+
+}

@@ -44,6 +44,7 @@
     <Content Include="wwwroot\uploads\6-2017-CampaignImages\m1.png" />
     <Content Include="wwwroot\uploads\logo.png" />
     <Content Include="wwwroot\uploads\Seed\calvin.jpg" />
+    <Content Include="wwwroot\uploads\Seed\default-store.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="jQuery" Version="3.1.1" />

@@ -15,6 +15,9 @@ using SaleStore.Services;
 using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 using SaleStore.Models.ViewModels;
 using SaleStore.Data;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SaleStore.Controllers
 {
@@ -27,9 +30,9 @@ namespace SaleStore.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
+        private IHostingEnvironment env;
 
-
-        public AccountController(
+        public AccountController(IHostingEnvironment _env,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IOptions<IdentityCookieOptions> identityCookieOptions,
@@ -43,6 +46,7 @@ namespace SaleStore.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            this.env = _env;
         }
 
         //
@@ -111,11 +115,45 @@ namespace SaleStore.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(IFormFile uploadFile ,RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                if (uploadFile != null)
+                {
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
+                    {
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-CampaignImages";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        model.Logo = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+                            _context.Add(model);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("Image", "Hata: " + exc.Message); }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
+                    }
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                
                
@@ -136,6 +174,10 @@ namespace SaleStore.Controllers
                     _context.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 }
+
+                
+
+
                 AddErrors(result);
             }
            
