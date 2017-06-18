@@ -91,8 +91,25 @@
                         <input type="hidden" asp-for="Id" />
 
                         <div class="form-group">
+                            <label asp-for="ProductCount" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="ProductCount" class="form-control" />
+                                <span asp-validation-for="ProductCount" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CampaignCount" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="CampaignCount" class="form-control" />
+                                <span asp-validation-for="CampaignCount" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Kaydet" class="btn btn-default" />
+                                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                                <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
                             </div>
                         </div>
                     </div>
@@ -100,7 +117,7 @@
             </form>
 
             <div>
-                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                
             </div>
         </div>
     </div>
