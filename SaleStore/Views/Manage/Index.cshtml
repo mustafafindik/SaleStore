@@ -151,49 +151,53 @@
                     </dd>
                 </dl>*@
             </div>
-            <div class="col-md-4 col-lg-4">
+            @foreach (var item in Model.Companies)
+            {
+                <div class="col-md-4 col-lg-4">
 
-              <div class="row">
-    <div class="col-lg-9 col-md-9 col-sm-7">
-        <h1 class="section-title-inner"><span><i class="fa fa-unlock-alt"></i> Firmanı Yönet </span></h1>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-7">
+                            <h1 class="section-title-inner"><span><i class="fa fa-unlock-alt"></i> Firmanı Yönet </span></h1>
 
-        <div class="row userInfo">
-            <div class="col-xs-12 col-sm-12">
-              
+                            <div class="row userInfo">
+                                <div class="col-xs-12 col-sm-12">
 
-                <h2 class="block-title-2">
-                </h2>
-                <ul class="myAccountList row">
-                    
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6  text-center ">
-                        <div class="thumbnail equalheight">
-                            <a title="Orders" href="/MyCompanies/Details/">
-                                <i class="fa fa-info-circle"></i> Firma Detayları
-                            </a>
+
+                                    <h2 class="block-title-2"></h2>
+                                    <ul class="myAccountList row">
+
+                                        <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6  text-center ">
+                                            <div class="thumbnail equalheight">
+                                                <a title="Orders" href="/MyCompanies/Details/@item.Id">
+                                                    <i class="fa fa-info-circle"></i> Firma Detayları
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                        <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6  text-center ">
+                                            <div class="thumbnail equalheight">
+                                                <a title="Add  address" href="/MyCompanies/Edit/@item.Id">
+                                                    <i class="fa fa-edit"></i> Firma Düzenle
+                                                </a>
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+                                    <div class="clear clearfix"></div>
+                                </div>
+                            </div>
+                            <!--/row end-->
+
                         </div>
-                    </li>
-                 
-                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6  text-center ">
-                        <div class="thumbnail equalheight">
-                            <a title="Add  address" href="/MyCompanies/Edit/">
-                                <i class="fa fa-edit"></i> Firma Düzenle
-                            </a>
-                        </div>
-                    </li>
-                  
-                    
-                </ul>
-                <div class="clear clearfix"></div>
-            </div>
-        </div>
-        <!--/row end-->
-
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-5"></div>
-</div>
+                        <div class="col-lg-3 col-md-3 col-sm-5"></div>
+                    </div>
 
 
-            </div>
+                </div>
+
+            }
+           
         </div>
     </div>
 </div>
