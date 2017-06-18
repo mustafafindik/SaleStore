@@ -75,40 +75,7 @@
                     </form>
 
                 </div>
-                <div class="col-md-4">
-                    <h4>Sosyal medya ile giriş yapın</h4>
-                    <br />
-
-                    @{
-                        var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
-                        if (loginProviders.Count == 0)
-                        {
-                            <div>
-                                <p>
-                                    Harici oturum sağlayıcı ayarlanmamış.
-                                </p>
-                            </div>
-                        }
-                        else
-                        {
-                            <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                                <div>
-                                    <p>
-                                        @foreach (var provider in loginProviders)
-                                        {
-                                            <button class="btn btn-block @(provider.AuthenticationScheme.ToLowerInvariant()=="linkedin"?"btn-primary":"btn-social") btn-@provider.AuthenticationScheme.ToLowerInvariant()" type="submit" name="provider" value="@provider.AuthenticationScheme" title="@provider.DisplayName ile hesabınıza giriş yapın">
-                                                <span class="fa fa-@provider.AuthenticationScheme.ToLowerInvariant()"></span> @provider.AuthenticationScheme ile giriş yapın.
-                                            </button>
-                                        }
-                                    </p>
-                                </div>
-
-
-                            </form>
-                        }
-                    }
-
-                </div>
+               
             </div>
 
             @section Scripts {

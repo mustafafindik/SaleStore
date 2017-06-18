@@ -90,19 +90,7 @@ namespace SaleStore
             app.UseIdentity();
             //role ve üye için parantezlere dikkat ediniz (seed ekleme )
             app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed(app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>(), app.ApplicationServices.GetRequiredService<RoleManager<Role>>());
-            // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-            //facebook ile giriş yap ekleme 
-            app.UseFacebookAuthentication(new FacebookOptions()
-            {
-                AppId = Configuration["Authentication:Facebook:AppId"],
-                AppSecret = Configuration["Authentication:Facebook:AppSecret"]
-            });
-            app.UseLinkedInAuthentication(new LinkedInOptions()
-            {
-                AppId = Configuration["Authentication:LinkedIn:AppId"],
-                AppSecret = Configuration["Authentication:LinkedIn:AppSecret"],
-                ProfileScheme = LinkedInDefaults.ProfileLoadFormat.AppDefined
-            });
+            // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715 
             app.UseMvc(routes =>
             {
 
