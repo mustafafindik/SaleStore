@@ -8,6 +8,14 @@ namespace SaleStore.Models
 {
     public class Inbox
     {
+        public Inbox()
+        {
+
+            SubmitDate = DateTime.Now;
+
+        }
+
+
         public int Id { get; set; }
         [Display(Name = "Ad Soyad")]
         [Required]
