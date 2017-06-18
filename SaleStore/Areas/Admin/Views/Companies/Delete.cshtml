@@ -45,6 +45,19 @@
                                     @Html.DisplayFor(model => model.Phone)
                                 </dd>
                                 <dt>
+                                    @Html.DisplayNameFor(model => model.ProductCount)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ProductCount)
+                                </dd>
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CampaignCount)
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.CampaignCount)
+                                </dd>
+
+                                <dt>
                                     @Html.DisplayNameFor(model => model.Logo)
                                 </dt>
                                 <dd>
@@ -81,8 +94,8 @@
 
 
                             <div class="form-actions">
-                                <input type="submit" value="Sil" class="btn btn-danger" /> |
-                                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                                <input type="submit" value="Sil" class="btn btn-danger" />
+                                <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
                             </div>
                         </div>
                     </div>
