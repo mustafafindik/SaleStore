@@ -98,12 +98,18 @@
                         <dd>
                             @Html.DisplayFor(model => model.Company.Name)
                         </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IsPublish)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.IsPublish)
+                        </dd>
                     </dl>
                 </div>
             </div>
             <div class="form-group">
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a>
+                <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
 
 
             </div>

@@ -162,7 +162,7 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,Description,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish")] Campaign campaign, IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,Description,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish,CompanyId")] Campaign campaign, IFormFile uploadFile)
         {
             if (id != campaign.Id)
             {

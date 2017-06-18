@@ -86,12 +86,18 @@
                             <dd>
                                 @Html.DisplayFor(model => model.Category.Name)
                             </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.IsPublish)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.IsPublish)
+                            </dd>
                         </dl>
 
 
                         <div class="form-actions">
-                            <input type="submit" value="Sil" class="btn btn-danger" /> |
-                            <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
+                            <input type="submit" value="Sil" class="btn btn-danger" />
+                            <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
                         </div>
                     </div>
                 </div>

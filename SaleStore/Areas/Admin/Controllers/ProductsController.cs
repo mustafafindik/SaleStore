@@ -66,7 +66,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Product product,IFormFile uploadFile)
+        public async Task<IActionResult> Create([Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish")] Product product,IFormFile uploadFile)
         {
 
             product.CreatedBy = User.Identity.Name ?? "username";
@@ -154,7 +154,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Product product, IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish")] Product product, IFormFile uploadFile)
         {
             if (id != product.Id)
             {

@@ -55,6 +55,7 @@
         <!--/.subCategoryList-->
         @foreach (var item in Model.Campaigns)
         {
+            if (item.IsPublish == true) { 
             <div class="featuredImageLook3">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
                     <div class="inner">
@@ -78,6 +79,7 @@
                 </div>
 
             </div>
+            }
         }
 
     </div>

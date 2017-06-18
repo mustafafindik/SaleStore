@@ -31,7 +31,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // GET: Admin/Campaigns
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Campaigns.Include(c => c.Category);
+            var applicationDbContext = _context.Campaigns.Include(c => c.Category).Include(c => c.Companies);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -45,6 +45,7 @@ namespace SaleStore.Areas.Admin.Controllers
 
             var campaign = await _context.Campaigns
                 .Include(c => c.Category)
+                .Include(c=>c.Companies)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (campaign == null)
             {
@@ -58,6 +59,7 @@ namespace SaleStore.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View();
         }
 
@@ -115,6 +117,7 @@ namespace SaleStore.Areas.Admin.Controllers
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
                 ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+                ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View(campaign);
         }
 
@@ -132,6 +135,7 @@ namespace SaleStore.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View(campaign);
         }
 
@@ -140,7 +144,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Campaign campaign,IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish,CompanyId")] Campaign campaign,IFormFile uploadFile)
         {
             if (id != campaign.Id)
             {
@@ -202,6 +206,7 @@ namespace SaleStore.Areas.Admin.Controllers
             }
           
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             return View(campaign);
         }
 
@@ -215,6 +220,7 @@ namespace SaleStore.Areas.Admin.Controllers
 
             var campaign = await _context.Campaigns
                 .Include(c => c.Category)
+                .Include(c=>c.Companies)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (campaign == null)
             {

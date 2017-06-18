@@ -39,6 +39,10 @@
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
+
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.IsPublish)
+                            </th>
                            
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.UnitPrice)
@@ -92,6 +96,10 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsPublish)
                                 </td>
                                 
                                 <td>

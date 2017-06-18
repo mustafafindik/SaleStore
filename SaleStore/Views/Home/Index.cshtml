@@ -22,6 +22,8 @@
 
     @foreach (var item in Model.Campaigns)
     {
+        if (item.IsPublish == true)
+        {
         <div class="swiper-slide slide-2x">
                     <div class="box-slider-content">
                         <div class="box-text">
@@ -40,11 +42,11 @@
                     </div>
                 </div>
 
+        }
     }
 
 
 
-    
 
             </div>
                 
@@ -77,6 +79,7 @@
         <div id="productslider" class="owl-carousel owl-theme">
             @foreach (var item in Model.Products.OrderByDescending(x => 100-((x.SalePrice*100)/ x.UnitPrice)))
             {
+                if (item.IsPublish == true) { 
                 var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));
 
 
@@ -134,6 +137,8 @@
                     </div>
                 </div>
 
+
+                                        }
 
                                     }
            
@@ -222,6 +227,7 @@
 
             @foreach (var item in Model.Products)
             {
+                if (item.IsPublish == true) { 
                 <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 
                     <div class="product">
@@ -274,6 +280,7 @@
                         <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Paylaş</a></div>
                     </div>
                 </div>
+                                    }
                                 }
 
 @if (!String.IsNullOrEmpty(ViewBag.Query))
@@ -281,7 +288,8 @@
     <div class="col-md-12"></div>
     @foreach (var item in Model.Campaigns)
     {
-        
+        if (item.IsPublish == true)
+        {
             <div class="featuredImageLook3">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
                     <div class="inner">
@@ -305,10 +313,10 @@
                 </div>
 
             </div>
-        
-    }
+            }
+        }
 
-}
+    }
             <!--/.item-->
         </div>
 

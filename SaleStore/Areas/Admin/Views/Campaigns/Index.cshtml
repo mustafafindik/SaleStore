@@ -39,8 +39,12 @@
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
+                           
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.Slogan)
+                            </th>
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.IsPublish)
                             </th>
                             <th class="none">
                                 @Html.DisplayNameFor(model => model.CampaignStartDate)
@@ -82,8 +86,12 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
+                                
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Slogan)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsPublish)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.CampaignStartDate)
