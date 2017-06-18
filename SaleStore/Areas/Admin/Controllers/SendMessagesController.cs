@@ -47,29 +47,29 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(sendMessage);
         }
 
-        // GET: Admin/SendMessages/Create
-        public IActionResult Create()
-        {
-            ViewData["MailSettingId"] = new SelectList(_context.MailSettings, "Id", "FromAddress");
-            return View();
-        }
+        //// GET: Admin/SendMessages/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["MailSettingId"] = new SelectList(_context.MailSettings, "Id", "FromAddress");
+        //    return View();
+        //}
 
-        // POST: Admin/SendMessages/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Subject,BodyContent,MailSettingId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] SendMessage sendMessage)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(sendMessage);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewData["MailSettingId"] = new SelectList(_context.MailSettings, "Id", "FromAddress", sendMessage.MailSettingId);
-            return View(sendMessage);
-        }
+        //// POST: Admin/SendMessages/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Subject,BodyContent,MailSettingId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] SendMessage sendMessage)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(sendMessage);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewData["MailSettingId"] = new SelectList(_context.MailSettings, "Id", "FromAddress", sendMessage.MailSettingId);
+        //    return View(sendMessage);
+        //}
 
         // GET: Admin/SendMessages/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -124,35 +124,35 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(sendMessage);
         }
 
-        // GET: Admin/SendMessages/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Admin/SendMessages/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var sendMessage = await _context.SendMessages
-                .Include(s => s.MailSetting)
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (sendMessage == null)
-            {
-                return NotFound();
-            }
+        //    var sendMessage = await _context.SendMessages
+        //        .Include(s => s.MailSetting)
+        //        .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (sendMessage == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(sendMessage);
-        }
+        //    return View(sendMessage);
+        //}
 
-        // POST: Admin/SendMessages/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var sendMessage = await _context.SendMessages.SingleOrDefaultAsync(m => m.Id == id);
-            _context.SendMessages.Remove(sendMessage);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/SendMessages/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var sendMessage = await _context.SendMessages.SingleOrDefaultAsync(m => m.Id == id);
+        //    _context.SendMessages.Remove(sendMessage);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
 
         private bool SendMessageExists(int id)
         {

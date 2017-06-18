@@ -45,27 +45,27 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(mailSetting);
         }
 
-        // GET: Admin/MailSettings/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //// GET: Admin/MailSettings/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: Admin/MailSettings/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FromAddress,FromAddressPassword,FromAddressTitle,SmptServer,SmptPortNumber,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] MailSetting mailSetting)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(mailSetting);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(mailSetting);
-        }
+        //// POST: Admin/MailSettings/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("FromAddress,FromAddressPassword,FromAddressTitle,SmptServer,SmptPortNumber,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] MailSetting mailSetting)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(mailSetting);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(mailSetting);
+        //}
 
         // GET: Admin/MailSettings/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -118,34 +118,34 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(mailSetting);
         }
 
-        // GET: Admin/MailSettings/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Admin/MailSettings/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var mailSetting = await _context.MailSettings
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (mailSetting == null)
-            {
-                return NotFound();
-            }
+        //    var mailSetting = await _context.MailSettings
+        //        .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (mailSetting == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(mailSetting);
-        }
+        //    return View(mailSetting);
+        //}
 
-        // POST: Admin/MailSettings/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var mailSetting = await _context.MailSettings.SingleOrDefaultAsync(m => m.Id == id);
-            _context.MailSettings.Remove(mailSetting);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/MailSettings/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var mailSetting = await _context.MailSettings.SingleOrDefaultAsync(m => m.Id == id);
+        //    _context.MailSettings.Remove(mailSetting);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
 
         private bool MailSettingExists(int id)
         {

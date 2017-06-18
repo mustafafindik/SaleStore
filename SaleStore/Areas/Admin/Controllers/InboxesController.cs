@@ -45,78 +45,78 @@ namespace SaleStore.Areas.Admin.Controllers
             return View(inbox);
         }
 
-        // GET: Admin/Inboxes/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //// GET: Admin/Inboxes/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: Admin/Inboxes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FullName,Phone,Email,Message,SubmitDate,Ip")] Inbox inbox)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(inbox);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(inbox);
-        }
+        //// POST: Admin/Inboxes/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,FullName,Phone,Email,Message,SubmitDate,Ip")] Inbox inbox)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(inbox);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(inbox);
+        //}
 
         // GET: Admin/Inboxes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var inbox = await _context.Inboxes.SingleOrDefaultAsync(m => m.Id == id);
-            if (inbox == null)
-            {
-                return NotFound();
-            }
-            return View(inbox);
-        }
+        //    var inbox = await _context.Inboxes.SingleOrDefaultAsync(m => m.Id == id);
+        //    if (inbox == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(inbox);
+        //}
 
-        // POST: Admin/Inboxes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Phone,Email,Message,SubmitDate,Ip")] Inbox inbox)
-        {
-            if (id != inbox.Id)
-            {
-                return NotFound();
-            }
+        //// POST: Admin/Inboxes/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,Phone,Email,Message,SubmitDate,Ip")] Inbox inbox)
+        //{
+        //    if (id != inbox.Id)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(inbox);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!InboxExists(inbox.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            return View(inbox);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(inbox);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!InboxExists(inbox.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(inbox);
+        //}
 
         // GET: Admin/Inboxes/Delete/5
         public async Task<IActionResult> Delete(int? id)
