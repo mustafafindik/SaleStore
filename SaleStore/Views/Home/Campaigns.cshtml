@@ -69,16 +69,19 @@
         {
             if (item.IsPublish == true) { 
             <div class="featuredImageLook3">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12">
-                    <div class="inner">
-                        <div class="box-content-overly box-content-overly-white">
-                            <div class="box-text-table">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-xs-min-12" style="padding-left:5px;padding-right:5px;">
+                    <div class="inner img-thumbnail">
+                        <div class="box-content-overly box-content-overly-white ">
+                            <div class="box-text-table ">
                                 <div class="box-text-cell ">
                                     <div class="box-text-cell-inner dark">
-                                        <h1 class="uppercase">@item.Name</h1>
+                                        <h2 class="uppercase">@item.Name</h2>
+                                        
+
                                         <a href="/Home/CampaignDetail/@item.Id" class="btn btn-default btn-xs" >Detaylar</a>
 
                                         <hr class="submini">
+                                        <h4>@item.Companies.Name</h4>
 
                                     </div>
                                 </div>
@@ -86,7 +89,7 @@
                         </div>
                         <!--/.box-content-overly -->
                         <div class="img-title"> @item.Name</div>
-                        <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" src="/@item.Image" alt="img"></a>
+                        <a class="img-block center-align" href="#"> <img class="img-responsive center-block"  style="height:280px;" src="/@item.Image" alt="img"></a>
                     </div>
                 </div>
 
