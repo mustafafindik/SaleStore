@@ -100,8 +100,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <a href="#">
                                                    
                                                     <span class="photo">
-                                                        <img src="/metronic/layouts/layout/img/avatar.png" class="img-circle" alt="">
+                                                        @if (ViewBag.message != "Hiç mesaj yok.")
+                                                        {
+                                                            <img src="/metronic/layouts/layout/img/avatar.png" class="img-circle" alt="">
+                                                        }
                                                     </span>
+
                                                     <span class="subject">        
                                                             <span class="from"> @ViewBag.FullName </span>
                                                             <span class="time">@ViewBag.SubmitDate</span>
