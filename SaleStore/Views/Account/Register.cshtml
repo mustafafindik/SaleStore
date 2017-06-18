@@ -30,8 +30,8 @@
                             <!--Tab-->
                             <div class="product-tab w100 clearfix">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#details" data-toggle="tab">1.Adım</a></li>
-                                    <li><a href="#size" data-toggle="tab">2.Adım</a></li>
+                                    <li  class="active"><a href="#details"  data-toggle="tab">1.Adım</a></li>
+                                    <li class="firm"><a href="#size"  data-toggle="tab">2.Adım</a></li>
 
                                 </ul>
 
@@ -55,7 +55,7 @@
                                                 <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi tekrar giriniz">
                                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                             </div>
-                                            <a href="#size" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> İleri</a>
+                                            <a href="#size" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> İleri</a>
                                           
  
                                     </div>
@@ -160,7 +160,24 @@
 
 
             @section Scripts {
-                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); 
+                    
+                    
+                    }
+
+
+            <script>
+                $(document).ready(function () {
+                    $('#active').click(function (e) {
+
+                        $('.nav li').removeClass('active');
+                        $('.firm').addClass('active');
+                        
+                    });
+                });
+             
+            </script>
+
             }
         </div>
     </section>
