@@ -84,7 +84,7 @@ namespace SaleStore.Controllers
         {
             Setting settings = new Setting();
             settings = _context.Setting.FirstOrDefault();
-            ViewBag.Title =settings.Title + "/Hakkımızda";
+            ViewBag.Title =settings.Title + "- Hakkımızda";
             ViewBag.logo = settings.Logo;
             ViewBag.phone = settings.Phone;
             ViewBag.SeoDescription = settings.SeoDescription;
@@ -240,7 +240,7 @@ namespace SaleStore.Controllers
 
             Setting settings = new Setting();
             settings = _context.Setting.FirstOrDefault();
-            ViewBag.Title = settings.Title + "/Hakkımızda";
+            ViewBag.Title = settings.Title + "- İletişim";
             ViewBag.logo = settings.Logo;
             ViewBag.phone = settings.Phone;
             ViewBag.SeoDescription = settings.SeoDescription;
