@@ -11,7 +11,7 @@
     <hr />
     <div class="container   ">
         <div class="row">
-            <div class="col-md-7 col-lg-7">
+            <div class="col-md-8 col-lg-8">
 
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-7">
@@ -26,7 +26,7 @@
                                     <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6  text-center ">
                                         <div class="thumbnail equalheight">
                                             <a title="Şifre Ayarları" >
-                                                <p>Şifre</p><i class="fa fa-calendar"></i> @if (Model.HasPassword)
+                                                <p>Şifre</p><i class="fa fa-unlock-alt"></i> @if (Model.HasPassword)
             {
                                                     <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Değiştir</a>
                                                 }
@@ -40,7 +40,7 @@
                                     <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6  text-center ">
                                         <div class="thumbnail equalheight">
                                             <a title="Harici Girişler" >
-                                                <p>Harici G.</p> <i class="fa fa-map-marker"></i><span style="color:blue;">@Model.Logins.Count</span> <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Yönet</a>
+                                                <p>Harici G.</p> <i class="fa fa-mouse-pointer"></i><span style="color:blue;">@Model.Logins.Count</span> <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Yönet</a>
 
                                             </a>
                                         </div>
@@ -49,7 +49,7 @@
 
                                         <div class="thumbnail equalheight">
                                             <a title="Telefon Numarası" >
-                                                <p>Tel No.</p>  <i class="fa fa-edit"></i>
+                                                <p>Tel No.</p>  <i class="fa fa-mobile"></i>
 
                                                 @(Model.PhoneNumber ?? "Yok")
                                                 @if (Model.PhoneNumber != null)
@@ -70,7 +70,7 @@
                                     <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6  text-center ">
                                         <div class="thumbnail equalheight">
                                             <a title="İki Faktörlü Doğrulama" >
-                                                <p>İki Fak. Doğrulama</p>  <i class="fa fa-edit"></i>
+                                                <p>İki Fak. Doğrulama</p>  <i class="fa fa-shield"></i>
 
                                                 @if (Model.TwoFactor)
                                                 {
@@ -151,7 +151,7 @@
                     </dd>
                 </dl>*@
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-4 col-lg-4">
 
               <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-7">
@@ -164,28 +164,23 @@
                 <h2 class="block-title-2">
                 </h2>
                 <ul class="myAccountList row">
-                    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6  text-center ">
+                    
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6  text-center ">
                         <div class="thumbnail equalheight">
-                            <a title="Orders" href="order-list.html">
-                                <i class="fa fa-calendar"></i> Firma Düzenle
+                            <a title="Orders" href="/MyCompanies/Details/">
+                                <i class="fa fa-info-circle"></i> Firma Detayları
                             </a>
                         </div>
                     </li>
-                    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6  text-center ">
+                 
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-6  text-center ">
                         <div class="thumbnail equalheight">
-                            <a title="My addresses" href="my-address.html">
-                                <i class="fa fa-map-marker"></i>Firmanı Sil
-                            </a>
-                        </div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-4 col-xs-6  text-center ">
-                        <div class="thumbnail equalheight">
-                            <a title="Add  address" href="add-address.html">
+                            <a title="Add  address" href="/MyCompanies/Edit/">
                                 <i class="fa fa-edit"></i> Firma Düzenle
                             </a>
                         </div>
                     </li>
-                   
+                  
                     
                 </ul>
                 <div class="clear clearfix"></div>

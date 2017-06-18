@@ -168,6 +168,7 @@ namespace SaleStore.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
         {
             string CurrentUserId = await GetCurrentUserId();
+            company.UserId = CurrentUserId;
             if (id != company.Id)
             {
                 return NotFound();
@@ -187,7 +188,7 @@ namespace SaleStore.Controllers
                     company.UpdateDate = DateTime.Now;
                     company.CampaignCount = 3;
                     company.ProductCount = 25;
-                    company.UserId = CurrentUserId;
+                   
 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"

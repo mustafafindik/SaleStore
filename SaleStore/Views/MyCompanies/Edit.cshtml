@@ -23,7 +23,7 @@
             <form asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-horizontal">
                     <br />
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>                                
                     <div class="form-body">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.Id)
