@@ -74,10 +74,11 @@ namespace SaleStore.Controllers
 
 
         // GET: Admin/Products/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
+            string CurrentUserId = await GetCurrentUserId();
+            ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
             return View();
         }
 
@@ -146,6 +147,8 @@ namespace SaleStore.Controllers
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            string CurrentUserId = await GetCurrentUserId();
+            product.CompanyId = _context.Companies.Where(x => x.UserId == CurrentUserId).FirstOrDefault().Id;
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);
         }
