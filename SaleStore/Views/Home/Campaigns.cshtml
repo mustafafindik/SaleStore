@@ -1,5 +1,9 @@
 ﻿@model SaleStore.Models.ViewModels.HomePageViewModels
 @using PagedList.Core.Mvc
+@{
+    ViewData["Title"] = "Kampanyalar";
+}
+
 <!-- /main container -->
 <div class="container main-container headerOffset">
     <h3 class="section-title style2 text-center"><span>KAMPANYALAR</span></h3>
@@ -53,6 +57,14 @@
 
 
         <!--/.subCategoryList-->
+
+        <div class="w100 productFilter clearfix">
+            <p class="pull-left"><strong>@Model.Campaigns.Count</strong> ürün gösteriliyor. </p>
+
+            
+        </div>
+
+
         @foreach (var item in Model.Campaigns)
         {
             if (item.IsPublish == true) { 
@@ -74,7 +86,7 @@
                         </div>
                         <!--/.box-content-overly -->
                         <div class="img-title"> @item.Name</div>
-                        <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" width="" height="" src="/@item.Image" alt="img"></a>
+                        <a class="img-block" href="#"> <img class="img-responsive  img-thumbnail" src="/@item.Image" alt="img"></a>
                     </div>
                 </div>
 

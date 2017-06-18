@@ -2,16 +2,14 @@
 @using PagedList.Core.Mvc
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ürünler";
 }
 
-
-
 <!-- /main container -->
-<div style="padding-top:85px;" class="container main-container">
+<div class="container main-container headerOffset">
+    <h3 class="section-title style2 text-center"><span>ÜRÜNLER</span></h3>
 
     <!--left column-->
-
     <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="panel-group" id="accordionNo">
             <!--Category-->
@@ -24,35 +22,32 @@
                         </a>
                     </h4>
                 </div>
-                
-                    <div id="collapseCategory" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked tree">
-                                <li class="active dropdown-tree open-tree">
-                                    <a asp-controller="Home" asp-action="Select/0" class="dropdown-tree-a">
-                                        <span class="badge pull-right"></span> Tümü
-                                    </a>
-                                </li>
-                                <li class="active dropdown-tree open-tree">
-                                    @foreach (var item in Model.Categories)
-                                    {
-                                    <a asp-controller="Home" asp-action="Select/@item.Id" class ="dropdown-tree-a">
-                                        <span class="badge pull-right"></span> @item.Name                                       
-                                    </a>
-                                    }
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
-                
-              
+                <div id="collapseCategory" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked tree">
+                            <li class="active dropdown-tree open-tree">
+                                <a asp-controller="Home" asp-action="Select/0" class="dropdown-tree-a">
+                                    <span class="badge pull-right"></span> Tümü
+                                </a>
+                            </li>
+                            <li class="active dropdown-tree open-tree">
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <a asp-controller="Home" asp-action="Select/@item.Id" class="dropdown-tree-a">
+                                        <span class="badge pull-right"></span> @item.Name
+                                    </a>
+                                }
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
             </div>
             <!--/Category menu end-->
-
             <!--/price panel end-->
-
-          
             <!--/discount  panel end-->
         </div>
     </div>
@@ -78,18 +73,19 @@
             </div>
         </div>
         <!--/.productFilter-->
-                <div class="row  categoryProduct xsResponse clearfix">
-                   @foreach (var item in Model.Products)
-                   {
-                       if (item.IsPublish == true) { 
+        <div class="row  categoryProduct xsResponse clearfix">
+            @foreach (var item in Model.Products)
+            {
+                if (item.IsPublish == true)
+                {
                     <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 
                         <div class="product">
 
                             <div class="imageHover">
                                 <a href="product-details.html">
-                                    <img src="/@item.ProductImage" alt="img" class="img-responsive"  style="margin-top:10px;height:250px;" />
-                               
+                                    <img src="/@item.ProductImage" alt="img" class="img-responsive" style="margin-top:10px;height:250px;" />
+
                                 </a>
                                 @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
                                 <div class="promotion">
@@ -100,7 +96,7 @@
 
                                     }
                                     <span class="discount">% @discount indirim</span>
-                                    
+
                                 </div>
                             </div>
 
@@ -113,7 +109,7 @@
                                 </div>
                                 <div class="list-description">
                                     <p>
-                                       @item.Details
+                                        @item.Details
                                     </p>
                                 </div>
                                 @{ var last = item.SaleEndDate.Day - item.SaleStarthDate.Day;  }
@@ -123,6 +119,7 @@
                                 <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
                                 <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
                             </div>
+                            <span>@item.Company.Name</span>
                             <div class="action-control">
                                 <a class="btn btn-default" href="/Home/ProductDetail/@item.Id">
                                     <span class="add2cart">
@@ -134,13 +131,13 @@
                     </div>
                                         }
                                     }
-                </div>
+        </div>
         <div class="text-center">
 
             <pager class="pager-container" list="@Model.Products" options="@PagedListRenderOptions.ClassicPlusFirstAndLast" asp-action="Products" asp-controller="Home" />
         </div>
 
-              
+
 
 
         <!--/.categoryProduct || product content end-->
@@ -148,6 +145,7 @@
     </div>
     <!--/right column end-->
 </div>
+
 <!-- /.row  -->
 <!-- /main container -->
 

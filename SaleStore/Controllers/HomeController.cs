@@ -33,19 +33,7 @@ namespace SaleStore.Controllers
             model.Products = _context.Products.OrderByDescending(x => x.CreateDate).Take(9).ToPagedList<Product>(page, 10); ;
             model.Companies = _context.Companies.ToList();
             model.Settings = _context.Setting.ToList();
-            //Setting settings = new Setting();
-            //settings = _context.Setting.FirstOrDefault();
-
-            //ViewBag.logo = settings.Logo;
-            //ViewBag.Title = settings.Title;
-            //ViewBag.phone = settings.Phone;
-            //ViewBag.SeoDescription = settings.SeoDescription;
-            //ViewBag.SeoKeywords = settings.SeoKeywords;
-            //ViewBag.SeoTitle = settings.SeoTitle;
-            //ViewBag.Adress = settings.Address;
-            //ViewBag.Mail = settings.Mail;
-            //ViewBag.SiteSlogan = settings.SiteSlogan;
-            //ViewBag.About = settings.About;
+            
             return View(model);
         }
 
@@ -171,6 +159,7 @@ namespace SaleStore.Controllers
             model.Categories = _context.Categories.ToList(); ;
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
             model.Products = _context.Products.ToPagedList<Product>(page, 10);
+            model.Companies = _context.Companies.ToList();
             model.Settings = _context.Setting.ToList();
             return View(model);
         }
@@ -199,6 +188,7 @@ namespace SaleStore.Controllers
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
             model.Products = _context.Products.ToPagedList<Product>(page, 9);
+            model.Companies = _context.Companies.ToList();
             model.Settings = _context.Setting.ToList();
             return View(model);
         }
