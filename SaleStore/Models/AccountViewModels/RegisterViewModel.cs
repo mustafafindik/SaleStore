@@ -9,13 +9,14 @@ namespace SaleStore.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Lütfen bir {0} giriniz.")]
+        [DataType(DataType.EmailAddress,ErrorMessage ="Lütfen geçerli formatta bir mail adresi giriniz.")]
         [EmailAddress]
         [Display(Name = "E-Posta")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0}  {2} karakter ile {1} karakter arasında olmalıdır.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0}  {2} karakter ile {1} karakter arasında olmalıdır.", MinimumLength = 6)]       
         [DataType(DataType.Password)]
         [Display(Name = "Şifre")]
         public string Password { get; set; }

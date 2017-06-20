@@ -77,7 +77,7 @@ namespace SaleStore.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation(1, "User logged in.");
+                    _logger.LogInformation(1, "Kullanıcı giriş yaptı.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -86,12 +86,12 @@ namespace SaleStore.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning(2, "User account locked out.");
+                    _logger.LogWarning(2, "Kullanıcı hesabı kilitlendi.");
                     return View("Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Geçersiz giriş denemesi.");
                     return View(model);
                 }
             }
@@ -167,7 +167,7 @@ namespace SaleStore.Controllers
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
+                    _logger.LogInformation(3, "Kullanıcı yeni bir hesap oluşturdu.");
                     var lastUser = _context.Users.OrderByDescending(x =>x.CreateDate).FirstOrDefault();
                     var newCompany = new Company { Name = model.Name, Address = model.Address, Phone = model.Phone, Logo = model.Logo, CreateDate = DateTime.Now, UpdateDate = DateTime.Now, UserId = lastUser.Id };
                     _context.Add(newCompany);
@@ -194,7 +194,7 @@ namespace SaleStore.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation(4, "User logged out.");
+            _logger.LogInformation(4, "Kullanıcı çıkış yaptı.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -487,7 +487,7 @@ namespace SaleStore.Controllers
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning(7, "User account locked out.");
+                _logger.LogWarning(7, "Kullanıcı hesabı kilitlendi");
                 return View("Lockout");
             }
             else
