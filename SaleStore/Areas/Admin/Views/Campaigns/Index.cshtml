@@ -47,6 +47,9 @@
                                 @Html.DisplayNameFor(model => model.IsPublish)
                             </th>
                             <th class="none">
+                                @Html.DisplayNameFor(model => model.SelectedCampaign)
+                            </th>
+                            <th class="none">
                                 @Html.DisplayNameFor(model => model.CampaignStartDate)
                             </th>
                             <th class="none">
@@ -92,6 +95,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.IsPublish)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SelectedCampaign)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.CampaignStartDate)

@@ -144,13 +144,15 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish,CompanyId")] Campaign campaign,IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Slogan,CategoryId,CampaignStartDate,CampaignEndDate,Image,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish,CompanyId,SelectedCampaign")] Campaign campaign,IFormFile uploadFile)
         {
             if (id != campaign.Id)
             {
                 return NotFound();
             }
 
+            campaign.UpdatedBy = User.Identity.Name ?? "username";
+            campaign.UpdateDate = DateTime.Now;
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
@@ -158,12 +160,12 @@ namespace SaleStore.Areas.Admin.Controllers
             }
             else if (ModelState.IsValid)
             {
+                
 
                 if (uploadFile != null)
                 {
 
-                    campaign.UpdatedBy = User.Identity.Name ?? "username";
-                    campaign.UpdateDate = DateTime.Now;
+                    
 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"

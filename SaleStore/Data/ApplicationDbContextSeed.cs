@@ -20,6 +20,11 @@ namespace SaleStore.Data
                 return;   // DB has been seeded
             }
 
+            //kullanıcı ve role ilişkisi
+            AddUsers(userManager);
+            AddRoles(roleManager);
+            AddRoleToUser(userManager);
+
             // Perform seed operations
             AddCompanies(context);
             AddCategories(context);
@@ -29,15 +34,12 @@ namespace SaleStore.Data
             AddMailSettings(context);
             AddSendMessages(context);
 
-            //kullanıcı ve role ilişkisi
-            AddUsers(userManager);
-            AddRoles(roleManager);
-            AddRoleToUser(userManager);
+            
         }
         public static void AddProducts(ApplicationDbContext context)
         {
             context.AddRange(
-                
+
                 new Product
                 {
                     Name = "iPhone 7",
@@ -45,15 +47,16 @@ namespace SaleStore.Data
                     CreateDate = DateTime.Now,
                     UpdatedBy = "username",
                     UpdateDate = DateTime.Now,
-                    CompanyId =1,
+                    CompanyId = 1,
                     CategoryId = 1,
-                    Details= "iPhone 7",
-                    ProductImage= "uploads/Seed/iphone7.jpg",
+                    Details = "iPhone 7",
+                    ProductImage = "uploads/Seed/iphone7.jpg",
                     SaleStarthDate = DateTime.Now,
                     SaleEndDate = DateTime.Now,
-                    SalePrice= 3509,
-                    UnitPrice=4000,
-                    IsPublish = true
+                    SalePrice = 3509,
+                    UnitPrice = 4000,
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 new Product
                 {
@@ -70,7 +73,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 1099,
                     UnitPrice = 1999,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 new Product
                 {
@@ -87,7 +91,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 76,
                     UnitPrice = 90,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 new Product
                 {
@@ -104,7 +109,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 59,
                     UnitPrice = 89,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 new Product
                 {
@@ -121,7 +127,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 49,
                     UnitPrice = 150,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 new Product
                 {
@@ -138,7 +145,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 5,
                     UnitPrice = 10,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 new Product
                 {
@@ -155,7 +163,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 11,
                     UnitPrice = 29,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 },
                 
              
@@ -174,7 +183,8 @@ namespace SaleStore.Data
                     SaleEndDate = DateTime.Now,
                     SalePrice = 15,
                     UnitPrice = 29,
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedProduct = true
                 }
 
 
@@ -201,7 +211,8 @@ namespace SaleStore.Data
                     Slogan = "Telefonları yenileme zamanı",
                     Image = "uploads/Seed/eskiyeni.jpg",
                     Description = "İkinci el ürünler TECHPOİNT SERVİS HİZMETLERİ A.Ş. adına Teknosa tarafından teslim alınmakta olup, ikinci el cihaz bedeli karşılığında verilen hediye çeki ilgili firma tarafından karşılanmaktadır.",
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedCampaign = true
                 },
                 
                 new Campaign
@@ -218,7 +229,8 @@ namespace SaleStore.Data
                     Slogan = "Sepete %15 indirim",
                     Image = "uploads/Seed/projeksiyon.png",
                     Description = "Satıcı hepsiburada olan ürünlerde geçerlidir.",
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedCampaign = true
                 },
                
                 new Campaign
@@ -235,7 +247,8 @@ namespace SaleStore.Data
                     Slogan = "%80'e varan indirimler",
                     Image = "uploads/Seed/parfumyaz.jpg",
                     Description = "En iyi kadın ve erkek parfümlerinin yer aldığı dünyaca ünlü, Burberry, Chanel, Tom Ford, Bvlgari, Estee Lauder, Calvin Klein ve diğer markaların en çok satan ürünlerinden oluşan bu kampanya, aradığınız tüm parfümleri özel indirimlerle size sunuyor. Bu orijinal parfümlere, size özel indirim fırsatları ile sahip olma fırsatını kaçırmayın!",
-                    IsPublish = true
+                    IsPublish = true,
+                    SelectedCampaign = true
                 }
                 
                
@@ -253,7 +266,7 @@ namespace SaleStore.Data
             var task1 = Task.Run(() => _userManager.CreateAsync(user, "123:Asdf"));
             task1.Wait();
 
-            user2 = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = "company@gmail.com", Email = "company@gmail.com", EmailConfirmed = true, NormalizedEmail = "COMPANY@GMAIL.COM", NormalizedUserName = "COMPANY@GMAIL.COM" , CreateDate = DateTime.Now};
+            user2 = new ApplicationUser { Id = "123456789", UserName = "onkayazilim@gmail.com", Email = "onkayazilim@gmail.com", EmailConfirmed = true, NormalizedEmail = "ONKAYAZILIM@GMAIL.COM", NormalizedUserName = "ONKAYAZILIM@GMAIL.COM", CreateDate = DateTime.Now};
             var task2 = Task.Run(() => _userManager.CreateAsync(user2, "123:Asdf"));
             task2.Wait();
 
@@ -325,7 +338,7 @@ namespace SaleStore.Data
         public static void AddCompanies(ApplicationDbContext context)
         {
             context.AddRange(
-                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
+                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/logo.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now, UserId= "123456789" });
                 
             context.SaveChanges();
         }

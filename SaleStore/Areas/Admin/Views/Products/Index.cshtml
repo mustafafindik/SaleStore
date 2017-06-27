@@ -43,6 +43,9 @@
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.IsPublish)
                             </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.SelectedProduct)
+                            </th>
                            
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.UnitPrice)
@@ -100,6 +103,9 @@
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.IsPublish)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SelectedProduct)
                                 </td>
                                 
                                 <td>

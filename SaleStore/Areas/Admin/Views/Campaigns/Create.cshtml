@@ -95,6 +95,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label asp-for="SelectedCampaign" class="col-md-2 control-label"></label>
+                                <div class="col-md-8">
+                                    <input asp-for="SelectedCampaign" class="form-control" />
+                                    <span asp-validation-for="SelectedCampaign" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-offset-2 col-md-8">
                                     <input type="submit" value="Oluştur" class="btn btn-primary" />
                                     <a asp-action="Index" class="btn default">Listeye Geri Dön</a>

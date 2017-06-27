@@ -22,7 +22,7 @@
 
                     @foreach (var item in Model.Campaigns)
                     {
-                        if (item.IsPublish == true)
+                        if (item.IsPublish == true && item.SelectedCampaign==true)
                         {
                             <div class="swiper-slide slide-2x">
                                 <div class="box-slider-content">
@@ -83,7 +83,7 @@
             <div id="productslider" class="owl-carousel owl-theme">
                 @foreach (var item in Model.Products.OrderByDescending(x => 100 - ((x.SalePrice * 100) / x.UnitPrice)))
                 {
-                    if (item.IsPublish == true)
+                    if (item.IsPublish == true && item.SelectedProduct==true)
                     {
                         var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));
 
@@ -229,7 +229,7 @@
 
             @foreach (var item in Model.Products)
             {
-                if (item.IsPublish == true)
+                if (item.IsPublish == true && item.SelectedProduct==true)
                 {
                     <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 

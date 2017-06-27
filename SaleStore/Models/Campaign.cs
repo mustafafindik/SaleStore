@@ -10,6 +10,10 @@ namespace SaleStore.Models
 {
     public class Campaign:BaseEntity
     {
+        public Campaign()
+        {
+            SelectedCampaign = false;
+        }
         [DisplayName("Kampanya Adı"),
          Required(ErrorMessage = "Lütfen bir {0} giriniz."),
          MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
@@ -48,6 +52,9 @@ namespace SaleStore.Models
 
         [DisplayName("Yayında mı?")]
         public bool IsPublish { get; set; }
+
+        [DisplayName("Kampanya Anasayfada Görünsün mü? ")]
+        public bool SelectedCampaign { get; set; }
 
     }
 }

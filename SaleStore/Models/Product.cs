@@ -11,6 +11,11 @@ namespace SaleStore.Models
 {
     public class Product:BaseEntity
     {
+        public Product()
+        {
+            SelectedProduct = false;
+        }
+
         [DisplayName("Ürün Adı"),
          Required(ErrorMessage = "Lütfen bir {0} giriniz."),
          MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
@@ -52,5 +57,8 @@ namespace SaleStore.Models
 
         [DisplayName("Yayında mı?")]
         public bool IsPublish { get; set; }
+
+        [DisplayName("Ürün Anasayfada Görünsün mü? ")]
+        public bool SelectedProduct { get; set; }
     }
 }

@@ -66,7 +66,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish")] Product product,IFormFile uploadFile)
+        public async Task<IActionResult> Create([Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish,SelectedProduct")] Product product,IFormFile uploadFile)
         {
 
             product.CreatedBy = User.Identity.Name ?? "username";
@@ -154,7 +154,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish")] Product product, IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Details,UnitPrice,SalePrice,SaleStarthDate,SaleEndDate,CategoryId,ProductImage,CompanyId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,IsPublish,SelectedProduct")] Product product, IFormFile uploadFile)
         {
             if (id != product.Id)
             {
@@ -166,6 +166,8 @@ namespace SaleStore.Areas.Admin.Controllers
                 ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
             }
 
+            product.UpdatedBy = User.Identity.Name ?? "username";
+            product.UpdateDate = DateTime.Now;
 
             if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
@@ -173,12 +175,12 @@ namespace SaleStore.Areas.Admin.Controllers
             }
             else if (ModelState.IsValid)
             {
+                
 
                 if (uploadFile != null)
                 {
 
-                    product.UpdatedBy = User.Identity.Name ?? "username";
-                    product.UpdateDate = DateTime.Now;
+                    
 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"
