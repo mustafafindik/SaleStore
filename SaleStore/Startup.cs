@@ -16,6 +16,8 @@ using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Microsoft.AspNetCore.Authentication.LinkedIn;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace SaleStore
 {
@@ -88,6 +90,31 @@ namespace SaleStore
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+
+            var supportedCultures = new List<CultureInfo>
+                        {
+                        //new CultureInfo("en-US") { DateTimeFormat = dtf },
+                        //new CultureInfo("en") { DateTimeFormat = dtf },
+                        new CultureInfo("en-US"),
+                        new CultureInfo("en")
+                        //new CultureInfo("en-US"),
+                        //new CultureInfo("en"),
+                        //new CultureInfo("de-DE"),
+                        //new CultureInfo("de")
+                    };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
+
+
+
             //role ve üye için parantezlere dikkat ediniz (seed ekleme )
             app.ApplicationServices.GetRequiredService<ApplicationDbContext>().Seed(app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>(), app.ApplicationServices.GetRequiredService<RoleManager<Role>>());
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715 
