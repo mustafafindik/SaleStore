@@ -352,7 +352,8 @@ namespace SaleStore.Data
         public static void AddSendMessages(ApplicationDbContext context)
         {
             context.AddRange(
-                new SendMessage {  Subject="İletişim", BodyContent="Mesajınız bize iletilmiştir. Teşekür ederiz.", MailSettingId=1 ,CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
+                new SendMessage {  Subject="İletişim", BodyContent="Mesajınız bize iletilmiştir. Teşekür ederiz.", MailSettingId=1 ,CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now },
+                new SendMessage { Subject = "Üyelik", BodyContent = "Üye olduğunuz için teşekür ederiz.", MailSettingId = 1, CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now });
 
             context.SaveChanges();
         }

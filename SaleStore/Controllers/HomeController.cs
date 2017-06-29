@@ -303,7 +303,7 @@ namespace SaleStore.Controllers
 
                 MailSetting mailSetting;
                 SendMessage sendMessage;
-                mailSetting = _context.MailSettings.FirstOrDefault();
+                mailSetting = _context.MailSettings.Where(a => a.Id == 1).FirstOrDefault();
                 sendMessage = _context.SendMessages.Where(x=>x.MailSettingId==1).FirstOrDefault();
                 string FromAddress = mailSetting.FromAddress;
                 string FromAddressTitle = mailSetting.FromAddressTitle;

@@ -18,6 +18,8 @@ using SaleStore.Data;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace SaleStore.Controllers
 {
@@ -172,6 +174,46 @@ namespace SaleStore.Controllers
                     var newCompany = new Company { Name = model.Name, Address = model.Address, Phone = model.Phone, Logo = model.Logo, CreateDate = DateTime.Now, UpdateDate = DateTime.Now, UserId = lastUser.Id };
                     _context.Add(newCompany);
                     _context.SaveChanges();
+
+
+
+                    MailSetting mailSetting2;
+                    SendMessage sendMessage2;
+                    mailSetting2 = _context.MailSettings.Where(a=>a.Id==1).FirstOrDefault();
+                    sendMessage2 = _context.SendMessages.Where(x=>x.Id==2).FirstOrDefault();
+                    string FromAddress = mailSetting2.FromAddress;
+                    string FromAddressTitle = mailSetting2.FromAddressTitle;
+
+                    string ToAddress = model.Email;
+                    string ToAddressTitle = model.Name;
+                    string Subject = sendMessage2.Subject;
+                    string BodyContent = sendMessage2.BodyContent;
+
+                    string SmptServer = mailSetting2.SmptServer;
+                    int SmptPortNumber = mailSetting2.SmptPortNumber;
+
+                    var mimeMessage = new MimeMessage();
+                    mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+                    mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+                    mimeMessage.Subject = Subject;
+                    mimeMessage.Body = new TextPart("plain")
+                    {
+                        Text = BodyContent
+                    };
+
+                    using (var client = new SmtpClient())
+                    {
+                        client.Connect(SmptServer, SmptPortNumber, false);
+                        client.Authenticate(mailSetting2.FromAddress, mailSetting2.FromAddressPassword);
+                        client.Send(mimeMessage);
+                        client.Disconnect(true);
+                    }
+
+
+
+
+
+
                     return RedirectToLocal(returnUrl);
                 }
 
