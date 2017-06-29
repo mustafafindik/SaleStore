@@ -366,19 +366,55 @@ namespace SaleStore.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (user == null )
                 {
                     // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
+                    return View("ForgotPassword");
                 }
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
                 // Send an email with this link
-                //var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                //var callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
-                //return View("ForgotPasswordConfirmation");
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+
+                //mail
+
+                MailSetting mailSetting3;
+                SendMessage sendMessage3;
+                mailSetting3 = _context.MailSettings.Where(a => a.Id == 1).FirstOrDefault();
+                sendMessage3 = _context.SendMessages.Where(x => x.Id == 3).FirstOrDefault();
+                string FromAddress = mailSetting3.FromAddress;
+                string FromAddressTitle = mailSetting3.FromAddressTitle;
+
+                string ToAddress = model.Email;
+                string ToAddressTitle = model.Email;
+                string Subject = sendMessage3.Subject;
+                string BodyContent =sendMessage3.BodyContent + $"{callbackUrl}";
+
+                string SmptServer = mailSetting3.SmptServer;
+                int SmptPortNumber = mailSetting3.SmptPortNumber;
+
+                var mimeMessage = new MimeMessage();
+                mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+                mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+                mimeMessage.Subject = Subject;
+                mimeMessage.Body = new TextPart("plain")
+                {
+                    Text = BodyContent
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect(SmptServer, SmptPortNumber, false);
+                    client.Authenticate(mailSetting3.FromAddress, mailSetting3.FromAddressPassword);
+                    client.Send(mimeMessage);
+                    client.Disconnect(true);
+                }
+                ViewBag.ForgotPasswordMessage = "Mailinize Şifre Sıfırlama Linki Gönderilmiştir.";
+
+                //mail
+
+                return View("ForgotPassword");
             }
 
             // If we got this far, something failed, redisplay form

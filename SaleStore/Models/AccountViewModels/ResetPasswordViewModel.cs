@@ -19,7 +19,7 @@ namespace SaleStore.Models.AccountViewModels
 
         [DataType(DataType.Password)]
         [Display(Name = "Şifreyi Onayla")]
-        [Compare("Şifre", ErrorMessage = "Şifre ve şifre(tekrar) eşleşmiyor.")]
+        [Compare("Password", ErrorMessage = "Şifre ve şifre(tekrar) eşleşmiyor.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
