@@ -29,10 +29,7 @@
                                     <div class="box-text">
                                         <h1>@item.Slogan</h1>
 
-                                        <p>
-                                            @item.Description
-                                        </p>
-
+                                      
                                         <a asp-controller="Home" asp-action="CampaignDetail" class="btn btn-stroke-light" asp-route-id="@item.Id">İncele</a>
                                     </div>
                                     <div class="box-content-overly">
@@ -273,15 +270,17 @@
                                 <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
                                 <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
                             </div>
-                            <span>@item.Company.Name</span>
-                            <div class="action-control">
-                                <a class="btn btn-default" asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
-                                    <span class="add2cart">
-                                        <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
-                                    </span>
-                                </a>
+                            <div class="description">
+                                <span class="size">@item.Company.Name</span>
                             </div>
-                        </div>
+                                <div class="action-control">
+                                    <a class="btn btn-default" asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
+                                        <span class="add2cart">
+                                            <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
                     </div>
                                         }
                                     }
@@ -360,11 +359,10 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <ul class="no-margin brand-carousel owl-carousel owl-theme ">
+                <ul  class=" brand-carousel owl-carousel" >
                     @foreach (var item in Model.Companies)
-                    {
-                        <li style="vertical-align:middle;"><a><img src="/@item.Logo" alt="img" style="height:80px;"></a></li>
-
+                    {                      
+                        <li ><a ><img  style="padding-top:35.0417%;max-height:120px;max-width:120px;"  src="/@item.Logo" alt="img"></a></li>
                     }
                 </ul>
             </div>

@@ -26,5 +26,18 @@
  
 }
 
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    display:  unset !important;
+   
+}
 
+.box-text h1, .box-text-cell-inner h1 {
+   
+    text-shadow: -3px 4px 4px #000000;
+}
+
+.btn-stroke-light {
+    background: rgba(231, 76, 60 , 0.8) !important
+  
+}
 

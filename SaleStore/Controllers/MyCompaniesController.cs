@@ -79,14 +79,14 @@ namespace SaleStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
-        {
-            string CurrentUserId = await GetCurrentUserId();
+        {          
             company.CreatedBy = User.Identity.Name ?? "username";
             company.CreateDate = DateTime.Now;
             company.UpdatedBy = User.Identity.Name ?? "username";
             company.UpdateDate = DateTime.Now;
             company.CampaignCount = 3;
             company.ProductCount = 25;
+            string CurrentUserId = await GetCurrentUserId();
             company.UserId = CurrentUserId;
           
 
@@ -100,11 +100,7 @@ namespace SaleStore.Controllers
                 if (uploadFile != null)
                 {
 
-                    company.CreatedBy = User.Identity.Name ?? "username";
-                    company.CreateDate = DateTime.Now;
-                    company.UpdatedBy = User.Identity.Name ?? "username";
-                    company.UpdateDate = DateTime.Now;
-
+                 
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"
                     || Path.GetExtension(uploadFile.FileName) == ".png")
@@ -167,6 +163,10 @@ namespace SaleStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
         {
+            company.UpdatedBy = User.Identity.Name ?? "username";
+            company.UpdateDate = DateTime.Now;
+            company.CampaignCount = 3;
+            company.ProductCount = 25;
             string CurrentUserId = await GetCurrentUserId();
             company.UserId = CurrentUserId;
             if (id != company.Id)
@@ -183,13 +183,7 @@ namespace SaleStore.Controllers
 
                 if (uploadFile != null)
                 {
-
-                    company.UpdatedBy = User.Identity.Name ?? "username";
-                    company.UpdateDate = DateTime.Now;
-                    company.CampaignCount = 3;
-                    company.ProductCount = 25;
-                   
-
+                                     
                     if (Path.GetExtension(uploadFile.FileName) == ".jpg"
                     || Path.GetExtension(uploadFile.FileName) == ".gif"
                     || Path.GetExtension(uploadFile.FileName) == ".png")

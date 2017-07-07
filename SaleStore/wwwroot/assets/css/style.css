@@ -3772,7 +3772,7 @@ h5.parallaxSubtitle {
     border: 2px solid #FFFFFF;
     display: inline-block;
     margin: 2px 1px;
-    vertical-align: top;
+    vertical-align: middle;
     list-style: none;
 }
 
@@ -5607,7 +5607,7 @@ div.quickview {
     display: block;
     float: left;
     max-height: 260px;
-    max-width: 200px;
+    max-width: 260px;
     overflow: hidden;
     padding-right: 20px;
     position: relative;

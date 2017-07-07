@@ -121,7 +121,9 @@
                                 <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
                                 <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
                             </div>
-                            <span>@item.Company.Name</span>
+                            <div class="description">
+                                <span class="size">@item.Company.Name</span>
+                            </div>
                             <div class="action-control">
                                 <a class="btn btn-default" href="/Home/ProductDetail/@item.Id">
                                     <span class="add2cart">
