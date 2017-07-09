@@ -223,6 +223,7 @@ namespace SaleStore.Controllers
             }
             model.Products = _context.Products.ToPagedList<Product>(1, 9);
             model.Categories = _context.Categories.ToList<Category>();
+            model.Companies = _context.Companies.ToList();
             if (id == 0)
             {
                 model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(1, 9);
