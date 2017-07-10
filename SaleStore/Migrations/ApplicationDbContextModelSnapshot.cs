@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using SaleStore.Data;
+using SaleStore.Models;
 
 namespace SaleStore.Migrations
 {
@@ -126,6 +127,58 @@ namespace SaleStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("SaleStore.Models.Advertisement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("AdvertiseEndDate");
+
+                    b.Property<DateTime>("AdvertiseStartDate");
+
+                    b.Property<bool>("CampaignPage");
+
+                    b.Property<double>("ClickRate");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("HTMLCodes");
+
+                    b.Property<bool>("HomePageCampaigns");
+
+                    b.Property<bool>("HomePageProducts");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("Ispublished");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("PositionDegree");
+
+                    b.Property<bool>("ProductsPage");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("URLpath");
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("advType");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Advertisements");
                 });
 
             modelBuilder.Entity("SaleStore.Models.ApplicationUser", b =>

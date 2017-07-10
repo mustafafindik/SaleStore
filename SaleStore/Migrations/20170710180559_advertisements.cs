@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SaleStore.Migrations
 {
-    public partial class IntializeCreat : Migration
+    public partial class advertisements : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -268,36 +268,6 @@ namespace SaleStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Campaigns",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CampaignEndDate = table.Column<DateTime>(nullable: false),
-                    CampaignStartDate = table.Column<DateTime>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false),
-                    CreateDate = table.Column<DateTime>(nullable: false),
-                    CreatedBy = table.Column<string>(maxLength: 30, nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Image = table.Column<string>(nullable: true),
-                    IsPublish = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(maxLength: 250, nullable: false),
-                    Slogan = table.Column<string>(maxLength: 500, nullable: true),
-                    UpdateDate = table.Column<DateTime>(nullable: false),
-                    UpdatedBy = table.Column<string>(maxLength: 30, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Campaigns", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Campaigns_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SendMessages",
                 columns: table => new
                 {
@@ -323,6 +293,44 @@ namespace SaleStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Campaigns",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CampaignEndDate = table.Column<DateTime>(nullable: false),
+                    CampaignStartDate = table.Column<DateTime>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
+                    CompanyId = table.Column<int>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 30, nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    IsPublish = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(maxLength: 250, nullable: false),
+                    SelectedCampaign = table.Column<bool>(nullable: false),
+                    Slogan = table.Column<string>(maxLength: 500, nullable: true),
+                    UpdateDate = table.Column<DateTime>(nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 30, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Campaigns", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Campaigns_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Campaigns_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -339,6 +347,7 @@ namespace SaleStore.Migrations
                     SaleEndDate = table.Column<DateTime>(nullable: false),
                     SalePrice = table.Column<float>(nullable: false),
                     SaleStarthDate = table.Column<DateTime>(nullable: false),
+                    SelectedProduct = table.Column<bool>(nullable: false),
                     UnitPrice = table.Column<float>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(maxLength: 30, nullable: true)
@@ -401,6 +410,11 @@ namespace SaleStore.Migrations
                 name: "IX_Campaigns_CategoryId",
                 table: "Campaigns",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Campaigns_CompanyId",
+                table: "Campaigns",
+                column: "CompanyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Companies_UserId",

@@ -8,8 +8,8 @@ using SaleStore.Data;
 namespace SaleStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170615154319_deneme")]
-    partial class deneme
+    [Migration("20170710180559_advertisements")]
+    partial class advertisements
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -209,6 +209,8 @@ namespace SaleStore.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
+                    b.Property<bool>("SelectedCampaign");
+
                     b.Property<string>("Slogan")
                         .HasMaxLength(500);
 
@@ -388,6 +390,8 @@ namespace SaleStore.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("SaleStarthDate");
+
+                    b.Property<bool>("SelectedProduct");
 
                     b.Property<float?>("UnitPrice")
                         .IsRequired();

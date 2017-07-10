@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using SaleStore.Data;
+using SaleStore.Models;
 
 namespace SaleStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170615134216_IntializeCreat")]
-    partial class IntializeCreat
+    [Migration("20170710192029_newedits")]
+    partial class newedits
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,6 +130,58 @@ namespace SaleStore.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SaleStore.Models.Advertisement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("AdvertiseEndDate");
+
+                    b.Property<DateTime>("AdvertiseStartDate");
+
+                    b.Property<bool>("CampaignPage");
+
+                    b.Property<double>("ClickRate");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("HTMLCodes");
+
+                    b.Property<bool>("HomePageCampaigns");
+
+                    b.Property<bool>("HomePageProducts");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("Ispublished");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("PositionDegree");
+
+                    b.Property<bool>("ProductsPage");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("URLpath");
+
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("advType");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Advertisements");
+                });
+
             modelBuilder.Entity("SaleStore.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -192,6 +245,8 @@ namespace SaleStore.Migrations
 
                     b.Property<int>("CategoryId");
 
+                    b.Property<int>("CompanyId");
+
                     b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("CreatedBy")
@@ -207,6 +262,8 @@ namespace SaleStore.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
+                    b.Property<bool>("SelectedCampaign");
+
                     b.Property<string>("Slogan")
                         .HasMaxLength(500);
 
@@ -218,6 +275,8 @@ namespace SaleStore.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Campaigns");
                 });
@@ -385,6 +444,8 @@ namespace SaleStore.Migrations
 
                     b.Property<DateTime>("SaleStarthDate");
 
+                    b.Property<bool>("SelectedProduct");
+
                     b.Property<float?>("UnitPrice")
                         .IsRequired();
 
@@ -538,6 +599,11 @@ namespace SaleStore.Migrations
                     b.HasOne("SaleStore.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SaleStore.Models.Company", "Companies")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
