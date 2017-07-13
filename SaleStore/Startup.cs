@@ -93,16 +93,10 @@ namespace SaleStore
 
 
             var supportedCultures = new List<CultureInfo>
-                        {
-                        //new CultureInfo("en-US") { DateTimeFormat = dtf },
-                        //new CultureInfo("en") { DateTimeFormat = dtf },
-                        new CultureInfo("en-US"),
-                        new CultureInfo("en")
-                        //new CultureInfo("en-US"),
-                        //new CultureInfo("en"),
-                        //new CultureInfo("de-DE"),
-                        //new CultureInfo("de")
-                    };
+                        {                       
+                        new CultureInfo("en-US")
+                        { NumberFormat = { CurrencySymbol = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol + " " } }
+                       };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {

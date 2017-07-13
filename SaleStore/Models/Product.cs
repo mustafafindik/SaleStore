@@ -31,7 +31,7 @@ namespace SaleStore.Models
 
         [DisplayName("İndirimli Fiyat"),
          Required(ErrorMessage = "Lütfen bir {0} değeri giriniz."),
-         DataType(DataType.Currency)]
+         DataType(DataType.Currency),]
         public float? SalePrice { get; set; }
 
         [DisplayName("İndirim Başlangıç Tarihi")]

@@ -41,3 +41,12 @@
   
 }
 
+#newbtn.btn{
+    padding:5px 15px !important;
+}
+
+.btn.btn-xs {
+
+    margin: 3px !important;
+}
+

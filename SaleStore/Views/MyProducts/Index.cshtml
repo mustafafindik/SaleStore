@@ -63,27 +63,23 @@
                     </div>
                     
                     <div class="action-control">
-                        <a class="btn btn-danger" asp-action="Details" asp-route-id="@item.Id">
+                        <a id="newbtn" class="btn btn-xs  btn-danger" asp-action="Details" asp-route-id="@item.Id">
                             <span class="add2cart">
-                                <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
+                                <i class="glyphicon glyphicon-eye-open">&nbsp;</i>İncele
+                            </span>
+                        </a>
+                        <a id="newbtn" style="margin-left:5px;margin-right:5px;" class="btn btn-xs  btn-info" asp-action="Edit" asp-route-id="@item.Id">
+                            <span class="add2cart">
+                                <i class="glyphicon glyphicon-edit">&nbsp;</i>Düzenle
+                            </span>
+                        </a>
+                        <a id="newbtn" class="btn btn-xs btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                            <span class="add2cart">
+                                <i class="glyphicon glyphicon-alert">&nbsp;</i>Sil
                             </span>
                         </a>
                     </div>
-                    <div class="action-control">
-                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">
-                            <span class="add2cart">
-                                <i class="glyphicon glyphicon-edit">&nbsp;</i>Ürünü Düzenle
-                            </span>
-                        </a>
-                    </div>
-                    <div class="action-control">
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">
-                            <span class="add2cart">
-                                <i class="glyphicon glyphicon-alert">&nbsp;</i>Ürünü Sil
-                            </span>
-                        </a>
-                    </div>
-
+                    <br />
                 </div>
             </div>
             <!--/.item--> }
