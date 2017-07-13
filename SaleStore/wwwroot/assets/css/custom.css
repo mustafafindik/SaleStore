@@ -33,7 +33,7 @@
 
 .box-text h1, .box-text-cell-inner h1 {
    
-    text-shadow: -3px 4px 4px #000000;
+    text-shadow: 0px 0px 1px #000000;
 }
 
 .btn-stroke-light {
