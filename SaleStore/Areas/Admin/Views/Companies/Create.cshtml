@@ -28,21 +28,21 @@
                             <div class="form-body">
                                 <div class="form-group">
                                     <label asp-for="Name" class="col-md-2 control-label"></label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <input asp-for="Name" class="form-control" />
                                         <span asp-validation-for="Name" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Address" class="col-md-2 control-label"></label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <input asp-for="Address" class="form-control" />
                                         <span asp-validation-for="Address" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Phone" class="col-md-2 control-label"></label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <input asp-for="Phone" class="form-control" />
                                         <span asp-validation-for="Phone" class="text-danger"></span>
                                     </div>
@@ -55,22 +55,22 @@
                                             <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
                                             <div>
                                                 <span class="btn red btn-outline btn-file">
-                                                    <span class="fileinput-new"> Select image </span>
-                                                    <span class="fileinput-exists"> Change </span>
+                                                    <span class="fileinput-new"> Resim Seç </span>
+                                                    <span class="fileinput-exists"> Değiştir </span>
                                                     <input title="uploadFile" type="file" name="uploadFile" />
                                                 </span>
-                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
                                             </div>
                                         </div>
                                         <div class="clearfix margin-top-10">
-                                            <span class="label label-success">NOTE!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
+                                            <span class="label label-success">NOT!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label asp-for="ProductCount" class="col-md-2 control-label"></label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <input asp-for="ProductCount" class="form-control" />
                                         <span asp-validation-for="ProductCount" class="text-danger"></span>
                                     </div>
@@ -78,42 +78,29 @@
 
                                 <div class="form-group">
                                     <label asp-for="CampaignCount" class="col-md-2 control-label"></label>
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <input asp-for="CampaignCount" class="form-control" />
                                         <span asp-validation-for="CampaignCount" class="text-danger"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label asp-for="UserId" class="col-md-2 control-label">Kullanıcı Kodu</label>
-                                    <div class="col-md-10">
-                                        <select asp-for="UserId" class="form-control"><option> @UserManager.GetUserId(User)</option></select>
+                                    <label asp-for="UserId" class="col-md-2 control-label">Kullanıcı</label>
+                                    <div class="col-md-8">
+                                        <select asp-for="UserId" class="form-control"><option> @UserManager.GetUserName(User)</option></select>
                                     </div>
                                 </div>
-
-                                @*<div class="form-group">
-                                    <label asp-for="Logo" class="col-md-2 control-label"></label>
-                                    <div class="col-md-10">
-                                        <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
-                                        @Html.ValidationMessage("Logo", new { @class = "text-danger" })
-                                    </div>
-                                </div>*@
-
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Kaydet" class="btn btn-primary" />
-                                        <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <input type="submit" value="Kaydet" class="btn btn-success" />
+                                        <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     </div>
-            </form>
-
-            <div>
-                
-            </div>
+            </form>                
         </div>
     </div>
 </div>

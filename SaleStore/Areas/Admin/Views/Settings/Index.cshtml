@@ -59,15 +59,7 @@
                         </div>
                     </div>
 
-                    @*<div class="form-group">
-                        <label asp-for="Logo" class="col-md-2 control-label"></label>
-                        <div class="col-md-8">
-                            <input title="logoUpload" type="file" name="logoUpload" class="form-control" />
-                            @Html.ValidationMessage("Logo", new { @class = "text-danger" })
-                        </div>
-
-                    </div>*@
-
+              
 
                     <div class="form-group">
                         <label asp-for="SeoTitle" class="col-md-2 control-label"></label>
@@ -163,9 +155,11 @@
                             <span asp-validation-for="LinkedIn" class="text-danger"></span>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                            <a controller="Dashboard" asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
                         </div>
                     </div>
 

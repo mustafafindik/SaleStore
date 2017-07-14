@@ -25,6 +25,13 @@
                     <div class="form-body">
                         <dl class="dl-horizontal">
                             <dt>
+                                @Html.DisplayNameFor(model => model.Image)
+                            </dt>
+                            <dd>
+                                <img style="width:80px;" class="img-thumbnail img-responsive" src="/@Html.DisplayFor(model => model.Image)" />
+
+                            </dd>
+                            <dt>
                                 @Html.DisplayNameFor(model => model.Name)
                             </dt>
                             <dd>
@@ -48,13 +55,7 @@
                             <dd>
                                 @Html.DisplayFor(model => model.CampaignEndDate)
                             </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Image)
-                            </dt>
-                            <dd>
-                                <img style="width:80px;" class="img-thumbnail img-responsive" src="/@Html.DisplayFor(model => model.Image)" />
-
-                            </dd>
+                           
                             <input type="hidden" asp-for="Id" />
                             <dt>
                                 @Html.DisplayNameFor(model => model.CreateDate)
@@ -101,9 +102,9 @@
                         </dl>
 
 
-                        <div class="form-actions">
+                        <div class="form-actions no-color">
                             <input type="submit" value="Sil" class="btn btn-danger" />
-                            <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
+                            <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
                         </div>
                     </div>
                 </div>

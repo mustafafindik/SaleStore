@@ -75,61 +75,47 @@
                                 <div value="/@Model.Image" class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"><img src="/@Model.Image"> </div>
                                 <div>
                                     <span class="btn red btn-outline btn-file">
-                                        <span class="fileinput-new"> Select image </span>
-                                        <span class="fileinput-exists"> Change </span>
+                                        <span class="fileinput-new"> Resim Seç</span>
+                                        <span class="fileinput-exists"> Değiştir </span>
                                         <input asp-for="Image" type="file" name="uploadFile" />
                                     </span>
-                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
                                 </div>
                             </div>
                             <div class="clearfix margin-top-10">
-                                <span class="label label-success">NOTE!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
+                                <span class="label label-success">NOT!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
                             </div>
                         </div>
                     </div>
-                    
-                    @*<div class="form-group">
-                        <label asp-for="Image" class="col-md-2 control-label"></label>
-                        <div class="col-md-8">
-                            <input asp-for="Image" type="file" name="uploadFile" class="form-control" />
-                            <div class="clearfix margin-top-10">
-                                <span class="label label-success">UYARI !</span> Dosyanın uzantısı <strong>.jpg, .gif</strong> ya da <strong>.png</strong> olmalıdır.
-                            </div>
-                            <span asp-validation-for="Image" class="text-danger"></span>
-                        </div>
-                    </div>*@
-
+                             
                     <input type="hidden" asp-for="Id" />
-
-
                     <div class="form-group">
-                                <label asp-for="CompanyId" cclass="control-label col-md-2"></label>
-                            <div class="col-md-8">
-                                <select asp-for="CompanyId" class="form-control " asp-items="ViewBag.CompanyId"></select>
-                                <span asp-validation-for="CompanyId" class="text-danger"></span>
-                            </div>
+                        <label asp-for="CompanyId" class="col-md-2 control-label">Firma</label>
+                        <div class="col-md-8">
+                            <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                        </div>
                     </div>
 
 
                     <div class="form-group">
                         <label asp-for="IsPublish" class="col-md-2 control-label"></label>
                         <div class="col-md-8">
-                            <input asp-for="IsPublish" class="form-control" />
+                            <input asp-for="IsPublish" class="form-control icheckbox_minimal-blue" />
                             <span asp-validation-for="IsPublish" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label asp-for="SelectedCampaign" class="col-md-2 control-label"></label>
                         <div class="col-md-8">
-                            <input asp-for="SelectedCampaign" class="form-control" />
+                            <input asp-for="SelectedCampaign" class="form-control icheckbox_minimal-blue" />
                             <span asp-validation-for="SelectedCampaign" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-8">
-                            <input type="submit" value="Kaydet" class="btn btn-primary" />
-                            <a asp-action="Index" class="btn default">Listeye Geri Dön</a>
+                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                            <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
                         </div>
                     </div>
                 </div>
