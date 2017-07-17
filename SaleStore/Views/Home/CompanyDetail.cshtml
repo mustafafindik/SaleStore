@@ -1,0 +1,140 @@
+﻿@model SaleStore.Models.Company
+
+@{
+    ViewData["Title"] = "Firma Detayları";
+}
+
+
+<!-- /.Fixed navbar  -->
+<div class="container main-container headerOffset">  
+    <div class="row transitionfx">
+        <!-- left column -->
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="product-title">
+                <h1>@Model.Name</h1>
+            
+                <div class="details-description" style="padding:7px 15px 7px 15px;">
+                    <h4><i class="fa fa-map-o" aria-hidden="true"></i> @Model.Address </h4>
+                </div>
+                @*<div class="rating">
+                    <p>
+                        <span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span> <span>
+                            <i class="fa fa-star"></i>
+                        </span> <span><i class="fa fa-star"></i></span> <span>
+                            <i class="fa fa-star-o "></i>
+                        </span> <span class="ratingInfo">
+                            <span> / </span> <a data-target="#modal-review" data-toggle="modal">Write a review</a>
+                        </span>
+                    </p>
+                </div>*@
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <!-- product Image and Zoom -->
+            <div>
+                <img src="/@Html.DisplayFor(model => model.Logo)" class="img-responsive img-thumbnail" ">
+
+            </div>
+        </div>
+
+
+             
+               
+                <!--/.color-details-->
+
+             
+                <!-- productFilter -->
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="cart-actions">
+                <div class="addto row">
+
+
+                </div>
+                <div style="clear:both"></div>
+                <br />
+                <div class="col-md-3 ">
+                    <h3 class="incaps">
+                        <a href="callto:+@Model.Phone">
+                            <span>
+                                <i class="fa fa-phone"></i>
+                            </span> <span class="hidden-xs"
+                                          style="margin-left:5px">@Model.Phone</span>
+                                    </a>
+                                </h3>
+                            </div>
+                <div class="col-md-6">
+                    <h3 class="incaps">
+                        <a href="mailto:+@Model.ApplicationUser">
+                            <span>
+                                <i class="fa fa-envelope-o "></i>
+                            </span> <span class="hidden-xs"
+                                          style="margin-left:5px">@Model.ApplicationUser</span>
+                                    </a>
+                                </h3>
+                </div>
+            </div>
+            <!--/.cart-actions-->
+
+            <div class="clear"></div>
+            <div class="product-tab w100 clearfix">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#details" data-toggle="tab">Açıklama</a></li>
+                    <li><a href="#size" data-toggle="tab">Harita</a></li>
+                 
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="details">
+                        @Model.Description
+                    </div>
+                    <div class="tab-pane" id="size">
+                       Harita
+                    </div>              
+                </div>
+                <!-- /.tab content -->
+
+            </div>
+            <!--/.product-tab-->
+
+            <div style="clear:both"></div>
+       
+
+            </div>
+            <!--/.product-share-->
+
+        </div>
+        <!--/ left column end -->
+        <!-- right column -->
+    
+     
+        <!--/ right column end -->
+
+    </div>
+    <!--/.row-->
+
+    @*<div class="row recommended">
+        <h1> YOU MAY ALSO LIKE </h1>
+
+        <div id="SimilarProductSlider">
+            <div class="item">
+                <div class="product">
+                    <a class="product-image"> <img src="" alt="img"> </a>
+
+                    <div class="description">
+                        <h4><a href="san-remo-spaghetti">YOUR LIFE</a></h4>
+
+                        <div class="price"><span>$57</span></div>
+                    </div>
+                </div>
+            </div>
+            <!--/.item-->           
+        </div>
+        <!--/.recommended-->
+
+    </div>*@
+    <div style="clear:both"></div>
+</div>
+<!-- /main-container -->
+
+<div class="gap"></div>

@@ -362,7 +362,7 @@
                 <ul  class=" brand-carousel owl-carousel" >
                     @foreach (var item in Model.Companies)
                     {                      
-                        <li ><a ><img  style="padding-top:35.0417%;max-height:120px;max-width:120px;"  src="/@item.Logo" alt="img"></a></li>
+                        <li ><a href="/Home/CompanyDetail/@item.Id" ><img  style="padding-top:35.0417%;max-height:120px;max-width:120px;"  src="/@item.Logo" alt="img"></a></li>
                     }
                 </ul>
             </div>

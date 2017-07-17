@@ -292,6 +292,24 @@ namespace SaleStore.Controllers
             return View(product);
         }
 
+        public async Task<IActionResult> CompanyDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+                    
+            var company = await _context.Companies
+                .Include(p => p.ApplicationUser)                
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            return View(company);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

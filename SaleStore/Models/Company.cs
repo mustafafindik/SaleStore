@@ -32,6 +32,9 @@ namespace SaleStore.Models
         [DisplayName("Firma Logosu")]
         public string Logo { get; set; }
 
+        [DisplayName("Firma Açıklama")]
+        public string Description { get; set; }
+
         [DisplayName("Ürün Sayısı")]
         public int ProductCount { get; set; }
         [DisplayName("Kampanya Sayısı")]
