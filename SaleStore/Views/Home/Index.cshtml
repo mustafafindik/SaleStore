@@ -1,25 +1,14 @@
 ﻿@model SaleStore.Models.ViewModels.HomePageViewModels
 @using PagedList.Core.Mvc
 
-
-
-
-
 <div class="banner banner-boxes">
     @if (String.IsNullOrEmpty(ViewBag.Query))
     {
         <div class="slider-content">
             <span class="prevControl sliderControl"> <i class="fa fa-angle-left fa-3x "></i></span>
             <span class="nextControl sliderControl"> <i class="fa fa-angle-right fa-3x "></i></span>
-
-
             <div class="swiper-container swiper-container-h">
-
-
                 <div class="swiper-wrapper">
-
-
-
                     @foreach (var item in Model.Campaigns)
                     {
                         if (item.IsPublish == true && item.SelectedCampaign==true)
@@ -27,9 +16,7 @@
                             <div class="swiper-slide slide-2x">
                                 <div class="box-slider-content">
                                     <div class="box-text">
-                                        <h1>@item.Slogan</h1>
-
-                                      
+                                        <h1>@item.Slogan</h1>                                   
                                         <a asp-controller="Home" asp-action="CampaignDetail" class="btn btn-stroke-light" asp-route-id="@item.Id">İncele</a>
                                     </div>
                                     <div class="box-content-overly">
@@ -38,25 +25,15 @@
                                     <a href="#" class="box-img"> <img src="/@item.Image" alt="img"></a>
                                 </div>
                             </div>
-
                         }
                     }
 
-
-
-
                 </div>
-
                 <div class="box-pagination swiper-pagination"></div>
-
             </div>
-
-            <!--/.full-container-->
+           <!--/.full-container-->
         </div>
     }
-
-
-
 </div>
 
 <!--/.banner style1-->
@@ -71,9 +48,7 @@
 @if (String.IsNullOrEmpty(ViewBag.Query))
 {
     <div class="container main-container">
-
         <!-- Main component call to action -->
-
         <div class="row featuredPostContainer globalPadding style2">
             <h3 class="section-title style2 text-center"><span>EN ÇOK İNDİRİMDE OLANLAR</span></h3>
 
@@ -83,8 +58,6 @@
                     if (item.IsPublish == true && item.SelectedProduct==true)
                     {
                         var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));
-
-
                         <div class="item">
                             <div class="product">
                                 <div class="image">
@@ -96,13 +69,11 @@
                                         <img src="/@item.ProductImage" alt="img" style="margin-top:10px;height:250px;"
                                              class="img-responsive ">
                                     </a>
-
                                     <div class="promotion">
                                         @{ if ((DateTime.Now.Day - item.UpdateDate.Day) < 3)
                                             {
                                                 <span class="new-product"> Yeni</span>
                                             }
-
                                         }
                                         <span class="discount">% @discount indirim</span>
 
@@ -115,12 +86,10 @@
                                         @if (string.IsNullOrEmpty(item.Details) == false && item.Details.Length > 30)
                                         {
                                             @item.Details.Substring(0, 30)
-
                                         }
                                         else
                                         {
                                             @item.Details
-
                                         }
                                     </p>
                                 </div>
@@ -138,12 +107,8 @@
                                 </div>
                             </div>
                         </div>
-
-
-                                                }
-
-                                            }
-
+                    }
+                }
 
             </div>
             <!--/.productslider-->
@@ -152,12 +117,10 @@
 
         <!--/.featuredPostContainer-->
     </div>
-                                            }
+ }
 <!-- /main container -->
 <div style="padding-top:0;" class="container main-container headerOffset">
-
     <!--left column-->
-
     <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="panel-group" id="accordionNo">
             <!--Category-->
@@ -207,10 +170,12 @@
         <!--/.subCategoryList-->
 
         <div class="w100 productFilter clearfix">
+@if (!String.IsNullOrEmpty(ViewBag.Query)) {
             <p class="pull-left"> <strong> @Model.Products.Count </strong> Ürün , <strong>@Model.Campaigns.Count</strong> Kampanya Bulundu.  </p>
-
+}@if (String.IsNullOrEmpty(ViewBag.Query)) { 
+            <p class="pull-left"> <strong> @Model.Products.Count </strong> Ürün Gösteriliyor  </p>
+    }        
             <div class="pull-right ">
-
                 <div class="change-view pull-right">
                     <a href="#" title="Grid" class="grid-view">
                         <i class="fa fa-th-large"></i>
