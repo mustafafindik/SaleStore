@@ -1,149 +1,213 @@
 @model IEnumerable<SaleStore.Models.Advertisement>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Reklamlar";
 }
 
-<h2>Index</h2>
+<br />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.advType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HomePageCampaigns)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HomePageProducts)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ProductsPage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CampaignPage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HTMLCodes)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.URLpath)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Ispublished)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AdvertiseStartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AdvertiseEndDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ClickRate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PositionDegree)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreateDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdatedBy)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdateDate)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.advType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomePageCampaigns)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomePageProducts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductsPage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CampaignPage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HTMLCodes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.URLpath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ispublished)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdvertiseStartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdvertiseEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClickRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PositionDegree)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="row">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> Reklamlar</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <a asp-action="Create" class="btn sbold green">
+                                    Yeni Ekle
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="tblRecords">
+                    <thead>
+                        <tr>
+                            <th data-orderable="false">
+                                @Html.DisplayName("Reklam Resmi")
+                            </th>
+                            <th class="all">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+
+                            <th>
+                               @Html.DisplayNameFor(model => model.advType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HomePageCampaigns)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.HomePageProducts)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.ProductsPage)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.CampaignPage)
+                            </th>
+
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.HTMLCodes)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.URLpath)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.Ispublished)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.AdvertiseStartDate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.AdvertiseEndDate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.ClickRate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.PositionDegree)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                            </th>
+                            <th class="none">
+                                @Html.DisplayNameFor(model => model.UpdateDate)
+                            </th>
+                            <th data-orderable="false" class="all ">
+                                Eylemler
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="/@item.Image" class="img-thumbnail    " style="height:50px;" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.advType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HomePageCampaigns)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HomePageProducts)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductsPage)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CampaignPage)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HTMLCodes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.URLpath)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Image)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Ispublished)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AdvertiseStartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AdvertiseEndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClickRate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PositionDegree)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UpdateDate)
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li>
+                                                <a asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="fa fa-pencil-square-o"></i> Düzenle
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Details" asp-route-id="@item.Id">
+                                                    <i class="fa fa-info"></i> Detaylar
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Delete" asp-route-id="@item.Id">
+                                                    <i class="fa fa-times "></i> Sil
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

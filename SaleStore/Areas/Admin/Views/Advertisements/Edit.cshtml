@@ -35,7 +35,11 @@
         <div class="form-group">
             <label asp-for="advType" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="advType" class="form-control"></select>
+                <select asp-for="advType" class="form-control">
+                    <option value="1">Resim</option>
+                    <option value="2">Text</option>
+                    <option value="3">HTML</option>
+                </select>
                 <span asp-validation-for="advType" class="text-danger"></span>
             </div>
         </div>

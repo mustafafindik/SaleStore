@@ -7,8 +7,8 @@ namespace SaleStore.Models
 {
     public enum AdvertisementType
     {
-        Image,
-        Text,
-        HTML
+        Image =1,
+        Text=2,
+        HTML=3
     }
 }
