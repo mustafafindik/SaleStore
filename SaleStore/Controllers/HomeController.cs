@@ -47,35 +47,57 @@ namespace SaleStore.Controllers
             {
                 // query parametresinden değer gelmiyorsa tüm kayıtları getir
                 model.Categories = _context.Categories.ToList();
-                model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
-                model.Products = _context.Products.OrderByDescending(x => x.CreateDate).Take(9).ToPagedList<Product>(page, 10); ;
+                model.Campaigns = _context.Campaigns.OrderByDescending(x => x.UpdateDate).Take(9).ToPagedList<Campaign>(page, 10);
+                model.Products = _context.Products.OrderByDescending(x => x.UpdateDate).Take(9).ToPagedList<Product>(page, 10);
                 model.Companies = _context.Companies.ToList();
                 model.Settings = _context.Setting.ToList();
-                return View(model);
+                return View("Index", model);
             }
             else
             {
                 // query'den değer geliyorsa where metoduyla filtreleme yap
                 query = query.ToLower();
                 string[] terms = query.Split(' ');
-                model.Categories = _context.Categories.ToList();
-                model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
-                
+                model.Categories = _context.Categories.ToList(); 
                 model.Companies = _context.Companies.ToList();
                 model.Settings = _context.Setting.ToList();
-
-                foreach (var term in terms)
+                if (terms.Count() > 1)
                 {
-                   
-                    model.Products = _context.Products.Where(r =>
-                    r.Name.ToLower().Contains(term) ||
-                    r.Details.ToLower().Contains(term)).ToPagedList<Product>(1,9);
+                    foreach (var term in terms)
+                    {
+                        if (_context.Products.Where(r => r.Name.ToLower().Contains(term)).FirstOrDefault() != null)
+                        {
+                            model.Products = _context.Products.Where(r => r.Name.ToLower().Contains(term) || r.Details.ToLower().Contains(term)).ToPagedList<Product>(1, 9);
 
-                    model.Campaigns = _context.Campaigns.Where(r =>
-                    r.Name.ToLower().Contains(term) ||
-                    r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
+                        }
+
+                        if (_context.Campaigns.Where(r => r.Name.ToLower().Contains(term)).FirstOrDefault() != null)
+                        {
+                            model.Campaigns = _context.Campaigns.Where(r => r.Name.ToLower().Contains(term) || r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
+
+                        }
+
+
+                    }
+
+
+                    
                 }
+                else
+                {
+                    foreach (var term in terms)
+                    {
 
+                        model.Products = _context.Products.Where(r =>
+                        r.Name.ToLower().Contains(term) ||
+                        r.Details.ToLower().Contains(term)).ToPagedList<Product>(1, 9);
+
+                        model.Campaigns = _context.Campaigns.Where(r =>
+                        r.Name.ToLower().Contains(term) ||
+                        r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
+                    }
+
+                }
                 return View("Index",model);
             }
         }
