@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,17 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SaleStore.Data;
 using SaleStore.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdvertisementsController : Controller
+    [Authorize(Roles = "ADMIN")]
+    public class AdvertisementsController : ControllerBaseAdmin
     {
-        private readonly ApplicationDbContext _context;
+        private IHostingEnvironment env;
 
-        public AdvertisementsController(ApplicationDbContext context)
+        public AdvertisementsController(ApplicationDbContext context, IHostingEnvironment _env) : base(context)
         {
-            _context = context;    
+            this.env = _env;    
         }
 
         // GET: Admin/Advertisements
@@ -55,14 +60,58 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Title,Description,advType,HomePageCampaigns,HomePageProducts,ProductsPage,CampaignPage,HTMLCodes,URLpath,Image,Ispublished,AdvertiseStartDate,AdvertiseEndDate,ClickRate,PositionDegree,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Advertisement advertisement)
+        public async Task<IActionResult> Create([Bind("Name,Title,Description,advType,HomePageCampaigns,HomePageProducts,ProductsPage,CampaignPage,HTMLCodes,URLpath,Image,Ispublished,AdvertiseStartDate,AdvertiseEndDate,ClickRate,PositionDegree,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Advertisement advertisement,IFormFile uploadFile)
         {
-            if (ModelState.IsValid)
+            advertisement.CreatedBy = User.Identity.Name ?? "username";
+            advertisement.CreateDate = DateTime.Now;
+            advertisement.UpdatedBy = User.Identity.Name ?? "username";
+            advertisement.UpdateDate = DateTime.Now;
+            if (uploadFile != null && ".jpg,.jpeg,.png".Contains(Path.GetExtension(uploadFile.FileName)) == false)
             {
-                _context.Add(advertisement);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("Image", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
             }
+            else if (ModelState.IsValid)
+            {
+                if (uploadFile != null)
+                {
+
+
+
+                    if (Path.GetExtension(uploadFile.FileName) == ".jpg"
+                    || Path.GetExtension(uploadFile.FileName) == ".gif"
+                    || Path.GetExtension(uploadFile.FileName) == ".png")
+                    {
+                        string category = DateTime.Now.Month + "-" + DateTime.Now.Year + "-AdvertisementImages";
+                        string FilePath = env.WebRootPath + "\\uploads\\" + category + "\\";
+                        string dosyaismi = Path.GetFileName(uploadFile.FileName);
+                        var yuklemeYeri = Path.Combine(FilePath, dosyaismi);
+                        advertisement.Image = "uploads/" + category + "/" + dosyaismi;
+                        try
+                        {
+                            if (!Directory.Exists(FilePath))
+                            {
+                                Directory.CreateDirectory(FilePath);//Eðer klasör yoksa oluþtur    
+                            }
+                            using (var stream = new FileStream(yuklemeYeri, FileMode.Create))
+                            {
+                                await uploadFile.CopyToAsync(stream);
+                            }
+
+
+                            _context.Add(advertisement);
+                            await _context.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
+                        catch (Exception exc) { ModelState.AddModelError("Image", "Hata: " + exc.Message); }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Image", "Dosya uzantýsý izin verilen uzantýlardan olmalýdýr.");
+                    }
+                }
+                else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
+            }
+            
             return View(advertisement);
         }
 

@@ -1,12 +1,12 @@
 @model SaleStore.Models.Advertisement
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Reklam Ekle";
 }
 
 <h2>Create</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <h4>Advertisement</h4>
         <hr />
@@ -89,11 +89,23 @@
                 <span asp-validation-for="URLpath" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group ">
             <label asp-for="Image" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+            <div class="col-md-9">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
+                    <div>
+                        <span class="btn red btn-outline btn-file">
+                            <span class="fileinput-new"> Resim Seç </span>
+                            <span class="fileinput-exists"> Deðiþtir </span>
+                            <input title="uploadFile" type="file" name="uploadFile" />
+                        </span>
+                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Kaldýr </a>
+                    </div>
+                </div>
+                <div class="clearfix margin-top-10">
+                    <span class="label label-success">NOT!</span> Resim Uzantýsý .jpg .jpeg yada .png olmalýdýr..
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -161,8 +173,9 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-8">
+                <input type="submit" value="Kaydet" class="btn btn-success" />
+                <a asp-action="Index" class="btn default btn-outline">Listeye Geri Dön</a>
             </div>
         </div>
     </div>
