@@ -4,6 +4,12 @@
     ViewData["Title"] = "Ürün Oluştur";
 }
 
+
+<!-- BEGIN THEME GLOBAL STYLES -->
+<link href="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<!-- END THEME GLOBAL STYLES -->
+<link href="~/metronic/global/css/components-md.min.css" rel="stylesheet" type="text/css" />
+
 <h2>İndirimli Ürün Oluştur</h2>
 
 <div class="container main-container headerOffset">
@@ -19,18 +25,26 @@
         <input type="hidden" asp-for="UpdatedBy" class="form-control" value="@(User.Identity.Name ?? "username")" />
         <input type="hidden" asp-for="UpdateDate" class="form-control" value="@DateTime.Now" />
 
-        <div class="col-lg-5 col-md-5 col-sm-5">
-            <!-- product Image and Zoom -->
-            <div class="main-image sp-wrap col-lg-12 no-padding">
-                <div class="form-group">
-                    <img src="~/images/product_details/low-res-white/1.jpg" class="img-responsive" alt="img" style="max-height:300px;">
-                </div>
-                <div class="form-group">
-                    <label asp-for="ProductImage" class="control-label"></label>
-                    <input title="uploadFile" type="file" name="uploadFile" class="form-control" accept="image/gif,image/jpg,image/jpeg,image/png"  />
-                    @Html.ValidationMessage("ProductImage", new { @class = "text-danger" })
-                </div>
-            </div>
+        <div class="col-lg-5 col-md-5 col-sm-5" style="padding-left:0px;">
+                <div class="form-group ">                   
+                    <div class="col-md-12" style="padding-left:0px;">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;"> </div>
+                            <div>
+                                <span class="btn red btn-outline btn-file">
+                                    <span class="fileinput-new"> Resim Seç </span>
+                                    <span class="fileinput-exists"> Değiştir </span>
+                                    <input title="uploadFile" type="file" name="uploadFile" />
+                                </span>
+                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
+
+                            </div>
+                        </div>  
+                        <div class="clearfix margin-top-10">
+                            <span class="label label-success">NOT!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
+                        </div>
+                    </div>
+                </div>   
         </div>
         <!--/ left column end -->
         <!-- right column -->
@@ -168,7 +182,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- jquery-migrate only for product details -->
 <script src="~/assets/js/jquery-migrate-1.4.1.js"></script>
-
   
 <!-- include jqueryCycle plugin -->
 <script src="/assets/js/jquery.cycle2.min.js"></script>
@@ -206,8 +219,14 @@
 <!-- include custom script for site  -->
 <script src="/assets/js/script.js"></script>
 
+<!-- END CORE PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
 
-<
+<script src="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+
+<!-- END THEME GLOBAL SCRIPTS -->
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -85,7 +85,7 @@ body {
     margin: 0;
     padding: 0;
     color: #454545;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
     font-size: 14px;
     line-height: 21px;
     position: relative;
