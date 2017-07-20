@@ -38,6 +38,9 @@ namespace SaleStore.Models
         [Display(Name = "Anahtar Kelimeler")]
         public string SeoKeywords { get; set; }
 
+        [Display(Name = "Üyelik Sözleşmesi ve Gizlilik Prensipleri")]
+        public string AgreementPrivacy { get; set; }
+
         public string Facebook { get; set; }
         public string Twitter { get; set; }
         public string LinkedIn { get; set; }

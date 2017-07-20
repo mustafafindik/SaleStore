@@ -28,7 +28,8 @@
                         <div class="product-tab w100 clearfix">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#details" data-toggle="tab">1.Adım</a></li>
-                                <li class="firm"><a href="#size" data-toggle="tab">2.Adım</a></li>
+                                <li class="step2"><a href="#size" data-toggle="tab">2.Adım</a></li>
+                                <li class="step3"><a href="#ap" data-toggle="tab">3.Adım</a></li>
 
                             </ul>
 
@@ -52,7 +53,7 @@
                                         <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi tekrar giriniz">
                                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                     </div>
-                                    <a href="#size" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> İleri</a>
+                                    <a href="#size" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> 2.Adıma Geç</a>
 
 
                                 </div>
@@ -82,12 +83,29 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div>
-                                            <input type="submit" value="Kaydet" class="btn btn-primary" />
-                                        </div>
+
+                                        <a href="#ap" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> 3.Adıma Geç</a>
+                                        
                                     </div>
 
                                 </div>
+                                <div class="tab-pane" id="ap">
+                                    <h3>Üyelik Sözleşmesi ve Gizlilik Prensipleri</h3>
+
+                                    <div class="form-group" >
+                                        <textarea rows="10" class="col-md-12" readonly></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <input type="checkbox" />
+                                        
+                                        <label>Üyelik Sözleşmesini ve Gizlilik Prensiplerini Okudum Kabul Ediyorum</label>
+                                    </div>
+                                    <div class="form-group">
+                                          <input type="submit" value="Hesabı Oluştur" class="btn btn-primary" />
+                                    </div>
+
+                                    </div>
 
                             </div>
                             <!-- /.tab content -->
@@ -131,7 +149,8 @@
             $('#active').click(function (e) {
 
                 $('.nav li').removeClass('active');
-                $('.firm').addClass('active');
+                $('.step2').addClass('active');
+
 
             });
         });
