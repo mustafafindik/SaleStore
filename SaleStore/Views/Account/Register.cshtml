@@ -5,6 +5,11 @@
     ViewData["Title"] = "Register";
 }
 
+<!-- BEGIN THEME GLOBAL STYLES -->
+<link href="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<!-- END THEME GLOBAL STYLES -->
+<link href="~/metronic/global/css/components-md.min.css" rel="stylesheet" type="text/css" />
+
 <header class="page-header bg-img size-lg headerOffset" style="padding-top:80px;">
     <div class="container">
         <h1 class="text-center">Kaydol</h1>
@@ -18,7 +23,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12  col-sm-12">
             <div class="row userInfo">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" enctype="multipart/form-data">
                         <h2 class="block-title-2"> BİR HESAP OLUŞTURUN</h2>
 
@@ -27,17 +32,15 @@
                         <!--Tab-->
                         <div class="product-tab w100 clearfix">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#details" data-toggle="tab">1.Adım</a></li>
-                                <li class="step2"><a href="#size" data-toggle="tab">2.Adım</a></li>
-                                <li class="step3"><a href="#ap" data-toggle="tab">3.Adım</a></li>
+                                <li class="active"><a href="#details" data-toggle="tab">Üyelik Bilgileri</a></li>
+                                <li class="step2"><a href="#size" data-toggle="tab">Firma Bilgileri</a></li>
+                                <li class="step3"><a href="#ap" data-toggle="tab">Üyelik Sözleşmesi</a></li>
 
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane active" id="details">
-                                    <h3>Üyelik Bilgileri</h3>
-
+                                <div class="tab-pane active" id="details">                               
                                     <div class="form-group">
                                         <label asp-for="Email">Email</label>
                                         <input asp-for="Email" class="form-control" placeholder="Email adresinizi giriniz" />
@@ -58,8 +61,7 @@
 
                                 </div>
                                 <div class="tab-pane" id="size">
-                                    <h3>Firma Bilgileri</h3>
-
+                          
                                     <div class="form-group">
                                         <label asp-for="Name" class=" control-label"></label>
                                         <input asp-for="Name" class="form-control" />
@@ -76,31 +78,52 @@
                                         <span asp-validation-for="Phone" class="text-danger"></span>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label asp-for="Logo" class=" control-label"></label>
-                                        <input title="uploadFile" type="file" name="uploadFile" class="form-control" />
-                                        @Html.ValidationMessage("Logo", new { @class = "text-danger" })
+                                 
+
+                                    <div class="form-group ">
+                                        <label asp-for="Logo" class="control-label"></label>
+                                        <div class="col-md-12" style="padding-left:0px;">
+                                          
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"> </div>
+                                                <div>
+                                                    <span class="btn red btn-outline btn-file">
+                                                        <span class="fileinput-new"> Resim Seç </span>
+                                                        <span class="fileinput-exists"> Değiştir </span>
+                                                        <input title="uploadFile" type="file" name="uploadFile" />
+                                                    </span>
+                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-
+                                    <div class="clearfix margin-top-10">
+                                        <span class="label label-success">NOT!</span> Resim Uzantısı .jpg .jpeg yada .png olmalıdır..
+                                    </div>
                                     <div class="form-group">
 
-                                        <a href="#ap" id="active" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> 3.Adıma Geç</a>
+                                        <a style="margin-top:10px;" href="#ap" id="active1" class="btn btn-default" data-toggle="tab"><i class="fa fa-user"></i> 3.Adıma Geç</a>
                                         
                                     </div>
 
                                 </div>
-                                <div class="tab-pane" id="ap">
-                                    <h3>Üyelik Sözleşmesi ve Gizlilik Prensipleri</h3>
-
+                                <div class="tab-pane" id="ap">                              
+                                   
                                     <div class="form-group" >
-                                        <textarea rows="10" class="col-md-12" readonly></textarea>
+                                        <div >
+                                            <textarea  rows="10" class="col-lg-12" style="margin-bottom:20px;"  readonly></textarea>
+                                        </div>
                                     </div>
+
                                     <div class="form-group">
-                                        
-                                        <input type="checkbox" />
-                                        
-                                        <label>Üyelik Sözleşmesini ve Gizlilik Prensiplerini Okudum Kabul Ediyorum</label>
+                                        <div>
+                                            <input type="checkbox" class="checkbox" />
+                                            <label>Üyelik Sözleşmesini ve Gizlilik Prensiplerini Okudum Kabul Ediyorum</label>
+                                        </div>
                                     </div>
+
                                     <div class="form-group">
                                           <input type="submit" value="Hesabı Oluştur" class="btn btn-primary" />
                                     </div>
@@ -135,7 +158,9 @@
 <div class="gap"></div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<script src="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -154,6 +179,17 @@
 
             });
         });
+
+        $(document).ready(function () {
+            $('#active1').click(function (e) {
+
+                $('.step2').removeClass('active');
+                $('.step3').addClass('active');
+
+
+            });
+        });
+
 
     </script>
 
