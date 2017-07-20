@@ -16,7 +16,7 @@ namespace SaleStore.Models
           MaxLength(25, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Name { get; set; }
         [DisplayName("Reklam Başlığı"),
-          Required(ErrorMessage = "Lütfen bir {0} giriniz."),
+          
           MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
           MaxLength(25, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Title { get; set; }
