@@ -111,7 +111,7 @@ namespace SaleStore.Areas.Admin.Controllers
                 }
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
-            
+            bool hasErrors = ViewData.ModelState.Values.Any(x => x.Errors.Count > 1);
             return View(advertisement);
         }
 

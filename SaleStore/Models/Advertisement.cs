@@ -40,7 +40,7 @@ namespace SaleStore.Models
         public string HTMLCodes { get; set; }
         [DisplayName("URL")]
         public string URLpath{ get; set; }
-        [DisplayName("Resmi"),Required]
+        [DisplayName("Resmi")]
         public string Image { get; set; }
         [DisplayName("Yayında Mı?")]
         public bool Ispublished { get; set; }
