@@ -31,6 +31,7 @@ namespace SaleStore.Controllers
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.OrderByDescending(x=>x.UpdateDate).Take(9).ToPagedList<Campaign>(page, 10);
             model.Products = _context.Products.OrderByDescending(x => x.UpdateDate).Take(9).ToPagedList<Product>(page, 10);
+            model.Advertisements = _context.Advertisements.Where(a => a.Ispublished==true).OrderBy(x => x.PositionDegree).ToPagedList<Advertisement>(page, 10);
             model.Companies = _context.Companies.ToList();
             model.Settings = _context.Setting.ToList();
             

@@ -9,9 +9,12 @@
             <span class="nextControl sliderControl"> <i class="fa fa-angle-right fa-3x "></i></span>
             <div class="swiper-container swiper-container-h">
                 <div class="swiper-wrapper">
+                    @{int advCounter = 0;
+                      int itemCount = 0;
                     @foreach (var item in Model.Campaigns)
                     {
-                        if (item.IsPublish == true && item.SelectedCampaign==true)
+                        
+                        if (item.IsPublish == true && item.SelectedCampaign == true)
                         {
                             <div class="swiper-slide slide-2x">
                                 <div class="box-slider-content">
@@ -26,8 +29,31 @@
                                 </div>
                             </div>
                         }
-                    }
+                        advCounter += 1;
+                        if (advCounter == 3 && Model.Advertisements.ElementAtOrDefault(itemCount)!=null)
+                        {
 
+                            var itemAdv = Model.Advertisements.ElementAtOrDefault(itemCount);
+
+                                            <div class="swiper-slide slide-2x">
+                                                <div class="box-slider-content">
+                                                    <div class="box-text">
+                                                        <h1>@itemAdv.Title</h1>
+                                                        <a href="#" class="btn btn-stroke-light">Gözat</a>
+                                                    </div>
+                                                    <div class="box-content-overly">
+                                                        <!-- Delete this div if you dont want overly effect -->
+                                                    </div>
+                                                    <a href="#" class="box-img"> <img src="/@itemAdv.Image" alt="img"></a>
+                                                </div>
+                                            </div>
+                                          
+                                            itemCount += 1;
+                                            advCounter = 0;
+
+                         }
+                    }
+                        }
                 </div>
                 <div class="box-pagination swiper-pagination"></div>
             </div>
