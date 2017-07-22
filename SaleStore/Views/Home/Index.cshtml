@@ -10,10 +10,10 @@
             <div class="swiper-container swiper-container-h">
                 <div class="swiper-wrapper">
                     @{int advCounter = 0;
-                      int itemCount = 0;
+                        int itemCount = 0;
                     @foreach (var item in Model.Campaigns)
                     {
-                        
+
                         if (item.IsPublish == true && item.SelectedCampaign == true)
                         {
                             <div class="swiper-slide slide-2x">
@@ -30,7 +30,7 @@
                             </div>
                         }
                         advCounter += 1;
-                        if (advCounter == 3 && Model.Advertisements.ElementAtOrDefault(itemCount)!=null)
+                        if (advCounter == 3 && Model.Advertisements.Where(x=>x.HomePageCampaigns==true).ElementAtOrDefault(itemCount) != null)
                         {
 
                             var itemAdv = Model.Advertisements.ElementAtOrDefault(itemCount);
@@ -47,11 +47,11 @@
                                                     <a href="#" class="box-img"> <img src="/@itemAdv.Image" alt="img"></a>
                                                 </div>
                                             </div>
-                                          
-                                            itemCount += 1;
-                                            advCounter = 0;
 
-                         }
+                            itemCount += 1;
+                            advCounter = 0;
+
+                        }
                     }
                         }
                 </div>
@@ -59,7 +59,7 @@
             </div>
            <!--/.full-container-->
         </div>
-    }
+                        }
 </div>
 
 <!--/.banner style1-->
@@ -81,7 +81,7 @@
             <div id="productslider" class="owl-carousel owl-theme">
                 @foreach (var item in Model.Products.OrderByDescending(x => 100 - ((x.SalePrice * 100) / x.UnitPrice)))
                 {
-                    if (item.IsPublish == true && item.SelectedProduct==true)
+                    if (item.IsPublish == true && item.SelectedProduct == true)
                     {
                         var discount = (int)(100 - ((@item.SalePrice * 100) / @item.UnitPrice));
                         <div class="item">
@@ -133,8 +133,8 @@
                                 </div>
                             </div>
                         </div>
-                    }
-                }
+                                                }
+                                            }
 
             </div>
             <!--/.productslider-->
@@ -143,7 +143,7 @@
 
         <!--/.featuredPostContainer-->
     </div>
- }
+                                            }
 <!-- /main container -->
 <div style="padding-top:0;" class="container main-container headerOffset">
     <!--left column-->
@@ -198,9 +198,9 @@
         <div class="w100 productFilter clearfix">
 @if (!String.IsNullOrEmpty(ViewBag.Query)) {
             <p class="pull-left"> <strong> @Model.Products.Count </strong> Ürün , <strong>@Model.Campaigns.Count</strong> Kampanya Bulundu.  </p>
-}@if (String.IsNullOrEmpty(ViewBag.Query)) { 
+}@if (String.IsNullOrEmpty(ViewBag.Query)) {
             <p class="pull-left"> <strong> @Model.Products.Count </strong> Ürün Gösteriliyor  </p>
-    }        
+}        
             <div class="pull-right ">
                 <div class="change-view pull-right">
                     <a href="#" title="Grid" class="grid-view">
@@ -213,68 +213,114 @@
         </div>
 
         <!--/.productFilter-->
-        <div class="row  categoryProduct xsResponse clearfix">
+        <di class="row  categoryProduct xsResponse clearfix">
+@{int ProductAdvCounter = 0;
+    int ProductAdvitemCount = 0;
+    @foreach (var item in Model.Products)
+    {
+        if (item.IsPublish == true && item.SelectedProduct == true)
+        {
+            <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
 
-            @foreach (var item in Model.Products)
-            {
-                if (item.IsPublish == true && item.SelectedProduct==true)
-                {
-                    <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
+                <div class="product">
 
-                        <div class="product">
+                    <div class="imageHover">
+                        <a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
+                            <img src="/@item.ProductImage" alt="img" class="img-responsive" style="margin-top:10px;height:240px;display:inline-block" />
 
-                            <div class="imageHover">
-                                <a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
-                                    <img src="/@item.ProductImage" alt="img" class="img-responsive" style="margin-top:10px;height:240px;display:inline-block" />
+                        </a>
+                        @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
+                        <div class="promotion">
+                            @{ if ((DateTime.Now.Day - item.UpdateDate.Day) < 3)
+                                {
+                                    <span class="new-product"> Yeni</span>
+                                }
 
-                                </a>
-                                @{ var discount = (int)(100 - (@item.SalePrice * 100) / @item.UnitPrice);}
-                                <div class="promotion">
-                                    @{ if ((DateTime.Now.Day - item.UpdateDate.Day) < 3)
-                                        {
-                                            <span class="new-product"> Yeni</span>
-                                        }
+                            }
+                            <span class="discount">% @discount indirim</span>
 
-                                    }
-                                    <span class="discount">% @discount indirim</span>
+                        </div>
 
-                                </div>
-
-                            </div>
-
-
-                            <div class="description">
-                                <h4><a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id"> @item.Name </a></h4>
-
-                                <div class="grid-description">
-                                    <p>@item.Details</p>
-                                </div>
-                                <div class="list-description">
-                                    <p>
-                                        @item.Details
-                                    </p>
-                                </div>
-                                @{ var last = item.SaleEndDate.Day - item.SaleStarthDate.Day;  }
-                                <span class="size"><b> Son @last Gün</b> </span>
-                            </div>
-                            <div class="price">
-                                <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
-                                <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
-                            </div>
-                            <div class="description">
-                                <span class="size">@item.Company.Name</span>
-                            </div>
-                                <div class="action-control">
-                                    <a class="btn btn-default" asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
-                                        <span class="add2cart">
-                                            <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
                     </div>
-                                        }
-                                    }
+
+
+                    <div class="description">
+                        <h4><a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id"> @item.Name </a></h4>
+
+                        <div class="grid-description">
+                            <p>@item.Details</p>
+                        </div>
+                        <div class="list-description">
+                            <p>
+                                @item.Details
+                            </p>
+                        </div>
+                        @{ var last = item.SaleEndDate.Day - item.SaleStarthDate.Day;  }
+                        <span class="size"><b> Son @last Gün</b> </span>
+                    </div>
+                    <div class="price">
+                        <span class="price-standard" style="font-size:14px;"> @Html.DisplayFor(model => item.UnitPrice) </span>	&nbsp;
+                        <span class="price-sales" style="font-size:20px;"> @Html.DisplayFor(model => item.SalePrice)</span>
+                    </div>
+                    <div class="description">
+                        <span class="size">@item.Company.Name</span>
+                    </div>
+                    <div class="action-control">
+                        <a class="btn btn-default" asp-controller="Home" asp-action="ProductDetail" asp-route-id="@item.Id">
+                            <span class="add2cart">
+                                <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Ürünü İncele
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+         }
+                            ProductAdvCounter += 1;
+                            if (ProductAdvCounter == 4 && Model.Advertisements.Where(x=>x.HomePageProducts==true).ElementAtOrDefault(ProductAdvitemCount) != null)
+                            {
+                                var itemAdv = Model.Advertisements.ElementAtOrDefault(ProductAdvitemCount);
+
+                                <div class="item itemauto col-sm-4 col-lg-4 col-md-4 col-xs-6">
+
+                                    <div class="product">
+
+                                        <div class="imageHover">
+                                            <a href="@itemAdv.URLpath">
+                                                <img src="/@itemAdv.Image" alt="img" class="img-responsive" style="margin-top:10px;height:240px;display:inline-block" />
+                                            </a>
+                                           
+                                        </div>
+
+                                        <div class="description">
+                                            <h4><a href="@itemAdv.URLpath"> @itemAdv.Name </a></h4>
+                                            
+                                            <div class="grid-description">
+                                                <p>@itemAdv.Title</p>
+                                            </div>
+                                            <div class="list-description">
+                                                <p>
+                                                    @itemAdv.Description
+                                                </p>
+                                            </div>
+                                            @{ var last = itemAdv.AdvertiseEndDate.Day - itemAdv.AdvertiseStartDate.Day;  }
+                                            <span class="size"><b> Son @last Gün</b> </span>
+                                        </div>
+                                        <div class="action-control">
+                                            <a class="btn btn-default" href="/@itemAdv.URLpath">
+                                                <span class="add2cart">
+                                                    <i class="glyphicon glyphicon-eye-open">&nbsp;</i>Gözat
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                                        ProductAdvitemCount += 1;
+                                                        ProductAdvCounter = 0;
+                            }
+      }
+}
+
 
             @if (!String.IsNullOrEmpty(ViewBag.Query))
             {
@@ -311,14 +357,12 @@
 
             }
             <!--/.item-->
-        </div>
-
+        
 
         <!--/.categoryProduct || product content end-->
         <!--/.categoryFooter-->
-    </div>
     <!--/right column end-->
-</div>
+
 
 <!-- /.row  -->
 <!-- /main container -->

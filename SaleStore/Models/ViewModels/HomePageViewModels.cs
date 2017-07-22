@@ -15,6 +15,6 @@ namespace SaleStore.Models.ViewModels
         public IPagedList<Advertisement> Advertisements { get; set; }
         public List<Company> Companies { get; set; }
         public List<Setting> Settings { get; set; }
-        int advCounter = 0;
+        
     }
 }
