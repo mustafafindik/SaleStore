@@ -1,4 +1,4 @@
-@model IEnumerable<SaleStore.Models.Advertisement>
+﻿@model IEnumerable<SaleStore.Models.Advertisement>
 
 @{
     ViewData["Title"] = "Reklamlar";
@@ -41,18 +41,25 @@
                             <th class="all">
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
-
-                            <th class="none">
+                            <th>
+                                @Html.DisplayNameFor(model => model.advType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Ispublished)
+                            </th>
+                            <th >
+                                @Html.DisplayNameFor(model => model.PositionDegree)
+                            </th>
+                            <th class="none" >
                                 @Html.DisplayNameFor(model => model.Title)
                             </th>
-                            <th class="none">
+                          
+                            <th class="none" >
                                 @Html.DisplayNameFor(model => model.Description)
                             </th>
 
-                            <th>
-                               @Html.DisplayNameFor(model => model.advType)
-                            </th>
-                            <th>
+                         
+                            <th class="none">
                                 @Html.DisplayNameFor(model => model.HomePageCampaigns)
                             </th>
                             <th class="none">
@@ -74,9 +81,7 @@
                             <th class="none">
                                 @Html.DisplayNameFor(model => model.Image)
                             </th>
-                            <th class="none">
-                                @Html.DisplayNameFor(model => model.Ispublished)
-                            </th>
+                           
                             <th class="none">
                                 @Html.DisplayNameFor(model => model.AdvertiseStartDate)
                             </th>
@@ -86,9 +91,7 @@
                             <th class="none">
                                 @Html.DisplayNameFor(model => model.ClickRate)
                             </th>
-                            <th class="none">
-                                @Html.DisplayNameFor(model => model.PositionDegree)
-                            </th>
+                           
                             <th class="none">
                                 @Html.DisplayNameFor(model => model.CreateDate)
                             </th>
@@ -117,18 +120,25 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-
                                 <td>
                                     @Html.DisplayFor(modelItem => item.advType)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.Ispublished)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PositionDegree)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                               
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+
+                             
+                                <td class="none">
                                     @Html.DisplayFor(modelItem => item.HomePageCampaigns)
                                 </td>
                                 <td>
@@ -149,9 +159,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Image)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Ispublished)
-                                </td>
+                               
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AdvertiseStartDate)
                                 </td>
@@ -161,9 +169,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ClickRate)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PositionDegree)
-                                </td>
+                                
                                 <td>
                                     @Html.DisplayFor(modelItem => item.CreateDate)
                                 </td>
@@ -185,7 +191,7 @@
                                         <ul class="dropdown-menu pull-right" role="menu">
                                             <li>
                                                 <a asp-action="Edit" asp-route-id="@item.Id">
-                                                    <i class="fa fa-pencil-square-o"></i> D�zenle
+                                                    <i class="fa fa-pencil-square-o"></i> Düzenle
                                                 </a>
                                             </li>
                                             <li>
