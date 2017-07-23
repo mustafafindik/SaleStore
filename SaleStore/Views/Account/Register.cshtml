@@ -113,15 +113,15 @@
                                    
                                     <div class="form-group" >
                                         <div >
-                                            <textarea  rows="10" class="col-lg-12" style="margin-bottom:20px;"  readonly></textarea>
+                                            <textarea  rows="10" class="col-lg-12" style="margin-bottom:20px;"  readonly>@Html.Raw(ViewBag.AgreementPrivacy)</textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <div>
-                                            <input type="checkbox" class="checkbox" />
-                                            <label>Üyelik Sözleşmesini ve Gizlilik Prensiplerini Okudum Kabul Ediyorum</label>
-                                        </div>
+                                        
+                                        <input asp-for="CompanyAcceptAgreement" class="form-control" required  />
+                                        <label asp-for="CompanyAcceptAgreement" class="control-label"></label>
+                                        <span asp-validation-for="CompanyAcceptAgreement" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">

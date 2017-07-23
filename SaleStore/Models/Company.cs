@@ -43,6 +43,10 @@ namespace SaleStore.Models
         [DisplayName("Harita Gösterilsin mi")]
         public bool MapIsVisible { get; set; }
 
+        [Required(ErrorMessage = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız")]
+        [DisplayName("Üyelik Sözleşmesini ve Gizlilik Prensiplerini Kabul Ediyorum")]
+        public bool CompanyAcceptAgreement { get; set; }
+
         [DisplayName("Harita Başlığı")]
         public string MapTitle { get; set; }
 

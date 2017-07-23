@@ -331,6 +331,7 @@ namespace SaleStore.Data
             s.CreatedBy = "username";
             s.UpdateDate = DateTime.Now;
             s.UpdatedBy = "username";
+            s.AgreementPrivacy = "Üyelik sözleşmesi şartları";
             context.Setting.Add(s);
             context.SaveChanges();
         }
@@ -338,7 +339,7 @@ namespace SaleStore.Data
         public static void AddCompanies(ApplicationDbContext context)
         {
             context.AddRange(
-                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/7-2017-CampaignImages/free-shipping.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now, UserId= "123456789" });
+                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/7-2017-CampaignImages/free-shipping.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now, UserId= "123456789",CompanyAcceptAgreement=true });
                 
             context.SaveChanges();
         }

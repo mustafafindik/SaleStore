@@ -35,6 +35,7 @@ namespace SaleStore.Controllers
                 ViewBag.facebook = setting.Facebook;
                 ViewBag.Twitter = setting.Twitter;
                 ViewBag.LinkedIn = setting.LinkedIn;
+                ViewBag.AgreementPrivacy = setting.AgreementPrivacy;
 
 
 

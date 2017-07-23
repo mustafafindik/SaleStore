@@ -171,7 +171,7 @@ namespace SaleStore.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "Kullanıcı yeni bir hesap oluşturdu.");
                     var lastUser = _context.Users.OrderByDescending(x =>x.CreateDate).FirstOrDefault();
-                    var newCompany = new Company { Name = model.Name, Address = model.Address, Phone = model.Phone, Logo = model.Logo, CreateDate = DateTime.Now, UpdateDate = DateTime.Now, UserId = lastUser.Id };
+                    var newCompany = new Company { Name = model.Name, Address = model.Address, Phone = model.Phone, Logo = model.Logo, CreateDate = DateTime.Now, UpdateDate = DateTime.Now, UserId = lastUser.Id, CompanyAcceptAgreement = true };
                     _context.Add(newCompany);
                     _context.SaveChanges();
 
