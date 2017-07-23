@@ -66,6 +66,38 @@
 
                         <input type="hidden" asp-for="Id" />
 
+
+                        <div class="form-group">
+                            <label asp-for="MapIsVisible" class="col-md-2 control-label"></label>
+                            <div class="col-md-8">
+                                <input asp-for="MapIsVisible" class="form-control" />
+                                <span asp-validation-for="MapIsVisible" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MapTitle" class="col-md-2 control-label"></label>
+                            <div class="col-md-8">
+                                <input asp-for="MapTitle" class="form-control" />
+                                <span asp-validation-for="MapTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MapLat" class="col-md-2 control-label"></label>
+                            <div class="col-md-8">
+                                <input asp-for="MapLat" class="form-control" />
+                                <span asp-validation-for="MapLat" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MapLon" class="col-md-2 control-label"></label>
+                            <div class="col-md-8">
+                                <input asp-for="MapLon" class="form-control" />
+                                <span asp-validation-for="MapLon" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Kaydet" class="btn btn-success" />

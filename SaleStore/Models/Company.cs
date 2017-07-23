@@ -40,6 +40,19 @@ namespace SaleStore.Models
         [DisplayName("Kampanya Sayısı")]
         public int CampaignCount { get; set; }
 
+        [DisplayName("Harita Gösterilsin mi")]
+        public bool MapIsVisible { get; set; }
+
+        [DisplayName("Harita Başlığı")]
+        public string MapTitle { get; set; }
+
+        [DisplayName("Enlem")]
+        public string MapLat { get; set; }
+
+        [DisplayName("Boylam")]
+        public string MapLon { get; set; }
+
+
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public ApplicationUser ApplicationUser { get; set; }

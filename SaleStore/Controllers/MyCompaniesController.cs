@@ -78,7 +78,7 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
+        public async Task<IActionResult> Create([Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,MapIsVisible,MapTitle,MapLat,MapLon")] Company company, IFormFile uploadFile)
         {          
             company.CreatedBy = User.Identity.Name ?? "username";
             company.CreateDate = DateTime.Now;
@@ -161,7 +161,7 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate")] Company company, IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,ProductCount,CampaignCount,UserId,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,MapIsVisible,MapTitle,MapLat,MapLon")] Company company, IFormFile uploadFile)
         {
             company.UpdatedBy = User.Identity.Name ?? "username";
             company.UpdateDate = DateTime.Now;
