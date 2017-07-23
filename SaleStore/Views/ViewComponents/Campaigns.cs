@@ -19,7 +19,7 @@ namespace SaleStore.Views.ViewComponents
             this._context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Category category)
+        public IViewComponentResult Invoke(Category category)
         {
 
             var items = GetItems(category).AsEnumerable();

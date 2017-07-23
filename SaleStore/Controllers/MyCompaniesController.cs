@@ -18,7 +18,7 @@ namespace SaleStore.Controllers
     [Authorize]
     public class MyCompaniesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+       
         private readonly UserManager<ApplicationUser> _userManager;
         private IHostingEnvironment env;
 
