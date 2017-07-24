@@ -38,7 +38,10 @@ namespace SaleStore.Models.AccountViewModels
         [DisplayName("Telefon"), DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız")]
+        //[Compare("True", ErrorMessage = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız")]
+        //[Range(typeof(bool), "true", "true", ErrorMessage = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız")]
+        //[RegularExpression("True",ErrorMessage = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız")]
+        //[Required(ErrorMessage = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız")]
         [DisplayName("Üyelik Sözleşmesini ve Gizlilik Prensiplerini Kabul Ediyorum")]
         public bool CompanyAcceptAgreement { get; set; }
 
