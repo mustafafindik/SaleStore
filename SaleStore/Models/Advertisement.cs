@@ -15,13 +15,13 @@ namespace SaleStore.Models
           MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
           MaxLength(25, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Name { get; set; }
-        [DisplayName("Reklam Başlığı"),
+        [DisplayName("Text Başlığı"),
           
           MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır."),
           MaxLength(25, ErrorMessage = "{0} en fazla {1} karakter olmalıdır.")]
         public string Title { get; set; }
 
-        [DisplayName("Reklam Detayı")]
+        [DisplayName("Text Detayı")]
         public string Description { get; set; }
 
         [DisplayName("Reklam Tipi")]
@@ -38,9 +38,9 @@ namespace SaleStore.Models
         public bool CampaignPage { get; set; }
         [DisplayName("HTML Kodu")]
         public string HTMLCodes { get; set; }
-        [DisplayName("URL")]
+        [DisplayName("Resim URL")]
         public string URLpath{ get; set; }
-        [DisplayName("Resmi")]
+        [DisplayName("Reklam Resmi")]
         public string Image { get; set; }
         [DisplayName("Yayında Mı?")]
         public bool Ispublished { get; set; }
