@@ -41,7 +41,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="details">   
-                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <div asp-validation-summary="All" class="text-danger">@ViewBag.CompanyAcceptAgreementFalse</div>
 
                                     <div class="form-group">
                                         <label asp-for="Email">Email</label>
@@ -121,9 +121,9 @@
 
                                     <div class="form-group">
                                         
-                                        <input asp-for="CompanyAcceptAgreement" class="form-control" required  />
+                                        <input asp-for="CompanyAcceptAgreement" class="form-control"/>
                                         <label asp-for="CompanyAcceptAgreement" class="control-label"></label>
-                                        <span asp-validation-for="CompanyAcceptAgreement" class="text-danger"></span>
+                                        <span asp-validation-for="CompanyAcceptAgreement" class="text-danger" >@ViewBag.CompanyAcceptAgreementFalse</span>
                                     </div>
 
                                     <div class="form-group">

@@ -120,7 +120,7 @@ namespace SaleStore.Controllers
         public async Task<IActionResult> Register(IFormFile uploadFile ,RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.CompanyAcceptAgreement==true)
             {
                 if (uploadFile != null)
                 {
@@ -222,10 +222,19 @@ namespace SaleStore.Controllers
 
                 AddErrors(result);
             }
-           
-       
+
+
 
             // If we got this far, something failed, redisplay form
+            if (model.CompanyAcceptAgreement == false)
+            {
+                ViewBag.CompanyAcceptAgreementFalse = "Üyelik Sözleşmesi ve Gizlilik Prensiplerini Onaylamadan Üye Olamazsınız";
+            }
+            else
+            {
+                ViewBag.CompanyAcceptAgreementFalse = null;
+            }
+            
             return View(model);
         }
 
