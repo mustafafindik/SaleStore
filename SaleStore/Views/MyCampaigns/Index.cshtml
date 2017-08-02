@@ -25,7 +25,16 @@
         <!--right column-->
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group text-center">
-                <p><a asp-action="Create" class="btn btn-block btn-primary">Kampanya Ekle</a></p>
+                @if (Model.Campaigns.Count() < Model.Companies.FirstOrDefault().CampaignCount)
+                {
+                    <p><a asp-action="Create" class="btn btn-block btn-primary">Kampanya Ekle</a></p>
+                }
+                else
+                {
+
+                    <p><a asp-controller="Home" asp-action="Contact" class="btn btn-block btn-primary">DAHA FAZLA KAMPANYA EKLEYEBİLMEK İÇİN SİTE YÖNETİCİSİ İLE İLETİŞİME GEÇİNİZ</a></p>
+                }
+
             </div>
 
             <!--/.subCategoryList-->

@@ -41,11 +41,13 @@ namespace SaleStore.Controllers
         // GET: Admin/Products
         public async Task<IActionResult> Index(int page = 1)
         {
+            Company company = new Company();
+            string CurrentUserId = await GetCurrentUserId();
+            model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
 
             model.Categories = _context.Categories.ToList();
             model.Products = _context.Products.ToPagedList<Product>(page, 9);
             List<Company> companies = _context.Companies.ToList();
-            string CurrentUserId = await GetCurrentUserId();
             model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
             return View(model);
         }
@@ -70,21 +72,33 @@ namespace SaleStore.Controllers
         }
 
         // GET: Admin/Campaigns/Create
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int page = 1)
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            Company company = new Company();
+            List<Company> companies = _context.Companies.ToList();
             string CurrentUserId = await GetCurrentUserId();
+            model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
+            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
+
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
             return View();
-        }
+
+            }
 
         // POST: Admin/Campaigns/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Campaign campaign, IFormFile uploadFile)
+        public async Task<IActionResult> Create(Campaign campaign, IFormFile uploadFile, int page =1)
         {
+            Company company = new Company();
+            List<Company> companies = _context.Companies.ToList();
+            string CurrentUserId = await GetCurrentUserId();
+            model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
+            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
+
             if (campaign.CampaignStartDate > campaign.CampaignEndDate)
             {
                 ModelState.AddModelError("CampaignEndDate", "Kampanya bitiş tarihi kampanya başlangıç tarihinden erken olamaz");
@@ -93,7 +107,7 @@ namespace SaleStore.Controllers
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
             }
-            else if (ModelState.IsValid)
+            else if (ModelState.IsValid && model.Campaigns.Count() < model.Companies.FirstOrDefault().CampaignCount)
             {
                 if (uploadFile != null)
                 {
@@ -136,7 +150,7 @@ namespace SaleStore.Controllers
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", campaign.CategoryId);
-            string CurrentUserId = await GetCurrentUserId();
+
             campaign.CompanyId = _context.Companies.Where(x => x.UserId == CurrentUserId).FirstOrDefault().Id;
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", campaign.CompanyId);
             return View(campaign);
@@ -184,10 +198,10 @@ namespace SaleStore.Controllers
             }
             else if (ModelState.IsValid)
             {
-                
+
                 if (uploadFile != null)
                 {
-                    
+
                     campaign.UpdatedBy = User.Identity.Name ?? "username";
                     campaign.UpdateDate = DateTime.Now;
 
@@ -222,8 +236,9 @@ namespace SaleStore.Controllers
                         ModelState.AddModelError("Image", "Dosya uzantısı izin verilen uzantılardan olmalıdır.");
                     }
                 }
-                else {
-                    
+                else
+                {
+
                     _context.Update(campaign);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");

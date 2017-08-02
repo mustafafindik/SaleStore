@@ -25,7 +25,16 @@
         <!--/.subCategoryList-->
         <!--/.productFilter-->
         <div class="col-lg-12 col-md-12 col-sm-12">
+        @if (Model.Products.Count() < Model.Companies.FirstOrDefault().ProductCount)
+        {
             <p><a class="btn btn-block btn-primary" asp-action="Create">Ürün Ekle</a></p>
+        }
+        else
+        {
+
+            <p><a asp-controller="Home" asp-action="Contact" class="btn btn-block btn-primary">DAHA FAZLA ÜRÜN EKLEYEBİLMEK İÇİN SİTE YÖNETİCİSİ İLE İLETİŞİME GEÇİNİZ</a></p>
+        }
+            
         <div class="row  categoryProduct xsResponse clearfix">
             @foreach(var item in Model.Products) {
             <!--/.item-->

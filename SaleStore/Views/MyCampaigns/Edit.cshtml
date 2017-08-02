@@ -24,12 +24,12 @@
             <div class="form-group ">
                 <div class="col-md-12" style="padding-left:0px;">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div value="/@Model.Image" class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;"><img src="/@Model.ProductImage"> </div>
+                        <div value="/@Model.Image" class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;"><img src="/@Model.Image"> </div>
                         <div>
                             <span class="btn red btn-outline btn-file">
                                 <span class="fileinput-new"> Resim Seç </span>
                                 <span class="fileinput-exists"> Değiştir </span>
-                                <input asp-for="ProductImage" type="file" name="uploadFile" />
+                                <input asp-for="Image" type="file" name="uploadFile" />
                             </span>
                             <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Kaldır </a>
                         </div>

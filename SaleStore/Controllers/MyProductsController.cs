@@ -41,13 +41,15 @@ namespace SaleStore.Controllers
         // GET: Admin/Products
         public async Task<IActionResult> Index(int page = 1)
         {
+            Company company = new Company();
+            string CurrentUserId = await GetCurrentUserId();
+            model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
 
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
             List<Company> companies = _context.Companies.ToList();
-            string CurrentUserId = await GetCurrentUserId();
             //string CurrentUserId = (await _userManager.GetUserAsync(HttpContext.User))?.Id;
-            model.Products = _context.Products.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Product>(page, 9);
+            model.Products = _context.Products.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Product>(page, 100000);
             return View(model);
         }
 
@@ -74,10 +76,15 @@ namespace SaleStore.Controllers
 
 
         // GET: Admin/Products/Create
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int page=1)
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            Company company = new Company();
+            List<Company> companies = _context.Companies.ToList();
             string CurrentUserId = await GetCurrentUserId();
+            model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
+            model.Products = _context.Products.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Product>(page, 100000);
+
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
             return View();
         }
@@ -87,8 +94,14 @@ namespace SaleStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product, IFormFile uploadFile)
+        public async Task<IActionResult> Create(Product product, IFormFile uploadFile, int page=1)
         {
+            Company company = new Company();
+            List<Company> companies = _context.Companies.ToList();
+            string CurrentUserId = await GetCurrentUserId();
+            model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
+            model.Products = _context.Products.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Product>(page,100000);
+
             if (product.SalePrice > product.UnitPrice)
             {
                 ModelState.AddModelError("SalePrice", "İndirimli fiyat birim fiyattan yüksek olamaz");
@@ -102,7 +115,7 @@ namespace SaleStore.Controllers
             {
                 ModelState.AddModelError("ImageUpload", "Dosyanın uzantısı .jpg, .gif ya da .png olmalıdır.");
             }
-            else if (ModelState.IsValid)
+            else if (ModelState.IsValid && model.Products.Count() < model.Companies.FirstOrDefault().ProductCount)
             {
                 if (uploadFile != null)
                 {
@@ -147,7 +160,6 @@ namespace SaleStore.Controllers
                 else { ModelState.AddModelError("FileExist", "Lütfen bir dosya seçiniz!"); }
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-            string CurrentUserId = await GetCurrentUserId();
             product.CompanyId = _context.Companies.Where(x => x.UserId == CurrentUserId).FirstOrDefault().Id;
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", product.CompanyId);
             return View(product);

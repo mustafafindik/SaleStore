@@ -149,7 +149,7 @@ namespace SaleStore.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,ProductCount,CampaignCount,CompanyAcceptAgreement,MapIsVisible,MapTitle,MapLat,MapLon")] Company company, IFormFile uploadFile)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Address,Phone,Logo,Id,CreateDate,CreatedBy,UpdatedBy,UpdateDate,ProductCount,CampaignCount,CompanyAcceptAgreement,MapIsVisible,MapTitle,MapLat,MapLon,UserId")] Company company, IFormFile uploadFile)
         {
             if (id != company.Id)
             {
