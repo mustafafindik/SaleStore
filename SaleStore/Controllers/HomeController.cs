@@ -14,11 +14,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SaleStore.Controllers
 {
-   
+
 
     public class HomeController : ControllerBase
     {
-      
+
         HomePageViewModels model = new HomePageViewModels();
 
         public HomeController(ApplicationDbContext context) : base(context)
@@ -29,12 +29,12 @@ namespace SaleStore.Controllers
         {
 
             model.Categories = _context.Categories.ToList();
-            model.Campaigns = _context.Campaigns.OrderByDescending(x=>x.UpdateDate).Take(9).ToPagedList<Campaign>(page, 10);
+            model.Campaigns = _context.Campaigns.OrderByDescending(x => x.UpdateDate).Take(9).ToPagedList<Campaign>(page, 10);
             model.Products = _context.Products.OrderByDescending(x => x.UpdateDate).Take(9).ToPagedList<Product>(page, 10);
-            model.Advertisements = _context.Advertisements.Where(a => a.Ispublished==true).OrderBy(x => x.PositionDegree).ToPagedList<Advertisement>(page, 10);
+            model.Advertisements = _context.Advertisements.Where(a => a.Ispublished == true).OrderBy(x => x.PositionDegree).ToPagedList<Advertisement>(page, 10);
             model.Companies = _context.Companies.ToList();
             model.Settings = _context.Setting.ToList();
-            
+
             return View(model);
         }
 
@@ -52,6 +52,7 @@ namespace SaleStore.Controllers
                 model.Products = _context.Products.OrderByDescending(x => x.UpdateDate).Take(9).ToPagedList<Product>(page, 10);
                 model.Companies = _context.Companies.ToList();
                 model.Settings = _context.Setting.ToList();
+                model.Advertisements = _context.Advertisements.Where(a => a.Ispublished == true).OrderBy(x => x.PositionDegree).ToPagedList<Advertisement>(page, 10);
                 return View("Index", model);
             }
             else
@@ -59,47 +60,22 @@ namespace SaleStore.Controllers
                 // query'den değer geliyorsa where metoduyla filtreleme yap
                 query = query.ToLower();
                 string[] terms = query.Split(' ');
-                model.Categories = _context.Categories.ToList(); 
+                model.Categories = _context.Categories.ToList();
                 model.Companies = _context.Companies.ToList();
                 model.Settings = _context.Setting.ToList();
-                if (terms.Count() > 1)
-                {
-                    foreach (var term in terms)
-                    {
-                        if (_context.Products.Where(r => r.Name.ToLower().Contains(term)).FirstOrDefault() != null)
-                        {
-                            model.Products = _context.Products.Where(r => r.Name.ToLower().Contains(term) || r.Details.ToLower().Contains(term)).ToPagedList<Product>(1, 9);
-
-                        }
-
-                        if (_context.Campaigns.Where(r => r.Name.ToLower().Contains(term)).FirstOrDefault() != null)
-                        {
-                            model.Campaigns = _context.Campaigns.Where(r => r.Name.ToLower().Contains(term) || r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
-
-                        }
-
-
-                    }
-
-
-                    
-                }
-                else
-                {
+                model.Advertisements = _context.Advertisements.Where(a => a.Ispublished == true).OrderBy(x => x.PositionDegree).ToPagedList<Advertisement>(page, 10);
+                
+                
                     foreach (var term in terms)
                     {
 
-                        model.Products = _context.Products.Where(r =>
-                        r.Name.ToLower().Contains(term) ||
-                        r.Details.ToLower().Contains(term)).ToPagedList<Product>(1, 9);
+                        model.Products = _context.Products.Where(r => r.Name.ToLower().Contains(term) || r.Details.ToLower().Contains(term)).ToPagedList<Product>(1, 9);
 
-                        model.Campaigns = _context.Campaigns.Where(r =>
-                        r.Name.ToLower().Contains(term) ||
-                        r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
+                        model.Campaigns = _context.Campaigns.Where(r => r.Name.ToLower().Contains(term) || r.Description.ToLower().Contains(term)).ToPagedList<Campaign>(1, 9);
                     }
 
-                }
-                return View("Index",model);
+                
+                return View("Index", model);
             }
         }
 
@@ -107,7 +83,7 @@ namespace SaleStore.Controllers
         {
             Setting settings = new Setting();
             settings = _context.Setting.FirstOrDefault();
-            ViewBag.Title =settings.Title + "- Hakkımızda";
+            ViewBag.Title = settings.Title + "- Hakkımızda";
             ViewBag.logo = settings.Logo;
             ViewBag.phone = settings.Phone;
             ViewBag.SeoDescription = settings.SeoDescription;
@@ -177,7 +153,7 @@ namespace SaleStore.Controllers
 
         }
 
-        public IActionResult Campaigns(int page=1)
+        public IActionResult Campaigns(int page = 1)
         {
             model.Categories = _context.Categories.ToList(); ;
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 10);
@@ -187,7 +163,7 @@ namespace SaleStore.Controllers
             return View(model);
         }
 
-        public async Task <IActionResult> Product(int? id)
+        public async Task<IActionResult> Product(int? id)
         {
             if (id == null)
             {
@@ -206,7 +182,7 @@ namespace SaleStore.Controllers
             return View(product);
         }
 
-        public IActionResult Products(int page=1)
+        public IActionResult Products(int page = 1)
         {
             model.Categories = _context.Categories.ToList();
             model.Campaigns = _context.Campaigns.ToPagedList<Campaign>(page, 9);
@@ -227,15 +203,15 @@ namespace SaleStore.Controllers
             model.Companies = _context.Companies.ToList();
             if (id == 0)
             {
-                model.Products = _context.Products.ToPagedList<Product>(1, 9);      
+                model.Products = _context.Products.ToPagedList<Product>(1, 9);
             }
             else
             {
                 model.Products = _context.Products.Where(x => x.CategoryId == id).OrderByDescending(x => x.CreateDate).ToPagedList(1, 9);
-                
+
             }
-            return View("Products",model);
-            
+            return View("Products", model);
+
         }
 
         public ActionResult SelectCampaigns(int? id)
@@ -321,9 +297,9 @@ namespace SaleStore.Controllers
             {
                 return NotFound();
             }
-                    
+
             var company = await _context.Companies
-                .Include(p => p.ApplicationUser)                
+                .Include(p => p.ApplicationUser)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (company == null)
             {
@@ -339,44 +315,44 @@ namespace SaleStore.Controllers
         public async Task<IActionResult> Contact(Inbox inbox)
         {
             inbox.Ip = Request.HttpContext.Connection.RemoteIpAddress.ToString();
-           
-                _context.Add(inbox);
-                await _context.SaveChangesAsync();
 
-                MailSetting mailSetting;
-                SendMessage sendMessage;
-                mailSetting = _context.MailSettings.Where(a => a.Id == 1).FirstOrDefault();
-                sendMessage = _context.SendMessages.Where(x=>x.MailSettingId==1).FirstOrDefault();
-                string FromAddress = mailSetting.FromAddress;
-                string FromAddressTitle = mailSetting.FromAddressTitle;
+            _context.Add(inbox);
+            await _context.SaveChangesAsync();
 
-                string ToAddress = inbox.Email;
-                string ToAddressTitle = inbox.FullName;
-                string Subject = sendMessage.Subject;
-                string BodyContent = sendMessage.BodyContent;
+            MailSetting mailSetting;
+            SendMessage sendMessage;
+            mailSetting = _context.MailSettings.Where(a => a.Id == 1).FirstOrDefault();
+            sendMessage = _context.SendMessages.Where(x => x.MailSettingId == 1).FirstOrDefault();
+            string FromAddress = mailSetting.FromAddress;
+            string FromAddressTitle = mailSetting.FromAddressTitle;
 
-                string SmptServer = mailSetting.SmptServer;
-                int SmptPortNumber = mailSetting.SmptPortNumber;
+            string ToAddress = inbox.Email;
+            string ToAddressTitle = inbox.FullName;
+            string Subject = sendMessage.Subject;
+            string BodyContent = sendMessage.BodyContent;
 
-                var mimeMessage = new MimeMessage();
-                mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
-                mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
-                mimeMessage.Subject = Subject;
-                mimeMessage.Body = new TextPart("plain")
-                {
-                    Text = BodyContent
-                };
+            string SmptServer = mailSetting.SmptServer;
+            int SmptPortNumber = mailSetting.SmptPortNumber;
 
-                using (var client = new SmtpClient())
-                {
-                    client.Connect(SmptServer, SmptPortNumber, false);
-                    client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
-                    client.Send(mimeMessage);
-                    client.Disconnect(true);
-                }
-                ViewBag.Message = "Mesajınız başarıyla gönderildi.";
+            var mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(new MailboxAddress(FromAddressTitle, FromAddress));
+            mimeMessage.To.Add(new MailboxAddress(ToAddressTitle, ToAddress));
+            mimeMessage.Subject = Subject;
+            mimeMessage.Body = new TextPart("plain")
+            {
+                Text = BodyContent
+            };
 
-            
+            using (var client = new SmtpClient())
+            {
+                client.Connect(SmptServer, SmptPortNumber, false);
+                client.Authenticate(mailSetting.FromAddress, mailSetting.FromAddressPassword);
+                client.Send(mimeMessage);
+                client.Disconnect(true);
+            }
+            ViewBag.Message = "Mesajınız başarıyla gönderildi.";
+
+
 
             return View(inbox);
 
@@ -403,5 +379,5 @@ namespace SaleStore.Controllers
         //}
 
     }
-    
+
 }

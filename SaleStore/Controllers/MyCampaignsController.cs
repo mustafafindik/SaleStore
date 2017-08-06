@@ -48,7 +48,7 @@ namespace SaleStore.Controllers
             model.Categories = _context.Categories.ToList();
             model.Products = _context.Products.ToPagedList<Product>(page, 9);
             List<Company> companies = _context.Companies.ToList();
-            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
+            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 100000);
             return View(model);
         }
 
@@ -78,7 +78,7 @@ namespace SaleStore.Controllers
             List<Company> companies = _context.Companies.ToList();
             string CurrentUserId = await GetCurrentUserId();
             model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
-            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
+            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 100000);
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             ViewData["CompanyId"] = new SelectList(_context.Companies.Where(x => x.UserId == CurrentUserId), "Id", "Name");
@@ -97,7 +97,7 @@ namespace SaleStore.Controllers
             List<Company> companies = _context.Companies.ToList();
             string CurrentUserId = await GetCurrentUserId();
             model.Companies = _context.Companies.Where(x => x.UserId == CurrentUserId).ToList();
-            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 9);
+            model.Campaigns = _context.Campaigns.Where(x => x.CompanyId == companies.Where(y => y.UserId == CurrentUserId).FirstOrDefault().Id).ToPagedList<Campaign>(page, 100000);
 
             if (campaign.CampaignStartDate > campaign.CampaignEndDate)
             {
