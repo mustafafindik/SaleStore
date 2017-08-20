@@ -2,7 +2,17 @@
 
 @{
     ViewData["Title"] = "Firma Detayları";
+
 }
+
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+
+    }
+</style>
+
 
 
 <!-- /.Fixed navbar  -->
@@ -74,23 +84,36 @@
                 </div>
             </div>
             <!--/.cart-actions-->
-
+            
             <div class="clear"></div>
             <div class="product-tab w100 clearfix">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#details" data-toggle="tab">Açıklama</a></li>
-                    <li><a href="#size" data-toggle="tab">Harita</a></li>
-                 
+                    <li ><a href="#details" data-toggle="tab">Açıklama</a></li>
+                    @if (Model.MapIsVisible == true) 
+                    {
+                    <li class="active"><a href="#size" data-toggle="tab">Harita</a></li>
+                        }
                 </ul>
+
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="details">
+                    <div class="tab-pane" id="details">
                         @Model.Description
                     </div>
-                    <div class="tab-pane" id="size">
-                       Harita
-                    </div>              
+                    @if (Model.MapIsVisible==true) {
+                    <div class="tab-pane active" id="size">
+
+                        
+
+                        <div id="map"></div>
+                        <button onclick="goMap()" class="btn btn-default col-md-12">Yol Tarifi Al</button>
+
+                      
+
+
+                    </div> 
+                    }            
                 </div>
                 <!-- /.tab content -->
 
@@ -138,3 +161,79 @@
 <!-- /main-container -->
 
 <div class="gap"></div>
+
+@section scripts{
+<script>
+
+        var mapLat = @Model.MapLat;
+        var mapLng = @Model.MapLon;
+        var mapTitle = "@Model.MapTitle";
+
+        function initMap() {
+
+            
+
+            var uluru = { lat: mapLat, lng: mapLng };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+
+
+
+            });
+
+
+            
+            infowindow = new google.maps.InfoWindow({ content: mapTitle });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+            infowindow.open(map, marker);
+            
+
+
+        }
+
+        function goMap() {
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+
+
+            function showPosition(position) {
+
+                alert("Yol Tarifi İçin Google Haritalara Yönlendiriliyorsunuz");
+
+
+
+                window.open('https://www.google.com.tr/maps/dir/' + position.coords.latitude + ',' + position.coords.longitude + '/' + mapLat + ',' + mapLng + '/@@' + mapLat + ',' + mapLng + ',10z');
+
+
+            }
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0bL34wg4_96sYq5ZoHAXCUijemaOP6lI&callback=initMap">
+</script>
+
+ 
+    
+    }

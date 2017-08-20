@@ -339,7 +339,7 @@ namespace SaleStore.Data
         public static void AddCompanies(ApplicationDbContext context)
         {
             context.AddRange(
-                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/7-2017-CampaignImages/free-shipping.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now, UserId="123456789",CompanyAcceptAgreement=true });
+                new Company { Name = "OnKa Yazılım", Address = "Kadıköy", Phone = "01234567899", Logo = "uploads/7-2017-CampaignImages/free-shipping.png", CreatedBy = "username", CreateDate = DateTime.Now, UpdatedBy = "username", UpdateDate = DateTime.Now, MapIsVisible=true, MapLat= "40.990444", MapLon= "29.029145", MapTitle="Onka YAZILIM", UserId="123456789",CompanyAcceptAgreement=true });
                 
             context.SaveChanges();
         }
