@@ -26,8 +26,43 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                        </div>
 
+                           
+                        </div>
+                        <div class="col-md-6"></div>
+
+                        <div class="col-md-12">
+
+
+
+                            <form id="selectCompany" method="post" asp-action="SelectCompany">
+                                <select name="selectCompany" class="col-md-3" style="margin-top:15px;height:50px; " onchange="document.getElementById('selectCompany').submit()">
+                                    
+                                        @if (ViewBag.SelectedCompany != null)
+                                        {
+                                            <option>
+                                                @ViewBag.SelectedCompany
+                                            </option>
+                                        }
+                                        else
+                                        {
+                                            <option>
+                                                Firma Seçiniz
+                                            </option>
+                                        }
+
+
+
+                                        @foreach (var company in ViewBag.Companies)
+                                        {
+<option value="@company.Name">@company.Name</option>
+
+                                    }
+
+
+                                </select>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <table class="table table-striped table-bordered table-hover" id="tblRecords">

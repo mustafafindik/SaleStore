@@ -32,7 +32,17 @@ namespace SaleStore.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Campaigns.Include(c => c.Category).Include(c => c.Companies);
+            ViewBag.Companies = _context.Companies;
             return View(await applicationDbContext.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SelectCompany(string selectCompany)
+        {
+            var applicationDbContext = _context.Campaigns.Include(c => c.Category).Include(c => c.Companies).Where(sc=>sc.Companies.Name==selectCompany);
+            ViewBag.Companies = _context.Companies.Where(a=>a.Name!=selectCompany);
+            ViewBag.SelectedCompany = _context.Companies.Where(sc => sc.Name == selectCompany).FirstOrDefault().Name;
+            return View("index", await applicationDbContext.ToListAsync());
         }
 
         // GET: Admin/Campaigns/Details/5
